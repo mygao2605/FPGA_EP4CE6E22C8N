@@ -1,0 +1,9 @@
+vendor_name = ModelSim
+source_file = 1, C:/Users/TuNa38/Desktop/FPGA_ALTERA/FPGA_EP4CE6E22C8N/L1.LED/led.v
+source_file = 1, C:/Users/TuNa38/Desktop/FPGA_ALTERA/FPGA_EP4CE6E22C8N/L1.LED/db/led.cbx.xml
+design_name = led
+instance = comp, \LED~output , LED~output, led, 1
+design_name = hard_block
+instance = comp, \~ALTERA_ASDO_DATA1~~ibuf , ~ALTERA_ASDO_DATA1~~ibuf, hard_block, 1
+instance = comp, \~ALTERA_FLASH_nCE_nCSO~~ibuf , ~ALTERA_FLASH_nCE_nCSO~~ibuf, hard_block, 1
+instance = comp, \~ALTERA_DATA0~~ibuf , ~ALTERA_DATA0~~ibuf, hard_block, 1
