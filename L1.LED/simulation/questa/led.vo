@@ -17,7 +17,7 @@
 // PROGRAM "Quartus Prime"
 // VERSION "Version 25.1std.0 Build 1129 10/21/2025 SC Lite Edition"
 
-// DATE "09/25/2026 09:24:24"
+// DATE "09/25/2026 09:33:48"
 
 // 
 // Device: Altera EP4CE6E22C8 Package TQFP144
@@ -30,11 +30,20 @@
 `timescale 1 ps/ 1 ps
 
 module led (
-	LED);
-output 	LED;
+	LED1,
+	LED2,
+	LED3,
+	LED4);
+output 	LED1;
+output 	LED2;
+output 	LED3;
+output 	LED4;
 
 // Design Ports Information
-// LED	=>  Location: PIN_84,	 I/O Standard: 2.5 V,	 Current Strength: Default
+// LED1	=>  Location: PIN_84,	 I/O Standard: 2.5 V,	 Current Strength: Default
+// LED2	=>  Location: PIN_85,	 I/O Standard: 2.5 V,	 Current Strength: Default
+// LED3	=>  Location: PIN_86,	 I/O Standard: 2.5 V,	 Current Strength: Default
+// LED4	=>  Location: PIN_87,	 I/O Standard: 2.5 V,	 Current Strength: Default
 
 
 wire gnd;
@@ -48,7 +57,10 @@ assign unknown = 1'bx;
 tri1 devclrn;
 tri1 devpor;
 tri1 devoe;
-wire \LED~output_o ;
+wire \LED1~output_o ;
+wire \LED2~output_o ;
+wire \LED3~output_o ;
+wire \LED4~output_o ;
 
 
 hard_block auto_generated_inst(
@@ -57,19 +69,64 @@ hard_block auto_generated_inst(
 	.devoe(devoe));
 
 // Location: IOOBUF_X34_Y9_N16
-cycloneive_io_obuf \LED~output (
+cycloneive_io_obuf \LED1~output (
 	.i(gnd),
 	.oe(vcc),
 	.seriesterminationcontrol(16'b0000000000000000),
 	.devoe(devoe),
-	.o(\LED~output_o ),
+	.o(\LED1~output_o ),
 	.obar());
 // synopsys translate_off
-defparam \LED~output .bus_hold = "false";
-defparam \LED~output .open_drain_output = "false";
+defparam \LED1~output .bus_hold = "false";
+defparam \LED1~output .open_drain_output = "false";
 // synopsys translate_on
 
-assign LED = \LED~output_o ;
+// Location: IOOBUF_X34_Y9_N9
+cycloneive_io_obuf \LED2~output (
+	.i(vcc),
+	.oe(vcc),
+	.seriesterminationcontrol(16'b0000000000000000),
+	.devoe(devoe),
+	.o(\LED2~output_o ),
+	.obar());
+// synopsys translate_off
+defparam \LED2~output .bus_hold = "false";
+defparam \LED2~output .open_drain_output = "false";
+// synopsys translate_on
+
+// Location: IOOBUF_X34_Y9_N2
+cycloneive_io_obuf \LED3~output (
+	.i(gnd),
+	.oe(vcc),
+	.seriesterminationcontrol(16'b0000000000000000),
+	.devoe(devoe),
+	.o(\LED3~output_o ),
+	.obar());
+// synopsys translate_off
+defparam \LED3~output .bus_hold = "false";
+defparam \LED3~output .open_drain_output = "false";
+// synopsys translate_on
+
+// Location: IOOBUF_X34_Y10_N9
+cycloneive_io_obuf \LED4~output (
+	.i(vcc),
+	.oe(vcc),
+	.seriesterminationcontrol(16'b0000000000000000),
+	.devoe(devoe),
+	.o(\LED4~output_o ),
+	.obar());
+// synopsys translate_off
+defparam \LED4~output .bus_hold = "false";
+defparam \LED4~output .open_drain_output = "false";
+// synopsys translate_on
+
+assign LED1 = \LED1~output_o ;
+
+assign LED2 = \LED2~output_o ;
+
+assign LED3 = \LED3~output_o ;
+
+assign LED4 = \LED4~output_o ;
 
 endmodule
 

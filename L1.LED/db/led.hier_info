@@ -1,4 +1,7 @@
 |led
-LED << <GND>
+LED1 <= <GND>
+LED2 <= <VCC>
+LED3 <= <GND>
+LED4 <= <VCC>
 
 

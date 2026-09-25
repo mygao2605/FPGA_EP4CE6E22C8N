@@ -1,5 +1,5 @@
 Analysis & Synthesis report for led
-Fri Sep 25 09:24:15 2026
+Fri Sep 25 09:33:39 2026
 Quartus Prime Version 25.1std.0 Build 1129 10/21/2025 SC Lite Edition
 
 
@@ -43,7 +43,7 @@ on the Quartus Prime software download page.
 +--------------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                         ;
 +------------------------------------+-------------------------------------------------+
-; Analysis & Synthesis Status        ; Successful - Fri Sep 25 09:24:15 2026           ;
+; Analysis & Synthesis Status        ; Successful - Fri Sep 25 09:33:39 2026           ;
 ; Quartus Prime Version              ; 25.1std.0 Build 1129 10/21/2025 SC Lite Edition ;
 ; Revision Name                      ; led                                             ;
 ; Top-level Entity Name              ; led                                             ;
@@ -52,7 +52,7 @@ on the Quartus Prime software download page.
 ;     Total combinational functions  ; 0                                               ;
 ;     Dedicated logic registers      ; 0                                               ;
 ; Total registers                    ; 0                                               ;
-; Total pins                         ; 1                                               ;
+; Total pins                         ; 4                                               ;
 ; Total virtual pins                 ; 0                                               ;
 ; Total memory bits                  ; 0                                               ;
 ; Embedded Multiplier 9-bit elements ; 0                                               ;
@@ -171,35 +171,35 @@ on the Quartus Prime software download page.
 +----------------------------------+-----------------+------------------------+--------------------------------------------------------------------+---------+
 
 
-+----------------------------------------------------------+
-; Analysis & Synthesis Resource Usage Summary              ;
-+---------------------------------------------+------------+
-; Resource                                    ; Usage      ;
-+---------------------------------------------+------------+
-;                                             ;            ;
-; Total combinational functions               ; 0          ;
-; Logic element usage by number of LUT inputs ;            ;
-;     -- 4 input functions                    ; 0          ;
-;     -- 3 input functions                    ; 0          ;
-;     -- <=2 input functions                  ; 0          ;
-;                                             ;            ;
-; Logic elements by mode                      ;            ;
-;     -- normal mode                          ; 0          ;
-;     -- arithmetic mode                      ; 0          ;
-;                                             ;            ;
-; Total registers                             ; 0          ;
-;     -- Dedicated logic registers            ; 0          ;
-;     -- I/O registers                        ; 0          ;
-;                                             ;            ;
-; I/O pins                                    ; 1          ;
-;                                             ;            ;
-; Embedded Multiplier 9-bit elements          ; 0          ;
-;                                             ;            ;
-; Maximum fan-out node                        ; LED~output ;
-; Maximum fan-out                             ; 1          ;
-; Total fan-out                               ; 1          ;
-; Average fan-out                             ; 0.50       ;
-+---------------------------------------------+------------+
++-----------------------------------------------------------+
+; Analysis & Synthesis Resource Usage Summary               ;
++---------------------------------------------+-------------+
+; Resource                                    ; Usage       ;
++---------------------------------------------+-------------+
+;                                             ;             ;
+; Total combinational functions               ; 0           ;
+; Logic element usage by number of LUT inputs ;             ;
+;     -- 4 input functions                    ; 0           ;
+;     -- 3 input functions                    ; 0           ;
+;     -- <=2 input functions                  ; 0           ;
+;                                             ;             ;
+; Logic elements by mode                      ;             ;
+;     -- normal mode                          ; 0           ;
+;     -- arithmetic mode                      ; 0           ;
+;                                             ;             ;
+; Total registers                             ; 0           ;
+;     -- Dedicated logic registers            ; 0           ;
+;     -- I/O registers                        ; 0           ;
+;                                             ;             ;
+; I/O pins                                    ; 4           ;
+;                                             ;             ;
+; Embedded Multiplier 9-bit elements          ; 0           ;
+;                                             ;             ;
+; Maximum fan-out node                        ; LED1~output ;
+; Maximum fan-out                             ; 1           ;
+; Total fan-out                               ; 4           ;
+; Average fan-out                             ; 0.50        ;
++---------------------------------------------+-------------+
 
 
 +----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
@@ -207,7 +207,7 @@ on the Quartus Prime software download page.
 +----------------------------+---------------------+---------------------------+-------------+--------------+---------+-----------+------+--------------+---------------------+-------------+--------------+
 ; Compilation Hierarchy Node ; Combinational ALUTs ; Dedicated Logic Registers ; Memory Bits ; DSP Elements ; DSP 9x9 ; DSP 18x18 ; Pins ; Virtual Pins ; Full Hierarchy Name ; Entity Name ; Library Name ;
 +----------------------------+---------------------+---------------------------+-------------+--------------+---------+-----------+------+--------------+---------------------+-------------+--------------+
-; |led                       ; 0 (0)               ; 0 (0)                     ; 0           ; 0            ; 0       ; 0         ; 1    ; 0            ; |led                ; led         ; work         ;
+; |led                       ; 0 (0)               ; 0 (0)                     ; 0           ; 0            ; 0       ; 0         ; 4    ; 0            ; |led                ; led         ; work         ;
 +----------------------------+---------------------+---------------------------+-------------+--------------+---------+-----------+------+--------------+---------------------+-------------+--------------+
 Note: For table entries with two numbers listed, the numbers in parentheses indicate the number of resources of the given type used by the specific entity alone. The numbers listed outside of parentheses indicate the total resources of the given type used by the specific entity and all of its sub-entities in the hierarchy.
 
@@ -232,10 +232,10 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 +-----------------------+-----------------------------+
 ; Type                  ; Count                       ;
 +-----------------------+-----------------------------+
-; boundary_port         ; 1                           ;
-; cycloneiii_lcell_comb ; 1                           ;
-;     normal            ; 1                           ;
-;         0 data inputs ; 1                           ;
+; boundary_port         ; 4                           ;
+; cycloneiii_lcell_comb ; 2                           ;
+;     normal            ; 2                           ;
+;         0 data inputs ; 2                           ;
 ;                       ;                             ;
 ; Max LUT depth         ; 0.00                        ;
 ; Average LUT depth     ; 0.00                        ;
@@ -257,7 +257,7 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 Info: *******************************************************************
 Info: Running Quartus Prime Analysis & Synthesis
     Info: Version 25.1std.0 Build 1129 10/21/2025 SC Lite Edition
-    Info: Processing started: Fri Sep 25 09:24:07 2026
+    Info: Processing started: Fri Sep 25 09:33:32 2026
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off led -c led
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
 Info (20030): Parallel compilation is enabled and will use 6 of the 6 processors detected
@@ -265,16 +265,19 @@ Info (12021): Found 1 design units, including 1 entities, in source file led.v
     Info (12023): Found entity 1: led File: C:/Users/TuNa38/Desktop/FPGA_ALTERA/FPGA_EP4CE6E22C8N/L1.LED/led.v Line: 1
 Info (12127): Elaborating entity "led" for the top level hierarchy
 Warning (13024): Output pins are stuck at VCC or GND
-    Warning (13410): Pin "LED" is stuck at GND File: C:/Users/TuNa38/Desktop/FPGA_ALTERA/FPGA_EP4CE6E22C8N/L1.LED/led.v Line: 3
+    Warning (13410): Pin "LED1" is stuck at GND File: C:/Users/TuNa38/Desktop/FPGA_ALTERA/FPGA_EP4CE6E22C8N/L1.LED/led.v Line: 2
+    Warning (13410): Pin "LED2" is stuck at VCC File: C:/Users/TuNa38/Desktop/FPGA_ALTERA/FPGA_EP4CE6E22C8N/L1.LED/led.v Line: 3
+    Warning (13410): Pin "LED3" is stuck at GND File: C:/Users/TuNa38/Desktop/FPGA_ALTERA/FPGA_EP4CE6E22C8N/L1.LED/led.v Line: 4
+    Warning (13410): Pin "LED4" is stuck at VCC File: C:/Users/TuNa38/Desktop/FPGA_ALTERA/FPGA_EP4CE6E22C8N/L1.LED/led.v Line: 6
 Info (16010): Generating hard_block partition "hard_block:auto_generated_inst"
     Info (16011): Adding 0 node(s), including 0 DDIO, 0 PLL, 0 transceiver and 0 LCELL
-Info (21057): Implemented 1 device resources after synthesis - the final resource count might be different
+Info (21057): Implemented 4 device resources after synthesis - the final resource count might be different
     Info (21058): Implemented 0 input pins
-    Info (21059): Implemented 1 output pins
-Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 3 warnings
+    Info (21059): Implemented 4 output pins
+Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 6 warnings
     Info: Peak virtual memory: 4759 megabytes
-    Info: Processing ended: Fri Sep 25 09:24:15 2026
-    Info: Elapsed time: 00:00:08
-    Info: Total CPU time (on all processors): 00:00:17
+    Info: Processing ended: Fri Sep 25 09:33:39 2026
+    Info: Elapsed time: 00:00:07
+    Info: Total CPU time (on all processors): 00:00:18
 
 

@@ -1,5 +1,5 @@
 Fitter report for led
-Fri Sep 25 09:24:18 2026
+Fri Sep 25 09:33:43 2026
 Quartus Prime Version 25.1std.0 Build 1129 10/21/2025 SC Lite Edition
 
 
@@ -57,7 +57,7 @@ on the Quartus Prime software download page.
 +--------------------------------------------------------------------------------------+
 ; Fitter Summary                                                                       ;
 +------------------------------------+-------------------------------------------------+
-; Fitter Status                      ; Successful - Fri Sep 25 09:24:18 2026           ;
+; Fitter Status                      ; Successful - Fri Sep 25 09:33:43 2026           ;
 ; Quartus Prime Version              ; 25.1std.0 Build 1129 10/21/2025 SC Lite Edition ;
 ; Revision Name                      ; led                                             ;
 ; Top-level Entity Name              ; led                                             ;
@@ -68,7 +68,7 @@ on the Quartus Prime software download page.
 ;     Total combinational functions  ; 0 / 6,272 ( 0 % )                               ;
 ;     Dedicated logic registers      ; 0 / 6,272 ( 0 % )                               ;
 ; Total registers                    ; 0                                               ;
-; Total pins                         ; 1 / 92 ( 1 % )                                  ;
+; Total pins                         ; 4 / 92 ( 4 % )                                  ;
 ; Total virtual pins                 ; 0                                               ;
 ; Total memory bits                  ; 0 / 276,480 ( 0 % )                             ;
 ; Embedded Multiplier 9-bit elements ; 0 / 30 ( 0 % )                                  ;
@@ -149,7 +149,7 @@ on the Quartus Prime software download page.
 ;                            ;             ;
 ; Usage by Processor         ; % Time Used ;
 ;     Processor 1            ; 100.0%      ;
-;     Processors 2-6         ;   0.3%      ;
+;     Processors 2-6         ;   0.2%      ;
 +----------------------------+-------------+
 
 
@@ -159,8 +159,8 @@ on the Quartus Prime software download page.
 ; Type                ; Total [A + B]     ; From Design Partitions [A] ; From Rapid Recompile [B] ;
 +---------------------+-------------------+----------------------------+--------------------------+
 ; Placement (by node) ;                   ;                            ;                          ;
-;     -- Requested    ; 0.00 % ( 0 / 13 ) ; 0.00 % ( 0 / 13 )          ; 0.00 % ( 0 / 13 )        ;
-;     -- Achieved     ; 0.00 % ( 0 / 13 ) ; 0.00 % ( 0 / 13 )          ; 0.00 % ( 0 / 13 )        ;
+;     -- Requested    ; 0.00 % ( 0 / 19 ) ; 0.00 % ( 0 / 19 )          ; 0.00 % ( 0 / 19 )        ;
+;     -- Achieved     ; 0.00 % ( 0 / 19 ) ; 0.00 % ( 0 / 19 )          ; 0.00 % ( 0 / 19 )        ;
 ;                     ;                   ;                            ;                          ;
 ; Routing (by net)    ;                   ;                            ;                          ;
 ;     -- Requested    ; 0.00 % ( 0 / 0 )  ; 0.00 % ( 0 / 0 )           ; 0.00 % ( 0 / 0 )         ;
@@ -183,7 +183,7 @@ on the Quartus Prime software download page.
 +--------------------------------+-----------------------+-------------------------+-------------------+---------------------+-------+
 ; Partition Name                 ; Preservation Achieved ; Preservation Level Used ; Netlist Type Used ; Preservation Method ; Notes ;
 +--------------------------------+-----------------------+-------------------------+-------------------+---------------------+-------+
-; Top                            ; 0.00 % ( 0 / 3 )      ; N/A                     ; Source File       ; N/A                 ;       ;
+; Top                            ; 0.00 % ( 0 / 9 )      ; N/A                     ; Source File       ; N/A                 ;       ;
 ; hard_block:auto_generated_inst ; 0.00 % ( 0 / 10 )     ; N/A                     ; Source File       ; N/A                 ;       ;
 +--------------------------------+-----------------------+-------------------------+-------------------+---------------------+-------+
 
@@ -220,7 +220,7 @@ The pin-out file can be found in C:/Users/TuNa38/Desktop/FPGA_ALTERA/FPGA_EP4CE6
 ;                                             ;                     ;
 ; Total LABs:  partially or completely used   ; 0 / 392 ( 0 % )     ;
 ; Virtual pins                                ; 0                   ;
-; I/O pins                                    ; 1 / 92 ( 1 % )      ;
+; I/O pins                                    ; 4 / 92 ( 4 % )      ;
 ;     -- Clock pins                           ; 0 / 3 ( 0 % )       ;
 ;     -- Dedicated input pins                 ; 0 / 9 ( 0 % )       ;
 ;                                             ;                     ;
@@ -240,7 +240,7 @@ The pin-out file can be found in C:/Users/TuNa38/Desktop/FPGA_ALTERA/FPGA_EP4CE6
 ; Peak interconnect usage (total/H/V)         ; 0.0% / 0.0% / 0.0%  ;
 ; Maximum fan-out                             ; 1                   ;
 ; Highest non-global fan-out                  ; 1                   ;
-; Total fan-out                               ; 6                   ;
+; Total fan-out                               ; 9                   ;
 ; Average fan-out                             ; 0.50                ;
 +---------------------------------------------+---------------------+
 *  Register count does not include registers inside RAM blocks or DSP blocks.
@@ -276,7 +276,7 @@ The pin-out file can be found in C:/Users/TuNa38/Desktop/FPGA_ALTERA/FPGA_EP4CE6
 ; Total LABs:  partially or completely used   ; 0 / 392 ( 0 % )  ; 0 / 392 ( 0 % )                ;
 ;                                             ;                  ;                                ;
 ; Virtual pins                                ; 0                ; 0                              ;
-; I/O pins                                    ; 1                ; 0                              ;
+; I/O pins                                    ; 4                ; 0                              ;
 ; Embedded Multiplier 9-bit elements          ; 0 / 30 ( 0 % )   ; 0 / 30 ( 0 % )                 ;
 ; Total memory bits                           ; 0                ; 0                              ;
 ; Total RAM block bits                        ; 0                ; 0                              ;
@@ -288,7 +288,7 @@ The pin-out file can be found in C:/Users/TuNa38/Desktop/FPGA_ALTERA/FPGA_EP4CE6
 ;     -- Registered Output Connections        ; 0                ; 0                              ;
 ;                                             ;                  ;                                ;
 ; Internal Connections                        ;                  ;                                ;
-;     -- Total Connections                    ; 1                ; 5                              ;
+;     -- Total Connections                    ; 4                ; 5                              ;
 ;     -- Registered Connections               ; 0                ; 0                              ;
 ;                                             ;                  ;                                ;
 ; External Connections                        ;                  ;                                ;
@@ -297,7 +297,7 @@ The pin-out file can be found in C:/Users/TuNa38/Desktop/FPGA_ALTERA/FPGA_EP4CE6
 ;                                             ;                  ;                                ;
 ; Partition Interface                         ;                  ;                                ;
 ;     -- Input Ports                          ; 0                ; 0                              ;
-;     -- Output Ports                         ; 1                ; 0                              ;
+;     -- Output Ports                         ; 4                ; 0                              ;
 ;     -- Bidir Ports                          ; 0                ; 0                              ;
 ;                                             ;                  ;                                ;
 ; Registered Ports                            ;                  ;                                ;
@@ -321,7 +321,10 @@ The pin-out file can be found in C:/Users/TuNa38/Desktop/FPGA_ALTERA/FPGA_EP4CE6
 +------+-------+----------+--------------+--------------+--------------+-----------------+------------------------+---------------+-----------+-----------------+------------+---------------+----------+--------------+--------------+------------------+-----------------------------------+---------------------------+----------------------------+-----------------------------+----------------------+----------------------+---------------------+
 ; Name ; Pin # ; I/O Bank ; X coordinate ; Y coordinate ; Z coordinate ; Output Register ; Output Enable Register ; Power Up High ; Slew Rate ; PCI I/O Enabled ; Open Drain ; TRI Primitive ; Bus Hold ; Weak Pull Up ; I/O Standard ; Current Strength ; Termination                       ; Termination Control Block ; Output Buffer Pre-emphasis ; Voltage Output Differential ; Location assigned by ; Output Enable Source ; Output Enable Group ;
 +------+-------+----------+--------------+--------------+--------------+-----------------+------------------------+---------------+-----------+-----------------+------------+---------------+----------+--------------+--------------+------------------+-----------------------------------+---------------------------+----------------------------+-----------------------------+----------------------+----------------------+---------------------+
-; LED  ; 84    ; 5        ; 34           ; 9            ; 14           ; no              ; no                     ; no            ; 2         ; no              ; no         ; no            ; no       ; Off          ; 2.5 V        ; Default          ; Series 50 Ohm without Calibration ; --                        ; no                         ; no                          ; User                 ; -                    ; -                   ;
+; LED1 ; 84    ; 5        ; 34           ; 9            ; 14           ; no              ; no                     ; no            ; 2         ; no              ; no         ; no            ; no       ; Off          ; 2.5 V        ; Default          ; Series 50 Ohm without Calibration ; --                        ; no                         ; no                          ; User                 ; -                    ; -                   ;
+; LED2 ; 85    ; 5        ; 34           ; 9            ; 7            ; no              ; no                     ; no            ; 2         ; no              ; no         ; no            ; no       ; Off          ; 2.5 V        ; Default          ; Series 50 Ohm without Calibration ; --                        ; no                         ; no                          ; User                 ; -                    ; -                   ;
+; LED3 ; 86    ; 5        ; 34           ; 9            ; 0            ; no              ; no                     ; no            ; 2         ; no              ; no         ; no            ; no       ; Off          ; 2.5 V        ; Default          ; Series 50 Ohm without Calibration ; --                        ; no                         ; no                          ; User                 ; -                    ; -                   ;
+; LED4 ; 87    ; 5        ; 34           ; 10           ; 7            ; no              ; no                     ; no            ; 2         ; no              ; no         ; no            ; no       ; Off          ; 2.5 V        ; Default          ; Series 50 Ohm without Calibration ; --                        ; no                         ; no                          ; User                 ; -                    ; -                   ;
 +------+-------+----------+--------------+--------------+--------------+-----------------+------------------------+---------------+-----------+-----------------+------------+---------------+----------+--------------+--------------+------------------+-----------------------------------+---------------------------+----------------------------+-----------------------------+----------------------+----------------------+---------------------+
 
 
@@ -337,6 +340,8 @@ The pin-out file can be found in C:/Users/TuNa38/Desktop/FPGA_ALTERA/FPGA_EP4CE6
 ; 13       ; DATA0                       ; As input tri-stated      ; ~ALTERA_DATA0~          ; Dual Purpose Pin          ;
 ; 14       ; nCONFIG                     ; -                        ; -                       ; Dedicated Programming Pin ;
 ; 21       ; nCE                         ; -                        ; -                       ; Dedicated Programming Pin ;
+; 86       ; DIFFIO_R7n, DEV_OE          ; Use as regular IO        ; LED3                    ; Dual Purpose Pin          ;
+; 87       ; DIFFIO_R7p, DEV_CLRn        ; Use as regular IO        ; LED4                    ; Dual Purpose Pin          ;
 ; 92       ; CONF_DONE                   ; -                        ; -                       ; Dedicated Programming Pin ;
 ; 94       ; MSEL0                       ; -                        ; -                       ; Dedicated Programming Pin ;
 ; 96       ; MSEL1                       ; -                        ; -                       ; Dedicated Programming Pin ;
@@ -355,7 +360,7 @@ The pin-out file can be found in C:/Users/TuNa38/Desktop/FPGA_ALTERA/FPGA_EP4CE6
 ; 2        ; 0 / 8 ( 0 % )   ; 2.5V          ; --           ;
 ; 3        ; 0 / 11 ( 0 % )  ; 2.5V          ; --           ;
 ; 4        ; 0 / 14 ( 0 % )  ; 2.5V          ; --           ;
-; 5        ; 1 / 13 ( 8 % )  ; 2.5V          ; --           ;
+; 5        ; 4 / 13 ( 31 % ) ; 2.5V          ; --           ;
 ; 6        ; 1 / 10 ( 10 % ) ; 2.5V          ; --           ;
 ; 7        ; 0 / 13 ( 0 % )  ; 2.5V          ; --           ;
 ; 8        ; 0 / 12 ( 0 % )  ; 2.5V          ; --           ;
@@ -450,10 +455,10 @@ The pin-out file can be found in C:/Users/TuNa38/Desktop/FPGA_ALTERA/FPGA_EP4CE6
 ; 81       ;            ; 5        ; VCCIO5                                                    ; power  ;              ; 2.5V    ; --         ;                 ; --       ; --           ;
 ; 82       ;            ;          ; GND                                                       ; gnd    ;              ;         ; --         ;                 ; --       ; --           ;
 ; 83       ; 117        ; 5        ; RESERVED_INPUT_WITH_WEAK_PULLUP                           ;        ;              ;         ; Row I/O    ;                 ; no       ; On           ;
-; 84       ; 118        ; 5        ; LED                                                       ; output ; 2.5 V        ;         ; Row I/O    ; Y               ; no       ; Off          ;
-; 85       ; 119        ; 5        ; RESERVED_INPUT_WITH_WEAK_PULLUP                           ;        ;              ;         ; Row I/O    ;                 ; no       ; On           ;
-; 86       ; 120        ; 5        ; RESERVED_INPUT_WITH_WEAK_PULLUP                           ;        ;              ;         ; Row I/O    ;                 ; no       ; On           ;
-; 87       ; 121        ; 5        ; RESERVED_INPUT_WITH_WEAK_PULLUP                           ;        ;              ;         ; Row I/O    ;                 ; no       ; On           ;
+; 84       ; 118        ; 5        ; LED1                                                      ; output ; 2.5 V        ;         ; Row I/O    ; Y               ; no       ; Off          ;
+; 85       ; 119        ; 5        ; LED2                                                      ; output ; 2.5 V        ;         ; Row I/O    ; Y               ; no       ; Off          ;
+; 86       ; 120        ; 5        ; LED3                                                      ; output ; 2.5 V        ;         ; Row I/O    ; Y               ; no       ; Off          ;
+; 87       ; 121        ; 5        ; LED4                                                      ; output ; 2.5 V        ;         ; Row I/O    ; Y               ; no       ; Off          ;
 ; 88       ; 125        ; 5        ; GND+                                                      ;        ;              ;         ; Row I/O    ;                 ; --       ; --           ;
 ; 89       ; 126        ; 5        ; GND+                                                      ;        ;              ;         ; Row I/O    ;                 ; --       ; --           ;
 ; 90       ; 127        ; 6        ; GND+                                                      ;        ;              ;         ; Row I/O    ;                 ; --       ; --           ;
@@ -522,7 +527,10 @@ Note: Pin directions (input, output or bidir) are based on device operating in u
 +----------+-------------------------------+
 ; Pin Name ; Reason                        ;
 +----------+-------------------------------+
-; LED      ; Incomplete set of assignments ;
+; LED1     ; Incomplete set of assignments ;
+; LED2     ; Incomplete set of assignments ;
+; LED3     ; Incomplete set of assignments ;
+; LED4     ; Incomplete set of assignments ;
 +----------+-------------------------------+
 
 
@@ -531,7 +539,7 @@ Note: Pin directions (input, output or bidir) are based on device operating in u
 +----------------------------+-------------+---------------------------+---------------+-------------+------+--------------+---------+-----------+------+--------------+--------------+-------------------+------------------+---------------------+-------------+--------------+
 ; Compilation Hierarchy Node ; Logic Cells ; Dedicated Logic Registers ; I/O Registers ; Memory Bits ; M9Ks ; DSP Elements ; DSP 9x9 ; DSP 18x18 ; Pins ; Virtual Pins ; LUT-Only LCs ; Register-Only LCs ; LUT/Register LCs ; Full Hierarchy Name ; Entity Name ; Library Name ;
 +----------------------------+-------------+---------------------------+---------------+-------------+------+--------------+---------+-----------+------+--------------+--------------+-------------------+------------------+---------------------+-------------+--------------+
-; |led                       ; 0 (0)       ; 0 (0)                     ; 0 (0)         ; 0           ; 0    ; 0            ; 0       ; 0         ; 1    ; 0            ; 0 (0)        ; 0 (0)             ; 0 (0)            ; |led                ; led         ; work         ;
+; |led                       ; 0 (0)       ; 0 (0)                     ; 0 (0)         ; 0           ; 0    ; 0            ; 0       ; 0         ; 4    ; 0            ; 0 (0)        ; 0 (0)             ; 0 (0)            ; |led                ; led         ; work         ;
 +----------------------------+-------------+---------------------------+---------------+-------------+------+--------------+---------+-----------+------+--------------+--------------+-------------------+------------------+---------------------+-------------+--------------+
 Note: For table entries with two numbers listed, the numbers in parentheses indicate the number of resources of the given type used by the specific entity alone. The numbers listed outside of parentheses indicate the total resources of the given type used by the specific entity and all of its sub-entities in the hierarchy.
 
@@ -541,7 +549,10 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 +------+----------+---------------+---------------+-----------------------+-----+------+
 ; Name ; Pin Type ; Pad to Core 0 ; Pad to Core 1 ; Pad to Input Register ; TCO ; TCOE ;
 +------+----------+---------------+---------------+-----------------------+-----+------+
-; LED  ; Output   ; --            ; --            ; --                    ; --  ; --   ;
+; LED1 ; Output   ; --            ; --            ; --                    ; --  ; --   ;
+; LED2 ; Output   ; --            ; --            ; --                    ; --  ; --   ;
+; LED3 ; Output   ; --            ; --            ; --                    ; --  ; --   ;
+; LED4 ; Output   ; --            ; --            ; --                    ; --  ; --   ;
 +------+----------+---------------+---------------+-----------------------+-----+------+
 
 
@@ -618,11 +629,14 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 +--------------------+-----------+--------------+-----------+--------------+--------------+-----------+-----------+--------------+-----------+-----------+--------------+-----------+--------------+--------------+--------------+--------------+-----------+--------------+--------------+--------------+--------------+-----------+--------------+--------------+--------------+--------------+--------------+-----------+--------------+--------------+
 ; Pin/Rules          ; IO_000001 ; IO_000002    ; IO_000003 ; IO_000004    ; IO_000005    ; IO_000006 ; IO_000007 ; IO_000008    ; IO_000009 ; IO_000010 ; IO_000011    ; IO_000012 ; IO_000013    ; IO_000014    ; IO_000015    ; IO_000018    ; IO_000019 ; IO_000020    ; IO_000021    ; IO_000022    ; IO_000023    ; IO_000024 ; IO_000026    ; IO_000027    ; IO_000045    ; IO_000046    ; IO_000047    ; IO_000033 ; IO_000034    ; IO_000042    ;
 +--------------------+-----------+--------------+-----------+--------------+--------------+-----------+-----------+--------------+-----------+-----------+--------------+-----------+--------------+--------------+--------------+--------------+-----------+--------------+--------------+--------------+--------------+-----------+--------------+--------------+--------------+--------------+--------------+-----------+--------------+--------------+
-; Total Pass         ; 1         ; 0            ; 1         ; 0            ; 0            ; 1         ; 1         ; 0            ; 1         ; 1         ; 0            ; 1         ; 0            ; 0            ; 0            ; 0            ; 1         ; 0            ; 0            ; 0            ; 0            ; 1         ; 0            ; 0            ; 0            ; 0            ; 0            ; 1         ; 0            ; 0            ;
+; Total Pass         ; 4         ; 0            ; 4         ; 0            ; 0            ; 4         ; 4         ; 0            ; 4         ; 4         ; 0            ; 4         ; 0            ; 0            ; 0            ; 0            ; 4         ; 0            ; 0            ; 0            ; 0            ; 4         ; 0            ; 0            ; 0            ; 0            ; 0            ; 4         ; 0            ; 0            ;
 ; Total Unchecked    ; 0         ; 0            ; 0         ; 0            ; 0            ; 0         ; 0         ; 0            ; 0         ; 0         ; 0            ; 0         ; 0            ; 0            ; 0            ; 0            ; 0         ; 0            ; 0            ; 0            ; 0            ; 0         ; 0            ; 0            ; 0            ; 0            ; 0            ; 0         ; 0            ; 0            ;
-; Total Inapplicable ; 0         ; 1            ; 0         ; 1            ; 1            ; 0         ; 0         ; 1            ; 0         ; 0         ; 1            ; 0         ; 1            ; 1            ; 1            ; 1            ; 0         ; 1            ; 1            ; 1            ; 1            ; 0         ; 1            ; 1            ; 1            ; 1            ; 1            ; 0         ; 1            ; 1            ;
+; Total Inapplicable ; 0         ; 4            ; 0         ; 4            ; 4            ; 0         ; 0         ; 4            ; 0         ; 0         ; 4            ; 0         ; 4            ; 4            ; 4            ; 4            ; 0         ; 4            ; 4            ; 4            ; 4            ; 0         ; 4            ; 4            ; 4            ; 4            ; 4            ; 0         ; 4            ; 4            ;
 ; Total Fail         ; 0         ; 0            ; 0         ; 0            ; 0            ; 0         ; 0         ; 0            ; 0         ; 0         ; 0            ; 0         ; 0            ; 0            ; 0            ; 0            ; 0         ; 0            ; 0            ; 0            ; 0            ; 0         ; 0            ; 0            ; 0            ; 0            ; 0            ; 0         ; 0            ; 0            ;
-; LED                ; Pass      ; Inapplicable ; Pass      ; Inapplicable ; Inapplicable ; Pass      ; Pass      ; Inapplicable ; Pass      ; Pass      ; Inapplicable ; Pass      ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass      ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass      ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass      ; Inapplicable ; Inapplicable ;
+; LED1               ; Pass      ; Inapplicable ; Pass      ; Inapplicable ; Inapplicable ; Pass      ; Pass      ; Inapplicable ; Pass      ; Pass      ; Inapplicable ; Pass      ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass      ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass      ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass      ; Inapplicable ; Inapplicable ;
+; LED2               ; Pass      ; Inapplicable ; Pass      ; Inapplicable ; Inapplicable ; Pass      ; Pass      ; Inapplicable ; Pass      ; Pass      ; Inapplicable ; Pass      ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass      ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass      ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass      ; Inapplicable ; Inapplicable ;
+; LED3               ; Pass      ; Inapplicable ; Pass      ; Inapplicable ; Inapplicable ; Pass      ; Pass      ; Inapplicable ; Pass      ; Pass      ; Inapplicable ; Pass      ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass      ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass      ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass      ; Inapplicable ; Inapplicable ;
+; LED4               ; Pass      ; Inapplicable ; Pass      ; Inapplicable ; Inapplicable ; Pass      ; Pass      ; Inapplicable ; Pass      ; Pass      ; Inapplicable ; Pass      ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass      ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass      ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass      ; Inapplicable ; Inapplicable ;
 +--------------------+-----------+--------------+-----------+--------------+--------------+-----------+-----------+--------------+-----------+-----------+--------------+-----------+--------------+--------------+--------------+--------------+-----------+--------------+--------------+--------------+--------------+-----------+--------------+--------------+--------------+--------------+--------------+-----------+--------------+--------------+
 
 
@@ -693,7 +707,7 @@ Info (332130): Timing requirements not specified -- quality metrics such as perf
 Info (176233): Starting register packing
 Info (176235): Finished register packing
     Extra Info (176219): No registers were packed into other blocks
-Info (171121): Fitter preparation operations ending: elapsed time is 00:00:01
+Info (171121): Fitter preparation operations ending: elapsed time is 00:00:00
 Info (14896): Fitter has disabled Advanced Physical Optimization because it is not supported for the current family.
 Info (170189): Fitter placement preparation operations beginning
 Info (170190): Fitter placement preparation operations ending: elapsed time is 00:00:00
@@ -712,12 +726,12 @@ Info (334003): Started post-fitting delay annotation
 Info (334004): Delay annotation completed successfully
 Info (334003): Started post-fitting delay annotation
 Info (334004): Delay annotation completed successfully
-Info (11218): Fitter post-fit operations ending: elapsed time is 00:00:00
+Info (11218): Fitter post-fit operations ending: elapsed time is 00:00:01
 Info (144001): Generated suppressed messages file C:/Users/TuNa38/Desktop/FPGA_ALTERA/FPGA_EP4CE6E22C8N/L1.LED/output_files/led.fit.smsg
 Info: Quartus Prime Fitter was successful. 0 errors, 5 warnings
     Info: Peak virtual memory: 5627 megabytes
-    Info: Processing ended: Fri Sep 25 09:24:18 2026
-    Info: Elapsed time: 00:00:02
+    Info: Processing ended: Fri Sep 25 09:33:43 2026
+    Info: Elapsed time: 00:00:03
     Info: Total CPU time (on all processors): 00:00:03
 
 
