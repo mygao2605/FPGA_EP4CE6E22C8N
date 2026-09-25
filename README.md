@@ -128,6 +128,9 @@ always @(posedge clk) begin
 end
 ```
 
+Công thức tính nhanh số clock N = fclock . t
+Muốn 1 s vs fclk =50Mhz -> N = 50000000.1 = 50000000 
+
 ---
 
 ## 3. Quy trình thực hiện dự án trên Quartus Prime
