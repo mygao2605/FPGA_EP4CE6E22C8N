@@ -1,0 +1,580 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>MCAL EPWM Phase Shift and Interrupts Demo &#8212; C29x Academy</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../_static/styles/theme.css?digest=796348d33e8b1d947c94" rel="stylesheet">
+<link href="../../../_static/styles/bootstrap.css?digest=796348d33e8b1d947c94" rel="stylesheet">
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=796348d33e8b1d947c94" rel="stylesheet">
+
+  
+  <link href="../../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=796348d33e8b1d947c94" rel="stylesheet">
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/local/font.css" />
+    <link rel="stylesheet" type="text/css" href="https://www.ti.com/assets/fonts/font.css" />
+    <link rel="stylesheet" type="text/css" href="https://www.ti.com/assets/style/resource-explorer.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=796348d33e8b1d947c94">
+<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=796348d33e8b1d947c94">
+
+    <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+    <script src="../../../_static/jquery.js"></script>
+    <script src="../../../_static/underscore.js"></script>
+    <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../../../_static/doctools.js"></script>
+    <script src="../../../_static/sphinx_highlight.js"></script>
+    <script src="../../../_static/clipboard.min.js"></script>
+    <script src="../../../_static/copybutton.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../../_static/togglebutton.js"></script>
+    <script src="../../../_static/design-tabs.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'source/lab_exercises/c29x_labs/c29x_mcal_epwm_phase_shift_lab';</script>
+    <script src="../../../_static/quizdown.js"></script>
+    <script src="../../../_static/external-links.js"></script>
+    <link rel="canonical" href="http://127.0.0.1:8000/source/lab_exercises/c29x_labs/c29x_mcal_epwm_phase_shift_lab.html" />
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="C29x Device Migration" href="../../migration/c29x_migration.html" />
+    <link rel="prev" title="System Integration Lab" href="c29x_system_integration_lab.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="docsearch:language" content="en">
+  </head>
+  
+  
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="180" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center" action="../../../search.html" method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search C29x Academy" aria-label="Search C29x Academy" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar"><div class="bd-header__inner bd-page-width">
+  <label class="sidebar-toggle primary-toggle" for="__primary">
+      <span class="fa-solid fa-bars"></span>
+  </label>
+  <div id="navbar-start">
+    
+  </div>
+
+  
+  <div class="col-lg-9 navbar-header-items">
+    <div id="navbar-center" class="mr-auto">
+      
+    </div>
+
+    <div id="navbar-end">
+      
+        <div class="navbar-end-item navbar-persistent--container">
+          
+<button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-toggle="tooltip">
+  <i class="fa-solid fa-magnifying-glass"></i>
+</button>
+        </div>
+      
+      
+    </div>
+  </div>
+
+
+  
+  
+    <div class="navbar-persistent--mobile">
+<button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-toggle="tooltip">
+  <i class="fa-solid fa-magnifying-glass"></i>
+</button>
+    </div>
+  
+
+  
+  <label class="sidebar-toggle secondary-toggle" for="__secondary">
+      <span class="fa-solid fa-outdent"></span>
+  </label>
+  
+
+</div>
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar hide-on-wide">
+        
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+
+    
+    
+  </div>
+
+  
+
+  
+  <div class="sidebar-end-items sidebar-primary__section">
+    <div class="sidebar-end-items__item">
+    </div>
+  </div>
+
+  
+  <div id="rtd-footer-container"></div>
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article"></div>
+              
+              
+                <article class="bd-article" role="main">
+                  
+                  
+<div id="searchbox"></div>
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="mcal-epwm-phase-shift-and-interrupts-demo">
+<h1>MCAL EPWM Phase Shift and Interrupts Demo<a class="headerlink" href="#mcal-epwm-phase-shift-and-interrupts-demo" title="Permalink to this heading">#</a></h1>
+<p><a class="reference external" href="https://dev.ti.com/tirex/local?id=source_lab_exercises_c29x_labs_c29x_mcal_epwm_phase_shift_lab&amp;packageId=C29X-ACADEMY">Link to share</a></p>
+<section id="overview">
+<h2>Overview<a class="headerlink" href="#overview" title="Permalink to this heading">#</a></h2>
+<p>The objective of this lab is to configure the MCAL‑based Enhanced Pulse Width Modulation (EPWM) module to generate deterministic phase‑shifted waveforms on four EPWM channels and to set up interrupt handling entirely through EB Tresos. We will use four channels, programmed with the same PWM frequency and duty‑cycle while each channel receives a unique phase offset (e.g., 0°, 120°, 240°, 360°) by writing the appropriate PhaseShift value to the channel’s registers. One of the channels is additionally configured to generate an interrupt. The resulting waveforms will be observed with a logic analyzer or an oscilloscope to verify the correct duty‑cycle, the precise phase offsets and the interrupt triggered.</p>
+</section>
+<section id="lab-setup">
+<h2>Lab Setup<a class="headerlink" href="#lab-setup" title="Permalink to this heading">#</a></h2>
+<section id="hardware-setup">
+<h3>Hardware Setup<a class="headerlink" href="#hardware-setup" title="Permalink to this heading">#</a></h3>
+<p>Required hardware for this lab:</p>
+<ul class="simple">
+<li><p>ControlSOM with the supplied USB cable.</p></li>
+<li><p>Jumper cables (4).</p></li>
+<li><p>Oscilloscope/Logic Analyzer.</p></li>
+</ul>
+<p>This lab exercise is intended for the F29H85x ControlSOM. Before continuing this lab, please be sure to reference the <a class="reference internal" href="../../intro/c29x_literature.html"><span class="doc std std-doc">ControlSOM User Guide</span></a> for hardware setup details.</p>
+<ul class="simple">
+<li><p>Using the supplied USB cable, connect the USB Type-C connector into your C2000 board
+and the USB Standard Type-A connector into your computer’s USB port.</p></li>
+<li><p>Please note that the <strong>docking station</strong> is necessary for this lab.</p>
+<ul>
+<li><p>When you are using the ControlSOM docking station, an additional power supply is needed for the docking station. See the <a class="reference internal" href="../../intro/c29x_literature.html"><span class="doc std std-doc">ControlSOM User Guide</span></a> for more details.</p></li>
+</ul>
+</li>
+<li><p>Check the power status LEDs (LED0 and LED1) to confirm that the board is powered and provides a JTAG communication link between the device and CCS.</p></li>
+</ul>
+<p>Later in the lab we will be routing the output pin of the PWM waveform to the input of Oscilloscope/Logic Analyzer, so make sure that you have a jumper cable to facilitate this.</p>
+</section>
+<hr class="docutils" />
+<section id="software-setup">
+<h3>Software Setup<a class="headerlink" href="#software-setup" title="Permalink to this heading">#</a></h3>
+<p>Required software for this lab:</p>
+<ul class="simple">
+<li><p>The device’s MCAL-SDK</p>
+<ul>
+<li><p>Request access to the <a class="reference external" href="https://www.ti.com/drr/opn/F29H85X-MCAL-SDK">F29x MCAL-SDK</a> through TI’s website.</p></li>
+</ul>
+</li>
+<li><p>The <a class="reference external" href="https://www.ti.com/tool/CCSTUDIO">Code Composer Studio (CCS)</a> platform.</p>
+<ul>
+<li><p>See the <a class="reference internal" href="../../intro/c29x_literature.html"><span class="doc std std-doc">CCS User’s Guide</span></a> for more information about this IDE.</p></li>
+</ul>
+</li>
+<li><p>The EB Tresos Platform.</p>
+<ul>
+<li><p>Visit the <a class="reference external" href="https://www.elektrobit.com/products/ecu/eb-tresos/">EB Tresos</a> website for more information.</p></li>
+</ul>
+</li>
+</ul>
+</section>
+</section>
+<section id="reconfiguring-modules">
+<h2>Reconfiguring Modules<a class="headerlink" href="#reconfiguring-modules" title="Permalink to this heading">#</a></h2>
+<p>The configuration for this demo is a modification of the <strong>Cdd_Pwm_Example_TripZone</strong> example provided in the <strong>c29X_mcal</strong> package. Only the <strong>Port, EPWM and OS</strong> modules are to be reconfigured. All the modules are configured through EB Tresos.</p>
+<hr class="docutils" />
+<section id="configure-port">
+<h3>Configure Port<a class="headerlink" href="#configure-port" title="Permalink to this heading">#</a></h3>
+<p>You can remove the DIO pin from the <strong>PortPin</strong> section as we wont be requiring it. The pin was configure for Trip Zone trigger which wont be used in this demo.</p>
+<p>Configure EPWM 4 as we will be requiring 4 EPWM instances to demo Phase Shifting. You can pick Channe A/B. For this demo we have used Channel A.</p>
+<p><img alt="Screenshot of adding EPWM4 in PortPin" src="../../../_images/epwm4_port.png" /></p>
+</section>
+<hr class="docutils" />
+<section id="configure-epwm">
+<h3>Configure EPWM<a class="headerlink" href="#configure-epwm" title="Permalink to this heading">#</a></h3>
+<p>We will use four EPWM instances to perform phase shifting. Hence we will configure EPWM 1, EPWM2, EPWM 3 and EPWM 4 using EB Tresos. Each instance is given a dynamic Id that can be used in MCAL APIs.</p>
+<p><img alt="Screenshot of Adding EPWM4 in CddPwmHwUnitConfig" src="../../../_images/epwm_instances_tresos.png" /></p>
+<p>Each EPWM instance is configured with clock frequency of 100MHz and a default 50% duty cycle. The wave generated is set to be Asymmetric. We will enable the interrupt in EPWM 4 to trigger an interrupt later (Not necessary for the other EPWM instances). The Prescaler parameters can be set according to user requirements ( This can me later changed using MCAL APIs ). Define the Interupt callback fucntion to be called when the interrupt is triggered later. A refernce image has been given below.</p>
+<p><img alt="Screenshot of configuring EPWM instances in CddPwmOutputChannel" src="../../../_images/epwm_config_tresos.png" /></p>
+<p>Each EPWM instance ahs two channels:</p>
+<ul class="simple">
+<li><p>Channel A</p></li>
+<li><p>Channel B</p></li>
+</ul>
+<p>Configure and add channels in the <strong>CddPwmOutputChannel</strong> section. Some parameters are set to their default values which can be customised using the MCAL APIs.</p>
+<p><img alt="Screenshot of configuring a cahnnel withing a EPWM instance" src="../../../_images/epwm_channel_config.png" /></p>
+</section>
+<hr class="docutils" />
+<section id="configure-os">
+<h3>Configure OS<a class="headerlink" href="#configure-os" title="Permalink to this heading">#</a></h3>
+<p>We will use the OS module to configure OC Counter and Interrupt. Set the type of counter you wish to use. It can either be Hardware ot Software counter. You can also set the maximum alowed value of the counter.
+To configure the interrupt move top the <strong>OsIsr</strong> section. Add an interrupt to be triggered by the EPWM. You can opt for Category 1 or Category 2. The interrupt Id is to be set based on the Vector Table prescrived in the F29 TRM. For EPWM 4, the Id in the vector table is <strong>42</strong>.</p>
+<p><img alt="Screenshot of vector table from TRM" src="../../../_images/interrupt_id_epwm4.png" /></p>
+<p>Interrupt priority can be set as per user requirements. However the ISR Fucntion is supposed to be the fucntion the user wants to be called on the interrupt triggering. In this case, it is a function that halts all EPWM activity. The condition for ISR is set using MCAL APIs.</p>
+<p><img alt="Screenshot of regsitering an interrupt" src="../../../_images/epwm_interrupt_config.png" /></p>
+</section>
+</section>
+<section id="program-setup">
+<h2>Program Setup<a class="headerlink" href="#program-setup" title="Permalink to this heading">#</a></h2>
+<p>The MCAL package had numerous APIs to support various modules. This is displayed through the examples provided.
+The following are the changes to be made to the existing  <strong>Cdd_Pwm_Example_TripZone</strong> example program provided in the <strong>c29X_mcal</strong> package to suit our lab requirement.</p>
+<hr class="docutils" />
+<section id="remove-trip-zone">
+<h3>Remove Trip Zone<a class="headerlink" href="#remove-trip-zone" title="Permalink to this heading">#</a></h3>
+<p>Tripzone is not required for the use case, hence we remove its feature by removing the following MCAL APIs:</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cm">/* The trip zone was applied for EPWM 2 and EPWM 3 in the example. */</span>
+<span class="n">Cdd_Pwm_SetTripZoneAction</span><span class="p">(</span><span class="n">CddPwmConf_CddPwmHwUnitConfig_CddPwmHwUnitConfig_1</span><span class="p">,</span><span class="n">CDD_PWM_TZ_ACTION_EVENT_TZA</span><span class="p">,</span><span class="n">CDD_PWM_TZ_ACTION_HIGH</span><span class="p">);</span>
+<span class="n">Cdd_Pwm_ConfigureTripZoneSignals</span><span class="p">(</span><span class="n">CddPwmConf_CddPwmHwUnitConfig_CddPwmHwUnitConfig_1</span><span class="p">,</span><span class="w"> </span><span class="n">CDD_PWM_TZ_SIGNAL_OSHT1</span><span class="p">,</span><span class="w"> </span><span class="n">TRUE</span><span class="p">);</span>
+<span class="n">Cdd_Pwm_ConfigureTripZoneInterrupt</span><span class="p">(</span><span class="n">CddPwmConf_CddPwmHwUnitConfig_CddPwmHwUnitConfig_1</span><span class="p">,</span><span class="w"> </span><span class="n">CDD_PWM_TZ_INTERRUPT_OST</span><span class="p">,</span><span class="n">TRUE</span><span class="p">);</span>
+<span class="n">Cdd_Pwm_ConfigureTripZoneNotification</span><span class="p">(</span><span class="n">CddPwmConf_CddPwmHwUnitConfig_CddPwmHwUnitConfig_1</span><span class="p">,</span><span class="w"> </span><span class="n">TRUE</span><span class="p">);</span>
+</pre></div>
+</div>
+</section>
+<hr class="docutils" />
+<section id="add-phase-shift">
+<h3>Add Phase Shift<a class="headerlink" href="#add-phase-shift" title="Permalink to this heading">#</a></h3>
+<p>Phase shifting is applied in the EPWM module using the following APIs:</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cm">/* CddPwmConf_CddPwmHwUnitConfig_CddPwmHwUnitConfig_3 is the symbolic name for EPWM instance 4. */</span>
+<span class="n">Cdd_Pwm_ConfigurePhaseShiftLoad</span><span class="p">(</span><span class="n">CddPwmConf_CddPwmHwUnitConfig_CddPwmHwUnitConfig_3</span><span class="p">,</span><span class="w"> </span><span class="n">TRUE</span><span class="p">);</span>
+<span class="cm">/* PHASE_SHIFT is the value by which you want the EPWM 4 to be phase shifted.  */</span>
+<span class="n">Cdd_Pwm_SetPhaseShift</span><span class="p">(</span><span class="n">CddPwmConf_CddPwmHwUnitConfig_CddPwmHwUnitConfig_3</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="n">PHASE_SHIFT</span><span class="p">));</span>
+</pre></div>
+</div>
+</section>
+<hr class="docutils" />
+<section id="add-epwm-interrupt">
+<h3>Add EPWM Interrupt<a class="headerlink" href="#add-epwm-interrupt" title="Permalink to this heading">#</a></h3>
+<p>This lab demo showcases an interrupt being triggered when the PWM cycle of EPWM 4 reaches 90%. The following APIs help achieve that:</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cm">/* CDD_PWM_INT_TBCTR_U_CMPC is the condition for triggering an interrupt. It is triggers the interrupt when the counter value is equal to CMPC. */</span>
+<span class="n">Cdd_Pwm_SetInterruptSource</span><span class="p">(</span><span class="n">CddPwmConf_CddPwmHwUnitConfig_CddPwmHwUnitConfig_3</span><span class="p">,</span><span class="n">CDD_PWM_INT_TBCTR_U_CMPC</span><span class="p">);</span>
+<span class="cm">/* CDD_PWM_EVENT_COUNT is the number of times the event can be ignored before triggering the Interrupt. */</span>
+<span class="n">Cdd_Pwm_SetInterruptEventCount</span><span class="p">(</span><span class="n">CddPwmConf_CddPwmHwUnitConfig_CddPwmHwUnitConfig_3</span><span class="p">,</span><span class="w"> </span><span class="n">CDD_PWM_EVENT_COUNT</span><span class="p">);</span>
+<span class="n">Cdd_Pwm_ConfigureInterrupt</span><span class="p">(</span><span class="n">CddPwmConf_CddPwmHwUnitConfig_CddPwmHwUnitConfig_3</span><span class="p">,</span><span class="w"> </span><span class="n">TRUE</span><span class="p">);</span>
+<span class="n">Cdd_Pwm_EnableNotification</span><span class="p">(</span><span class="n">CddPwmConf_CddPwmHwUnitConfig_CddPwmHwUnitConfig_3</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Prior to this the trigger count has to be set to CMPC. The following APIs make it possible:</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cm">/* Macro to calculate count at &#39;x&#39; percent of cycle */</span>
+<span class="cp">#define INTERRUPT_AT(x) (FULL_CYCLE * x / 100U)</span>
+<span class="p">.</span>
+<span class="p">.</span>
+<span class="p">.</span>
+<span class="n">Cdd_Pwm_SetCounterCompareValue</span><span class="p">(</span><span class="n">CddPwmConf_CddPwmHwUnitConfig_CddPwmHwUnitConfig_3</span><span class="p">,</span><span class="w"> </span><span class="n">CDD_PWM_COUNTER_COMPARE_C</span><span class="p">,</span><span class="n">INTERRUPT_AT</span><span class="p">(</span><span class="mi">90</span><span class="p">));</span>
+</pre></div>
+</div>
+</section>
+<hr class="docutils" />
+<section id="define-isr-function">
+<h3>Define ISR Function<a class="headerlink" href="#define-isr-function" title="Permalink to this heading">#</a></h3>
+<p>The name of ISR Fuction used here should match the name registed in EB Tresos. In this demo, it halts the EPWM activity after hitting 90% of cycle. The <code class="docutils literal notranslate"><span class="pre">CDD_PWM_EVENT_COUNT</span></code> is set as 15. Hence it generated 15 complete cycles before triggering the interrupt. The ISR function uses here is as follows:</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cm">/* Notification function for PWM Instance 3 that stops PWM when 90% cycle is reached */</span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">Cdd_Pwm_Instance0Notification</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="n">Cdd_Pwm_Set_Idle</span><span class="p">();</span>
+<span class="w">    </span><span class="n">AppUtils_Printf</span><span class="p">(</span><span class="s">&quot;All PWM outputs have been stopped</span><span class="se">\r\n</span><span class="s">&quot;</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="results">
+<h2>Results<a class="headerlink" href="#results" title="Permalink to this heading">#</a></h2>
+<p>The following wave activiy was recorded using a logic analyzer. It dsiplays interrupt being triggered at 90% after 15 cycles. As mentioned before, it ignores the 90% condition 15 time (<code class="docutils literal notranslate"><span class="pre">CDD_PWM_EVENT_COUNT</span></code> is set to 15) before triggering the interrupt.</p>
+<p><img alt="alt text" src="../../../_images/epwm_interrupt_graph.png" /></p>
+<p>The next image shows phase shifting of EPWM instances. Each instances is sequentially shifted depending on the user given value.</p>
+<p><img alt="alt text" src="../../../_images/epwm_phaseshift_graph.png" /></p>
+</section>
+</section>
+
+
+                </article>
+              
+              
+              <footer class="bd-footer-article">
+                    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+  <a class='left-prev' id="prev-link" href="c29x_system_integration_lab.html" title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+          <p class="prev-next-subtitle">previous</p>
+          <p class="prev-next-title">System Integration Lab</p>
+      </div>
+  </a>
+  <a class='right-next' id="next-link" href="../../migration/c29x_migration.html" title="next page">
+  <div class="prev-next-info">
+      <p class="prev-next-subtitle">next</p>
+      <p class="prev-next-title">C29x Device Migration</p>
+  </div>
+  <i class="fa-solid fa-angle-right"></i>
+  </a>
+</div>
+                  </footer>
+                
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc">
+<div class="toc-item">
+  
+<div class="tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+</div>
+<nav id="bd-toc-nav" class="page-toc">
+    <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#overview">
+   Overview
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#lab-setup">
+   Lab Setup
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#hardware-setup">
+     Hardware Setup
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#software-setup">
+     Software Setup
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#reconfiguring-modules">
+   Reconfiguring Modules
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#configure-port">
+     Configure Port
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#configure-epwm">
+     Configure EPWM
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#configure-os">
+     Configure OS
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#program-setup">
+   Program Setup
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#remove-trip-zone">
+     Remove Trip Zone
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#add-phase-shift">
+     Add Phase Shift
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#add-epwm-interrupt">
+     Add EPWM Interrupt
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#define-isr-function">
+     Define ISR Function
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#results">
+   Results
+  </a>
+ </li>
+</ul>
+
+</nav>
+</div>
+
+<div class="toc-item">
+  
+<button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-toggle="tooltip">
+  <i class="fa-solid fa-magnifying-glass"></i>
+</button>
+</div>
+</div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+<script async>
+  async function setTheme() {
+    try {
+      var colorScheme = await window.parent.getTirexTheme();
+      var mode = colorScheme === 'dark' ? 'dark' : 'light';
+      localStorage.setItem('mode', mode);
+      document.documentElement.dataset.mode = mode;
+      document.documentElement.dataset.theme = colorScheme;
+    } catch (error) {
+      console.error('Failed to set the theme:', error);
+    }
+  }
+
+  setTheme();
+</script>
+
+
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../../_static/scripts/bootstrap.js?digest=796348d33e8b1d947c94"></script>
+<script src="../../../_static/scripts/pydata-sphinx-theme.js?digest=796348d33e8b1d947c94"></script>
+
+
+
+
+<script type="text/javascript">
+  function extractNodeValue(url) {
+    try {
+      const parsedUrl = new URL(url);
+      if (parsedUrl.pathname === '/tirex/explore/node') {
+        const searchParams = new URLSearchParams(parsedUrl.search);
+        return searchParams.get('node');
+      } else {
+        return null;
+      }
+    } catch (error) {
+      console.error("Invalid URL:", error);
+      return null;
+    }
+  }
+
+  // Get all links on the page
+  const links = document.querySelectorAll('a');
+
+  // Get the project name and replace spaces with underscores
+  var projName = "C29x Academy";
+
+  // Attach a click event listener to each link
+  links.forEach((link) => {
+    link.addEventListener('click', (event) => {
+      // Prevent the default link behavior
+      event.preventDefault();
+
+      const url = link.href;
+      console.log(url)
+      const match = url.match(/source\/.+$/);
+      const localId = match ? match[0].replace(/\.html$/, '').replace(/[\/\\\.]/g, '_').toLowerCase() : null;
+      console.log(localId)
+      const extractedNode = extractNodeValue(url);
+
+      console.log(extractedNode)
+      if (typeof window.parent.jumpToTirexNodeOnLocal === 'function') {
+        window.parent.jumpToTirexNodeOnLocal(localId, null, null, {
+            throwError: true
+          })
+          .catch((e) => {
+            if (extractedNode !== null) {
+              window.parent.jumpToTirexNode(extractedNode, {
+                  throwError: true
+                })
+                .catch((e) => {
+                  window.location.href = link.href;
+                })
+            }
+            else {
+              if (url.includes("e2e.ti.com") || url.includes("dev.ti.com/gallery/view")) {
+              window.open(url, "_blank")
+              } else {
+              window.location.href = link.href;
+            }}
+          })
+      } else {
+        window.location.href = link.href;
+      }
+    });
+  });
+</script>
+  <footer class="bd-footer"><div class="bd-footer__inner container">
+  
+  <div class="footer-item">
+    
+<p class="copyright">
+
+    &copy; Copyright 2025, Texas Instruments.<br>
+
+</p>
+
+  </div>
+  
+</div>
+  </footer>
+  </body>
+</html>

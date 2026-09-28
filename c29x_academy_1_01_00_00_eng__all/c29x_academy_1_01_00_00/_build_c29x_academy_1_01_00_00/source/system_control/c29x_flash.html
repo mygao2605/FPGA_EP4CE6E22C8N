@@ -1,0 +1,700 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>Flash Memory &#8212; C29x Academy</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=796348d33e8b1d947c94" rel="stylesheet">
+<link href="../../_static/styles/bootstrap.css?digest=796348d33e8b1d947c94" rel="stylesheet">
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=796348d33e8b1d947c94" rel="stylesheet">
+
+  
+  <link href="../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=796348d33e8b1d947c94" rel="stylesheet">
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/local/font.css" />
+    <link rel="stylesheet" type="text/css" href="https://www.ti.com/assets/fonts/font.css" />
+    <link rel="stylesheet" type="text/css" href="https://www.ti.com/assets/style/resource-explorer.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=796348d33e8b1d947c94">
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=796348d33e8b1d947c94">
+
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/sphinx_highlight.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script src="../../_static/design-tabs.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'source/system_control/c29x_flash';</script>
+    <script src="../../_static/quizdown.js"></script>
+    <script src="../../_static/external-links.js"></script>
+    <link rel="canonical" href="http://127.0.0.1:8000/source/system_control/c29x_flash.html" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="External Memory Interface (EMIF)" href="c29x_emif.html" />
+    <link rel="prev" title="Error Signaling Module (ESM)" href="c29x_esm.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="docsearch:language" content="en">
+  </head>
+  
+  
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="180" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search C29x Academy" aria-label="Search C29x Academy" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar"><div class="bd-header__inner bd-page-width">
+  <label class="sidebar-toggle primary-toggle" for="__primary">
+      <span class="fa-solid fa-bars"></span>
+  </label>
+  <div id="navbar-start">
+    
+  </div>
+
+  
+  <div class="col-lg-9 navbar-header-items">
+    <div id="navbar-center" class="mr-auto">
+      
+    </div>
+
+    <div id="navbar-end">
+      
+        <div class="navbar-end-item navbar-persistent--container">
+          
+<button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-toggle="tooltip">
+  <i class="fa-solid fa-magnifying-glass"></i>
+</button>
+        </div>
+      
+      
+    </div>
+  </div>
+
+
+  
+  
+    <div class="navbar-persistent--mobile">
+<button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-toggle="tooltip">
+  <i class="fa-solid fa-magnifying-glass"></i>
+</button>
+    </div>
+  
+
+  
+  <label class="sidebar-toggle secondary-toggle" for="__secondary">
+      <span class="fa-solid fa-outdent"></span>
+  </label>
+  
+
+</div>
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar hide-on-wide">
+        
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+
+    
+    
+  </div>
+
+  
+
+  
+  <div class="sidebar-end-items sidebar-primary__section">
+    <div class="sidebar-end-items__item">
+    </div>
+  </div>
+
+  
+  <div id="rtd-footer-container"></div>
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article"></div>
+              
+              
+                <article class="bd-article" role="main">
+                  
+                  
+<div id="searchbox"></div>
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="flash-memory">
+<h1>Flash Memory<a class="headerlink" href="#flash-memory" title="Permalink to this heading">#</a></h1>
+<p><a class="reference external" href="https://dev.ti.com/tirex/local?id=source_system_control_c29x_flash&amp;packageId=C29X-ACADEMY">Link to share</a></p>
+<section id="overview">
+<h2>Overview<a class="headerlink" href="#overview" title="Permalink to this heading">#</a></h2>
+<p>In this module, you will learn about Flash memory and how it works, the design and organization of Flash memory in C29x devices, and the basics of erasing, programming, reading and executing code from Flash memory. You will also learn how to properly configure Flash memory for your system, improve performance, and take advantage of the error correction features for safety.</p>
+</section>
+<section id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this heading">#</a></h2>
+<p>Flash is electrically erasable and programmable non-volatile memory. Flash is primarily used for storing program code, and can also be used to store static data that needs to be preserved between power cycles or resets. In a typical deployed application, code executes mostly directly out of Flash, although some functions may be copied to RAM and executed from there- to maximize performance, or to run on CPUs that do not have direct Flash access. While Flash memory can be read directly using a CPU instruction or data bus interface, writing data to Flash involves special operations (erase and program) that are managed by special state machine logic and cannot be done using direct memory store instructions, unlike RAM.</p>
+</section>
+<section id="flash-subsystem-overview">
+<h2>Flash Subsystem Overview<a class="headerlink" href="#flash-subsystem-overview" title="Permalink to this heading">#</a></h2>
+<p>The diagram below shows an overview of the C29x Flash subsystem and its various components. At the heart of the C29x Flash subsystem are one or more Flash Controllers. These house the Flash memory banks, and interface between the rest of the system and the Flash banks, providing a simple interface for programming and erasing Flash memory. For example, in the F29H85x device, there are two Flash controllers named FLC1 and FLC2.</p>
+<p>Additionally, there are up to four Flash Read Interfaces, or FRIs. Each FRI provides an interface for various initiators to read and execute code from Flash memory. The FRI provides a memory address region for reading Flash, and includes buffer and cache mechanisms designed to maximize performance.</p>
+<figure class="align-center" id="id1">
+<a class="reference internal image-reference" href="../../_images/flash_subsystem_block_diagram.png"><img alt="../../_images/flash_subsystem_block_diagram.png" src="../../_images/flash_subsystem_block_diagram.png" style="width: 772.1999999999999px; height: 549.0px;" /></a>
+<figcaption>
+<p><span class="caption-text">Figure 1: Flash Subsystem Block Diagram</span><a class="headerlink" href="#id1" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+</section>
+<section id="flash-banks-and-pumps">
+<h2>Flash Banks and Pumps<a class="headerlink" href="#flash-banks-and-pumps" title="Permalink to this heading">#</a></h2>
+<p>Each C29x device has a number of Flash program code banks, and can also include a data bank. Each Flash bank stores code or data as 128-bit Flash words, plus 16 bits of ECC (error correction code) per Flash word. To maximize execution performance on the C29 CPU, each group of two code banks is interleaved to form a bank pair, enabling 256-bit instruction fetches. The data bank is a single bank and does not require interleaving, since C29 data buses are 64 bits wide. The C29x Flash API library automatically handles the addressing and interleaving of code banks when programming or erasing, so this interleaving architecture is transparent to the user.
+For naming purposes, each bank or bank pair is referred to by the Flash controller name and bank numbers. Banks are numbered starting with 0. For example:</p>
+<ul class="simple">
+<li><p>FLC2.B0/B1 is the first interleaved pair of banks in Flash Controller 2</p></li>
+<li><p>FLC1.B4 is the fifth non-interleaved bank in Flash Controller 1 (data bank)</p></li>
+</ul>
+<p>Each bank is divided into the following regions:</p>
+<ul class="simple">
+<li><p><strong>MAIN</strong>: This region is the primary storage region for the Flash bank. MAIN is used to store application code and data.</p></li>
+<li><p><strong>SECCFG</strong>: This region contains application security policy settings and some other device configuration items, such as the boot configuration. Security policy settings are loaded by the boot ROM into the Safety and Security Unit (SSU) during runtime.</p></li>
+<li><p><strong>BANKMGMT</strong>: This region is used to manage firmware updates, enabling schemes such as Firmware Over-The-Air update (FOTA) or Live Firmware Update (LFU). With this feature, “A/B swap” becomes possible - that is, code can execute out of one half of the Flash while the other half is being updated; and then the two halves are swapped so that the new code version can run out of the updated half. The BANKMGMT region contains information about the bank mode, as well as software version information to be used by the update tool to manage or prevent rollbacks to previous versions.</p></li>
+</ul>
+</section>
+<section id="flash-read-interfaces">
+<h2>Flash Read Interfaces<a class="headerlink" href="#flash-read-interfaces" title="Permalink to this heading">#</a></h2>
+<p>The C29x Flash subsystem includes up to four Flash Read Interface modules (FRI-n). These modules provide a means for the various initiators on the system to perform code instruction fetch and data read operations on Flash memory. These initiators include:</p>
+<ul class="simple">
+<li><p><strong>C29 CPUs</strong>: Each CPU has one 128-bit instruction fetch bus, and two 64-bit data buses. In the C29x architecture, only primary CPUs (odd-numbered) have access to Flash memory. For example, on F29H85x devices, CPU1 and CPU3 have Flash access, but CPU2 does not.</p></li>
+<li><p><strong>RTDMA</strong>: The primary Real-Time DMA module can perform 64-bit data reads of Flash memory.</p></li>
+<li><p><strong>HSM</strong>: The Hardware Security Manager can perform 32-bit reads of Flash memory using the HSM_TO_SOC bus.</p></li>
+<li><p><strong>Debug Interface</strong>: A connected debugger can perform data read accesses to Flash memory locations.</p></li>
+</ul>
+<p>Each Flash read interface is addressable through one or more Flash read ports. Because of bank interleaving, support for multiple CPUs, and support for updates with A/B swapping, Flash code banks on C29x devices do not have a fixed mapping to CPU address space. Instead, each read port has a fixed address range, but can be mapped to a different region of Flash depending on the current system configuration.
+The Flash Read Interfaces present in a C29x device are:</p>
+<ul class="simple">
+<li><p><strong>FRI-1 (CPU1 Program)</strong>: This FRI is connected to the instruction fetch bus of CPU1, and is primarily used for executing code on CPU1. FRI-1 can also be used by any initiator to perform a data read operation.</p></li>
+<li><p><strong>FRI-2 (CPU3 Program)</strong>: On 3-CPU or 4-CPU devices, FRI-2 is connected to the instruction fetch bus of CPU3, and is primarily used for executing code on CPU3. Like FRI-1, FRI-2 can also be used by any initiator to read data out of the Flash regions connected to it.</p></li>
+<li><p><strong>FRI-3 (Update Region)</strong>: This FRI provides an address range for programming and verifying firmware updates into the second half of Flash memory, while the current application continues to execute from FRI-1 (and FRI-2 if present). It is not possible to execute code from FRI-3; only data reads are possible.</p></li>
+<li><p><strong>FRI-4 (Data Bank)</strong>: This FRI is exclusively used for the data bank (FLC1.B4), and does not have an instruction fetch interface.</p></li>
+</ul>
+<p>Note that Flash read interfaces cannot be configured using code that is executing from the same interface. To ensure FRI configuration is successful, it is best to run the code that configures it from RAM. For more details on how to configure the FRI, see the device technical reference manual.</p>
+<section id="bank-modes-and-swapping">
+<h3>Bank Modes and Swapping<a class="headerlink" href="#bank-modes-and-swapping" title="Permalink to this heading">#</a></h3>
+<p>The BANKMODE setting determines how Flash memory is allocated to the primary C29 CPUs in the system, and whether the bank swapping feature is enabled for firmware updates. BANKMODE is stored in the BANKMGMT region of the active bank pair at boot time. To change the BANKMODE setting, use the C29x Flash plug-in or UniFlash tool.</p>
+<p>The available bank mode options are described in the table below:</p>
+<table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>BANKMODE</p></th>
+<th class="head"><p>Flash Mapping</p></th>
+<th class="head"><p>Swap Enabled</p></th>
+<th class="head"><p>1-CPU Devices</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>0</p></td>
+<td><p>All program Flash mapped to CPU1</p></td>
+<td><p>No</p></td>
+<td><p>Available</p></td>
+</tr>
+<tr class="row-odd"><td><p>1</p></td>
+<td><p>All program Flash mapped to CPU1</p></td>
+<td><p>Yes</p></td>
+<td><p>Available</p></td>
+</tr>
+<tr class="row-even"><td><p>2</p></td>
+<td><p>Program Flash memory is split between CPU1 and CPU3</p></td>
+<td><p>No</p></td>
+<td><p>N/A</p></td>
+</tr>
+<tr class="row-odd"><td><p>3</p></td>
+<td><p>Program Flash memory is split between CPU1 and CPU3</p></td>
+<td><p>Yes</p></td>
+<td><p>N/A</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="flash-wait-states">
+<h3>Flash Wait States<a class="headerlink" href="#flash-wait-states" title="Permalink to this heading">#</a></h3>
+<p>Flash banks run at a slower clock frequency than the maximum clock frequency supported by the CPU. Thus, when a read access is performed to Flash memory, the data is returned after a number of wait states, defined as (RWAIT + 1). The RWAIT parameter is configured in the FRDCNTL register of the Flash Read Interface. At boot time, RWAIT is set to the optimal value for the maximum CPU frequency. It can be reconfigured by the application to a higher or lower value if required. See the device technical reference manual for more details on how to configure RWAIT.</p>
+</section>
+<section id="speeding-up-execution-in-flash">
+<h3>Speeding Up Execution in Flash<a class="headerlink" href="#speeding-up-execution-in-flash" title="Permalink to this heading">#</a></h3>
+<p>To prevent the CPU from stalling while waiting for new instructions to be fetched from Flash, each FRI that supports Flash execution includes a prefetch mechanism and block cache. These mechanisms are disabled by default at boot, and must be enabled by the application at startup.</p>
+<p>The <strong>Prefetch Mechanism</strong> performs look-ahead prefetches of CPU instructions, starting from the next Flash word after the last instruction fetch. Each instruction fetch to Flash memory reads out a total of 256 bits (two interleaved 128-bit words). These are stored in the buffer, and then up 128 bits are sent to the CPU at a time. The buffer continues to fetch until it is full, and operates as a FIFO (first-in-first-out).</p>
+<p>The <strong>Block Cache</strong> is an additional performance enhancement mechanism that sits between the prefetch mechanism and the Flash banks. This module is designed to enhance the performance of short execution loops by detecting discontinuity instructions (such as a branch) and then servicing them with instructions already in the cache if present, instead of initiating a new access to the Flash bank.</p>
+</section>
+<section id="speeding-up-data-reads-from-flash">
+<h3>Speeding Up Data Reads from Flash<a class="headerlink" href="#speeding-up-data-reads-from-flash" title="Permalink to this heading">#</a></h3>
+<p>Each Flash Read Interface also includes a 256-bit data line buffer. When enabled, the line buffer pre-stores 256 bits of data, enabling faster reads of large portions of data stored in Flash.</p>
+</section>
+<section id="error-correction-code-ecc">
+<h3>Error Correction Code (ECC)<a class="headerlink" href="#error-correction-code-ecc" title="Permalink to this heading">#</a></h3>
+<p>C29x devices feature an end-to-end safety architecture, with ECC logic built in to the C29 CPU. When a Flash read operation is performed, ECC check bits are sent along with the data bits onto the CPU program or data bus. The CPU automatically checks incoming instructions and data using the ECC bits, correcting single-bit errors and generating a fault for double-bit (uncorrectable) errors. These errors generate events to the Error Signaling Module (ESM), which in turn can generate a regular interrupt or a non-maskable interrupt (NMI) depending on the severity of the error.</p>
+<p>Each 64 bits of data stored in Flash has 8 bits of ECC associated with it. For each 128-bit Flash word, there are two ECC codes for a total of 16 bits.</p>
+</section>
+</section>
+<section id="flash-erase-and-program">
+<h2>Flash Erase and Program<a class="headerlink" href="#flash-erase-and-program" title="Permalink to this heading">#</a></h2>
+<p>Flash memory can be programmed either by using the CCS Flash plug-in or by using the UniFlash application. If these methods are not feasible in an application, the Flash API can be used. The recommended flow for programming Flash is:</p>
+<ol class="arabic simple">
+<li><p>Erase</p></li>
+<li><p>Program</p></li>
+<li><p>Verify</p></li>
+</ol>
+<p>The SSU can restrict what code is permitted to perform Flash erase and program operations, depending on the current security policy settings. By default, there are no restrictions, but users can enable these restrictions depending on the system requirement. See the SSU chapter of the device technical reference manual for more details.</p>
+<section id="flash-programming-basics">
+<h3>Flash Programming Basics<a class="headerlink" href="#flash-programming-basics" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p>The device CPU performs the flash programming</p></li>
+<li><p>The CPU executes flash utility code from RAM that reads the flash data and writes it into the flash memory</p></li>
+<li><p>We need to get the flash utility code and the flash data into RAM</p></li>
+</ul>
+<p><img alt="Flash Programming Basics" src="../../_images/flash_basics.png" /></p>
+<div class="admonition-note admonition">
+<p class="admonition-title">Note:</p>
+<p>The figure above displays common boot
+modes such as SPI, UART, etc. that may not all apply for your specific device. To find the boot mode
+options available for your device refer to the table ‘All Available Boot Modes’ within your
+device’s Technical Reference Manual.</p>
+</div>
+</section>
+<section id="minimum-steps-to-program-flash">
+<h3>Minimum Steps to Program Flash<a class="headerlink" href="#minimum-steps-to-program-flash" title="Permalink to this heading">#</a></h3>
+<table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Algorithm</p></th>
+<th class="head"><p>Function</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Erase</p></td>
+<td><p>Set all bits to one</p></td>
+</tr>
+<tr class="row-odd"><td><p>Program</p></td>
+<td><p>Program selected bits with zero</p></td>
+</tr>
+<tr class="row-even"><td><p>Verify</p></td>
+<td><p>Verify flash contents</p></td>
+</tr>
+</tbody>
+</table>
+<ul class="simple">
+<li><p>Minimum <strong>Erase</strong> size is a sector</p></li>
+<li><p>Minimum <strong>Program</strong> size is a bit (be careful of ECC matching)</p></li>
+<li><p>Important not to loose power during erase step</p>
+<ul>
+<li><p>Chance of this happening is quite small (erase step is performed sector by sector)</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="flash-programming-utilities">
+<h3>Flash Programming Utilities<a class="headerlink" href="#flash-programming-utilities" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p>JTAG Emulator Based</p>
+<ul>
+<li><p>CCS on-chip Flash programmer (<strong>Tools → On-Chip Flash</strong>)</p></li>
+<li><p>CCS UniFlash (TI universal Flash utility)</p></li>
+<li><p>BlackHawk Flash utilities (requires Blackhawk emulator)</p></li>
+<li><p>Elprotronic FlashPro2000</p></li>
+</ul>
+</li>
+<li><p>SCI Serial Port Bootloader Based</p>
+<ul>
+<li><p>CodeSkin C2Prog</p></li>
+<li><p>Elprotronic FlashPro2000</p></li>
+</ul>
+</li>
+<li><p>Production Test/Programming Equipment Based</p>
+<ul>
+<li><p>BP Microsystems programmer</p></li>
+<li><p>Data I/O programmer</p></li>
+</ul>
+</li>
+<li><p>Build your own custom utility</p></li>
+<li><p>Can use any of the ROM bootloader methods</p></li>
+<li><p>Can embed flash programming into your application</p></li>
+<li><p>Flash API algorithms provided by TI</p></li>
+</ul>
+<p>For a complete list of third party flash programming tools refer to
+<a class="reference external" href="https://www.ti.com/tool/C2000-3P-SEARCH">C2000-3P-SEARCH</a></p>
+</section>
+<section id="flash-endurance">
+<h3>Flash Endurance<a class="headerlink" href="#flash-endurance" title="Permalink to this heading">#</a></h3>
+<p>Flash memory can be erased and reprogrammed many times. However, because of the inherent nature of Flash technology, erase operations can become progressively slower over time, and there is a maximum number of write/erase cycles that can be performed over the lifetime of the product. For details on Flash write/erase endurance specifications, see the device data sheet.</p>
+</section>
+</section>
+<section id="test-your-knowledge">
+<h2>Test Your Knowledge!<a class="headerlink" href="#test-your-knowledge" title="Permalink to this heading">#</a></h2>
+<p><strong>Question 1</strong></p>
+<p>Which of these is not stored in the SECCFG region?</p>
+<p>a.	Firmware update version</p>
+<p>b.	Application security policy</p>
+<p>c.	Boot configuration</p>
+<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+Answer<div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
+<p class="sd-card-text">a. Firmware update version</p>
+</div>
+</details><p><strong>Question 2</strong></p>
+<p>True or False? It is possible to execute code out of the FRI-3 address region.</p>
+<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+Answer<div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
+<p class="sd-card-text">False</p>
+</div>
+</details><p><strong>Question 3</strong></p>
+<p>Which of these methods cannot be used to program data into Flash memory?</p>
+<p>a.	Code Composer Studio plug-in</p>
+<p>b.	3rd party programmers</p>
+<p>c.	CPU memory store instructions</p>
+<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+Answer<div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
+<p class="sd-card-text">c.	CPU memory store instructions</p>
+</div>
+</details><p><strong>Question 4</strong></p>
+<p>True or False? The Flash Read Interface includes ECC logic for detecting errors in Flash memory reads.</p>
+<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+Answer<div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
+<p class="sd-card-text">False</p>
+</div>
+</details></section>
+<section id="summary">
+<h2>Summary<a class="headerlink" href="#summary" title="Permalink to this heading">#</a></h2>
+<p>Flash memory is the primary nonvolatile memory in C29x devices. It is primarily used to store program code, but can also be used as a static data store. The C29x Flash subsystem has the following key features:</p>
+<ul class="simple">
+<li><p>Interleaving of Flash code banks for C29 code execution performance</p></li>
+<li><p>Multiple Flash read interfaces to support different CPUs, firmware update with A/B swap, and data bank access</p></li>
+<li><p>A prefetch mechanism, block cache, and data cache mechanisms to enhance performance</p></li>
+<li><p>Flash Controller logic to simplify the program and erase process.</p></li>
+</ul>
+</section>
+</section>
+
+
+                </article>
+              
+              
+              <footer class="bd-footer-article">
+                    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+  <a class='left-prev' id="prev-link" href="c29x_esm.html" title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+          <p class="prev-next-subtitle">previous</p>
+          <p class="prev-next-title">Error Signaling Module (ESM)</p>
+      </div>
+  </a>
+  <a class='right-next' id="next-link" href="c29x_emif.html" title="next page">
+  <div class="prev-next-info">
+      <p class="prev-next-subtitle">next</p>
+      <p class="prev-next-title">External Memory Interface (EMIF)</p>
+  </div>
+  <i class="fa-solid fa-angle-right"></i>
+  </a>
+</div>
+                  </footer>
+                
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc">
+<div class="toc-item">
+  
+<div class="tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+</div>
+<nav id="bd-toc-nav" class="page-toc">
+    <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#overview">
+   Overview
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#introduction">
+   Introduction
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#flash-subsystem-overview">
+   Flash Subsystem Overview
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#flash-banks-and-pumps">
+   Flash Banks and Pumps
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#flash-read-interfaces">
+   Flash Read Interfaces
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#bank-modes-and-swapping">
+     Bank Modes and Swapping
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#flash-wait-states">
+     Flash Wait States
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#speeding-up-execution-in-flash">
+     Speeding Up Execution in Flash
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#speeding-up-data-reads-from-flash">
+     Speeding Up Data Reads from Flash
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#error-correction-code-ecc">
+     Error Correction Code (ECC)
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#flash-erase-and-program">
+   Flash Erase and Program
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#flash-programming-basics">
+     Flash Programming Basics
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#minimum-steps-to-program-flash">
+     Minimum Steps to Program Flash
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#flash-programming-utilities">
+     Flash Programming Utilities
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#flash-endurance">
+     Flash Endurance
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#test-your-knowledge">
+   Test Your Knowledge!
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#summary">
+   Summary
+  </a>
+ </li>
+</ul>
+
+</nav>
+</div>
+
+<div class="toc-item">
+  
+<button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-toggle="tooltip">
+  <i class="fa-solid fa-magnifying-glass"></i>
+</button>
+</div>
+</div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+<script async>
+  async function setTheme() {
+    try {
+      var colorScheme = await window.parent.getTirexTheme();
+      var mode = colorScheme === 'dark' ? 'dark' : 'light';
+      localStorage.setItem('mode', mode);
+      document.documentElement.dataset.mode = mode;
+      document.documentElement.dataset.theme = colorScheme;
+    } catch (error) {
+      console.error('Failed to set the theme:', error);
+    }
+  }
+
+  setTheme();
+</script>
+
+
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=796348d33e8b1d947c94"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=796348d33e8b1d947c94"></script>
+
+
+
+
+<script type="text/javascript">
+  function extractNodeValue(url) {
+    try {
+      const parsedUrl = new URL(url);
+      if (parsedUrl.pathname === '/tirex/explore/node') {
+        const searchParams = new URLSearchParams(parsedUrl.search);
+        return searchParams.get('node');
+      } else {
+        return null;
+      }
+    } catch (error) {
+      console.error("Invalid URL:", error);
+      return null;
+    }
+  }
+
+  // Get all links on the page
+  const links = document.querySelectorAll('a');
+
+  // Get the project name and replace spaces with underscores
+  var projName = "C29x Academy";
+
+  // Attach a click event listener to each link
+  links.forEach((link) => {
+    link.addEventListener('click', (event) => {
+      // Prevent the default link behavior
+      event.preventDefault();
+
+      const url = link.href;
+      console.log(url)
+      const match = url.match(/source\/.+$/);
+      const localId = match ? match[0].replace(/\.html$/, '').replace(/[\/\\\.]/g, '_').toLowerCase() : null;
+      console.log(localId)
+      const extractedNode = extractNodeValue(url);
+
+      console.log(extractedNode)
+      if (typeof window.parent.jumpToTirexNodeOnLocal === 'function') {
+        window.parent.jumpToTirexNodeOnLocal(localId, null, null, {
+            throwError: true
+          })
+          .catch((e) => {
+            if (extractedNode !== null) {
+              window.parent.jumpToTirexNode(extractedNode, {
+                  throwError: true
+                })
+                .catch((e) => {
+                  window.location.href = link.href;
+                })
+            }
+            else {
+              if (url.includes("e2e.ti.com") || url.includes("dev.ti.com/gallery/view")) {
+              window.open(url, "_blank")
+              } else {
+              window.location.href = link.href;
+            }}
+          })
+      } else {
+        window.location.href = link.href;
+      }
+    });
+  });
+</script>
+  <footer class="bd-footer"><div class="bd-footer__inner container">
+  
+  <div class="footer-item">
+    
+<p class="copyright">
+
+    &copy; Copyright 2025, Texas Instruments.<br>
+
+</p>
+
+  </div>
+  
+</div>
+  </footer>
+  </body>
+</html>

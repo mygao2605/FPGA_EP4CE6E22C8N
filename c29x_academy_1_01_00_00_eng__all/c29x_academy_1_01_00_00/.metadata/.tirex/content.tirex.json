@@ -1,0 +1,912 @@
+[
+    {
+        "name": "Key Literature",
+        "description": "Read up on the foundations of working with C2000 devices.",
+        "localId": "source_intro_c29x_literature",
+        "resourceType": "file",
+        "resourceClass": [
+            "other"
+        ],
+        "fileType": ".html",
+        "mainCategories": [],
+        "subCategories": [
+            "1. New to C2000? Start Here"
+        ],
+        "location": "../../_build_c29x_academy_1_01_00_00/source/intro/c29x_literature.html",
+        "icon": "../../_build_c29x_academy_1_01_00_00/_static/images/favicon.png"
+    },
+    {
+        "name": "Key Videos",
+        "description": "Get familiar with C2000 hardware and software through these educational videos.",
+        "localId": "source_intro_c29x_videos",
+        "resourceType": "file",
+        "resourceClass": [
+            "other"
+        ],
+        "fileType": ".html",
+        "mainCategories": [],
+        "subCategories": [
+            "1. New to C2000? Start Here"
+        ],
+        "location": "../../_build_c29x_academy_1_01_00_00/source/intro/c29x_videos.html",
+        "icon": "../../_build_c29x_academy_1_01_00_00/_static/images/favicon.png"
+    },
+    {
+        "name": "1. New to C2000? Start Here",
+        "resourceType": "categoryInfo",
+        "mainCategories": [],
+        "resourceClass": [
+            "other"
+        ],
+        "location": "../../_build_c29x_academy_1_01_00_00/index.html#1.-new-to-c2000?-start-here",
+        "sort": "manual"
+    },
+    {
+        "name": "Overview of C29x CPU Architecture and Accelerators",
+        "description": "This introductory module includes an overview of the basic architecture of the C29x family of C2000 real-time control microcontrollers.",
+        "localId": "source_cpu_c29x_cpu_overview",
+        "resourceType": "file",
+        "resourceClass": [
+            "other"
+        ],
+        "fileType": ".html",
+        "mainCategories": [],
+        "subCategories": [
+            "2. Device Overview"
+        ],
+        "location": "../../_build_c29x_academy_1_01_00_00/source/cpu/c29x_cpu_overview.html",
+        "icon": "../../_build_c29x_academy_1_01_00_00/_static/images/favicon.png"
+    },
+    {
+        "name": "2. Device Overview",
+        "resourceType": "categoryInfo",
+        "mainCategories": [],
+        "resourceClass": [
+            "other"
+        ],
+        "location": "../../_build_c29x_academy_1_01_00_00/index.html#2.-device-overview",
+        "sort": "manual"
+    },
+    {
+        "name": "GPIOs",
+        "description": "This module describes General Purpose\nInput Output (GPIO) pins. GPIOs are the digital signals used as inputs and outputs of the device.\n",
+        "localId": "source_system_control_c29x_gpio",
+        "resourceType": "file",
+        "resourceClass": [
+            "other"
+        ],
+        "fileType": ".html",
+        "mainCategories": [],
+        "subCategories": [
+            "3. System"
+        ],
+        "location": "../../_build_c29x_academy_1_01_00_00/source/system_control/c29x_gpio.html",
+        "icon": "../../_build_c29x_academy_1_01_00_00/_static/images/favicon.png"
+    },
+    {
+        "name": "Crossbars (X-BAR)",
+        "description": "This module describes the Crossbar modules on C29x devices. Crossbars provide the\nability to route different signals throughout the device. \n",
+        "localId": "source_system_control_c29x_xbar",
+        "resourceType": "file",
+        "resourceClass": [
+            "other"
+        ],
+        "fileType": ".html",
+        "mainCategories": [],
+        "subCategories": [
+            "3. System"
+        ],
+        "location": "../../_build_c29x_academy_1_01_00_00/source/system_control/c29x_xbar.html",
+        "icon": "../../_build_c29x_academy_1_01_00_00/_static/images/favicon.png"
+    },
+    {
+        "name": "Interrupts",
+        "description": "An interrupt is a response by the processor/CPU to an event that needs attention. \nThis module goes over C29x interrupt architecure, how to setup interrupts, the types of interrupts there are, \nand how the Peripheral Interrupt Priority Expander (PIPE) module is used on C29x devices.\n",
+        "localId": "source_system_control_c29x_pipe",
+        "resourceType": "file",
+        "resourceClass": [
+            "other"
+        ],
+        "fileType": ".html",
+        "mainCategories": [],
+        "subCategories": [
+            "3. System"
+        ],
+        "location": "../../_build_c29x_academy_1_01_00_00/source/system_control/c29x_pipe.html",
+        "icon": "../../_build_c29x_academy_1_01_00_00/_static/images/favicon.png"
+    },
+    {
+        "name": "Timers",
+        "description": "This module describes C29x CPU Timers and the watchdog timer which is a \nsafety feature that will reset the device if something goes astray in the system. \n",
+        "localId": "source_system_control_c29x_timers",
+        "resourceType": "file",
+        "resourceClass": [
+            "other"
+        ],
+        "fileType": ".html",
+        "mainCategories": [],
+        "subCategories": [
+            "3. System"
+        ],
+        "location": "../../_build_c29x_academy_1_01_00_00/source/system_control/c29x_timers.html",
+        "icon": "../../_build_c29x_academy_1_01_00_00/_static/images/favicon.png"
+    },
+    {
+        "name": "Error Handling",
+        "description": "This module describes the Error Aggregator (EA) and Error Signaling Module (ESM) on C29x devices. \nThe ESM provides a systematic consolidation of responses to error events throughout\nthe device into one location.\n",
+        "localId": "source_system_control_c29x_esm",
+        "resourceType": "file",
+        "resourceClass": [
+            "other"
+        ],
+        "fileType": ".html",
+        "mainCategories": [],
+        "subCategories": [
+            "3. System"
+        ],
+        "location": "../../_build_c29x_academy_1_01_00_00/source/system_control/c29x_esm.html",
+        "icon": "../../_build_c29x_academy_1_01_00_00/_static/images/favicon.png"
+    },
+    {
+        "name": "Flash Memory",
+        "description": "This module describes the structure of C29x device Flash memory, the proper sequence to initialize\nand configure Flash, and how to improve Flash performance.\n",
+        "localId": "source_system_control_c29x_flash",
+        "resourceType": "file",
+        "resourceClass": [
+            "other"
+        ],
+        "fileType": ".html",
+        "mainCategories": [],
+        "subCategories": [
+            "3. System"
+        ],
+        "location": "../../_build_c29x_academy_1_01_00_00/source/system_control/c29x_flash.html",
+        "icon": "../../_build_c29x_academy_1_01_00_00/_static/images/favicon.png"
+    },
+    {
+        "name": "External Memory Interface (EMIF)",
+        "description": "When an application requires more memory than what is available on-chip, the EMIF controller \ncan be used to connect to external memory devices. This module gives an introduction to the EMIF.\n",
+        "localId": "source_system_control_c29x_emif",
+        "resourceType": "file",
+        "resourceClass": [
+            "other"
+        ],
+        "fileType": ".html",
+        "mainCategories": [],
+        "subCategories": [
+            "3. System"
+        ],
+        "location": "../../_build_c29x_academy_1_01_00_00/source/system_control/c29x_emif.html",
+        "icon": "../../_build_c29x_academy_1_01_00_00/_static/images/favicon.png"
+    },
+    {
+        "name": "3. System",
+        "resourceType": "categoryInfo",
+        "mainCategories": [],
+        "resourceClass": [
+            "other"
+        ],
+        "location": "../../_build_c29x_academy_1_01_00_00/index.html#3.-system",
+        "sort": "manual"
+    },
+    {
+        "name": "Analog to Digital Converter (ADC)",
+        "description": "C2000 devices support multiple analog-to-digital converters (ADCs). This module\ndescribes the different components in the ADC and how to setup the ADC.\n",
+        "localId": "source_analog_c28x_c29x_adc",
+        "resourceType": "file",
+        "resourceClass": [
+            "other"
+        ],
+        "fileType": ".html",
+        "mainCategories": [],
+        "subCategories": [
+            "4. Analog Subsystem"
+        ],
+        "location": "../../_build_c29x_academy_1_01_00_00/source/analog/c28x_c29x_adc.html",
+        "icon": "../../_build_c29x_academy_1_01_00_00/_static/images/favicon.png"
+    },
+    {
+        "name": "Comparator Subsystem (CMPSS)",
+        "description": "Each Comparator Subsystem (CMPSS) has two comparators within it. This module\ndescribes how the comparators can be used and setup.\n",
+        "localId": "source_analog_c28x_c29x_cmpss",
+        "resourceType": "file",
+        "resourceClass": [
+            "other"
+        ],
+        "fileType": ".html",
+        "mainCategories": [],
+        "subCategories": [
+            "4. Analog Subsystem"
+        ],
+        "location": "../../_build_c29x_academy_1_01_00_00/source/analog/c28x_c29x_cmpss.html",
+        "icon": "../../_build_c29x_academy_1_01_00_00/_static/images/favicon.png"
+    },
+    {
+        "name": "Digital to Analog Converter (DAC)",
+        "description": "The buffered DAC can be used to provide a programmable reference\noutput voltage. This modules walks though the DAC features and the\nDAC block diagram.\n",
+        "localId": "source_analog_c28x_c29x_dac",
+        "resourceType": "file",
+        "resourceClass": [
+            "other"
+        ],
+        "fileType": ".html",
+        "mainCategories": [],
+        "subCategories": [
+            "4. Analog Subsystem"
+        ],
+        "location": "../../_build_c29x_academy_1_01_00_00/source/analog/c28x_c29x_dac.html",
+        "icon": "../../_build_c29x_academy_1_01_00_00/_static/images/favicon.png"
+    },
+    {
+        "name": "Analog Subsystem",
+        "description": "The analog subsystem connects the ADC, CMPSS, and DAC modules. This allows a single pin to route a signal to\nmultiple analog modules and highly flexible pin usage, allowing for\nsmaller device packages.\n",
+        "localId": "source_analog_c29x_analog_subsystem",
+        "resourceType": "file",
+        "resourceClass": [
+            "other"
+        ],
+        "fileType": ".html",
+        "mainCategories": [],
+        "subCategories": [
+            "4. Analog Subsystem"
+        ],
+        "location": "../../_build_c29x_academy_1_01_00_00/source/analog/c29x_analog_subsystem.html",
+        "icon": "../../_build_c29x_academy_1_01_00_00/_static/images/favicon.png"
+    },
+    {
+        "name": "4. Analog Subsystem",
+        "resourceType": "categoryInfo",
+        "mainCategories": [],
+        "resourceClass": [
+            "other"
+        ],
+        "location": "../../_build_c29x_academy_1_01_00_00/index.html#4.-analog-subsystem",
+        "sort": "manual"
+    },
+    {
+        "name": "Enhanced Pulse Width Modulation (EPWM)",
+        "description": "The C2000 high-performance control peripherals are an integral component for all\ndigital control systems. This module will cover pulse width modulation (PWM).\n",
+        "localId": "source_control_c28x_c29x_epwm",
+        "resourceType": "file",
+        "resourceClass": [
+            "other"
+        ],
+        "fileType": ".html",
+        "mainCategories": [],
+        "subCategories": [
+            "5. Control Peripherals"
+        ],
+        "location": "../../_build_c29x_academy_1_01_00_00/source/control/c28x_c29x_epwm.html",
+        "icon": "../../_build_c29x_academy_1_01_00_00/_static/images/favicon.png"
+    },
+    {
+        "name": "Enhanced Capture Module (ECAP)",
+        "description": "The C2000 enhanced capture (ECAP) module allows time-based logging of external\nsignal transitions. It is used to accurately time external events by\ntime stamping transitions on the capture input pin.\n",
+        "localId": "source_control_c28x_c29x_ecap",
+        "resourceType": "file",
+        "resourceClass": [
+            "other"
+        ],
+        "fileType": ".html",
+        "mainCategories": [],
+        "subCategories": [
+            "5. Control Peripherals"
+        ],
+        "location": "../../_build_c29x_academy_1_01_00_00/source/control/c28x_c29x_ecap.html",
+        "icon": "../../_build_c29x_academy_1_01_00_00/_static/images/favicon.png"
+    },
+    {
+        "name": "Enhanced Quadrature Encoder Pulse (EQEP)",
+        "description": "The Enhanced Quadrature Encoder Pulse (EQEP) module is essential when\nintegrating C2000 devices in any application that requires motor control. The\nEQEP module enables the C2000 device to interact with linear or rotary\nincremental encoders to determine necessary motor information from rotating\nmachines.\n",
+        "localId": "source_control_c28x_c29x_eqep",
+        "resourceType": "file",
+        "resourceClass": [
+            "other"
+        ],
+        "fileType": ".html",
+        "mainCategories": [],
+        "subCategories": [
+            "5. Control Peripherals"
+        ],
+        "location": "../../_build_c29x_academy_1_01_00_00/source/control/c28x_c29x_eqep.html",
+        "icon": "../../_build_c29x_academy_1_01_00_00/_static/images/favicon.png"
+    },
+    {
+        "name": "Sigma-Delta Filter Module (SDFM)",
+        "description": "The C2000 Sigma Delta Filter Module (SDFM) is a four-channel digital filter\ndesigned specifically for current measurement in motor control applications.\n",
+        "localId": "source_control_c28x_c29x_sdfm",
+        "resourceType": "file",
+        "resourceClass": [
+            "other"
+        ],
+        "fileType": ".html",
+        "mainCategories": [],
+        "subCategories": [
+            "5. Control Peripherals"
+        ],
+        "location": "../../_build_c29x_academy_1_01_00_00/source/control/c28x_c29x_sdfm.html",
+        "icon": "../../_build_c29x_academy_1_01_00_00/_static/images/favicon.png"
+    },
+    {
+        "name": "5. Control Peripherals",
+        "resourceType": "categoryInfo",
+        "mainCategories": [],
+        "resourceClass": [
+            "other"
+        ],
+        "location": "../../_build_c29x_academy_1_01_00_00/index.html#5.-control-peripherals",
+        "sort": "manual"
+    },
+    {
+        "name": "Communications Overview",
+        "description": "C2000 devices contain features that allow several methods of communication and data\nexchange between the MCU and other devices. Many of the most commonly used\ncommunications techniques are presented in this module.\n",
+        "localId": "source_communication_c28x_c29x_communications_overview",
+        "resourceType": "file",
+        "resourceClass": [
+            "other"
+        ],
+        "fileType": ".html",
+        "mainCategories": [],
+        "subCategories": [
+            "6. Communication Peripherals"
+        ],
+        "location": "../../_build_c29x_academy_1_01_00_00/source/communication/c28x_c29x_communications_overview.html",
+        "icon": "../../_build_c29x_academy_1_01_00_00/_static/images/favicon.png"
+    },
+    {
+        "name": "Fast Serial Interface (FSI)",
+        "description": "The FSI module is a highly reliable high-speed serial communication peripheral\ncapable of operating at dual data rate, providing 100 Mbps transfer using a 50\nMHz clock. \n",
+        "localId": "source_communication_c28x_c29x_fsi",
+        "resourceType": "file",
+        "resourceClass": [
+            "other"
+        ],
+        "fileType": ".html",
+        "mainCategories": [],
+        "subCategories": [
+            "6. Communication Peripherals"
+        ],
+        "location": "../../_build_c29x_academy_1_01_00_00/source/communication/c28x_c29x_fsi.html",
+        "icon": "../../_build_c29x_academy_1_01_00_00/_static/images/favicon.png"
+    },
+    {
+        "name": "Inter-Integrated Circuit (I2C)",
+        "description": "The I2C provides an interface between devices that connect using an I2C-bus and\nare compliant with I2C-bus specification version 2.1.\n",
+        "localId": "source_communication_c28x_c29x_i2c",
+        "resourceType": "file",
+        "resourceClass": [
+            "other"
+        ],
+        "fileType": ".html",
+        "mainCategories": [],
+        "subCategories": [
+            "6. Communication Peripherals"
+        ],
+        "location": "../../_build_c29x_academy_1_01_00_00/source/communication/c28x_c29x_i2c.html",
+        "icon": "../../_build_c29x_academy_1_01_00_00/_static/images/favicon.png"
+    },
+    {
+        "name": "Universal Asynchronous Receiver Transmitter (UART)",
+        "description": "The UART communication module provides a communication interface between devices by performing the functions of parallel-to-serial and serial-to-parallel conversions.\nThis module covers the basics of UART communciation, data flow, and common applications.\n",
+        "localId": "source_communication_c29x_uart",
+        "resourceType": "file",
+        "resourceClass": [
+            "other"
+        ],
+        "fileType": ".html",
+        "mainCategories": [],
+        "subCategories": [
+            "6. Communication Peripherals"
+        ],
+        "location": "../../_build_c29x_academy_1_01_00_00/source/communication/c29x_uart.html",
+        "icon": "../../_build_c29x_academy_1_01_00_00/_static/images/favicon.png"
+    },
+    {
+        "name": "Serial Peripheral Interface (SPI)",
+        "description": "The SPI is a high-speed\nsynchronous serial port that shifts a programmable length serial bit stream\ninto and out of the device at a programmable bit-transfer rate. \n",
+        "localId": "source_communication_c28x_c29x_spi",
+        "resourceType": "file",
+        "resourceClass": [
+            "other"
+        ],
+        "fileType": ".html",
+        "mainCategories": [],
+        "subCategories": [
+            "6. Communication Peripherals"
+        ],
+        "location": "../../_build_c29x_academy_1_01_00_00/source/communication/c28x_c29x_spi.html",
+        "icon": "../../_build_c29x_academy_1_01_00_00/_static/images/favicon.png"
+    },
+    {
+        "name": "Controller Area Network (CAN)",
+        "description": "CAN is a serial communications protocol which efficiently supports distributed\nreal-time control with a high level of reliability. \n",
+        "localId": "source_communication_c28x_c29x_can",
+        "resourceType": "file",
+        "resourceClass": [
+            "other"
+        ],
+        "fileType": ".html",
+        "mainCategories": [],
+        "subCategories": [
+            "6. Communication Peripherals"
+        ],
+        "location": "../../_build_c29x_academy_1_01_00_00/source/communication/c28x_c29x_can.html",
+        "icon": "../../_build_c29x_academy_1_01_00_00/_static/images/favicon.png"
+    },
+    {
+        "name": "CAN Flexible Data Rate (CAN FD/MCAN)",
+        "description": "CAN FD refers to the protocol while MCAN refers to the physical module\non the device that implements the CAN FD protocol.\n",
+        "localId": "source_communication_c28x_c29x_mcan",
+        "resourceType": "file",
+        "resourceClass": [
+            "other"
+        ],
+        "fileType": ".html",
+        "mainCategories": [],
+        "subCategories": [
+            "6. Communication Peripherals"
+        ],
+        "location": "../../_build_c29x_academy_1_01_00_00/source/communication/c28x_c29x_mcan.html",
+        "icon": "../../_build_c29x_academy_1_01_00_00/_static/images/favicon.png"
+    },
+    {
+        "name": "Local Interconnect Network (LIN)",
+        "description": "The LIN standard is based\non the SCI (UART) serial data link format. The communication concept is\nsingle-commander/multiple-responder with a message identification for\nmulti-cast transmission between any network nodes.\n",
+        "localId": "source_communication_c28x_c29x_lin",
+        "resourceType": "file",
+        "resourceClass": [
+            "other"
+        ],
+        "fileType": ".html",
+        "mainCategories": [],
+        "subCategories": [
+            "6. Communication Peripherals"
+        ],
+        "location": "../../_build_c29x_academy_1_01_00_00/source/communication/c28x_c29x_lin.html",
+        "icon": "../../_build_c29x_academy_1_01_00_00/_static/images/favicon.png"
+    },
+    {
+        "name": "Power Management Bus (PMBus)",
+        "description": "The PMBus module provides an interface for communicating between the\nmicrocontroller and other devices that are compliant with the System Management\nInterface (SMI) specification.\n",
+        "localId": "source_communication_c28x_c29x_pmbus",
+        "resourceType": "file",
+        "resourceClass": [
+            "other"
+        ],
+        "fileType": ".html",
+        "mainCategories": [],
+        "subCategories": [
+            "6. Communication Peripherals"
+        ],
+        "location": "../../_build_c29x_academy_1_01_00_00/source/communication/c28x_c29x_pmbus.html",
+        "icon": "../../_build_c29x_academy_1_01_00_00/_static/images/favicon.png"
+    },
+    {
+        "name": "Ethernet for Control Automation Technology (EtherCAT)",
+        "description": "Ethernet for Control Automation Technology\n(EtherCAT\u00ae) is an Ethernet-based field bus system. \n",
+        "localId": "source_communication_c28x_c29x_ethercat",
+        "resourceType": "file",
+        "resourceClass": [
+            "other"
+        ],
+        "fileType": ".html",
+        "mainCategories": [],
+        "subCategories": [
+            "6. Communication Peripherals"
+        ],
+        "location": "../../_build_c29x_academy_1_01_00_00/source/communication/c28x_c29x_ethercat.html",
+        "icon": "../../_build_c29x_academy_1_01_00_00/_static/images/favicon.png"
+    },
+    {
+        "name": "Single Edge Nibble Transmission (SENT)",
+        "description": "The SENT module provides an interface for communicating between a\nmicrocontroller and other devices. This protocol on C29x devices was based on the open standard SAE J2716 with additional enhancements such as additional\nsensor format support.\n",
+        "localId": "source_communication_c29x_sent",
+        "resourceType": "file",
+        "resourceClass": [
+            "other"
+        ],
+        "fileType": ".html",
+        "mainCategories": [],
+        "subCategories": [
+            "6. Communication Peripherals"
+        ],
+        "location": "../../_build_c29x_academy_1_01_00_00/source/communication/c29x_sent.html",
+        "icon": "../../_build_c29x_academy_1_01_00_00/_static/images/favicon.png"
+    },
+    {
+        "name": "6. Communication Peripherals",
+        "resourceType": "categoryInfo",
+        "mainCategories": [],
+        "resourceClass": [
+            "other"
+        ],
+        "location": "../../_build_c29x_academy_1_01_00_00/index.html#6.-communication-peripherals",
+        "sort": "manual"
+    },
+    {
+        "name": "Safety Security Unit (SSU)",
+        "description": "This module describes the features and operation of the Safety and Security Unit (SSU). The SSU is the central\nelement of the C29x security architecture. It provides run-time safety and security for the application\nCPU subsystems, and governs debug access to various resources on the chip.\n",
+        "localId": "source_safety_security_c29x_ssu",
+        "resourceType": "file",
+        "resourceClass": [
+            "other"
+        ],
+        "fileType": ".html",
+        "mainCategories": [],
+        "subCategories": [
+            "7. Security and Safety Peripherals"
+        ],
+        "location": "../../_build_c29x_academy_1_01_00_00/source/safety_security/c29x_ssu.html",
+        "icon": "../../_build_c29x_academy_1_01_00_00/_static/images/favicon.png"
+    },
+    {
+        "name": "Hardware Security Module (HSM)",
+        "description": "The HSM is a self-contained subsystem within the device that provides security\nand cryptographic functions. The host C29 subsystem interfaces with the HSM subsystem to perform the\ncryptographic operations required for code authentication, secure boot, secure firmware upgrades and encrypted\nrun-time communications.\n",
+        "localId": "source_safety_security_c29x_hsm",
+        "resourceType": "file",
+        "resourceClass": [
+            "other"
+        ],
+        "fileType": ".html",
+        "mainCategories": [],
+        "subCategories": [
+            "7. Security and Safety Peripherals"
+        ],
+        "location": "../../_build_c29x_academy_1_01_00_00/source/safety_security/c29x_hsm.html",
+        "icon": "../../_build_c29x_academy_1_01_00_00/_static/images/favicon.png"
+    },
+    {
+        "name": "7. Security and Safety Peripherals",
+        "resourceType": "categoryInfo",
+        "mainCategories": [],
+        "resourceClass": [
+            "other"
+        ],
+        "location": "../../_build_c29x_academy_1_01_00_00/index.html#7.-security-and-safety-peripherals",
+        "sort": "manual"
+    },
+    {
+        "name": "Embedded Real-time Analysis and Diagnostic (ERAD)",
+        "description": "The ERAD module of C29x devices enhances the debug and system analysis capabilities of\nthe device. This module facilitates sophisticated non-intrusive\ndetection and monitoring of the CPU operation in real-time.\n",
+        "localId": "source_debug_c29x_erad",
+        "resourceType": "file",
+        "resourceClass": [
+            "other"
+        ],
+        "fileType": ".html",
+        "mainCategories": [],
+        "subCategories": [
+            "8. Debug and Diagnostics"
+        ],
+        "location": "../../_build_c29x_academy_1_01_00_00/source/debug/c29x_erad.html",
+        "icon": "../../_build_c29x_academy_1_01_00_00/_static/images/favicon.png"
+    },
+    {
+        "name": "Data Log and Trace (DLT)",
+        "description": "The DLT makes it possible to collect, time-stamp, pre-filter, export, and do real-time and post analysis of data.\nWhen data-logging, the DLT is non-intrusive meaning there is no impact to run-time or CPU core behavior.\n",
+        "localId": "source_debug_c29x_dlt",
+        "resourceType": "file",
+        "resourceClass": [
+            "other"
+        ],
+        "fileType": ".html",
+        "mainCategories": [],
+        "subCategories": [
+            "8. Debug and Diagnostics"
+        ],
+        "location": "../../_build_c29x_academy_1_01_00_00/source/debug/c29x_dlt.html",
+        "icon": "../../_build_c29x_academy_1_01_00_00/_static/images/favicon.png"
+    },
+    {
+        "name": "Waveform Analyzer Diagnostic (WADI)",
+        "description": "The waveform analyzer and diagnostic (WADI) peripheral consists of many useful built in signal analysis support\nand provides a safety mechanism for the signals. This module provides a foundational understanding of the WADI.\n",
+        "localId": "source_debug_c29x_wadi",
+        "resourceType": "file",
+        "resourceClass": [
+            "other"
+        ],
+        "fileType": ".html",
+        "mainCategories": [],
+        "subCategories": [
+            "8. Debug and Diagnostics"
+        ],
+        "location": "../../_build_c29x_academy_1_01_00_00/source/debug/c29x_wadi.html",
+        "icon": "../../_build_c29x_academy_1_01_00_00/_static/images/favicon.png"
+    },
+    {
+        "name": "Embedded Pulse Generator (EPG)",
+        "description": "The Embedded Pattern Generator (EPG) module is a customizable pattern and clock\ngenerator that could serve many test and application scenarios that require a\nsimple pattern generator or a periodic clock generator. The EPG module can also\nbe used to capture an incoming serial stream of data.\n",
+        "localId": "source_debug_c28x_c29x_epg",
+        "resourceType": "file",
+        "resourceClass": [
+            "other"
+        ],
+        "fileType": ".html",
+        "mainCategories": [],
+        "subCategories": [
+            "8. Debug and Diagnostics"
+        ],
+        "location": "../../_build_c29x_academy_1_01_00_00/source/debug/c28x_c29x_epg.html",
+        "icon": "../../_build_c29x_academy_1_01_00_00/_static/images/favicon.png"
+    },
+    {
+        "name": "C29 Debugging Tips",
+        "description": "This module describes various topics related to debugging issues on the C29-based\nfamily of devices.\n",
+        "localId": "source_debug_c29x_debug_tips",
+        "resourceType": "file",
+        "resourceClass": [
+            "other"
+        ],
+        "fileType": ".html",
+        "mainCategories": [],
+        "subCategories": [
+            "8. Debug and Diagnostics"
+        ],
+        "location": "../../_build_c29x_academy_1_01_00_00/source/debug/c29x_debug_tips.html",
+        "icon": "../../_build_c29x_academy_1_01_00_00/_static/images/favicon.png"
+    },
+    {
+        "name": "8. Debug and Diagnostics",
+        "resourceType": "categoryInfo",
+        "mainCategories": [],
+        "resourceClass": [
+            "other"
+        ],
+        "location": "../../_build_c29x_academy_1_01_00_00/index.html#8.-debug-and-diagnostics",
+        "sort": "manual"
+    },
+    {
+        "name": "Real-Time Direct Memory Access (RTDMA)",
+        "description": "On C29x devices, RTDMA module provides a hardware method of transferring data between\nperipherals and/or memory without intervention from the CPU to effectively\nfree up the CPU for other functions.\n",
+        "localId": "source_advanced_c29x_rtdma",
+        "resourceType": "file",
+        "resourceClass": [
+            "other"
+        ],
+        "fileType": ".html",
+        "mainCategories": [],
+        "subCategories": [
+            "9. Advanced Topics"
+        ],
+        "location": "../../_build_c29x_academy_1_01_00_00/source/advanced/c29x_rtdma.html",
+        "icon": "../../_build_c29x_academy_1_01_00_00/_static/images/favicon.png"
+    },
+    {
+        "name": "Configurable Logic Block (CLB)",
+        "description": "The Configurable Logic Block (CLB) is a peripheral exclusive to C2000 devices\nthat allows users to incorporate custom logic without the need for an external\nlogic device such as an FPGA or CLPD. \n",
+        "localId": "source_advanced_c28x_c29x_clb",
+        "resourceType": "file",
+        "resourceClass": [
+            "other"
+        ],
+        "fileType": ".html",
+        "mainCategories": [],
+        "subCategories": [
+            "9. Advanced Topics"
+        ],
+        "location": "../../_build_c29x_academy_1_01_00_00/source/advanced/c28x_c29x_clb.html",
+        "icon": "../../_build_c29x_academy_1_01_00_00/_static/images/favicon.png"
+    },
+    {
+        "name": "Interprocessor Communications (IPC)",
+        "description": "IPC allows communication between two CPU subsystems (ex. CPU1 and CPU2).\nThis module explains the use and operation of IPC. \n",
+        "localId": "source_advanced_c29x_ipc",
+        "resourceType": "file",
+        "resourceClass": [
+            "other"
+        ],
+        "fileType": ".html",
+        "mainCategories": [],
+        "subCategories": [
+            "9. Advanced Topics"
+        ],
+        "location": "../../_build_c29x_academy_1_01_00_00/source/advanced/c29x_ipc.html",
+        "icon": "../../_build_c29x_academy_1_01_00_00/_static/images/favicon.png"
+    },
+    {
+        "name": "9. Advanced Topics",
+        "resourceType": "categoryInfo",
+        "mainCategories": [],
+        "resourceClass": [
+            "other"
+        ],
+        "location": "../../_build_c29x_academy_1_01_00_00/index.html#9.-advanced-topics",
+        "sort": "manual"
+    },
+    {
+        "name": "Timer LED Lab",
+        "description": "START HERE! Begin your hands-on experience by completing this introductory lab exercise.\nThis lab walks through simple project development steps within CCS, utilizes the \nbuilt-in SysConfig GUI, and ultimately demonstrates how to use a CPU Timer interrupt \nto blink two LEDs on your board.\n",
+        "localId": "source_lab_exercises_c29x_labs_c29x_timer_lab",
+        "resourceType": "file",
+        "resourceClass": [
+            "other"
+        ],
+        "fileType": ".html",
+        "mainCategories": [],
+        "subCategories": [
+            "Lab Exercises"
+        ],
+        "location": "../../_build_c29x_academy_1_01_00_00/source/lab_exercises/c29x_labs/c29x_timer_lab.html",
+        "icon": "../../_build_c29x_academy_1_01_00_00/_static/images/favicon.png"
+    },
+    {
+        "name": "RTDMA Lab",
+        "description": "Use the RTDMA module along with the ADC in a\nreal-time data processing application. An EPWM waveform will be used to\nsimulate a real-time data signal, and the ADC will sample this waveform at a \nspecified rate. The RTDMA will be used to store ADC samples in a ping pong buffer so groups of samples\ncan be processed by the CPU in an ISR.\n",
+        "localId": "source_lab_exercises_c29x_labs_c29x_rtdma_lab",
+        "resourceType": "file",
+        "resourceClass": [
+            "other"
+        ],
+        "fileType": ".html",
+        "mainCategories": [],
+        "subCategories": [
+            "Lab Exercises"
+        ],
+        "location": "../../_build_c29x_academy_1_01_00_00/source/lab_exercises/c29x_labs/c29x_rtdma_lab.html",
+        "icon": "../../_build_c29x_academy_1_01_00_00/_static/images/favicon.png"
+    },
+    {
+        "name": "EPWM and ECAP Lab",
+        "description": "Generate a basic PWM waveform using one of the EPWM modules. The period and\nduty cycle of the PWM waveform will be measured by one of the ECAP\nmodules.\n",
+        "localId": "source_lab_exercises_c29x_labs_c29x_epwm_lab",
+        "resourceType": "file",
+        "resourceClass": [
+            "other"
+        ],
+        "fileType": ".html",
+        "mainCategories": [],
+        "subCategories": [
+            "Lab Exercises"
+        ],
+        "location": "../../_build_c29x_academy_1_01_00_00/source/lab_exercises/c29x_labs/c29x_epwm_lab.html",
+        "icon": "../../_build_c29x_academy_1_01_00_00/_static/images/favicon.png"
+    },
+    {
+        "name": "EQEP Lab",
+        "description": "Explore a common use-case of the EQEP module by connecting quadrature\nsignals to your device. This lab uses the EQEP to calculate motor\ncharacteristics.\n",
+        "localId": "source_lab_exercises_c29x_labs_c29x_eqep_lab",
+        "resourceType": "file",
+        "resourceClass": [
+            "other"
+        ],
+        "fileType": ".html",
+        "mainCategories": [],
+        "subCategories": [
+            "Lab Exercises"
+        ],
+        "location": "../../_build_c29x_academy_1_01_00_00/source/lab_exercises/c29x_labs/c29x_eqep_lab.html",
+        "icon": "../../_build_c29x_academy_1_01_00_00/_static/images/favicon.png"
+    },
+    {
+        "name": "UART Lab",
+        "description": "Use the UART module to send and receive data\nbetween a C29 device and a computer. The computer will be used to change the\nfrequency of a blinking LED, and the board will echo the corresponding value back to\nthe computer.\n",
+        "localId": "source_lab_exercises_c29x_labs_c29x_uart_lab",
+        "resourceType": "file",
+        "resourceClass": [
+            "other"
+        ],
+        "fileType": ".html",
+        "mainCategories": [],
+        "subCategories": [
+            "Lab Exercises"
+        ],
+        "location": "../../_build_c29x_academy_1_01_00_00/source/lab_exercises/c29x_labs/c29x_uart_lab.html",
+        "icon": "../../_build_c29x_academy_1_01_00_00/_static/images/favicon.png"
+    },
+    {
+        "name": "FSI Lab",
+        "description": "Use the FSI module to send and receive data using the internal loopback feature.\nThe FSI ping frame feature will be used to validate communication between the \nFSI receiver module and FSI transmitter module.\n",
+        "localId": "source_lab_exercises_c29x_labs_c29x_fsi_lab",
+        "resourceType": "file",
+        "resourceClass": [
+            "other"
+        ],
+        "fileType": ".html",
+        "mainCategories": [],
+        "subCategories": [
+            "Lab Exercises"
+        ],
+        "location": "../../_build_c29x_academy_1_01_00_00/source/lab_exercises/c29x_labs/c29x_fsi_lab.html",
+        "icon": "../../_build_c29x_academy_1_01_00_00/_static/images/favicon.png"
+    },
+    {
+        "name": "CLB Lab",
+        "description": "Use CLB module and its submodules to connect to other peripherals of the device, perform logical operations, override\nperipheral outputs, and then generate interrupts to the CPU.\n",
+        "localId": "source_lab_exercises_c29x_labs_c29x_clb_lab",
+        "resourceType": "file",
+        "resourceClass": [
+            "other"
+        ],
+        "fileType": ".html",
+        "mainCategories": [],
+        "subCategories": [
+            "Lab Exercises"
+        ],
+        "location": "../../_build_c29x_academy_1_01_00_00/source/lab_exercises/c29x_labs/c29x_clb_lab.html",
+        "icon": "../../_build_c29x_academy_1_01_00_00/_static/images/favicon.png"
+    },
+    {
+        "name": "CLB and ECAP Lab",
+        "description": "Use the CLB to connect to a signal, accurately time\nevents, and send data to the CPU. The CLB will measure a high signal, a low\nsignal, and another high signal before sending the data to the CPU. An \nePWM module will be set up to supply a signal if a wave\ngenerator is not available.\n",
+        "localId": "source_lab_exercises_c29x_labs_c29x_clb_ecap_lab",
+        "resourceType": "file",
+        "resourceClass": [
+            "other"
+        ],
+        "fileType": ".html",
+        "mainCategories": [],
+        "subCategories": [
+            "Lab Exercises"
+        ],
+        "location": "../../_build_c29x_academy_1_01_00_00/source/lab_exercises/c29x_labs/c29x_clb_ecap_lab.html",
+        "icon": "../../_build_c29x_academy_1_01_00_00/_static/images/favicon.png"
+    },
+    {
+        "name": "System Integration Lab",
+        "description": "Use the GPIO, EPWM, ADC, DAC, CMPSS, and ESM modules in this comprehensive example. \nIn this system, the ePWM module generates a PWM waveform with a duty cycle\nthat varies based on an ADC conversion result. A comparator will also be\nused to monitor the ADC conversion results and cause a one-shot trip to drive\nthe ePWM output low when the ADC conversion is above a certain threshold.The \nESM is also configured to drive the error status pin in response.\n",
+        "localId": "source_lab_exercises_c29x_labs_c29x_system_integration_lab",
+        "resourceType": "file",
+        "resourceClass": [
+            "other"
+        ],
+        "fileType": ".html",
+        "mainCategories": [],
+        "subCategories": [
+            "Lab Exercises"
+        ],
+        "location": "../../_build_c29x_academy_1_01_00_00/source/lab_exercises/c29x_labs/c29x_system_integration_lab.html",
+        "icon": "../../_build_c29x_academy_1_01_00_00/_static/images/favicon.png"
+    },
+    {
+        "name": "MCAL EPWM Lab",
+        "description": "Get familiar with F29x Microcontroller Abstraction Layer (MCAL) configuration in this EPWM MCAL demo! We will set up four EPWM instances using the tool EB Tresos in order to perform PWM phase shifting.",
+        "localId": "source_lab_exercises_c29x_labs_c29x_mcal_epwm_phase_shift_lab",
+        "resourceType": "file",
+        "resourceClass": [
+            "other"
+        ],
+        "fileType": ".html",
+        "mainCategories": [],
+        "subCategories": [
+            "Lab Exercises"
+        ],
+        "location": "../../_build_c29x_academy_1_01_00_00/source/lab_exercises/c29x_labs/c29x_mcal_epwm_phase_shift_lab.html",
+        "icon": "../../_build_c29x_academy_1_01_00_00/_static/images/favicon.png"
+    },
+    {
+        "name": "Lab Exercises",
+        "resourceType": "categoryInfo",
+        "mainCategories": [],
+        "resourceClass": [
+            "other"
+        ],
+        "location": "../../_build_c29x_academy_1_01_00_00/index.html#lab-exercises",
+        "sort": "manual"
+    },
+    {
+        "name": "C29x Device Migration",
+        "description": "Access TI resources to help you switch easily to a C29x device.",
+        "localId": "source_migration_c29x_migration",
+        "resourceType": "file",
+        "resourceClass": [
+            "other"
+        ],
+        "fileType": ".html",
+        "mainCategories": [],
+        "subCategories": [
+            "C29x Device Migration Resources"
+        ],
+        "location": "../../_build_c29x_academy_1_01_00_00/source/migration/c29x_migration.html",
+        "icon": "../../_build_c29x_academy_1_01_00_00/_static/images/favicon.png"
+    },
+    {
+        "name": "C29x Device Migration Resources",
+        "resourceType": "categoryInfo",
+        "mainCategories": [],
+        "resourceClass": [
+            "other"
+        ],
+        "location": "../../_build_c29x_academy_1_01_00_00/index.html#c29x-device-migration-resources",
+        "sort": "manual"
+    }
+]

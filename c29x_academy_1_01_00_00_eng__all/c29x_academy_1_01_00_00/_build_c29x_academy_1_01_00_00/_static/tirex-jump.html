@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<body>
+    <script>
+        console.log("Entered tirex-jump")
+
+        const getStringFromFragment = () => {
+            const hashFragment = window.location.hash;
+            if (hashFragment) {
+                return decodeURIComponent(hashFragment.substring(1))
+            } else {
+                return null;
+            }
+        }
+
+        const nodeId = getStringFromFragment();
+        
+        console.log(nodeId)
+        if (nodeId) {
+            window.parent.jumpToTirexNode(nodeId, {
+                    throwError: true
+                })
+                .catch((e) => {
+                    //window.location.href = link.href;
+                })
+        }
+    </script>
+</body>
+
+</html>

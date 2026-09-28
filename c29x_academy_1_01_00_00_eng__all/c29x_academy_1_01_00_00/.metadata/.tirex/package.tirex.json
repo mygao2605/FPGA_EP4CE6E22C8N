@@ -1,0 +1,26 @@
+[
+    {
+        "id": "C29X-ACADEMY",
+        "name": "C29x Academy",
+        "description": "The C29x Academy is a great resource for developers to learn about C29x-based C2000 real-time microcontrollers platform. The Academy delivers easy-to-use training modules that span a wide range of topics for C29x devices.\nC29x Academy is applicable to generation-4 devices- F29H85x, F29P58x, F29P32x",
+        "version": "1.01.00.00",
+        "devices": [
+            "F29H85x",
+            "F29P58x",
+            "F29P32x"
+        ],
+        "devtools": [
+            "F29H85X-SOM-EVM",
+            "LAUNCHXL-F29H85X"
+        ],
+        "tags": [
+            "c29"
+        ],
+        "aliases": [],
+        "location": "../../_build_c29x_academy_1_01_00_00/index.html",
+        "type": "software",
+        "metadataVersion": "3.01.00",
+        "hideNodeDirPanel": true,
+        "sort": "manual"
+    }
+]

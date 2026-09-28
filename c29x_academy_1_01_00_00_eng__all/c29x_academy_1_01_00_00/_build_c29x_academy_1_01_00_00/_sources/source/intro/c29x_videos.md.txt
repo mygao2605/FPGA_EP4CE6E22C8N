@@ -1,0 +1,188 @@
+---
+applies_to: ['c29x']
+---
+
+# Key Videos 
+
+```{friendly-url}
+```
+
+## Learn the basics of C2000 development
+::::{grid} 3
+:gutter: 3
+
+:::{grid-item-card} Introduction to CCS
+:link: https://www.ti.com/video/6330193274112
+TEXAS INSTRUMENTS
+^^^
+```{figure} c29x_videos_images/theia.png
+:scale: 16 %
+:align: left
+Get to know Code Composer Studio (CCS) as the integrated development environment (IDE) used with C29x devices.
+```
+:::
+
+:::{grid-item-card} SysConfig Series
+:link: https://www.ti.com/video/series/C2000-SysConfig.html
+TEXAS INSTRUMENTS
+^^^
+```{figure} c29x_videos_images/sysconfig.png
+:scale: 20 %
+:align: left
+Learn about SysConfig, the graphical user interface (GUI) tool designed to simplify hardware and software configuration.
+```
+:::
+
+:::{grid-item-card} SysConfig ClockTree Tool
+:link: https://www.ti.com/video/6341325649112
+TEXAS INSTRUMENTS
+^^^
+```{figure} c29x_videos_images/clocktree.png
+:scale: 20 %
+:align: left
+This video highlights how you can use SysConfig to configure your device's ClockTree.
+```
+:::
+
+:::{grid-item-card} C28 to C29 Project Migration
+:link: https://www.ti.com/video/6372917217112
+TEXAS INSTRUMENTS
+^^^
+```{figure} c29x_videos_images/c28toc29.png
+:scale: 16 %
+:align: left
+This video presents a step-by-step guide to migrating a driverlib project from F28P65x to F29H85x using CCS and the SysConfig tool.
+```
+:::
+::::
+
+
+## Learn about C2000 device peripherals 
+*Please note that not all  of the below are C29-specific*
+
+::::{grid} 3
+:gutter: 3
+
+:::{grid-item-card} ADC Series
+:link: https://www.ti.com/video/series/C2000-analog-to-digital-converter.html
+TEXAS INSTRUMENTS
+^^^
+```{figure} c29x_videos_images/adc.png
+:scale: 20 %
+:align: left
+An introduction to the Analog-to-Digital Converter (ADC) module.
+```
+:::
+
+:::{grid-item-card} EPWM Series
+:link: https://www.ti.com/video/series/C2000-enhanced-pulse-width-modulator.html
+TEXAS INSTRUMENTS
+^^^
+```{figure} c29x_videos_images/epwm.png
+:scale: 20 %
+:align: left
+An introduction to the Enhanced Pulse-Width Modulator (EPWM) module.
+```
+:::
+
+:::{grid-item-card} PIPE Video
+:link: https://www.ti.com/video/6372866595112
+TEXAS INSTRUMENTS
+^^^
+```{figure} c29x_videos_images/pipe.png
+:scale: 20 %
+:align: left
+An introduction to the C29x Peripheral Interrupt Priority and Expansion (PIPE) module.
+```
+:::
+
+:::{grid-item-card} CLB Series
+:link: https://www.ti.com/video/series/C2000-configurable-logic-block.html
+TEXAS INSTRUMENTS
+^^^
+```{figure} c29x_videos_images/clb.png
+:scale: 20 %
+:align: left
+An introduction to the Configurable Logic Block (CLB) module.
+```
+:::
+
+:::{grid-item-card} DLT Video
+:link: https://www.ti.com/video/6365475335112
+TEXAS INSTRUMENTS
+^^^
+```{figure} c29x_videos_images/dlt.png
+:scale: 20 %
+:align: left
+An introduction to the C29x Data Logging & Trace module.
+```
+:::
+
+:::{grid-item-card} EtherCAT Series
+:link: https://www.ti.com/video/series/c2000-ethercat.html
+TEXAS INSTRUMENTS
+^^^
+```{figure} c29x_videos_images/ethercat.png
+:scale: 20 %
+:align: left
+An introduction to the EtherCAT module.
+```
+:::
+
+:::{grid-item-card} SDFM Series
+:link: https://www.ti.com/video/series/C2000-sigma-delta-filter-modulator.html
+TEXAS INSTRUMENTS
+^^^
+```{figure} c29x_videos_images/sdfm.png
+:scale: 20 %
+:align: left
+An introduction to the Sigma Delta Filter Modulator (SDFM) module.
+```
+:::
+
+:::{grid-item-card} CAN Video
+:link: https://www.ti.com/video/6309258786112
+TEXAS INSTRUMENTS
+^^^
+```{figure} c29x_videos_images/can.png
+:scale: 20 %
+:align: left
+See how to get devices to communicate via Controller Area Network (CAN).
+```
+:::
+
+:::{grid-item-card} ERAD Video
+:link: https://www.ti.com/video/6292444674001
+TEXAS INSTRUMENTS
+^^^
+```{figure} c29x_videos_images/erad.png
+:scale: 20 %
+:align: left
+An introduction to the Embedded Real-Time Analysis & Diagnostics (ERAD) module.
+```
+:::
+
+:::{grid-item-card} EPG Video
+:link: https://www.ti.com/video/6280114167001
+TEXAS INSTRUMENTS
+^^^
+```{figure} c29x_videos_images/epg.png
+:scale: 20 %
+:align: left
+An introduction to the Embedded Pattern Generator (EPG) module.
+```
+:::
+
+:::{grid-item-card} Functional Safety Video
+:link: https://www.ti.com/video/5823622584001
+TEXAS INSTRUMENTS
+^^^
+```{figure} c29x_videos_images/fusa.png
+:scale: 20 %
+:align: left
+An introduction to functional safety features on C2000 devices.
+```
+:::
+::::
+
+To browse all TI videos, visit [www.ti.com/video](https://www.ti.com/video).

@@ -1,0 +1,616 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>Universal Asynchronous Receiver Transmitter (UART) &#8212; C29x Academy</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=796348d33e8b1d947c94" rel="stylesheet">
+<link href="../../_static/styles/bootstrap.css?digest=796348d33e8b1d947c94" rel="stylesheet">
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=796348d33e8b1d947c94" rel="stylesheet">
+
+  
+  <link href="../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=796348d33e8b1d947c94" rel="stylesheet">
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/local/font.css" />
+    <link rel="stylesheet" type="text/css" href="https://www.ti.com/assets/fonts/font.css" />
+    <link rel="stylesheet" type="text/css" href="https://www.ti.com/assets/style/resource-explorer.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=796348d33e8b1d947c94">
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=796348d33e8b1d947c94">
+
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/sphinx_highlight.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script src="../../_static/design-tabs.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'source/communication/c29x_uart';</script>
+    <script src="../../_static/quizdown.js"></script>
+    <script src="../../_static/external-links.js"></script>
+    <link rel="canonical" href="http://127.0.0.1:8000/source/communication/c29x_uart.html" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Serial Peripheral Interface (SPI)" href="c28x_c29x_spi.html" />
+    <link rel="prev" title="Inter-Integrated Circuit (I2C)" href="c28x_c29x_i2c.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="docsearch:language" content="en">
+  </head>
+  
+  
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="180" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search C29x Academy" aria-label="Search C29x Academy" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar"><div class="bd-header__inner bd-page-width">
+  <label class="sidebar-toggle primary-toggle" for="__primary">
+      <span class="fa-solid fa-bars"></span>
+  </label>
+  <div id="navbar-start">
+    
+  </div>
+
+  
+  <div class="col-lg-9 navbar-header-items">
+    <div id="navbar-center" class="mr-auto">
+      
+    </div>
+
+    <div id="navbar-end">
+      
+        <div class="navbar-end-item navbar-persistent--container">
+          
+<button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-toggle="tooltip">
+  <i class="fa-solid fa-magnifying-glass"></i>
+</button>
+        </div>
+      
+      
+    </div>
+  </div>
+
+
+  
+  
+    <div class="navbar-persistent--mobile">
+<button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-toggle="tooltip">
+  <i class="fa-solid fa-magnifying-glass"></i>
+</button>
+    </div>
+  
+
+  
+  <label class="sidebar-toggle secondary-toggle" for="__secondary">
+      <span class="fa-solid fa-outdent"></span>
+  </label>
+  
+
+</div>
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar hide-on-wide">
+        
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+
+    
+    
+  </div>
+
+  
+
+  
+  <div class="sidebar-end-items sidebar-primary__section">
+    <div class="sidebar-end-items__item">
+    </div>
+  </div>
+
+  
+  <div id="rtd-footer-container"></div>
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article"></div>
+              
+              
+                <article class="bd-article" role="main">
+                  
+                  
+<div id="searchbox"></div>
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="universal-asynchronous-receiver-transmitter-uart">
+<h1>Universal Asynchronous Receiver Transmitter (UART)<a class="headerlink" href="#universal-asynchronous-receiver-transmitter-uart" title="Permalink to this heading">#</a></h1>
+<p><a class="reference external" href="https://dev.ti.com/tirex/local?id=source_communication_c29x_uart&amp;packageId=C29X-ACADEMY">Link to share</a></p>
+<section id="overview">
+<h2>Overview<a class="headerlink" href="#overview" title="Permalink to this heading">#</a></h2>
+<p>In this learning module, you will:</p>
+<ul class="simple">
+<li><p>Gain a general understanding of what UART is</p></li>
+<li><p>Understand common examples of where UART is typically used</p></li>
+<li><p>Follow the flow of data through the UART module</p></li>
+<li><p>Learn how to use the UART module with the DMA module</p></li>
+</ul>
+</section>
+<section id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this heading">#</a></h2>
+<p>The Universal Asynchronous Serial Transmitter (UART) module is a single-ended, asynchronous serial communication port that transmits (TX) and receives (RX) a programmable length serial bit stream into and out of the device at a programmable rate (called a “baud rate”). UART communciation occurs without the need for a shared clock signal. It also requires only 1-2 physical pin connections between the communicating devices. It can be configured to do half-duplex communication (single direction communication), or full-duplex communication (bidirectional communication). The UART is typically used for communication with a serial terminal or communication between two processors, and it has the option of using receive and transmit FIFOs (First-In-First-Out) for reducing servicing overhead.</p>
+</section>
+<section id="common-applications-of-uart">
+<h2>Common Applications of UART<a class="headerlink" href="#common-applications-of-uart" title="Permalink to this heading">#</a></h2>
+<section id="processor-to-processor-communication">
+<h3>Processor-to-Processor Communication<a class="headerlink" href="#processor-to-processor-communication" title="Permalink to this heading">#</a></h3>
+<p>Two devices can communicate with each other if they both have peripherals capable of transmitting/receiving data with the UART protocol. Because of this, a C2000 device with a UART peripheral can communicate with other C2000 devices, other TI devices, or 3rd party devices as long as they have a UART peripheral.</p>
+</section>
+<section id="processor-to-pc-communication">
+<h3>Processor-to-PC Communication<a class="headerlink" href="#processor-to-pc-communication" title="Permalink to this heading">#</a></h3>
+<p>One common use case of the UART peripheral is to display debugging messages to a COM port on a PC. This data is displayed in ASCII so that it is human-readable. This is useful for debugging purposes when JTAG cannot be used.</p>
+</section>
+<section id="low-speed-long-distance-communication">
+<h3>Low-Speed, Long Distance Communication<a class="headerlink" href="#low-speed-long-distance-communication" title="Permalink to this heading">#</a></h3>
+<p>Transceivers can be used for low-speed long-distance UART communication. They convert the single-ended UART signals from the device into differential signals, commonly using a RS-232, RS-422, or RS-485 protocol.</p>
+</section>
+</section>
+<section id="why-use-uart">
+<h2>Why use UART?<a class="headerlink" href="#why-use-uart" title="Permalink to this heading">#</a></h2>
+<p>UART is often selected because of its simplicity, and compatibility with other devices. Some other advantages are:</p>
+<ul class="simple">
+<li><p>In the default configuration, there is no notion of commander or responder, so either device can be used to initiate transmission. However, if commander/responder functionality is needed, the UART module has a 9-bit multiprocessor mode that can be utilized.</p></li>
+<li><p>Separate data lines for each device allow for data to be sent and received simultaneously and independently.</p></li>
+<li><p>The fractional baud rate divisor of the C2000 UART module allows for more fine-tuned baud rates than the SCI module.</p></li>
+<li><p>The UART module has DMA access, so UART messages can be sent and received without any CPU intervention.</p></li>
+</ul>
+<p>However, there are also many other forms of serial communication that can be used, and some possible drawbacks to consider when using UART:</p>
+<ul class="simple">
+<li><p>Higher likelihood for error from clock inaccuracies between the two communicating devices, since the clock signal is not shared.</p></li>
+<li><p>Slower maximum transmission speed than most other communication peripherals.
+With a general overview of UART use established, we can get into what UART is and how it works.</p></li>
+</ul>
+</section>
+<section id="what-is-uart">
+<h2>What is UART?<a class="headerlink" href="#what-is-uart" title="Permalink to this heading">#</a></h2>
+<section id="uart-frame-structure">
+<h3>UART Frame Structure<a class="headerlink" href="#uart-frame-structure" title="Permalink to this heading">#</a></h3>
+<p>Both the transmitting and receiving line of the UART module operate using the same frame structure. In an idle state, a UART line is logic level high. The start of a UART frame pulls the signal low for one “bit width”. Then, the data bits pull the UART line high or low depending on their logical levels. A parity bit follows, which also could pull the line high or low for one “bit width” of time. At the end of the transmission, either one or two stops bits will pull the line high, depending on the configuration.</p>
+<figure class="align-center" id="id1">
+<a class="reference internal image-reference" href="../../_images/uart_frame.png"><img alt="../../_images/uart_frame.png" src="../../_images/uart_frame.png" style="width: 839.3px; height: 138.6px;" /></a>
+<figcaption>
+<p><span class="caption-text">Figure 1: UART Frame</span><a class="headerlink" href="#id1" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<figure class="align-center" id="id2">
+<a class="reference internal image-reference" href="../../_images/uart_frame_example_0x55.png"><img alt="../../_images/uart_frame_example_0x55.png" src="../../_images/uart_frame_example_0x55.png" style="width: 844.2px; height: 146.06px;" /></a>
+<figcaption>
+<p><span class="caption-text">Figure 2: UART Example Data Frame</span><a class="headerlink" href="#id2" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<div class="admonition-note admonition">
+<p class="admonition-title">Note</p>
+<p>Even though the c28x can store 16-bit data at minimum, the UART module can only transfer data 8 bits (one character) at a time, as this is defined by the standard protocol.</p>
+</div>
+</section>
+<section id="uart-baud-rate">
+<h3>UART Baud Rate<a class="headerlink" href="#uart-baud-rate" title="Permalink to this heading">#</a></h3>
+<p>Both devices communicating must have the same configured baud rate, which is measured in bits per second, and decides the UART “bit width”. The UART module transmits and receives these bits at the configured baud rate, which is generated by the SYSCLK clock source.</p>
+<p>There are two types of error that can be introduced when two devices are communicating via UART. The first is a known error associated with the configured baud rate and clock speed combination. This error can be attributed to whether or not the baud rate is an even factor of the clock speed, or how close to an even factor it is. It is generally recommended to select a clock speed and baud rate combination that will result in a known error as close to 0% as possible. The UART Sysconfig can be used to calculate this error, as shown below.</p>
+<p>The second type of error that can be introduced is any sort of inaccuracy with the oscillator that is associated with real world factors, like temperature, age of the device etc. This inaccuracy cannot be calculated and is in most cases negligible.</p>
+</section>
+<section id="uart-fifo-operation">
+<h3>UART FIFO Operation<a class="headerlink" href="#uart-fifo-operation" title="Permalink to this heading">#</a></h3>
+<p>Enabling FIFO mode of the UART module can optimize the speed at which data can be transmitted or received. Both the UART transmitter and the UART receiver have an associated FIFO with a depth of 16. Both FIFOs can be configured to trigger at a specific fractional level full. For the UART transmitter, an interrupt will be triggered when the transmitter has the FIFO trigger level number of bytes full, and therefore is available to be written to with (1 - trigger level) amount of new data. For the UART receiver, an interrupt will be generated when the receive FIFO contains the FIFO trigger level number of bytes full, and therefore is available to be read trigger level number of characters from.</p>
+<p>For example, if the configured FIFO level for the UART TX FIFO is 7/8 and the configured FIFO level for the RX FIFO was 1/8, the TX FIFO will trigger an interrupt when it is 14 elements or less full and the RX FIFO will generate an interrupt when there are 2 characters or more present. In the TX interrupt, 2 characters can be written to the TX FIFO in the ISR. In the RX interrupt, 2 characters can be read from the RX FIFO in the ISR. The following would be the flow of data:</p>
+<figure class="align-center" id="id3">
+<a class="reference internal image-reference" href="../../_images/uart_tx_fifo.png"><img alt="../../_images/uart_tx_fifo.png" src="../../_images/uart_tx_fifo.png" style="width: 1157.25px; height: 426.0px;" /></a>
+<figcaption>
+<p><span class="caption-text">Figure 3: UART Transmit FIFO</span><a class="headerlink" href="#id3" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<figure class="align-center" id="id4">
+<a class="reference internal image-reference" href="../../_images/uart_rx_fifo.png"><img alt="../../_images/uart_rx_fifo.png" src="../../_images/uart_rx_fifo.png" style="width: 1061.8999999999999px; height: 417.2px;" /></a>
+<figcaption>
+<p><span class="caption-text">Figure 4: UART Receive FIFO</span><a class="headerlink" href="#id4" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+</section>
+<section id="viewing-uart-debugging-messages">
+<h3>Viewing UART Debugging Messages<a class="headerlink" href="#viewing-uart-debugging-messages" title="Permalink to this heading">#</a></h3>
+<p>In order to view UART messages in the COM port of a PC, a physical UART to USB bridge is required. On the launchPAD and ControlCard for some devices, this bridge is provided and the TX and RX signals from the UART module on the c2000 device are converted and routed through the USB connection on each board. For devices where this routing is not included for the UART signals (for example on F2838x controlCARD), you must wire up a UART to USB bridge externally in order to view UART messages from a COM port on your PC.</p>
+<figure class="align-center" id="id5">
+<a class="reference internal image-reference" href="../../_images/uart_usb_bridge.png"><img alt="../../_images/uart_usb_bridge.png" src="../../_images/uart_usb_bridge.png" style="width: 1024.8px; height: 339.5px;" /></a>
+<figcaption>
+<p><span class="caption-text">Figure 5: UART to USB Bridge</span><a class="headerlink" href="#id5" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<div class="admonition-note admonition">
+<p class="admonition-title">Note</p>
+<p>For devices that route the signals to the bridge, make sure the switch enabling the routing of the UART signals to the bridge is in the correct position on the board. The specific switch for each board can be found in the board schematic in the board_support folder of C2000ware.</p>
+</div>
+</section>
+</section>
+<section id="using-uart-with-dma">
+<h2>Using UART with DMA<a class="headerlink" href="#using-uart-with-dma" title="Permalink to this heading">#</a></h2>
+<p>The UART module is commonly used for debugging purposes in an application. In the development phase, a user may want to transmit and receive these debugging messages without effecting the normal application performance. This is where the DMA module comes into play. The DMA has the ability to transfer data directly from the device memory (for example from an array) to the UART data register or from the UART data register to a location in device memory without using the CPU. In the same way that the TX and RX FIFO trigger levels can be used to trigger interrupts on the CPU when the FIFOs contain a certain number of characters, these FIFO levels can also be used to trigger burst transfers of the DMA. When using the DMA to transfer transmit data to the UART data register or transfer receive data from the UART data register, the DMA burst size should match the number of characters written or read with each trigger. In the below example, 2 bytes will be written/read to/from the TX/RX FIFO with each DMA burst transfer.</p>
+<figure class="align-center" id="id6">
+<a class="reference internal image-reference" href="../../_images/uart_dma.png"><img alt="../../_images/uart_dma.png" src="../../_images/uart_dma.png" style="width: 1100.25px; height: 622.5px;" /></a>
+<figcaption>
+<p><span class="caption-text">Figure 6: UART with DMA Access</span><a class="headerlink" href="#id6" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<p>For more information about the DMA module, see the Direct Memory Access (DMA) Academy learning module. For a software example of how to use the UART module with the DMA module, see the “examples” folder of C2000Ware for your specific device.</p>
+</section>
+<section id="test-your-knowledge">
+<h2>Test Your Knowledge!<a class="headerlink" href="#test-your-knowledge" title="Permalink to this heading">#</a></h2>
+<p><strong>Question 1</strong></p>
+<p>Which is a benefit of the UART module over the SCI communication peripherals?</p>
+<p>a. DMA access – can communicate without CPU intervention</p>
+<p>b. High-speed communication rates</p>
+<p>c. Highly accurate transmission – reduced chances of dropped packets</p>
+<p>d. Can be configured to use more than one different communication protocol</p>
+<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+Answer<div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
+<p class="sd-card-text">a. The UART module’s main benefit is DMA access. Its maximum transmission speed is less than that of the SPI and I2C peripherals, and it cannot be configured to use any other communication protocol other than the UART protocol (as opposed to the LIN module for example, which could do UART communication or LIN communication).</p>
+</div>
+</details><p><strong>Question 2</strong></p>
+<p>Which of the following that are pins used in the UART protocol?</p>
+<p>a. UARTCLK</p>
+<p>b. UARTTX</p>
+<p>c. UARTRX</p>
+<p>d. UARTDR</p>
+<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+Answer<div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
+<p class="sd-card-text">b and c. The UART peripheral only requires two physical pin connections, one for transmitting (TX) and one for receiving (RX).</p>
+</div>
+</details><p><strong>Question 3</strong></p>
+<p>If you want to trigger an interrupt every time 2 bytes can be read from the RX, which configuration should be used (ignoring the TX FIFO level configuration)?</p>
+<p>a. UART_setFIFOLevel(myUART0_BASE, UART_FIFO_TX1_8, UART_FIFO_RX1_8);</p>
+<p>b. UART_setFIFOLevel(myUART0_BASE, UART_FIFO_TX1_8, UART_FIFO_RX2_8);</p>
+<p>c. UART_setFIFOLevel(myUART0_BASE, UART_FIFO_TX1_8, UART_FIFO_RX6_8);</p>
+<p>d. UART_setFIFOLevel(myUART0_BASE, UART_FIFO_TX1_8, UART_FIFO_RX7_8);</p>
+<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+Answer<div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
+<p class="sd-card-text">a. In order to read 2 received characters in each RX ISR, an interrupt should be triggered every time there are at least 2 characters present in the RX FIFO. So, a 1/8 trigger level should be used.</p>
+</div>
+</details><p><strong>Question 4</strong></p>
+<p>If you want to trigger an interrupt every time the TX FIFO is available to be written with 4 characters, which configuration should be used (ignoring the RX FIFO level configuration)?</p>
+<p>a. UART_setFIFOLevel(myUART0_BASE, UART_FIFO_TX1_8, UART_FIFO_RX1_8);</p>
+<p>b. UART_setFIFOLevel(myUART0_BASE, UART_FIFO_TX2_8, UART_FIFO_RX1_8);</p>
+<p>c. UART_setFIFOLevel(myUART0_BASE, UART_FIFO_TX6_8, UART_FIFO_RX1_8);</p>
+<p>d. UART_setFIFOLevel(myUART0_BASE, UART_FIFO_TX7_8, UART_FIFO_RX1_8);</p>
+<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+Answer<div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
+<p class="sd-card-text">c. In order to trigger an interrupt every time there are 4 characters available (or in other words when the TX FIFO has at least 4 bytes empty), an interrupt should be configured to trigger when there are 12 characters (or less) present in the FIFO. So, a 3/4 trigger level should be used.</p>
+</div>
+</details></section>
+<section id="summary">
+<h2>Summary<a class="headerlink" href="#summary" title="Permalink to this heading">#</a></h2>
+<p>From this module, the key takeaways are:</p>
+<ul class="simple">
+<li><p>The UART IP uses a UART protocol, which is a standard asynchronous protocol using 2 pin connections and a shared baud rate.</p></li>
+<li><p>The main applications of the UART protocol are device to device communication, COM port debugging during application development, and low speed/long distance communication.</p></li>
+<li><p>FIFO and DMA operation can be used to increase the performance of the UART module.</p></li>
+</ul>
+</section>
+</section>
+
+
+                </article>
+              
+              
+              <footer class="bd-footer-article">
+                    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+  <a class='left-prev' id="prev-link" href="c28x_c29x_i2c.html" title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+          <p class="prev-next-subtitle">previous</p>
+          <p class="prev-next-title">Inter-Integrated Circuit (I2C)</p>
+      </div>
+  </a>
+  <a class='right-next' id="next-link" href="c28x_c29x_spi.html" title="next page">
+  <div class="prev-next-info">
+      <p class="prev-next-subtitle">next</p>
+      <p class="prev-next-title">Serial Peripheral Interface (SPI)</p>
+  </div>
+  <i class="fa-solid fa-angle-right"></i>
+  </a>
+</div>
+                  </footer>
+                
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc">
+<div class="toc-item">
+  
+<div class="tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+</div>
+<nav id="bd-toc-nav" class="page-toc">
+    <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#overview">
+   Overview
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#introduction">
+   Introduction
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#common-applications-of-uart">
+   Common Applications of UART
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#processor-to-processor-communication">
+     Processor-to-Processor Communication
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#processor-to-pc-communication">
+     Processor-to-PC Communication
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#low-speed-long-distance-communication">
+     Low-Speed, Long Distance Communication
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#why-use-uart">
+   Why use UART?
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#what-is-uart">
+   What is UART?
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#uart-frame-structure">
+     UART Frame Structure
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#uart-baud-rate">
+     UART Baud Rate
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#uart-fifo-operation">
+     UART FIFO Operation
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#viewing-uart-debugging-messages">
+     Viewing UART Debugging Messages
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#using-uart-with-dma">
+   Using UART with DMA
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#test-your-knowledge">
+   Test Your Knowledge!
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#summary">
+   Summary
+  </a>
+ </li>
+</ul>
+
+</nav>
+</div>
+
+<div class="toc-item">
+  
+<button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-toggle="tooltip">
+  <i class="fa-solid fa-magnifying-glass"></i>
+</button>
+</div>
+</div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+<script async>
+  async function setTheme() {
+    try {
+      var colorScheme = await window.parent.getTirexTheme();
+      var mode = colorScheme === 'dark' ? 'dark' : 'light';
+      localStorage.setItem('mode', mode);
+      document.documentElement.dataset.mode = mode;
+      document.documentElement.dataset.theme = colorScheme;
+    } catch (error) {
+      console.error('Failed to set the theme:', error);
+    }
+  }
+
+  setTheme();
+</script>
+
+
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=796348d33e8b1d947c94"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=796348d33e8b1d947c94"></script>
+
+
+
+
+<script type="text/javascript">
+  function extractNodeValue(url) {
+    try {
+      const parsedUrl = new URL(url);
+      if (parsedUrl.pathname === '/tirex/explore/node') {
+        const searchParams = new URLSearchParams(parsedUrl.search);
+        return searchParams.get('node');
+      } else {
+        return null;
+      }
+    } catch (error) {
+      console.error("Invalid URL:", error);
+      return null;
+    }
+  }
+
+  // Get all links on the page
+  const links = document.querySelectorAll('a');
+
+  // Get the project name and replace spaces with underscores
+  var projName = "C29x Academy";
+
+  // Attach a click event listener to each link
+  links.forEach((link) => {
+    link.addEventListener('click', (event) => {
+      // Prevent the default link behavior
+      event.preventDefault();
+
+      const url = link.href;
+      console.log(url)
+      const match = url.match(/source\/.+$/);
+      const localId = match ? match[0].replace(/\.html$/, '').replace(/[\/\\\.]/g, '_').toLowerCase() : null;
+      console.log(localId)
+      const extractedNode = extractNodeValue(url);
+
+      console.log(extractedNode)
+      if (typeof window.parent.jumpToTirexNodeOnLocal === 'function') {
+        window.parent.jumpToTirexNodeOnLocal(localId, null, null, {
+            throwError: true
+          })
+          .catch((e) => {
+            if (extractedNode !== null) {
+              window.parent.jumpToTirexNode(extractedNode, {
+                  throwError: true
+                })
+                .catch((e) => {
+                  window.location.href = link.href;
+                })
+            }
+            else {
+              if (url.includes("e2e.ti.com") || url.includes("dev.ti.com/gallery/view")) {
+              window.open(url, "_blank")
+              } else {
+              window.location.href = link.href;
+            }}
+          })
+      } else {
+        window.location.href = link.href;
+      }
+    });
+  });
+</script>
+  <footer class="bd-footer"><div class="bd-footer__inner container">
+  
+  <div class="footer-item">
+    
+<p class="copyright">
+
+    &copy; Copyright 2025, Texas Instruments.<br>
+
+</p>
+
+  </div>
+  
+</div>
+  </footer>
+  </body>
+</html>

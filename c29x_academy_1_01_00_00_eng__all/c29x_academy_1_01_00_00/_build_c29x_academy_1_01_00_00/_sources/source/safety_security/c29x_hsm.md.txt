@@ -1,0 +1,77 @@
+---
+applies_to: ['c29x']
+---
+
+# Hardware Security Module (HSM) and Cryptographic Accelerators
+
+```{friendly-url}
+```
+
+## Overview
+In this module, you will:
+* Learn what the HSM is, and the role it plays in achieving system security goals.
+* Learn what cryptographic engines are present in this device, and what ciphers they support.
+
+## Introduction
+The Hardware Security Manager, or HSM, is a wholly self-contained subsystem within the device that provides security and cryptographic functions. The host C29x subsystem interfaces with the HSM to perform operations required for code authentication, secure boot, secure storage, secure firmware updates, and run-time cryptographic operations. The HSM in C29x devices supports the EVITA-Full standard for automotive security, and is designed to achieve ISO 21434 security standards. This module only provides a brief overview of the HSM. For more information, please refer to the _F29x Hardware Security Manager User’s Guide_.
+
+## Application of the HSM
+The HSM securely stores cryptographic keys and certificates needed to verify and authenticate code in the device before running it. In a secured device, the HSM first verifies the integrity of Flash contents to confirm it has not been modified by an unauthorized party, before releasing the C29x CPU reset to allow boot. This process is known as secure boot. The HSM can also perform various run-time security services, such as encryption and decryption, secure storage of secrets, and random number generation.
+
+## What is the HSM?
+A high-level view of the various subsystems in this device, with the HSM subsystem highlighted, is shown in Figure 1.
+
+```{figure} c29x_hsm_images/hsm_block_diagram.png
+:scale: 100 %
+:align: center
+
+Figure 1: Device High-Level Block Diagram
+```
+
+At the heart of the HSM is an ARM® Cortex®-M4 CPU running at 100MHz, with embedded SRAM, ROM, and up to 512KB of Flash memory. The Real-Time DMA module enables fast data transfers between the HSM CPU and SRAM, HSM and application Flash memory banks, secure mailbox, and cryptographic engines.
+
+The Security Manager module hosts the root-of-trust keys, defines the secure access mechanisms, controls the debug firewalls, and performs the security override sequences to establish protection of security assets if debug or failure-analysis operation is required.
+
+The HSM includes a set of accelerator engines for executing cryptographic algorithms. These engines enable fast execution of symmetric encryption algorithms, hash functions, asymmetric encryption algorithms for public key infrastructure, and a true random number generator (TRNG). The Data Transform and Hashing Engine (DTHE) interfaces between the CPU and the cryptographic accelerators, providing interrupt and DMA trigger management as well as essential functions such as CRC and checksum computation.
+
+In addition, the HSM provides peripheral modules to aid various security functions: timers, a real-time counter, a watchdog, DCC for clock monitoring, and ESM for error handling.
+
+Communication between the HSM and the host application cores happens over a secure mailbox interface. The HSM controls various secure firewalls in the device, including the secure mailbox, cryptographic engines, shared RAM, and data Flash memory.
+
+## Cryptographic Accelerators
+The HSM includes several hardware accelerators to enable fast execution of key cryptographic algorithms. These engines are described in Table 1. For more details on the cryptographic accelerator engines and their operation, please see the _F29x Cryptographic Hardware Accelerators User’s Guide_.
+
+:::{table} Table 1: List of Cryptographic Accelerator Engines
+:widths: auto
+:align: center
+
+| Engine                             | Algorithms Supported |
+| ---------------------------------- | -------------------- |
+| AES (Advanced Encryption Standard) | Symmetric Algorithms: AES-128, AES-192, AES-256 <br> Cipher modes: ECB, CTR, CBC, GCM <br> Authentication CBC-MAC, CMAC|
+| SM4                                | Symmetric Algorithms: SM4 |
+| PKE (Public Key Engine)            | High-performance PKE for large-vector math/modulus operation <br> Asymmetric algorithms: RSA-2048, RSA-3092, RSA-4096, ECC (Curve25519, X25519, SecP256r1, secP256k1, secP384r1, secP384k1, Brain Pool, and more), SM2 <br> Side-channel protection (DPA, FIA)|
+| SHA                                | Hash Algorithms: SHA-256, SHA-384, SHA-512 |
+| SM3                                | Hash Algorithms: SM3 (256 bits, 384 bits, 512 bits) |
+| TRNG                               | True random number generator <br> Deterministic random bit generator (DRBG)|
+:::
+
+## Test Your Knowledge!
+
+**Question 1**
+
+What is secure boot?
+
+```{dropdown} Answer
+It is the process by which the contents of internal device Flash memory are verified and authenticated before permitting application code to execute.
+```
+
+**Question 2**
+
+What module in the HSM is responsible for storing secure keys and controlling debug firewalls?
+
+```{dropdown} Answer
+The Security Manager.
+```
+
+## Summary
+The HSM is a wholly self-contained subsystem that performs key security functions on the device, such as secure storage, secure key and code provisioning, secure boot, debug security, firmware updates and cryptographic functions. The HSM is designed to help system designers achieve modern automotive and industrial security standards such as ISO 21434 and EVITA-Full. For more details about the HSM, please refer to the _F29x Hardware Security Manager User’s Guide_.

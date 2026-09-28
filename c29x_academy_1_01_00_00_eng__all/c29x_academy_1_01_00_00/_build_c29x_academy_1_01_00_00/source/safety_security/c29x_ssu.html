@@ -1,0 +1,584 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>Safety and Security Unit (SSU) &#8212; C29x Academy</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=796348d33e8b1d947c94" rel="stylesheet">
+<link href="../../_static/styles/bootstrap.css?digest=796348d33e8b1d947c94" rel="stylesheet">
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=796348d33e8b1d947c94" rel="stylesheet">
+
+  
+  <link href="../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=796348d33e8b1d947c94" rel="stylesheet">
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/local/font.css" />
+    <link rel="stylesheet" type="text/css" href="https://www.ti.com/assets/fonts/font.css" />
+    <link rel="stylesheet" type="text/css" href="https://www.ti.com/assets/style/resource-explorer.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=796348d33e8b1d947c94">
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=796348d33e8b1d947c94">
+
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/sphinx_highlight.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script src="../../_static/design-tabs.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'source/safety_security/c29x_ssu';</script>
+    <script src="../../_static/quizdown.js"></script>
+    <script src="../../_static/external-links.js"></script>
+    <link rel="canonical" href="http://127.0.0.1:8000/source/safety_security/c29x_ssu.html" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Hardware Security Module (HSM) and Cryptographic Accelerators" href="c29x_hsm.html" />
+    <link rel="prev" title="Single Edge Nibble Transmission (SENT)" href="../communication/c29x_sent.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="docsearch:language" content="en">
+  </head>
+  
+  
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="180" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search C29x Academy" aria-label="Search C29x Academy" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar"><div class="bd-header__inner bd-page-width">
+  <label class="sidebar-toggle primary-toggle" for="__primary">
+      <span class="fa-solid fa-bars"></span>
+  </label>
+  <div id="navbar-start">
+    
+  </div>
+
+  
+  <div class="col-lg-9 navbar-header-items">
+    <div id="navbar-center" class="mr-auto">
+      
+    </div>
+
+    <div id="navbar-end">
+      
+        <div class="navbar-end-item navbar-persistent--container">
+          
+<button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-toggle="tooltip">
+  <i class="fa-solid fa-magnifying-glass"></i>
+</button>
+        </div>
+      
+      
+    </div>
+  </div>
+
+
+  
+  
+    <div class="navbar-persistent--mobile">
+<button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-toggle="tooltip">
+  <i class="fa-solid fa-magnifying-glass"></i>
+</button>
+    </div>
+  
+
+  
+  <label class="sidebar-toggle secondary-toggle" for="__secondary">
+      <span class="fa-solid fa-outdent"></span>
+  </label>
+  
+
+</div>
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar hide-on-wide">
+        
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+
+    
+    
+  </div>
+
+  
+
+  
+  <div class="sidebar-end-items sidebar-primary__section">
+    <div class="sidebar-end-items__item">
+    </div>
+  </div>
+
+  
+  <div id="rtd-footer-container"></div>
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article"></div>
+              
+              
+                <article class="bd-article" role="main">
+                  
+                  
+<div id="searchbox"></div>
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="safety-and-security-unit-ssu">
+<h1>Safety and Security Unit (SSU)<a class="headerlink" href="#safety-and-security-unit-ssu" title="Permalink to this heading">#</a></h1>
+<p><a class="reference external" href="https://dev.ti.com/tirex/local?id=source_safety_security_c29x_ssu&amp;packageId=C29X-ACADEMY">Link to share</a></p>
+<section id="overview">
+<h2>Overview<a class="headerlink" href="#overview" title="Permalink to this heading">#</a></h2>
+<p>In this module, you will:</p>
+<ul class="simple">
+<li><p>Learn the principal roles the SSU plays in achieving system safety and security goals.</p></li>
+<li><p>Learn the fundamental concepts used by the SSU.</p></li>
+</ul>
+</section>
+<section id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this heading">#</a></h2>
+<p>The SSU is the principal module that is used to enforce run-time safety and security protections on the device. The SSU provides multiple functions:</p>
+<ul class="simple">
+<li><p>Context-aware memory and peripheral protection (MPU) functionality, with dynamic permissions based on the currently executing code module or task.</p></li>
+<li><p>Support for secure Flash updates, including Firmware Over-The-Air updates (FOTA) with A/B swapping</p></li>
+<li><p>Multi-user debug security management.</p></li>
+</ul>
+</section>
+<section id="application-of-the-ssu">
+<h2>Application of the SSU<a class="headerlink" href="#application-of-the-ssu" title="Permalink to this heading">#</a></h2>
+<p>The SSU is essential to achieving most run-time safety and security system goals. Many systems require some form of memory protection unit, or MPU, which can restrict read or write access to various memory regions. The SSU enables this function, with the added advantage of dynamic context-sensitive protection. This means that instead of a software (RTOS) layer reconfiguring the MPU when switching to a new task, the SSU is able to dynamically apply protections based on which code is executing in the CPU. This enables safety and security without compromising real-time performance. Additionally, the SSU plays an important role in managing firmware update security, with the ability to restrict who and what code is allowed to program or erase the Flash. Additionally, the SSU enables multi-user debug authentication, making it possible for third parties to co-develop code on the same device while blocking access to host resources and sensitive secrets.</p>
+</section>
+<section id="what-is-the-ssu">
+<h2>What is the SSU?<a class="headerlink" href="#what-is-the-ssu" title="Permalink to this heading">#</a></h2>
+<p>The Safety and Security Unit (SSU) is at the heart of the F29x Real-Time Security architecture. This module is tightly coupled with the C29x CPU, providing a layer of security around every instruction fetch and every read or write transaction performed on a data bus. The SSU also integrates with the debug subsystem and ERAD, enforcing configured security restrictions on debug operations. Additionally, the SSU sits between the CPU and the Flash Controllers, performing address translation to route transactions to the correct Flash bank address and enabling firmware updates with A/B bank swapping.</p>
+<figure class="align-center" id="id1">
+<a class="reference internal image-reference" href="../../_images/ssu_block_diagram.png"><img alt="../../_images/ssu_block_diagram.png" src="../../_images/ssu_block_diagram.png" style="width: 846.0px; height: 702.0px;" /></a>
+<figcaption>
+<p><span class="caption-text">Figure 1: SSU System Block Diagram</span><a class="headerlink" href="#id1" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+</section>
+<section id="key-ssu-concepts">
+<h2>Key SSU Concepts<a class="headerlink" href="#key-ssu-concepts" title="Permalink to this heading">#</a></h2>
+<section id="access-protection-ranges-aprs">
+<h3>Access Protection Ranges (APRs)<a class="headerlink" href="#access-protection-ranges-aprs" title="Permalink to this heading">#</a></h3>
+<p>Access Protection Ranges (APRs) are the basic unit of memory protection in C29x devices. Each APR has a start address and end address that define the range of memory it covers. These addresses must be aligned to a 4KB boundary. An APR can be used to define a program code region, giving the CPU execute (instruction fetch) access and allowing the SSU to specify permissions for any code that executes from that region. An APR can also cover data memory or peripheral registers, with permissions specified on which code has read or write access to it. Each CPU has up to 64 APRs available. AP ranges must be exclusive and cannot overlap each other. Note that the first two APRs must be used when defining protections for external memory on the EMIF interface.</p>
+</section>
+<section id="links">
+<h3>LINKs<a class="headerlink" href="#links" title="Permalink to this heading">#</a></h3>
+<p>A LINK is a basic execution context. Each LINK ties one or more program code regions (APRs) into a specific execution context, enabling the SSU to specify access permissions for that context. The LINK associated with a code APR is specified by the APx_CFG.LINKID field, and the APx_CFG.XE (eXecute Enable) bit specifies whether the CPU is allowed to execute code from that region. Every program code region is associated with a single LINK, and its access permissions to any particular memory address are defined by the APR covering that memory address. These permissions are specified in the APR’s APx_ACCESS register. Each APR specifies unique permissions for every LINK. Each CPU has 16 LINKs. The SSU reserves the following special roles for the first three LINKs:</p>
+<ul class="simple">
+<li><p>LINK0 is reserved for internal use, and cannot be configured by the user.</p></li>
+<li><p>LINK1 is used for boot loaders, and can optionally be used for user code.</p></li>
+<li><p>LINK2 is the primary user LINK. CPU1.LINK2 is the security root LINK (SROOT).</p></li>
+</ul>
+<p>These three LINKs have special hard-coded permissions in the device in addition to APR-specified permissions. All other LINKs are secondary user LINKs that are available for user configuration.</p>
+<p>LINKs form the basis for dynamic context-sensitive memory protection. The SSU can associate specific memory range permissions with specific program code through a LINK. It can thus automatically determine memory access permissions for every instruction without the need for a supervisory software layer or real-time operating system. This enables run-time safety and security without sacrificing real-time performance.</p>
+</section>
+<section id="stacks">
+<h3>STACKs<a class="headerlink" href="#stacks" title="Permalink to this heading">#</a></h3>
+<p>To further enhance run-time security and enable full code isolation between different CPU tasks, the C29x CPU supports up to 8 physical stack pointers. Each of these stack pointers is associated with a STACK ID that is specified by the SSU. Every STACK can contain one or more LINK(s); each LINK is associated with only one STACK. The C29x CPU requires the use of special gate instructions (LB.PROT, ENTRY.PROT/RET.PROT) to cross from one STACK to another. If an attempt is made to execute a new instruction that belongs to a different STACK without using these gate instructions, the CPU generates a fault. When crossing STACKs using a gate instruction, the CPU automatically erases registers to maintain data security between the different tasks.</p>
+<p>The SSU reserves special roles for the first three STACKs:</p>
+<ul class="simple">
+<li><p>STACK0 is reserved for internal use, and is only associated with LINK0.</p></li>
+<li><p>STACK1 is only associated with LINK1.</p></li>
+<li><p>STACK2 is the primary user STACK. It is always associated with LINK2, and can be associated with additional LINKs.</p></li>
+</ul>
+<p>All other STACKs are secondary user STACKs that are available for user configuration.</p>
+</section>
+<section id="zones">
+<h3>ZONEs<a class="headerlink" href="#zones" title="Permalink to this heading">#</a></h3>
+<p>Each ZONE governs debugger access to the system, determining what permissions an external user or programmer has to download code, program Flash, or debug the system. While APRs, LINKs and STACKs are independently defined per CPU, ZONEs span the entire device (excluding the HSM, which is not governed by the SSU). Each device has a total of 4 ZONEs:</p>
+<ul class="simple">
+<li><p>ZONE0 is reserved for internal use, and is only associated with STACK0/LINK0.</p></li>
+<li><p>ZONE1 is the primary user ZONE. It is always associated with STACK1 and STACK2, and can be associated with additional STACKs.</p></li>
+<li><p>ZONE2 and ZONE3 are available as secondary user ZONEs.</p></li>
+</ul>
+<p>Each ZONE has three possible operating permission levels:</p>
+<ul class="simple">
+<li><p>Full debug allowed: The debugger can control the CPU and access memories without restrictions.</p></li>
+<li><p>Partial debug allowed: The debugger can control CPU execution, but access to memories is blocked.</p></li>
+<li><p>Debug not allowed: The debugger has no access to CPU debug or memories.</p></li>
+</ul>
+<p>By default, ZONE debug authorization happens by scanning in a password through the debug SEC-AP interface. Each ZONE has a full debug password and a partial debug password that is associated with it. The password that is scanned into the SEC-AP interface is matched with the configured passwords to determine which ZONE should be enabled for debug, and at what permission level. Multiple ZONEs can be simultaneously enabled for debug if required.</p>
+<p>For a more secure alternative to password-based authorization, system designers can opt to implement challenge-response authorization using software. This type of authorization logic typically involves a cryptographic challenge, and can be performed directly by the HSM, or by C29x code accessing the cryptographic engines.</p>
+</section>
+</section>
+<section id="ssu-operation-modes">
+<h2>SSU Operation Modes<a class="headerlink" href="#ssu-operation-modes" title="Permalink to this heading">#</a></h2>
+<p>The SSU has three modes of operation: SSUMODE1, SSUMODE2, and SSUMODE3.</p>
+<figure class="align-center" id="id2">
+<a class="reference internal image-reference" href="../../_images/ssu_modes.png"><img alt="../../_images/ssu_modes.png" src="../../_images/ssu_modes.png" style="width: 800.0px; height: 306.40000000000003px;" /></a>
+<figcaption>
+<p><span class="caption-text">Figure 2: SSU Operation Modes</span><a class="headerlink" href="#id2" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<section id="ssumode1">
+<h3>SSUMODE1<a class="headerlink" href="#ssumode1" title="Permalink to this heading">#</a></h3>
+<p>Devices ship from the factory in SSUMODE1. In this mode, all debug permissions are fully enabled, and access protection regions are disabled for all CPUs. The entire memory map of the device (excluding ROM, hard-coded RAM and Flash regions and RAMOPENed bootloader memory) is mapped to LINK2. There are no restrictions on which code is permitted to update Flash memory. Since units are shipped in SSUMODE1, the user does not have to configure the SSU to begin developing code on the device. Security settings can be configured later, after the main code has been developed. However, take care not to erase the SECCFG sector without programming new settings in. If these settings are erased, the SSU goes to its most secure mode by default at boot, and everything is locked out!</p>
+</section>
+<section id="ssumode2">
+<h3>SSUMODE2<a class="headerlink" href="#ssumode2" title="Permalink to this heading">#</a></h3>
+<p>In SSUMODE2, APR, LINK and STACK protections become active. Debug permissions remain fully enabled, and Flash update permissions are unrestricted as long as there is AP access to the flash module registers. This mode is useful for testing and enabling run-time security, while retaining the ability to freely debug and update firmware.</p>
+</section>
+<section id="ssumode3">
+<h3>SSUMODE3<a class="headerlink" href="#ssumode3" title="Permalink to this heading">#</a></h3>
+<p>In SSUMODE3, all safety and security features of the SSU are enforced, including debug permissions. Boot loaders cannot RAMOPEN memory for exclusive access.</p>
+</section>
+</section>
+<section id="ssu-configuration">
+<h2>SSU Configuration<a class="headerlink" href="#ssu-configuration" title="Permalink to this heading">#</a></h2>
+<p>Each Flash bank has two regions that contain information used to configure the SSU: SECCFG and BANKMGMT. These regions are separate from the MAIN Flash sectors, and do not count against the stated available Flash memory for application use. SECCFG contains the User Protection Policy (UPP), which consists of all the SSU configuration settings that are automatically loaded at device startup by the boot ROM. Most of these settings are locked by the boot ROM once configured, and cannot be changed by runtime software. The BANKMGMT sector is used to manage Flash updates when implementing Firmware-Over-The-Air (FOTA) or Live Firmware Update (LFU) with A/B bank swapping. This sector determines which bank is currently active and which is designated for background updates; it also contains version information for rollback control.</p>
+<p>TI recommends using the SysConfig tool, available as part of the C29x SDK, to configure the SSU and generate user security settings. This tool provides an easy-to-use graphical user interface to create application security partitions and define protections, and automatically generates linker command files, the SECCFG image, and source code for inclusion into the user application. With the SysConfig security tool, you can allocate code sections, data sections and peripherals into LINKs and STACKs, and easily define access permissions and shared memory regions.</p>
+</section>
+<section id="test-your-knowledge">
+<h2>Test Your Knowledge!<a class="headerlink" href="#test-your-knowledge" title="Permalink to this heading">#</a></h2>
+<p><strong>Question 1</strong></p>
+<p>How does the SSU prevent the CPU from executing code from a memory region?</p>
+<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+Answer<div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
+<p class="sd-card-text">Using the XE bit in the APx_CFG register for the access protection range covering the region.</p>
+</div>
+</details><p><strong>Question 2</strong></p>
+<p>In what mode does the SSU enforce debug restrictions?</p>
+<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+Answer<div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
+<p class="sd-card-text">In SSUMODE3.</p>
+</div>
+</details><p><strong>Question 3</strong></p>
+<p>On a factory-fresh device that has not been configured by the user for runtime security, what LINK does code run as by default?</p>
+<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+Answer<div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
+<p class="sd-card-text">Factory-fresh devices are in SSUMODE1. In this mode, all code runs as LINK2.</p>
+</div>
+</details></section>
+<section id="summary">
+<h2>Summary<a class="headerlink" href="#summary" title="Permalink to this heading">#</a></h2>
+<p>The key takeaways from this learning module are:</p>
+<ul class="simple">
+<li><p>The SSU is the heart of the F29x run-time security architecture. It manages memory and peripheral access protections, firmware updates, and debug security.</p></li>
+<li><p>A LINK is a code execution context, defined by the memory ranges the code is stored in and executed from. Each LINK’s ID determines the security permissions for all code that belongs to it.</p></li>
+<li><p>Access Protection Ranges, or APRs, are the basic unit of memory protection in the SSU. Each APR covers a specific memory range, and defines unique access permissions for each code LINK.</p></li>
+<li><p>Each LINK belongs to one CPU STACK, and each STACK belongs to one debug ZONE.</p></li>
+<li><p>The SSU has 3 modes of operation: SSUMODE1 (minimum security), SSUMODE2 (security integration), and SSUMODE3 (production with debug security).</p></li>
+</ul>
+</section>
+</section>
+
+
+                </article>
+              
+              
+              <footer class="bd-footer-article">
+                    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+  <a class='left-prev' id="prev-link" href="../communication/c29x_sent.html" title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+          <p class="prev-next-subtitle">previous</p>
+          <p class="prev-next-title">Single Edge Nibble Transmission (SENT)</p>
+      </div>
+  </a>
+  <a class='right-next' id="next-link" href="c29x_hsm.html" title="next page">
+  <div class="prev-next-info">
+      <p class="prev-next-subtitle">next</p>
+      <p class="prev-next-title">Hardware Security Module (HSM) and Cryptographic Accelerators</p>
+  </div>
+  <i class="fa-solid fa-angle-right"></i>
+  </a>
+</div>
+                  </footer>
+                
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc">
+<div class="toc-item">
+  
+<div class="tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+</div>
+<nav id="bd-toc-nav" class="page-toc">
+    <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#overview">
+   Overview
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#introduction">
+   Introduction
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#application-of-the-ssu">
+   Application of the SSU
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#what-is-the-ssu">
+   What is the SSU?
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#key-ssu-concepts">
+   Key SSU Concepts
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#access-protection-ranges-aprs">
+     Access Protection Ranges (APRs)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#links">
+     LINKs
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#stacks">
+     STACKs
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#zones">
+     ZONEs
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#ssu-operation-modes">
+   SSU Operation Modes
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#ssumode1">
+     SSUMODE1
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#ssumode2">
+     SSUMODE2
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#ssumode3">
+     SSUMODE3
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#ssu-configuration">
+   SSU Configuration
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#test-your-knowledge">
+   Test Your Knowledge!
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#summary">
+   Summary
+  </a>
+ </li>
+</ul>
+
+</nav>
+</div>
+
+<div class="toc-item">
+  
+<button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-toggle="tooltip">
+  <i class="fa-solid fa-magnifying-glass"></i>
+</button>
+</div>
+</div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+<script async>
+  async function setTheme() {
+    try {
+      var colorScheme = await window.parent.getTirexTheme();
+      var mode = colorScheme === 'dark' ? 'dark' : 'light';
+      localStorage.setItem('mode', mode);
+      document.documentElement.dataset.mode = mode;
+      document.documentElement.dataset.theme = colorScheme;
+    } catch (error) {
+      console.error('Failed to set the theme:', error);
+    }
+  }
+
+  setTheme();
+</script>
+
+
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=796348d33e8b1d947c94"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=796348d33e8b1d947c94"></script>
+
+
+
+
+<script type="text/javascript">
+  function extractNodeValue(url) {
+    try {
+      const parsedUrl = new URL(url);
+      if (parsedUrl.pathname === '/tirex/explore/node') {
+        const searchParams = new URLSearchParams(parsedUrl.search);
+        return searchParams.get('node');
+      } else {
+        return null;
+      }
+    } catch (error) {
+      console.error("Invalid URL:", error);
+      return null;
+    }
+  }
+
+  // Get all links on the page
+  const links = document.querySelectorAll('a');
+
+  // Get the project name and replace spaces with underscores
+  var projName = "C29x Academy";
+
+  // Attach a click event listener to each link
+  links.forEach((link) => {
+    link.addEventListener('click', (event) => {
+      // Prevent the default link behavior
+      event.preventDefault();
+
+      const url = link.href;
+      console.log(url)
+      const match = url.match(/source\/.+$/);
+      const localId = match ? match[0].replace(/\.html$/, '').replace(/[\/\\\.]/g, '_').toLowerCase() : null;
+      console.log(localId)
+      const extractedNode = extractNodeValue(url);
+
+      console.log(extractedNode)
+      if (typeof window.parent.jumpToTirexNodeOnLocal === 'function') {
+        window.parent.jumpToTirexNodeOnLocal(localId, null, null, {
+            throwError: true
+          })
+          .catch((e) => {
+            if (extractedNode !== null) {
+              window.parent.jumpToTirexNode(extractedNode, {
+                  throwError: true
+                })
+                .catch((e) => {
+                  window.location.href = link.href;
+                })
+            }
+            else {
+              if (url.includes("e2e.ti.com") || url.includes("dev.ti.com/gallery/view")) {
+              window.open(url, "_blank")
+              } else {
+              window.location.href = link.href;
+            }}
+          })
+      } else {
+        window.location.href = link.href;
+      }
+    });
+  });
+</script>
+  <footer class="bd-footer"><div class="bd-footer__inner container">
+  
+  <div class="footer-item">
+    
+<p class="copyright">
+
+    &copy; Copyright 2025, Texas Instruments.<br>
+
+</p>
+
+  </div>
+  
+</div>
+  </footer>
+  </body>
+</html>

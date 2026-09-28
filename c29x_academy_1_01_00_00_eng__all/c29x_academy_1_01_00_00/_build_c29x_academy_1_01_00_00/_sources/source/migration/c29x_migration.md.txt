@@ -1,0 +1,49 @@
+---
+applies_to: ['c29x']
+---
+
+# C29x Device Migration 
+
+```{friendly-url}
+```
+
+This page contains resources for migration to a C29x device. Here, you can find general device migration resources as well as device-specific migration resources. These resources include various TI migration tools, automations, and websites as well as migration guide documentation. 
+
+## General Resources
+
+* [**TI Cross-Reference Tool**](https://www.ti.com/cross-reference-search)
+    
+    Migrating from outside of C2000? Enter a competitor or TI part number into the TI Cross-Reference Tool to view equivalent or similar TI devices to ease migration.
+* [**Migration Report Tool**](https://dev.ti.com/tirex/explore/node?node=A__AGTByxwDe9orvkQnWb.DvA__c2000ware_migration_guide_module__1kRFgrO__LATEST)
+    
+    Use C2000's automated migration report generation tool to view a breakdown of DriverLib differences for device migration between C29 devices and any Gen3 C28 device.
+* [**SysConfig Migration**](https://www.ti.com/video/series/C2000-SysConfig.html)
+    
+    Learn how the SysConfig graphical user interface (GUI) can accelerate your development by checking out this video series. Discover how SysConfig can be used to migrate between our latest devices in minutes in the [C2000 SysConfig: One Click Migration](https://www.ti.com/video/6327167825112) video.
+* [**C2000 IDE Assist Tool**](https://www.ti.com/lit/pdf/SPRADL6)
+    
+    C2000 IDE Assist (IDEA) tool is an extension within CCS that enables various software development tools and features for C2000 MCUs. It provides support from code initialization to runtime events to debug profiling which includes collateral findability, ease of migration, interrupt coder support, and more. This is an all-in-one tool with support for migration, developer assistance, targeted collateral delivery etc. Integrated into CCS where the user can easily access. 
+* [**C2000 IDE Assist Migration Tool Guide**](https://www.ti.com/lit/pdf/SPRADR6)
+    
+    This application note guides users through each step of the migration process, from detecting and setting up projects to executing migration checks and resolving compatibility issues. This document covers quick fixes for common migration concerns, migration reports for analyzing code differences, and important constraints and considerations to make sure of a smooth and reliable transition across device architectures
+* [**Migration from COFF to EABI**](https://software-dl.ti.com/ccs/esd/documents/C2000_c28x_migration_from_coff_to_eabi.html)
+    
+    TI currently uses an executable and linkable format (ELF) based application binary interface (ABI) known as EABI. This defines the set of guidelines used in compiling projects. This website describes strategies used when converting projects from the previous ABI, common object file format (COFF), to EABI.
+* [**C2000 Peripherals Reference Guide**](https://www.ti.com/lit/pdf/spru566)
+
+    Need to know which peripherals and which peripheral type is on a device? View a list of all C2000 devices and their peripherals on this reference guide.
+* [**Migrating Application Software to the C29 CPU**](https://www.ti.com/lit/pdf/spruiy8/)
+
+    Migrating your application code to C29x? This guide is intended to provide information on issues to focus on when migrating application software from the C28 CPU to the C29 CPU as well as from the CLA to the C29 CPU.
+* [**C28 to C29 Project Migration Video**](https://www.ti.com/video/6372917217112)
+
+    This video presents a step-by-step guide to migrating a driverlib project from F28P65x to F29H85x using CCS and the SysConfig tool. It highlights key differences between the devices through a DMA-based project and demonstrates how to accelerate your application code migration with clang-tidy and C2000-IDE Assist tools.
+
+## Device-Specific Resources
+```{csv-table}
+:widths: 20, 20, 20
+"**SOURCE**", "**TARGET**", "**RESOURCE**"
+"", "", ""
+"**C28x**", "**C29x**", "**LINK**"
+"F2837x/F2838x/F28P65x ",  "F29H85x",  [Migration Guide](https://www.ti.com/lit/pdf/spruja3/)
+```

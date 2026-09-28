@@ -1,0 +1,593 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>Single Edge Nibble Transmission (SENT) &#8212; C29x Academy</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=796348d33e8b1d947c94" rel="stylesheet">
+<link href="../../_static/styles/bootstrap.css?digest=796348d33e8b1d947c94" rel="stylesheet">
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=796348d33e8b1d947c94" rel="stylesheet">
+
+  
+  <link href="../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=796348d33e8b1d947c94" rel="stylesheet">
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/local/font.css" />
+    <link rel="stylesheet" type="text/css" href="https://www.ti.com/assets/fonts/font.css" />
+    <link rel="stylesheet" type="text/css" href="https://www.ti.com/assets/style/resource-explorer.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=796348d33e8b1d947c94">
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=796348d33e8b1d947c94">
+
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/sphinx_highlight.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script src="../../_static/design-tabs.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'source/communication/c29x_sent';</script>
+    <script src="../../_static/quizdown.js"></script>
+    <script src="../../_static/external-links.js"></script>
+    <link rel="canonical" href="http://127.0.0.1:8000/source/communication/c29x_sent.html" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Safety and Security Unit (SSU)" href="../safety_security/c29x_ssu.html" />
+    <link rel="prev" title="Ethernet for Control Automation Technology (EtherCAT)" href="c28x_c29x_ethercat.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="docsearch:language" content="en">
+  </head>
+  
+  
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="180" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search C29x Academy" aria-label="Search C29x Academy" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar"><div class="bd-header__inner bd-page-width">
+  <label class="sidebar-toggle primary-toggle" for="__primary">
+      <span class="fa-solid fa-bars"></span>
+  </label>
+  <div id="navbar-start">
+    
+  </div>
+
+  
+  <div class="col-lg-9 navbar-header-items">
+    <div id="navbar-center" class="mr-auto">
+      
+    </div>
+
+    <div id="navbar-end">
+      
+        <div class="navbar-end-item navbar-persistent--container">
+          
+<button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-toggle="tooltip">
+  <i class="fa-solid fa-magnifying-glass"></i>
+</button>
+        </div>
+      
+      
+    </div>
+  </div>
+
+
+  
+  
+    <div class="navbar-persistent--mobile">
+<button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-toggle="tooltip">
+  <i class="fa-solid fa-magnifying-glass"></i>
+</button>
+    </div>
+  
+
+  
+  <label class="sidebar-toggle secondary-toggle" for="__secondary">
+      <span class="fa-solid fa-outdent"></span>
+  </label>
+  
+
+</div>
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar hide-on-wide">
+        
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+
+    
+    
+  </div>
+
+  
+
+  
+  <div class="sidebar-end-items sidebar-primary__section">
+    <div class="sidebar-end-items__item">
+    </div>
+  </div>
+
+  
+  <div id="rtd-footer-container"></div>
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article"></div>
+              
+              
+                <article class="bd-article" role="main">
+                  
+                  
+<div id="searchbox"></div>
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="single-edge-nibble-transmission-sent">
+<h1>Single Edge Nibble Transmission (SENT)<a class="headerlink" href="#single-edge-nibble-transmission-sent" title="Permalink to this heading">#</a></h1>
+<p><a class="reference external" href="https://dev.ti.com/tirex/local?id=source_communication_c29x_sent&amp;packageId=C29X-ACADEMY">Link to share</a></p>
+<section id="overview">
+<h2>Overview<a class="headerlink" href="#overview" title="Permalink to this heading">#</a></h2>
+<p>In this module, you will:</p>
+<ul class="simple">
+<li><p>Gain a basic understanding of the SENT protocol</p></li>
+<li><p>Learn the fundamental formats and flow of SENT data</p></li>
+<li><p>Understand the benefits and general applications of SENT</p></li>
+</ul>
+</section>
+<section id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this heading">#</a></h2>
+<p>The Single Edge Nibble Transmission Extended Receiver Features module, or SENT for short, is a module that uses the SENT communication protocol (note that “nibble” refers to a 4 bits of data). This protocol is unidirectional and uses a single wire between two or more points to transmit signals from one or more sensors to a controller. The SENT peripheral on C29x devices uses the open standard SAE J2716 released by the Society of Automotive Engineers (SAE), and it is typically used in automotive applications to read data from sensors. The SENT peripheral on C29x devices also includes a unique module called a Master Trigger Pulse Generator (MTPG). This MTPG controls and receives data from one or more sensors using a configurable pulse signal. The received data can be stored directly into memory or directly into a FIFO and can be read by the CPU or DMA.</p>
+<figure class="align-center" id="id1">
+<a class="reference internal image-reference" href="../../_images/sent_block_diagram.png"><img alt="../../_images/sent_block_diagram.png" src="../../_images/sent_block_diagram.png" style="width: 901.5px; height: 440.0px;" /></a>
+<figcaption>
+<p><span class="caption-text">Figure 1: SENT Block Diagram</span><a class="headerlink" href="#id1" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<div class="admonition-note admonition">
+<p class="admonition-title">Note</p>
+<p>Not all C2000 devices have a SENT module. Refer to the <i><a class="reference external" href="https://www.ti.com/lit/spru566">Peripheral Reference Guide</a></i> for a list of supported modules on your device.</p>
+</div>
+</section>
+<section id="application-of-sent">
+<h2>Application of SENT<a class="headerlink" href="#application-of-sent" title="Permalink to this heading">#</a></h2>
+<p>The SENT protocol can transmit high resolution data at a low cost to the system, and it is typically used in automotive applications such as a powertrain where data needs to be reliably transmitted to a vehicle controller. Since SENT can transmit data on a single wire and can receive data constantly, it can thus be used in any application that requires reading data from a transmitter with a robust high-resolution data transmission.</p>
+</section>
+<section id="what-is-sent">
+<h2>What is SENT?<a class="headerlink" href="#what-is-sent" title="Permalink to this heading">#</a></h2>
+<p>SENT messages are encoded and decoded based on the time between falling or rising edges (depending on the idle polarity). For this section, the high idle polarity is used as an example. The same information applies for low idle polarity, with the edge direction of the clock being swapped. The messages are timed using clock tick time, or TT, which is calculated during the calibration pulse.</p>
+<p>SENT protocol uses two main communication formats: fast frames and slow frames.</p>
+<section id="fast-frames">
+<h3>Fast Frames<a class="headerlink" href="#fast-frames" title="Permalink to this heading">#</a></h3>
+<p>The fast frame format for SENT is seen in Figure 2:</p>
+<figure class="align-center" id="id2">
+<a class="reference internal image-reference" href="../../_images/fast_frame_example.png"><img alt="../../_images/fast_frame_example.png" src="../../_images/fast_frame_example.png" style="width: 720.9px; height: 229.95000000000002px;" /></a>
+<figcaption>
+<p><span class="caption-text">Figure 2: Fast Frame Example</span><a class="headerlink" href="#id2" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<p>Each SENT fast frame is comprised of 6 parts:</p>
+<ol class="arabic simple">
+<li><p><strong>A calibration pulse with a fixed period</strong></p>
+<ul class="simple">
+<li><p>This is used by the receiver as a reference to measure the TT. The pulse starts with a falling edge for high idle polarity or with a rising edge for low idle polarity, and the counter for the synchronization period startscounting.</p></li>
+<li><p>The TT is used to sample the nibbles’ values. If more than one synchronization pulse is detected, the first one is ignored under the assumption that the pulse is a pause pulse.</p></li>
+</ul>
+</li>
+<li><p><strong>A status and serial communication nibble pulse:</strong></p>
+<ul class="simple">
+<li><p>The status nibble transmits miscellaneous information such as part numbers, mode of operation, and error code information in slow channel mode.</p></li>
+<li><p>The status nibble for the FAST channel without a slow serial message is 0, with an option for using bit 0 and/or bit 1 as an error flag for certain sensors. If the sensor is in error, bit 0 or 1 of the status nibble isset to 1.</p></li>
+<li><p>A Short or Enhanced Serial Message is ignored on the status and communication nibble until the appropriate pattern of the message is received. Note that if the status nibble is used in a way not defined by the J2716standard, then mask the serial errors appropriately</p></li>
+</ul>
+</li>
+</ol>
+<figure class="align-center" id="id3">
+<a class="reference internal image-reference" href="../../_images/nibble_pulse.png"><img alt="../../_images/nibble_pulse.png" src="../../_images/nibble_pulse.png" style="width: 685.2px; height: 283.6px;" /></a>
+<figcaption>
+<p><span class="caption-text">Figure 3: Nibble Pulse</span><a class="headerlink" href="#id3" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<ol class="arabic simple" start="3">
+<li><p><strong>One to eight data nibble pulses</strong></p>
+<ul class="simple">
+<li><p>For high idle polarity, the pulse starts with a falling edge and remains low for a few clock ticks. Then each nibble’s value is determined between falling edges. The incoming serial nibble value is sampled at a clock tick length of TT / 2. The sampling occurs at the middle of the nibble pulse. For high idle polarity, the SENT TT counter counts the number of TT between two falling edges of the nibble pause and offsets the value with the minimum clock tick needed for each nibble pulse.</p></li>
+</ul>
+</li>
+<li><p><strong>A CRC nibble pulse</strong></p></li>
+<li><p><strong>An optional pause pulse</strong></p></li>
+<li><p><strong>An end pulse for synchronous mode SENT</strong> (requires MTPG)</p>
+<ul class="simple">
+<li><p>For sensors synchronously responding to the MTPG, an end pulse terminates the frame transmission after the CRC nibble and idly waits for the next trigger pulse. The SENT peripheral does not require a complete end pulse, and acknowledges the received packet when the CRC is verified.</p></li>
+</ul>
+</li>
+</ol>
+</section>
+<section id="slow-frames">
+<h3>Slow Frames<a class="headerlink" href="#slow-frames" title="Permalink to this heading">#</a></h3>
+<p>A slow frame is composed of multiple fast frames, and transmits longer streams of data. The slow frame also utilizes multiple fast frames to transmit additional information through the status and communication nibble, such as the message ID, slow data, and CRC. Shown below are two types of slow frames. Figure 4 shows a basic slow frame format:</p>
+<figure class="align-center" id="id4">
+<a class="reference internal image-reference" href="../../_images/short_serial_format.png"><img alt="../../_images/short_serial_format.png" src="../../_images/short_serial_format.png" style="width: 914.6500000000001px; height: 518.6500000000001px;" /></a>
+<figcaption>
+<p><span class="caption-text">Figure 4: Short Serial Format</span><a class="headerlink" href="#id4" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<p>Figure 5 shows the enhanced version of the slow frame format:</p>
+<figure class="align-center" id="id5">
+<a class="reference internal image-reference" href="../../_images/enhanced_short_serial_format.png"><img alt="../../_images/enhanced_short_serial_format.png" src="../../_images/enhanced_short_serial_format.png" style="width: 994.95px; height: 524.7px;" /></a>
+<figcaption>
+<p><span class="caption-text">Figure 5: Enhanced Short Serial Format</span><a class="headerlink" href="#id5" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+</section>
+</section>
+<section id="master-trigger-pulse-generator-mtpg">
+<h2>Master Trigger Pulse Generator (MTPG)<a class="headerlink" href="#master-trigger-pulse-generator-mtpg" title="Permalink to this heading">#</a></h2>
+<p>The Master Trigger Pulse Generator (MTPG) generates pulses for synchronous mode sensors which will send data only after receiving a specific trigger pulse.</p>
+<p>The MTPG triggers can be used to configure sensors or request data from synchronous mode sensors, since the MTPG can create desired pulse patterns that are recognized by the sensors. For sensors with synchronous transmit, the sensor sends data when the MTPG has sent a pulse that matches with the sensor’s pulse size requirement. The trigger can come from the done signal of an MTPG channel, a compare register, or external to the SENT peripheral.</p>
+</section>
+<section id="receive-modes">
+<h2>Receive Modes<a class="headerlink" href="#receive-modes" title="Permalink to this heading">#</a></h2>
+<p>The receive buffer for the SENT peripheral can be configured as a FIFO or a direct map. In FIFO mode, the FIFO supports a depth of 24 values. This mode allows the host to be slow without causing data loss. Each sensor can store up to two data per frame in addition to the time stamp. This allows 8 individual frames of data to be stored using FIFO mode. The FIFO level is an indication of the number of 32-bit words available in the buffer, where each frame consists of three 32-bit words (timestamp, data 0, and data 1). This FIFO level can be used to generate an interrupt if it meets or exceeds the user-configured threshold.</p>
+<p>In direct mode, the data received is stored directly from SENT to memory, with designated locations for each SENT MTPG channel.</p>
+</section>
+<section id="interrupt-configuration">
+<h2>Interrupt Configuration<a class="headerlink" href="#interrupt-configuration" title="Permalink to this heading">#</a></h2>
+<p>The SENT peripheral has interrupts for receive errors and FIFO thresholds. An interrupt can be created based on the FIFO level of the SENT peripheral when the interrupt is enabled and the FIFO level is greater than or equal to the user-configured threshold. Some other types of errors include:</p>
+<ul class="simple">
+<li><p><strong>Fast CRC Error</strong>: The receiver CRC calculation does not match the CRC nibble received of the fast channel</p></li>
+<li><p><strong>Fast Frame Error</strong>: The received status or data nibble of the fast channel goes beyond the minimum or maximum TT listed for the protocol</p></li>
+<li><p><strong>Slow CRC Error</strong>: The received slow channel message ID and data CRC calculation does not match the received slow channel CRC</p></li>
+<li><p><strong>Slow Format Error</strong>: The received slow channel message contains an incorrect format than what is expected. In this case, the state machine for detecting the correct sequence for a slow frame restarts each time there is an error (this way the state machine gets properly synchronized again with the calibration pulse after enough restarts)</p></li>
+<li><p><strong>Calibration Errors</strong>: There are two types of calibration errors</p>
+<ul>
+<li><p><strong>Type 1</strong>: Receiver is programmed with initial tick-time clock cycle according to the TTCLK bits in the SENT configuration register, which is derived from the calibration pulse of a frame. If the newly determined calibration TT differs by more than a pre-determined amount from the initially programmed time, the interrupt flag is raised. The receiver assumes the newly derived TT going forward unless the TTCLK is re-programmed</p></li>
+<li><p><strong>Type 2</strong>: Synchronization pulse conversion with the previous frame differs by more than a pre-determined amount, then the interrupt flag is raised</p></li>
+</ul>
+</li>
+<li><p><strong>Too many or few nibbles between calibration pulses</strong>: A fast frame error occurs when there are too few or too many nibbles between calibration pulses; a fast CRC error can also occur if there are too many nibbles and the CRC check is enabled. This occurs because the additional nibbles gets interpreted as a CRC</p></li>
+<li><p><strong>Frequency drift</strong>: If two successive frames vary in length by more than a pre-determined amount, the interrupt flag is raised. This is determined by a ratio of the calibration pulses to the message length. This interrupt must be masked unless you are confident there are fixed length frames, which can be created by including a pause pulse. This check is active if the pause pulse is expected and enabled
+For more information and SENT interrupts and how they are triggered, refer to your device’s documentation.</p></li>
+</ul>
+</section>
+<section id="crc-calculation">
+<h2>CRC Calculation<a class="headerlink" href="#crc-calculation" title="Permalink to this heading">#</a></h2>
+<p>The Cyclic Redundancy Check, or CRC, is a method of detecting errors in transmitted data. The CRC checksum is used only when the CRC is enabled. CRC4, CRC6, and CRC8 are used for the receiver to check against the received data. The corresponding CRC outputs a 4-bit, 6-bit, or 8-bit CRC respectively:</p>
+<ol class="arabic simple">
+<li><p><strong>CRC4</strong> <br>
+The CRC4 value is used to verify the validity of data nibbles in the Fast Channel frame, the message ID, and the data in the slow channel short serial message. CRC4 uses polynomial G(x) = x^4 + x^3 + x^2 + 1 with a seed value of 0101. The status and communication nibble is included in this CRC calculation if the CRC status parameter or programmable bit is enabled. The checksum is implemented as a bit-wise XOR with a 16-element array lookup. The checksum is determined by using all data nibbles in sequence and check-summing the result with an extra zero value. A 4-bit zero nibble is added after the data nibbles to protect for common errors in the last data nibble and checksum.</p></li>
+<li><p><strong>CRC6</strong> <br>
+The CRC6 value is used to verify the validity of the 24-bit slow channel enhanced serial message using the polynomial G(x) = x^6 + x^4 + x^3 + 1 with a seed value of 010101. CRC6 is also used to verify the 24-bit fast channel frame format data using a different polynomial, G(x) = x^6 + x + 1 with a seed value of 010101. The checksum is implemented using a bit-wise XOR with a 64-array lookup. The checksum is determined by reading in 6-bit groups of the 24-bit message data in order and check-summing the result with an extra zero value. The 6-bit zero nibble is added after the data nibbles to protect for common errors in the last data nibble and checksum.</p></li>
+<li><p><strong>CRC8</strong> <br>
+The CRC8 value is used to verify the validity of the 28-bit fast channel frame format data, which contains 7 data nibbles and 2x2 Rolling counter data. This checksum uses the polynomial G(x) = x^8 + x^5 + x^3 + x^2 + x + 1 with a seed value of 01010101.</p></li>
+</ol>
+</section>
+<section id="test-your-knowledge">
+<h2>Test Your Knowledge!<a class="headerlink" href="#test-your-knowledge" title="Permalink to this heading">#</a></h2>
+<p><strong>Question 1</strong></p>
+<p>What benefits make SENT useful for automotive applications?</p>
+<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+Answer<div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
+<p class="sd-card-text">SENT is useful for its low cost and high reliability.</p>
+</div>
+</details><p><strong>Question 2</strong></p>
+<p>What is the MTPG?</p>
+<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+Answer<div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
+<p class="sd-card-text">The Master Trigger Pulse Generator is a pulse generator which can be used to request data from one or more sensors connected on a SENT bus.</p>
+</div>
+</details><p><strong>Question 3</strong></p>
+<p>What is the difference between a fast frame and a slow frame?</p>
+<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+Answer<div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
+<p class="sd-card-text">A fast frame has the transmitted data in a single SENT frame whereas a slow frame is used to transmit longer streams of data using multiple fast frames.</p>
+</div>
+</details></section>
+<section id="summary">
+<h2>Summary<a class="headerlink" href="#summary" title="Permalink to this heading">#</a></h2>
+<p>From this module, the key takeaways are:</p>
+<ul class="simple">
+<li><p>SENT is a single-wire communication protocol</p></li>
+<li><p>The SENT protocol can be used to read data from sensors for applications such as power steering</p></li>
+<li><p>There are configurable triggers for the SENT peripheral provided on C2000 devices</p></li>
+<li><p>Receive modes, interrupts, and CRC checksum types for SENT are configurable</p></li>
+</ul>
+</section>
+</section>
+
+
+                </article>
+              
+              
+              <footer class="bd-footer-article">
+                    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+  <a class='left-prev' id="prev-link" href="c28x_c29x_ethercat.html" title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+          <p class="prev-next-subtitle">previous</p>
+          <p class="prev-next-title">Ethernet for Control Automation Technology (EtherCAT)</p>
+      </div>
+  </a>
+  <a class='right-next' id="next-link" href="../safety_security/c29x_ssu.html" title="next page">
+  <div class="prev-next-info">
+      <p class="prev-next-subtitle">next</p>
+      <p class="prev-next-title">Safety and Security Unit (SSU)</p>
+  </div>
+  <i class="fa-solid fa-angle-right"></i>
+  </a>
+</div>
+                  </footer>
+                
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc">
+<div class="toc-item">
+  
+<div class="tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+</div>
+<nav id="bd-toc-nav" class="page-toc">
+    <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#overview">
+   Overview
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#introduction">
+   Introduction
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#application-of-sent">
+   Application of SENT
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#what-is-sent">
+   What is SENT?
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#fast-frames">
+     Fast Frames
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#slow-frames">
+     Slow Frames
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#master-trigger-pulse-generator-mtpg">
+   Master Trigger Pulse Generator (MTPG)
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#receive-modes">
+   Receive Modes
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#interrupt-configuration">
+   Interrupt Configuration
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#crc-calculation">
+   CRC Calculation
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#test-your-knowledge">
+   Test Your Knowledge!
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#summary">
+   Summary
+  </a>
+ </li>
+</ul>
+
+</nav>
+</div>
+
+<div class="toc-item">
+  
+<button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-toggle="tooltip">
+  <i class="fa-solid fa-magnifying-glass"></i>
+</button>
+</div>
+</div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+<script async>
+  async function setTheme() {
+    try {
+      var colorScheme = await window.parent.getTirexTheme();
+      var mode = colorScheme === 'dark' ? 'dark' : 'light';
+      localStorage.setItem('mode', mode);
+      document.documentElement.dataset.mode = mode;
+      document.documentElement.dataset.theme = colorScheme;
+    } catch (error) {
+      console.error('Failed to set the theme:', error);
+    }
+  }
+
+  setTheme();
+</script>
+
+
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=796348d33e8b1d947c94"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=796348d33e8b1d947c94"></script>
+
+
+
+
+<script type="text/javascript">
+  function extractNodeValue(url) {
+    try {
+      const parsedUrl = new URL(url);
+      if (parsedUrl.pathname === '/tirex/explore/node') {
+        const searchParams = new URLSearchParams(parsedUrl.search);
+        return searchParams.get('node');
+      } else {
+        return null;
+      }
+    } catch (error) {
+      console.error("Invalid URL:", error);
+      return null;
+    }
+  }
+
+  // Get all links on the page
+  const links = document.querySelectorAll('a');
+
+  // Get the project name and replace spaces with underscores
+  var projName = "C29x Academy";
+
+  // Attach a click event listener to each link
+  links.forEach((link) => {
+    link.addEventListener('click', (event) => {
+      // Prevent the default link behavior
+      event.preventDefault();
+
+      const url = link.href;
+      console.log(url)
+      const match = url.match(/source\/.+$/);
+      const localId = match ? match[0].replace(/\.html$/, '').replace(/[\/\\\.]/g, '_').toLowerCase() : null;
+      console.log(localId)
+      const extractedNode = extractNodeValue(url);
+
+      console.log(extractedNode)
+      if (typeof window.parent.jumpToTirexNodeOnLocal === 'function') {
+        window.parent.jumpToTirexNodeOnLocal(localId, null, null, {
+            throwError: true
+          })
+          .catch((e) => {
+            if (extractedNode !== null) {
+              window.parent.jumpToTirexNode(extractedNode, {
+                  throwError: true
+                })
+                .catch((e) => {
+                  window.location.href = link.href;
+                })
+            }
+            else {
+              if (url.includes("e2e.ti.com") || url.includes("dev.ti.com/gallery/view")) {
+              window.open(url, "_blank")
+              } else {
+              window.location.href = link.href;
+            }}
+          })
+      } else {
+        window.location.href = link.href;
+      }
+    });
+  });
+</script>
+  <footer class="bd-footer"><div class="bd-footer__inner container">
+  
+  <div class="footer-item">
+    
+<p class="copyright">
+
+    &copy; Copyright 2025, Texas Instruments.<br>
+
+</p>
+
+  </div>
+  
+</div>
+  </footer>
+  </body>
+</html>

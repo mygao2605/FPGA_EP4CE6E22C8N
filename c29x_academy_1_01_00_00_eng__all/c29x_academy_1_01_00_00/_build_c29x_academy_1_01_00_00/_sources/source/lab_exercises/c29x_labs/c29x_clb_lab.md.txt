@@ -1,0 +1,684 @@
+---
+applies_to: ['c29x']
+---
+
+# Configurable Logic Block (CLB) Lab
+
+```{friendly-url}
+```
+
+The objective of this lab is to gain basic familiarity with the Configurable Logic 
+Block (CLB) peripheral and its submodules. The 
+scenario in this lab will consist of a pulsing EPWM signal accompanied by an 
+external sensor that is used to halt the EPWM. This demonstration showcases the 
+CLB's ability to connect to other peripherals, perform logical operations, 
+override peripheral outputs, and generate interrupts to the CPU.
+
+## Solution
+The Academy lab modules provide step-by-step instructions for users to follow along and carry out; however, the completed software solutions are also available in the device's SDK. 
+- See your device's specific SDK to obtain this lab's software solution. 
+- You can download your device's SDK by going to the device's product page on TI's website and navigating to the 'Design & Development' and 'Software Development' tabs.
+
+This specific lab's solution can be found in: `[Device_SDK_Install_Path]/examples/driverlib/single_core/clb`.
+
+
+## Overview
+In this lab, we will explore one use case for the CLB: the ability to 
+gate other peripherals in a device. In this hypothetical system, the sensor 
+acts as a fault detector. In the event that some fault is detected, the sensor 
+signals the system to halt operation. The sensor input will rise whenever a 
+fault is detected, gating the EPWM pulse signal. The system will resume 
+operation when the fault is cleared.
+
+To implement this, two external signals—corresponding to the EPWM and the 
+sensor input—will be routed into the CLB through the global input bus. These 
+signals are routed to the LUT submodule, which performs a logical AND 
+operation. The output of this LUT block is then fed into the OUTLUT block
+corresponding to EPWM1A (in this case, OUTLUT 0). The output of EPWM1A will be 
+overridden with the output of the CLB tile. In addition to this, an interrupt 
+will be generated using the HLC submodule when the sensor input is received. 
+This interrupt will be used to toggle LEDs on the board, giving a visual 
+representation of this system. A block diagram of this implementation is shown 
+below.
+
+![Lab Block Diagram](../c28x_labs/images/clb_lab/lab_block_diagram.png)
+
+## Lab Setup
+
+### Hardware Setup
+Required hardware for this lab:
+* ControlSOM with the supplied USB cable.
+* Jumper cables (1).
+* Oscilloscope (optional).
+
+This lab exercise is intended for the F29H85x ControlSOM. Before continuing this lab, please be sure to reference the [ControlSOM User Guide](../../intro/c29x_literature.md) for hardware setup details.
+
+* Using the supplied USB cable, connect the USB Type-C connector into your C2000 board 
+  and the USB Standard Type-A connector into your computer's USB port.
+* Please note that the **docking station** is not necessary for this lab but may be required to successfully run other Academy labs. 
+  - If you are using the ControlSOM docking station, an additional power supply is needed for the docking station. See the [ControlSOM User Guide](../../intro/c29x_literature.md) for more details. 
+* Check the power status LEDs (LED0 and LED1) to confirm that the board is powered and provides a JTAG communication link between the device and CCS.
+
+Later in the lab, the sensor GPIO pin will 
+be routed to either GND or 3.3V, so ensure you have a jumper cable. An 
+oscilloscope is optional, but will allow the EPWM output to be viewed.
+
+### Software Setup
+Required software for this lab:
+* The device's SDK
+   - Your device's software development kit (SDK) download can be found on the "Software Development" section of your device's product page on TI's website. 
+* The [Code Composer Studio (CCS)](https://www.ti.com/tool/CCSTUDIO) platform.
+   - See the [CCS User's Guide](../../intro/c29x_literature.md) for more information about this IDE.
+
+## Start a CCS Project
+
+Our first task is to import an empty project to our CCS workspace. 
+
+1. Open CCS and go to **File → Import Project(s)**. A new window should appear.
+2. Click the **Browse** button and select the `[MCU_SDK_[DEVICE]_Install_Path]/examples/driverlib/single_core/empty_projects` and click "Select Folder". 
+   - Note that the default Windows installation directory `[MCU_SDK_[DEVICE]_Install_Dir]` is `C:/ti/c2000/MCU_SDK_[DEVICE]_X_XX_XX_XX_XX`.
+3. Under **Discovered Projects**, you should now see the `empty_driverlib_project`.
+
+```{image} images/all_labs/empty_project.png
+:scale: 90 %
+:align: center
+```
+<br>
+
+4. Click **Finish** to import and copy the `empty_driverlib_project` into your CCS workspace.
+5. After the project has been imported, the project explorer window should 
+   look like below:
+   
+```{image} images/all_labs/project_view.png
+:scale: 95 %
+:align: center
+```
+  
+6. Rename the project:
+   - Right-click on the project in the "Project Explorer" panel. Select **Rename** from
+      the drop-down menu and rename the project to 'clb_academy_lab' or a name of
+      your choosing.
+   - Now click the **Down Arrow** located to the left of the imported project to
+     expand it and select `empty_driverlib_project.c`. Right-click on the file, and
+     select **Rename** to rename the file to 'clb_academy_lab.c' or a name of
+     your choosing.
+
+## Configure the GPIOs
+We will begin this lab exercise by configuring the three required GPIOs within the 
+`clb_academy_lab.syscfg` file of the project. Double-click the `clb_academy_lab.syscfg` file within 
+the project to open the SysConfig GUI. The three GPIOs needed for this lab will serve the following functions:
+
+GPIO Name         | Function
+------------------|----------
+myGPIOSensor      | Simulates sensor for use as an input into the CLB. This GPIO will be externally tied to either GND or 3.3V to indicate the presence of a fault
+LED_EPWM_GPIO     | GPIO tied to LED for visualizing EPWM. When this LED is on, it indicates that the EPWM is actively pulsing
+LED_SENSOR_GPIO   | GPIO tied to sensor input for visualizing sensor. When this LED is on, it indicates that the sensor is detecting a fault
+
+### Sensor GPIO
+Let's first configure `myGPIOSensor`. This will be an input for use within the 
+CLB. When pulled low, the system will function normally, and when pulled high, 
+`myGPIOSensor` will signal a 'fault' to the CLB. To set up this GPIO in SysConfig, perform the 
+following steps:
+- Add a GPIO by clicking the (+) icon next to 'GPIO' on the left pane
+- Set the name of the GPIO as 'myGPIOSensor'
+- Set the GPIO as an input
+- Set the Pin Type as 'Push-pull output/floating input'
+
+Now, we have to specify which GPIO we are configuring. Upon 
+expanding the "PinMux" view we can choose the desired GPIO. Follow the steps 
+below:
+- Click on the three dot icon at the top right of the SysConfig window
+- Select **Preferences & Actions**
+- Under preferences, click on the 'Device Pin Label' drop down arrow
+and enable 'Device pin name'. This is not part of the default
+SysConfig settings but allows us to see the pin name along with the 
+pin number
+- Within the GPIO PinMux, select a GPIO. In this example, GPIO27 is selected as seen in the figure below
+
+![SysConfig Sensor GPIO](../c28x_labs/images/clb_lab/syscfg_gpiosensor.png)
+
+To be able to use `myGPIOSensor` as a CLB input, we need to route the GPIO as an 
+auxiliary signal (AUXSIG) through the global input bus. This requires using the 
+input crossbar (INPUTXBAR) and CLB crossbar (CLBXBAR). First, configure the 
+Input X-BAR to connect the GPIO you chose (in this example, GPIO27) to `INPUTXBAR1` using the steps below:
+- Add Input X-BAR by clicking the (+) icon next to 'INPUTXBAR' on the left pane
+- Set the name of the Input X-BAR as 'myINPUTXBAR1'
+- Select INPUTXBAR1 as the Input X-BAR instance to be used
+- Configure INPUTXBAR1 to use the GPIO you chose
+- If desired, check the box to lock INPUTXBAR1
+
+![SysConfig Input X-BAR](../c28x_labs/images/clb_lab/syscfg_inputxbar.png)
+
+Next, the CLB X-BAR needs to be configured to route INPUTXBAR1 as an auxiliary 
+signal into the CLB. Configure the CLB X-BAR to route `INPUTXBAR1` to `AUXSIG0` 
+using the steps below:
+- Add a CLB X-BAR instance by clicking the (+) icon next to 'CLBXBAR' on the 
+left pane
+- Set the name of the CLB X-BAR as 'myCLBXBAR0'
+- Select AUXSIG0 as the Aux Signal Input
+- Select INPUTXBAR INPUT1 as the input to be used for this AUXSIG0.
+
+![SysConfig CLB X-BAR](images/clb/syscfg_clbxbar.png)
+
+Now, `myGPIOSensor` (in this example, GPIO27) has been successfully configured as AUXSIG0 on the 
+global input bus and can be used as an input into the CLB.
+
+### LED GPIOs
+Next, we must configure the LED GPIOs to provide a visual representation of the 
+system. This is done in a similar manner to a regular GPIO input. First 
+configure `LED_EPWM_GPIO` using the steps below:
+- Add an LED by clicking the (+) icon next to 'LED' on the left pane
+- Set the name of this LED as 'LED_EPWM'
+- The name of the GPIO will automatically populate to 'LED_EPWM_GPIO'
+- Confirm the Pin Type is "Push-pull output/floating input"
+- Check the box to enable a write of an initial value
+- Set the initial value as "0: GPIO state is LOW"
+   - This will initialize 'LED_EPWM' to be on when the system begins running
+
+![SysConfig EPWM LED](../c28x_labs/images/clb_lab/syscfg_ledepwm.png)
+
+Similarly, configure `LED_SENSOR_GPIO` using the steps below:
+- Add an LED by clicking the (+) icon next to 'LED' on the left pane
+- Set the name of this LED as 'LED_SENSOR'
+- The name of the GPIO will automatically populate to 'LED_SENSOR_GPIO'
+- Confirm the Pin Type is "Push-pull output/floating input"
+- Check the box to enable a write of an initial value
+- Set the initial value as "1: GPIO state is HIGH"
+   - This will initialize 'LED_SENSOR' to be off when the system begins running
+
+![SysConfig Sensor LED](../c28x_labs/images/clb_lab/syscfg_ledsensor.png)
+
+## Configure the EPWM
+The EPWM module will be used to represent the system and is configured to be a 
+2kHz PWM waveform with a 50% duty cycle on EPWM1A. For more information on the 
+PWM, please review the Control Peripherals module.
+
+We will start by adding a PWM instance within Sysconfig by clicking on the (+) 
+sign next to 'EPWM' within the left pane of Sysconfig. Name this EPWM instance 
+'myEPWM1'. Now that we have added an EPWM instance, we will configure the EPWM1 
+'Timebase' submodule as follows:
+- Set **High Speed Clock Divider** to 'Divide clock by 1'
+- Set **Time Base Period** to '25000'
+- Set **Counter Mode** to 'Up - down - count mode'
+
+![SysConfig EPWM Part 1](../c28x_labs/images/clb_lab/syscfg_epwm_pt1.png)
+
+The 'Counter Compare' submodule for EPWM1A will be as follows:
+- Set **Counter Compare A (CMPA)** to '12500'
+
+![SysConfig EPWM Part 2](../c28x_labs/images/clb_lab/syscfg_epwm_pt2.png)
+
+Now, configure the 'Action Qualifier' submodule for EPWM1A as follows:
+- Enable Shadow Mode
+- Set **Shadow Load Event** to 'Load when counter equals zero'
+- In **Events to Configure for EPWMxA output**, select 'Time base counter up 
+equals COMPA' and 'Time base counter down equals COMPA'
+- Set **Time base counter up equals COMPA** to 'Set output pins to High'
+- Set **Time base counter down equals COMPA** to 'Set output pins to Low'
+
+![SysConfig EPWM Part 3](../c28x_labs/images/clb_lab/syscfg_epwm_pt3.png)
+
+Lastly, we need to configure the PinMux for EPWM1A. Even though the output of 
+EPWM1A will be overridden by the output of the CLB, configuring the output GPIO 
+is good practice as it allows us to view the pure EPWM1A pulse for debugging 
+purposes. Follow the steps below:
+- Select 'CUSTOM' on the EPWM1 PinMux. This allows us to select only EPWM_A as 
+an output
+- Configure the Pin as 'EPWM_A'
+- Set the EPWM Peripheral to be used as 'EPWM1'
+- Configure the 'EPWM_A' pin to be 'GPIO0'
+
+![SysConfig EPWM Part 4](images/clb/syscfg_epwm_pt4.png)
+
+
+## Configure the CLB
+To setup the CLB peripheral, we need to add a CLB instance within SysConfig. We 
+will need to setup this CLB instance to use the EPWM1A signal and sensor 
+signals as inputs. We must also attach an interrupt handler to this CLB 
+instance so that the HLC can issue interrupts to the CPU. Setup CLB1 by 
+following the steps below:
+- Add a CLB by clicking the (+) icon next to 'CLB' on the left pane
+- Set the name of this CLB as 'myCLB1'
+- Set the CLB Instance to be 'CLB1'
+- Select 'Output 0' as the output to be overridden
+   - 'Output 0' is muxed with EPWM1A in the Peripheral Signal Mux. Choosing 
+   this option overrides the EPWM1A output with Output 0 from CLB1. Refer to 
+   the Peripheral Signal Multiplexer Table within the device's TRM for more 
+   information.
+- Select 'Input 0' and 'Input 1' as inputs into CLB1
+
+![SysConfig CLB Peripheral](../c28x_labs/images/clb_lab/syscfg_clbperiph.png)
+
+Now we can configure the inputs into CLB1. The EPWM1A signal is directly 
+available on the global input bus without the need for any X-BARs. To bring in 
+this signal, configure Input 0 as follows:
+- Set the Input type as 'Use Global Mux'
+- Under the dropdown for Global Mux Input, select 'EPWM1A'
+- You can enable input syncing, but not necessary
+- No syncing or initial GPREG writes are necessary
+
+![SysConfig CLB Input 0](../c28x_labs/images/clb_lab/syscfg_clbinput0.png)
+
+Next, we will route the sensor input into Input 1 of CLB1. Recall previously 
+that 'myGPIOSensor' was connected to AUXSIG0 through the Input X-BAR and CLB 
+X-BAR. Doing this allows us to select AUXSIG0 as an input into CLB1. Configure 
+Input 1 as follows:
+- Set the Input type as 'Use Global Mux'
+- Under the dropdown for Global Mux Input, select 'CLB X-BAR AUXSIG0'
+- You can enable input syncing, but not necessary
+- No syncing or initial GPREG writes are necessary
+
+![SysConfig CLB Input 1](../c28x_labs/images/clb_lab/syscfg_clbinput1.png)
+
+Follow the steps below to do this:
+- Check the box next to 'Attach a TILE Config to this CLB'
+- Check the box next to 'Initialize TILE'
+
+## Configure the CLB Tile
+
+Now it is time to configure the CLB1 tile to perform the logic necessary to 
+have the sensor input gate EPWM1A. This requires configuring three kinds of 
+submodules within the CLB: LUT (Look-Up Table), OUTLUT (Output Look-Up Table), and the HLC (High Level Controller).
+
+If you didn't already add a tile by selecting the "Attach a TILE 
+Config to this CLB" checkbox, navigate to the 'Tile Design' peripheral within the SysConfig GUI and add a single 
+'Tile Design' instance. Begin the CLB tile configuration by editing LUT1. 
+
+### Look-Up Table 1
+LUT1 will be 
+responsible for handling the combinatorial logic that gates the EPWM1A pulse 
+signal. Configure LUT_1 as follows:
+- Select 'Boundary input 0' as the input for 'Input 0'. This corresponds to the PWM signal
+- Select 'Boundary input 1' as the input for 'Input 1'. This corresponds to the sensor 
+input
+- In the 'Logic Equation' field, enter the following logical expression: `i0 & !i1`
+   - With this logic, the output of LUT 1 will be the PWM signal when i1 is 
+   low. The output will be low when i1 is high.
+
+![SysConfig LUT1](../c28x_labs/images/clb_lab/syscfg_clbtile_lut1.png)
+
+<!-- Use of LUT_2 is optional for devices with CLB Type 2 or later, as the HLC -->
+<!-- is capable of being triggered by the falling edge of an input signal. -->
+
+### Look-Up Table 2
+LUT2 will be responsible for simulating the falling edge of the sensor input. 
+The output of this LUT will be used as an event trigger by the HLC so that we 
+can toggle the LEDs when the fault is resolved. Configure LUT2 as follows:
+- Select 'Boundary input 1' as the input for 'Input 0'. This corresponds to the sensor 
+input
+- In the 'Logic Equation' field, enter the following logical expression: `!i0`
+
+![SysConfig LUT2](../c28x_labs/images/clb_lab/syscfg_clbtile_lut2.png)
+
+### Output Look-Up Table 0
+Next, we must configure OUTLUT0 to bring the output of LUT_1 outside of the 
+CLB. OUTLUT0 corresponds to Boundary output 0 of CLB1 and will override the output 
+of EPWM1A. Configure OUTLUT0 as follows:
+- Select 'LUT 1 Output' as the input for 'Input 0'. This corresponds to the output of the 
+LUT1 block
+- In the 'Logic Equation' field, enter the following logical expression: `i0`
+
+![SysConfig OUTLUT 0](../c28x_labs/images/clb_lab/syscfg_clbtile_outlut0.png)
+
+### High Level Controller
+Finally, the High-Level Controller (HLC) is configured with two events. 
+- Event 0 is triggered by the **rising edge** of the sensor input and will 
+issue an interrupt to the CPU to toggle off the EPWM LED and toggle on the 
+sensor LED. 
+- Event 1 is triggered by the **falling edge** of the sensor input and will 
+issue an interrupt to the CPU to toggle on the EPWM LED and toggle off the 
+sensor LED.
+
+Configure the HLC as follows:
+- Select 'Boundary input 1' as the trigger condition for 'Event 0'
+- Select 'LUT 2 Output' as the trigger condition for 'Event 1'
+   <!-- - Alternatively, on devices with CLB Type 2 or later, select 'BOUNDARY.in1_INVERTED' -->
+- Extend the "Other Dependencies" tab
+- Open 'HLC Program 0' and 'HLC Program 1' drop-downs
+- For 'Program 0', set the 'Instruction 0' field to the following operation: `INTR 1`
+- For 'Program 1', set the 'Instruction 0' field to the following operation: `INTR 2`
+- Settings should be as shown below:
+
+![SysConfig HLC](../c28x_labs/images/clb_lab/syscfg_clbtile_hlc.png)
+
+## Program Setup
+In your project, double-click on the `.c` file to open it. Follow the below instructions to develop your program.
+
+### Define Global Macros and Variables
+The first thing we have to do is define any variables we are using throughout 
+the project and setup the content within the main() function, which includes 
+device initialization.
+
+We begin by including the basic necessary libraries `driverlib.h` and `device.
+h`. Next, include the SysConfig-generated header file `board.h`. This should 
+already be included by default. Lastly, include the `clb_config.h` and `clb.h` 
+libraries, which are required for proper CLB function. These two CLB libraries 
+are included by default if the `clb_empty` project was imported. Add the following above your existing main().
+
+```c
+//
+// Included Files
+//
+#include "driverlib.h"
+#include "device.h"
+#include "board.h"
+#include "clb_config.h"
+#include "clb.h"
+```
+
+Then we define the two interrupt tags, `SENSOR_HIGH_INT_TAG` and 
+`SENSOR_LOW_INT_TAG`, which will be issued by the HLC. We also declare the CLB ISR. 
+
+```c
+//
+// Global variables and definitions
+//
+#define     SENSOR_HIGH_INT_TAG 1
+#define     SENSOR_LOW_INT_TAG  2
+uint16_t    tag;
+
+__attribute__((interrupt("INT"))) void INT_myCLB1_ISR(void);
+```
+
+### Define main()
+Next, we define the contents executed within main() which includes device 
+initialization and peripheral setup:
+
+```c
+int main(void)
+{
+   //
+   // CPU Initialization
+   //
+   Device_init();
+   Device_initGPIO();
+   Interrupt_initModule();
+   Interrupt_initVectorTable();
+
+   //
+   // Configure the GPIOs/XBARs/PWM/CLB/LEDs through
+   // SysConfig-generated function found within board.c
+   //
+   Board_init();
+   Interrupt_register(INT_CLB1, &INT_myCLB1_ISR);
+   Interrupt_enable(INT_CLB1);
+
+   //
+   // Initialize and enable the CLB1 tile
+   //
+   initTILE1(myCLB1_BASE);
+   CLB_enableCLB(myCLB1_BASE);
+
+   //
+   // Enable PIPE Global Interrupt (for INTs and RTINTs) and INT enable in CPU.
+   //
+   ENINT;
+   Interrupt_enableGlobal();
+
+   //
+   // Main Loop
+   //
+   for(;;)
+   {
+
+      __asm(" NOP #1");
+   }
+}
+```
+
+### Set Up the CLB ISR
+Finally, within the .c file, we also need to write the code that will be executed every time 
+there is a CLB interrupt, otherwise known as ISR (interrupt service routine).
+
+Because the CLB uses multiple event interrupts, the first part of the ISR 
+requires grabbing the interrupt tag from the CLB. This is stored in the `tag` 
+variable.
+
+Note: The name of the ISR function is what we defined earlier within the 
+SysConfig configuration for the CLB. Copy the following code beneath the existing main().
+
+```c
+__attribute__((interrupt("INT"))) void INT_myCLB1_ISR(void)
+{
+   //
+   // Get interrupt tag upon HLC interrupt
+   //
+   tag = CLB_getInterruptTag(myCLB1_BASE);
+```
+
+The next portion of the ISR function involves deciphering the interrupt tag and 
+toggling the LEDs depending on what tag is received by the CPU. If `tag` 
+matches the interrupt tag sent by Event 0 (rising edge of sensor input), the 
+CPU will turn off the EPWM LED and turn on the sensor LED. Instead, if `tag` 
+matches the interrupt tag sent by Event 1 (falling edge of sensor input), the 
+CPU will turn on the EPWM LED and turn off the sensor LED. Add this to your .c ISR.
+
+```c
+   //
+   // Turn off EPWM LED and turn on SENSOR LED
+   //
+   if (tag == SENSOR_HIGH_INT_TAG)
+   {
+      GPIO_writePin(LED_EPWM_GPIO, 1);
+      GPIO_writePin(LED_SENSOR_GPIO, 0);
+   }
+
+   //
+   // Turn on EPWM LED and turn off SENSOR LED
+   //
+   if (tag == SENSOR_LOW_INT_TAG)
+   {
+      GPIO_writePin(LED_EPWM_GPIO, 0);
+      GPIO_writePin(LED_SENSOR_GPIO, 1);
+   }
+
+```
+
+Lastly, we clear the interrupt status 
+flag so that we can continue to service interrupts in the future. Add the following to complete your ISR.
+
+```c
+   CLB_clearInterruptTag(myCLB1_BASE);
+}
+```
+
+This concludes the coding portion of this lab.
+
+## Build the Project
+With the configurations and code complete, we can 'Build' the project to check for any errors. 
+Once the project builds without errors, we will connect to the device, load the program to the device, and run it within a debug session.
+
+1. Right-click on your project and hover over the **Build Configurations** button until another panel pops up. Select the **CPU1_RAM** build configuration. 
+   - With the RAM configuration selected, the project will be loaded to the RAM memory of the device.
+2. Right-click on your project again and select **Build Project(s)** to build your program. Fix any compilation errors.
+
+## Run the Project
+Now we will start a debug session.
+
+3. Prior to running the lab, ensure that a jumper cable is connected between your specified sensor GPIO and a ground (GND) pin. 
+
+4. Ensure that the USB cable from your board is connected to your computer. 
+5. Right-click on your project and select **Debug Project**.
+   - If prompted, check that only CPU1 is selected to load the program to.
+   - This action should re-build your project, connect to the debugger, and load the program to the device.
+   - The **DEBUG** window should populate and the debugger should have paused at the beginning of your `main()`.
+
+   
+```{image} images/all_labs/load_cpu.png
+:scale: 80 %
+:align: center
+```
+/
+
+6. Now we will continue the debug session and the `main()` by clicking the blue **Continue** button in the upper left corner.
+   - Note that there are several other buttons that can be used to help debug your project by stepping through your program line by line. Feel free to explore them here, 
+     or see the [CCS User's Guide](../../intro/c29x_literature.md) for more details on its capabilities.
+
+## Validate the Project
+For this lab, there are three methods to monitor the activity of the CLB and
+EPWM. Observing the system using a combination of all three methods is
+recommended to develop the best understanding from this lab.
+
+**Method 1:** Monitor the PWM waveform output through GPIO0 using an oscilloscope.
+
+Refer to the EVM User's guide for the location of the EPWM1A/GPIO0 pin on your device.
+
+**Method 2:** Monitor the configured LEDs on the LaunchPad/controlCARD.
+
+**Method 3:** Monitor the 'tag' variable under the 'Expressions' tab within CCS.
+
+* When running the lab, observe the initial state of the system. A PWM waveform 
+should be present on the oscilloscope, the EPWM LED should be on, the sensor 
+LED should be off, and the `tag` variable displays a 2.
+
+
+```{image} ../c28x_labs/images/clb_lab/EPWMon.png
+:scale: 100 %
+:align: center
+```
+
+* Now that the initial system has been verified, simulate the situation where
+  the sensor detects a fault. To do this, remove the end of the jumper cable
+  attached to the GND pin and attach it to a 3.3V header. This will simulate
+  the rising edge of the sensor input.
+
+* Observe what happens to the system when this is done. The oscilloscope screen 
+should now display a flat line at 0V, as opposed to a waveform. On the board, 
+the EPWM LED should now be turned off and the sensor LED should be on. The 
+`tag` variable in the Expressions tab should display a 1, indicating that the 
+rising edge of the sensor input was received. These observations successfully 
+showcase that the CLB was able to gate the EPWM signal using the sensor input. 
+
+
+```{image} ../c28x_labs/images/clb_lab/EPWMoff.png
+:scale: 100 %
+:align: center
+```
+
+* Now, simulate the scenario where the fault has been resolved and the PWM 
+pulse should resume functioning. To do this, disconnect the jumper cable from 3.
+3V and return it to GND. The system should begin running as initially. That is, 
+a PWM signal should be present on the oscilloscope screen, the EPWM LED should 
+be on, and the `tag` variable should display 2, indicating that the falling 
+edge of the sensor input was received.
+
+### Terminate the Debug Session and Close the Project
+With the project developed and validated, we can close this debug session.
+* Click the red **Stop** button at the top of your `DEBUG` window to terminate the active debug session and disconnect the debugger
+* You can return to the `Project Explorer` window by clicking on the corresponding button at the top of the panel on the left.
+
+This concludes the main lab exercise.
+
+## Additional Practice
+
+```{admonition} Try It Yourself!
+Test your CLB knowledge by expanding on the scenario described in this lab. 
+Instead of having the sensor input gate the EPWM signal only when the sensor
+is high, adjust the logic within the CLB so that the EPWM shuts off completely 
+upon receiving the sensor input. Ensure that the EPWM does not resume pulsing 
+when the sensor input goes low.
+
+```
+
+```{dropdown} Hint 1
+This new scenario makes use of a Finite-State Machine (FSM) submodule in 
+addition to the LUT4 submodule.
+
+```
+
+```{dropdown} Hint 2
+Configure the FSM as a 2-state 1-input finite-state machine. If needed, create 
+a state table and use a Karnuagh Map to assist in creating the state equations. 
+A state transition occurs only when the EPWM is running and the sensor input 
+rises. Any other combination of state and input leave the pulse unaffected.
+
+```
+
+```{dropdown} Hint 3
+Reconfigure input1 of the LUT4 to use the output state of the FSM instead of 
+the CLB's BOUNDARY input.
+
+```
+
+```{dropdown} Solution
+To correctly implement this new CLB scenario, it will be helpful to make use of 
+the finite-state machine (FSM) submodule. With the FSM block, we can create 
+state-based logic to simulate the sensor input shutting down the system. 
+
+The first step is to define the logic that will be used by the FSM to implement 
+this scenario. This new implementation only requires two states (a pulsing 
+state and a shutdown state) and a single sensor input. The FSM will be modeled 
+after the following state diagram:
+
+![FSM Block Diagram](../c28x_labs/images/clb_lab/FSM.png)
+
+
+To begin, construct a truth table describing the logic and state transitions 
+that result from the sensor input. The values of the states will be 0 and 1 
+corresponding to "EPWM on" and "EPWM off", respectively. To simplify the logic, 
+the FSM output will correspond directly with the value of the current state. 
+This means that the FSM will function similarly to the LUT in that a state 
+output of 0 will correspond to a pulsing EPWM and a state output of 1 will 
+correspond to a gated PWM signal. The finished truth table should look similar 
+to this:
+
+<center>
+
+:::{table}
+:widths: auto
+:width: 50 % 
+
+Current State | Input | Next State | Output
+:------------:|:-----:|:----------:|:-------:
+0             |   0   |     0      |   0
+0             |   1   |     1      |   0
+0             |   0   |     1      |   1
+0             |   1   |     1      |   1
+:::
+
+</center>
+
+The state and output equations can be derived either through analysis or with a 
+K-map. Notice that the Next State represents a single OR operation on the 
+Current State and Input fields. The Output equation corresponds directly with 
+the Current State field. Thus, the necessary logic equations are:
+
+   `Next State = (Current State) | (Input)`
+
+
+   `Output = Current State`
+
+
+Now, configure FSM_0 with the derived logic equations. 
+- Select 'BOUNDARY.in1' as the input for e0. This corresponds to the sensor 
+input
+- In the s0 state equation field (eqn_s0), enter the following logical 
+expression: `s0 | e0`
+- In the output equation field (eqn_out), enter the following logical 
+expression: `s0`
+
+
+![SysConfig FSM](../c28x_labs/images/clb_lab/syscfg_fsm.png)
+
+
+Now, that the FSM has been configured, reconfigure LUT_1 to use this signal as 
+opposed to the sensor input signal. In LUT_1, do the following:
+- Select 'FSM_0.OUT' as the input for i1.
+
+
+![SysConfig New LUT_1](../c28x_labs/images/clb_lab/syscfg_clbtile_new_lut1.png)
+
+
+LUT_2 and HLC event 2 were used to represent the falling edge of the sensor 
+input. Since the falling edge is no longer being considered, reset the 
+configuration for LUT_2 and HLC event 2. Also, remove the logic within the 
+interrupt handler that corresponds to the falling edge of the sensor input.
+
+Like in the original implementation, setup a debug session in CCS and observe 
+the lab on your device. Notice that when the sensor GPIO is brought high, the PWM pulse 
+remains off, even when the sensor signal falls.
+
+```
+
+## Full Solution
+Recall that the completed software solution is available as well. Please refer to the top of this page to review the location of this lab's software solution.

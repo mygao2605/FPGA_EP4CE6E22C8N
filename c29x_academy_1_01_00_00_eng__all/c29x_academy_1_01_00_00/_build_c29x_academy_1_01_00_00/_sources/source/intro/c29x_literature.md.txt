@@ -1,0 +1,86 @@
+---
+applies_to: ['c29x']
+---
+
+# Key Literature
+
+```{friendly-url}
+```
+
+## Learn the basics of C2000 
+
+::::{grid} 3
+:gutter: 3
+
+:::{grid-item-card} CCS User's Guide
+:link: https://software-dl.ti.com/ccs/esd/documents/users_guide_ccs_20.0.0/index.html
+TEXAS INSTRUMENTS
+^^^
+Familiarize yourself with our CCS development platform.
+:::
+
+:::{grid-item-card} C2000 SysConfig GUI
+:link: https://ti.com/lit/SPRACX3
+TEXAS INSTRUMENTS
+^^^
+View the graphical user interface tool that configures C2000 MCUs.
+:::
+
+:::{grid-item-card} C2000 Differentiation
+:link: https://ti.com/lit/SPRACN0F
+TEXAS INSTRUMENTS
+^^^
+Learn about the components that differentiate the C2000 family as a real-time control system.
+:::
+
+:::{grid-item-card} Hardware
+:link: https://ti.com/lit/SPRACZ9
+TEXAS INSTRUMENTS
+^^^
+Learn about the system-level hardware design, part selection, and layout.
+:::
+
+:::{grid-item-card} F29H85X controlSOM User's Guide
+:link: https://www.ti.com/lit/SPRUJE4 
+TEXAS INSTRUMENTS
+^^^
+Use this starter guide to review aspects of starting development with the F29H85x evaluation board.
+:::
+
+:::{grid-item-card} Start Development!
+:link: https://dev.ti.com/tirex/local?id=source_c2000_academy_labs_c29_labs_c29_timer_lab&packageId=C29X-ACADEMY 
+TEXAS INSTRUMENTS
+^^^
+Begin your hands-on experience by completing this introductory lab.
+Walk through simple steps within CCS and the SysConfig GUI to demonstrates how to use a CPU Timer 
+to blink two LEDs on your board.
+:::
+
+::::
+
+## Explore the benefits of C29
+
+::::{grid} 3
+:gutter: 3
+
+:::{grid-item-card} C29 Performance
+:link: https://ti.com/lit/SPRADD8
+TEXAS INSTRUMENTS
+^^^
+Learn about the C29x core architecture from benefits of the parallel C29 architecture to performance entitlement achieved with the C29 compiler.
+:::
+
+:::{grid-item-card} Safety and Security with C29
+:link: https://ti.com/lit/SPRADK2
+TEXAS INSTRUMENTS
+^^^
+Examine the various features of the C29x Safety & Security Unit (SSU) and how tools developers can leverage to design and implement run-time safety and security in real-time applications.
+:::
+
+:::{grid-item-card} Cybersecurity in Real-Time Control
+:link: https://ti.com/lit/SPRADO0
+TEXAS INSTRUMENTS
+^^^
+Learn how F29 devices defend against increasingly sophisticated attacks on embedded hardware and software while maintaining industry-leading performance.
+:::
+::::

@@ -1,0 +1,596 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>Interrupts &#8212; C29x Academy</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=796348d33e8b1d947c94" rel="stylesheet">
+<link href="../../_static/styles/bootstrap.css?digest=796348d33e8b1d947c94" rel="stylesheet">
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=796348d33e8b1d947c94" rel="stylesheet">
+
+  
+  <link href="../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=796348d33e8b1d947c94" rel="stylesheet">
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/local/font.css" />
+    <link rel="stylesheet" type="text/css" href="https://www.ti.com/assets/fonts/font.css" />
+    <link rel="stylesheet" type="text/css" href="https://www.ti.com/assets/style/resource-explorer.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=796348d33e8b1d947c94">
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=796348d33e8b1d947c94">
+
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/sphinx_highlight.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script src="../../_static/design-tabs.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'source/system_control/c29x_pipe';</script>
+    <script src="../../_static/quizdown.js"></script>
+    <script src="../../_static/external-links.js"></script>
+    <link rel="canonical" href="http://127.0.0.1:8000/source/system_control/c29x_pipe.html" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="CPU Timers" href="c29x_timers.html" />
+    <link rel="prev" title="Crossbars (X-BAR)" href="c29x_xbar.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="docsearch:language" content="en">
+  </head>
+  
+  
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="180" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search C29x Academy" aria-label="Search C29x Academy" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar"><div class="bd-header__inner bd-page-width">
+  <label class="sidebar-toggle primary-toggle" for="__primary">
+      <span class="fa-solid fa-bars"></span>
+  </label>
+  <div id="navbar-start">
+    
+  </div>
+
+  
+  <div class="col-lg-9 navbar-header-items">
+    <div id="navbar-center" class="mr-auto">
+      
+    </div>
+
+    <div id="navbar-end">
+      
+        <div class="navbar-end-item navbar-persistent--container">
+          
+<button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-toggle="tooltip">
+  <i class="fa-solid fa-magnifying-glass"></i>
+</button>
+        </div>
+      
+      
+    </div>
+  </div>
+
+
+  
+  
+    <div class="navbar-persistent--mobile">
+<button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-toggle="tooltip">
+  <i class="fa-solid fa-magnifying-glass"></i>
+</button>
+    </div>
+  
+
+  
+  <label class="sidebar-toggle secondary-toggle" for="__secondary">
+      <span class="fa-solid fa-outdent"></span>
+  </label>
+  
+
+</div>
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar hide-on-wide">
+        
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+
+    
+    
+  </div>
+
+  
+
+  
+  <div class="sidebar-end-items sidebar-primary__section">
+    <div class="sidebar-end-items__item">
+    </div>
+  </div>
+
+  
+  <div id="rtd-footer-container"></div>
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article"></div>
+              
+              
+                <article class="bd-article" role="main">
+                  
+                  
+<div id="searchbox"></div>
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="interrupts">
+<h1>Interrupts<a class="headerlink" href="#interrupts" title="Permalink to this heading">#</a></h1>
+<p><a class="reference external" href="https://dev.ti.com/tirex/local?id=source_system_control_c29x_pipe&amp;packageId=C29X-ACADEMY">Link to share</a></p>
+<section id="overview">
+<h2>Overview<a class="headerlink" href="#overview" title="Permalink to this heading">#</a></h2>
+<p>In this module, you will:</p>
+<ul class="simple">
+<li><p>Follow the flow of interrupt processing through the PIPE and CPU modules.</p></li>
+<li><p>Understand how PIPE is commonly used with peripherals.</p></li>
+<li><p>Learn about software configurations needed to utilize interrupts.</p></li>
+</ul>
+</section>
+<section id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this heading">#</a></h2>
+<p>An interrupt is a response by the processor to an event that needs attention. The processor executes instructions that are defined within the interrupt service routine (ISR) as soon as is capable, and then goes back to normal operational tasks. Unlike idle loops where code waits for an event to occur, interrupts provide the opportunity to have non-idle code loops that execute based on the CPU’s availability and priority of tasks.</p>
+</section>
+<section id="c29x-interrupt-architecture">
+<h2>C29x Interrupt Architecture<a class="headerlink" href="#c29x-interrupt-architecture" title="Permalink to this heading">#</a></h2>
+<p>C29x CPU architecture allows three types of interrupts based on the importance of the interrupt and corresponding response time needed: NMI (Non-Maskable Interrupt), RTINT (Real Time Interrupt), and INT (Low Priority Interrupt). Each type allows system events of corresponding urgency level and importance to be separated in respective sets. In order of importance, RTINTs are serviced with lower latency including automated context save &amp; restore while INTs are handled in a regular fashion by software. As devices will hundreds of events categorized into these two types of interrupts two sets, multiple events cannot be addressed by CPU simultaneously.</p>
+<p>PIPE provides the mechanism to register every event and send interrupts to the CPU in prioritized order. The application can select which interrupts will be connected to CPU through PIPE and allocate priority for each of those interrupt lines. C29x CPU upon receiving an interrupt signal, acknowledges when ready, reads ISR vector address, and executes the ISR. Through this execution, it handshakes with the PIPE which will be described in detail in the following sections.</p>
+</section>
+<section id="peripheral-interrupt-and-priority-expansion-pipe">
+<h2>Peripheral Interrupt and Priority Expansion (PIPE)<a class="headerlink" href="#peripheral-interrupt-and-priority-expansion-pipe" title="Permalink to this heading">#</a></h2>
+<section id="application-of-pipe">
+<h3>Application of PIPE<a class="headerlink" href="#application-of-pipe" title="Permalink to this heading">#</a></h3>
+<p>C2000 Devices used for real time control applications have need of growing number of peripherals with requirement of one or more interrupt lines each. These interrupts have varying level of response time and level of tasks expectations. With the interrupts with shortest response time required for time critical tasks prioritized. There is a significant need to aggregate these larger number of interrupts into fewer ones which are really utilized by a particular application and the related CPU on the device.</p>
+</section>
+<section id="why-use-pipe">
+<h3>Why use PIPE?<a class="headerlink" href="#why-use-pipe" title="Permalink to this heading">#</a></h3>
+<p>PIPE is a widely-used peripheral in most if not all systems. Some key advantages are:</p>
+<ul class="simple">
+<li><p>Hardware support for interrupt prioritization, arbitration, grouping, software hand-shake, and nesting.</p></li>
+<li><p>Link-based protection to ensure only legal code from an assigned interrupt owner services an interrupt.</p></li>
+<li><p>Automatic context save and restore for RTINT and NMI.</p></li>
+</ul>
+<p>With a general overview of PIPE use established, we can get into what PIPE is and how it works.</p>
+</section>
+<section id="what-is-pipe">
+<h3>What is PIPE?<a class="headerlink" href="#what-is-pipe" title="Permalink to this heading">#</a></h3>
+<section id="how-does-pipe-work">
+<h4>How does PIPE work?<a class="headerlink" href="#how-does-pipe-work" title="Permalink to this heading">#</a></h4>
+<p>The PIPE module arbitrates peripheral interrupts across the device each clock cycle, with the highest priority interrupt asserted to the corresponding CPU interrupt line (NMI, RTINT, or INT). Along with arbitration, the PIPE takes care of configurations related to interrupt ordering, hardware nesting, and more.</p>
+<figure class="align-center" id="id1">
+<a class="reference internal image-reference" href="../../_images/pipe_block_diagram.png"><img alt="../../_images/pipe_block_diagram.png" src="../../_images/pipe_block_diagram.png" style="width: 718.8px; height: 448.2px;" /></a>
+<figcaption>
+<p><span class="caption-text">Figure 1: PIPE Block Diagram</span><a class="headerlink" href="#id1" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+</section>
+<section id="interrupt-propagation">
+<h4>Interrupt Propagation<a class="headerlink" href="#interrupt-propagation" title="Permalink to this heading">#</a></h4>
+<p>Interrupts propagate from the peripheral through the PIPE to the CPU. At the PIPE module, interrupts are arbitrated and asserts based on their priority.The following diagram showcases the steps for interrupts asserted on the INT and RTINT (connected through PIPE) and NMI and RESET (connected directly to the CPU).</p>
+<figure class="align-center" id="id2">
+<a class="reference internal image-reference" href="../../_images/interrupt_propagation.png"><img alt="../../_images/interrupt_propagation.png" src="../../_images/interrupt_propagation.png" style="width: 914.5px; height: 317.0px;" /></a>
+<figcaption>
+<p><span class="caption-text">Figure 2: Interrupt Propagation Diagram</span><a class="headerlink" href="#id2" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+</section>
+<section id="interrupt-configuration">
+<h4>Interrupt Configuration<a class="headerlink" href="#interrupt-configuration" title="Permalink to this heading">#</a></h4>
+<section id="pipe-block-initialization">
+<h5>PIPE Block Initialization<a class="headerlink" href="#pipe-block-initialization" title="Permalink to this heading">#</a></h5>
+<p>Two separate functions are called to initialize the interrupt module and PIPE block.</p>
+<ul class="simple">
+<li><p><em>Interrupt_initModule();</em></p></li>
+<li><p><em>Interrupt_initVectorTable();</em></p></li>
+</ul>
+<p>During processor initialization, the interrupt vectors, as mapped in the PIPE interrupt mapping table, are copied to the PIPE RAM and the PIPE module is enabled by setting EN to ‘1’.</p>
+<p>When the CPU receives an interrupt, the vector address of the ISR is fetched from the PIPE RAM, and the interrupt with the highest priority that is both flagged and enabled is executed.</p>
+<p>Priority is determined by the location within the interrupt vector table. The lowest numbered interrupt has the highest priority when multiple interrupts are pending.</p>
+</section>
+<section id="pipe-initialization-dependencies">
+<h5>PIPE Initialization Dependencies<a class="headerlink" href="#pipe-initialization-dependencies" title="Permalink to this heading">#</a></h5>
+<p>After the device is reset and execution of the boot code is completed, the selected boot option determines the code entry point.</p>
+<p>The <em>CodeStartBranch.asm</em> file has a long branch instruction to the entry point of the runtime support library. After the runtime support library completes execution, main is called.</p>
+<p>In <em>main</em>, a function is called to initialize the interrupt process and enable the PIPE module.</p>
+<p>When the CPU receives an interrupt, the vector address of the ISR is fetched from the PIPE RAM, and the interrupt with the highest priority that is both flagged and enabled is executed.</p>
+<p>At power-up, all interrupts are in the reset conditions. By default:</p>
+<ul class="simple">
+<li><p>All interrupts are disabled.</p></li>
+<li><p>All interrupts configurations and related links are set to default values.</p></li>
+<li><p>All interrupts are assigned as INT by default and interrupt vectors point to default NMI vector.</p></li>
+</ul>
+<p>Interrupts are configured as follows:</p>
+<ol class="arabic simple">
+<li><p>Disable INT and RTINT: Disable INT and RTINT using the GLOBAL_EN_REG.ENABLE/KEY bits.</p></li>
+<li><p>Prioritization: Set the interrupt priority (optional).</p></li>
+<li><p>Nesting: Set the group (optional).</p></li>
+<li><p>Context: Set the context ID (optional).</p></li>
+<li><p>Stack protection: Set stack pointer warning levels (RTINT_SP_H).</p></li>
+<li><p>Enable interrupts: Enable specific interrupts using INT_CTL_REG_L_y.EN bit for each interrupt.</p></li>
+<li><p>Enable INT and RTINT: Enable INT and RTINT using the GLOBAL_EN_REG.ENABLE/KEY bits. Enable PIPE Global Interrupt (for INTs and RTINTs) and INT enable in the CPU.</p>
+<ul class="simple">
+<li><p><em>ENINT;</em></p></li>
+<li><p><em>Interrupt_enableGlobal();</em></p></li>
+</ul>
+</li>
+</ol>
+</section>
+<section id="interrupts-prioritization">
+<h5>Interrupts Prioritization<a class="headerlink" href="#interrupts-prioritization" title="Permalink to this heading">#</a></h5>
+<p>Priority is determined for each interrupt using:</p>
+<ol class="arabic simple">
+<li><p>User-configured interrupt priority</p></li>
+<li><p>Index-based fixed interrupt priority</p></li>
+</ol>
+<p><strong>User-Configured Interrupt Priority</strong>
+User-configured interrupt priority is configured in software by the user. The lower the priority level (higher the value of the PRI_LEVEL), the higher the priority is of the interrupt. Unless specifically configured, every interrupt is configured to the lowest priority level by default.</p>
+<p><strong>Index-Based Fixed Interrupt Priority</strong>
+Index-based fixed interrupt priority is based on the input number where a particular interrupt is connected to the PIPE. Also known as the “interrupt index”, this indexing is used to configure interrupts in the PIPE. The PIPE Channel Mapping table lists all the peripheral interrupt channels per device.</p>
+</section>
+</section>
+<section id="interrupt-response-and-latency">
+<h4>Interrupt Response and Latency<a class="headerlink" href="#interrupt-response-and-latency" title="Permalink to this heading">#</a></h4>
+<p>Interrupt latency is an important factor in understanding the response time of a real-time system. The typical method by which interrupt latency of a system is assessed is the number of cycles it takes for the hardware to respond to an interrupt and branch to the interrupt vector (hardware latch and respond).</p>
+<p>Exact number of cycles for INT and RTINT minimum vs. maximum latency is dependent on the device and CPU architecture.</p>
+</section>
+<section id="safety-security">
+<h4>Safety &amp; Security<a class="headerlink" href="#safety-security" title="Permalink to this heading">#</a></h4>
+<p>The CPUs and PIPE has protection mechanisms to provide safety and security for the interrupt architecture. The Safety and Security Unit (SSU) protected RTINT stack prevents stack overflow during nesting requested by the PIPE module and covers other overall software security. In addition, all PIPE registers have ECC or parity protection.</p>
+</section>
+</section>
+</section>
+<section id="test-your-knowledge">
+<h2>Test Your Knowledge!<a class="headerlink" href="#test-your-knowledge" title="Permalink to this heading">#</a></h2>
+<p><strong>Question 1</strong></p>
+<p>In order of highest to lowest priority, what lines are used to propagate interrupts to the CPU?</p>
+<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+Answer<div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
+<p class="sd-card-text">NMI (Non-Maskable Interrupt), RTINT (Real-Time Priority Interrupt), sand INT (Low/Regular Priority Interrupt) lines.</p>
+</div>
+</details><p><strong>Question 2</strong></p>
+<p>How are the nesting and groups features related?</p>
+<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+Answer<div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
+<p class="sd-card-text">By default, a higher priority interrupt can nest within a lower priority interrupt. PIPE can also prevent interrupts
+from nesting within other interrupts using “groups”.</p>
+</div>
+</details></section>
+<section id="summary">
+<h2>Summary<a class="headerlink" href="#summary" title="Permalink to this heading">#</a></h2>
+<p>The key takeaways from this learning module are:</p>
+<ul class="simple">
+<li><p>PIPE arbitrates peripheral interrupts across a device.</p></li>
+<li><p>The highest priority interrupt is asserted to the appropriate CPU interrupt line (NMI, RTINT, or INT) each clock cycle.</p></li>
+<li><p>PIPE allows for configurable ordering of interrupts and groups and hardware nesting.</p></li>
+</ul>
+</section>
+</section>
+
+
+                </article>
+              
+              
+              <footer class="bd-footer-article">
+                    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+  <a class='left-prev' id="prev-link" href="c29x_xbar.html" title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+          <p class="prev-next-subtitle">previous</p>
+          <p class="prev-next-title">Crossbars (X-BAR)</p>
+      </div>
+  </a>
+  <a class='right-next' id="next-link" href="c29x_timers.html" title="next page">
+  <div class="prev-next-info">
+      <p class="prev-next-subtitle">next</p>
+      <p class="prev-next-title">CPU Timers</p>
+  </div>
+  <i class="fa-solid fa-angle-right"></i>
+  </a>
+</div>
+                  </footer>
+                
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc">
+<div class="toc-item">
+  
+<div class="tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+</div>
+<nav id="bd-toc-nav" class="page-toc">
+    <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#overview">
+   Overview
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#introduction">
+   Introduction
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#c29x-interrupt-architecture">
+   C29x Interrupt Architecture
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#peripheral-interrupt-and-priority-expansion-pipe">
+   Peripheral Interrupt and Priority Expansion (PIPE)
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#application-of-pipe">
+     Application of PIPE
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#why-use-pipe">
+     Why use PIPE?
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#what-is-pipe">
+     What is PIPE?
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#how-does-pipe-work">
+       How does PIPE work?
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#interrupt-propagation">
+       Interrupt Propagation
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#interrupt-configuration">
+       Interrupt Configuration
+      </a>
+      <ul class="nav section-nav flex-column">
+       <li class="toc-h5 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#pipe-block-initialization">
+         PIPE Block Initialization
+        </a>
+       </li>
+       <li class="toc-h5 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#pipe-initialization-dependencies">
+         PIPE Initialization Dependencies
+        </a>
+       </li>
+       <li class="toc-h5 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#interrupts-prioritization">
+         Interrupts Prioritization
+        </a>
+       </li>
+      </ul>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#interrupt-response-and-latency">
+       Interrupt Response and Latency
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#safety-security">
+       Safety &amp; Security
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#test-your-knowledge">
+   Test Your Knowledge!
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#summary">
+   Summary
+  </a>
+ </li>
+</ul>
+
+</nav>
+</div>
+
+<div class="toc-item">
+  
+<button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-toggle="tooltip">
+  <i class="fa-solid fa-magnifying-glass"></i>
+</button>
+</div>
+</div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+<script async>
+  async function setTheme() {
+    try {
+      var colorScheme = await window.parent.getTirexTheme();
+      var mode = colorScheme === 'dark' ? 'dark' : 'light';
+      localStorage.setItem('mode', mode);
+      document.documentElement.dataset.mode = mode;
+      document.documentElement.dataset.theme = colorScheme;
+    } catch (error) {
+      console.error('Failed to set the theme:', error);
+    }
+  }
+
+  setTheme();
+</script>
+
+
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=796348d33e8b1d947c94"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=796348d33e8b1d947c94"></script>
+
+
+
+
+<script type="text/javascript">
+  function extractNodeValue(url) {
+    try {
+      const parsedUrl = new URL(url);
+      if (parsedUrl.pathname === '/tirex/explore/node') {
+        const searchParams = new URLSearchParams(parsedUrl.search);
+        return searchParams.get('node');
+      } else {
+        return null;
+      }
+    } catch (error) {
+      console.error("Invalid URL:", error);
+      return null;
+    }
+  }
+
+  // Get all links on the page
+  const links = document.querySelectorAll('a');
+
+  // Get the project name and replace spaces with underscores
+  var projName = "C29x Academy";
+
+  // Attach a click event listener to each link
+  links.forEach((link) => {
+    link.addEventListener('click', (event) => {
+      // Prevent the default link behavior
+      event.preventDefault();
+
+      const url = link.href;
+      console.log(url)
+      const match = url.match(/source\/.+$/);
+      const localId = match ? match[0].replace(/\.html$/, '').replace(/[\/\\\.]/g, '_').toLowerCase() : null;
+      console.log(localId)
+      const extractedNode = extractNodeValue(url);
+
+      console.log(extractedNode)
+      if (typeof window.parent.jumpToTirexNodeOnLocal === 'function') {
+        window.parent.jumpToTirexNodeOnLocal(localId, null, null, {
+            throwError: true
+          })
+          .catch((e) => {
+            if (extractedNode !== null) {
+              window.parent.jumpToTirexNode(extractedNode, {
+                  throwError: true
+                })
+                .catch((e) => {
+                  window.location.href = link.href;
+                })
+            }
+            else {
+              if (url.includes("e2e.ti.com") || url.includes("dev.ti.com/gallery/view")) {
+              window.open(url, "_blank")
+              } else {
+              window.location.href = link.href;
+            }}
+          })
+      } else {
+        window.location.href = link.href;
+      }
+    });
+  });
+</script>
+  <footer class="bd-footer"><div class="bd-footer__inner container">
+  
+  <div class="footer-item">
+    
+<p class="copyright">
+
+    &copy; Copyright 2025, Texas Instruments.<br>
+
+</p>
+
+  </div>
+  
+</div>
+  </footer>
+  </body>
+</html>

@@ -1,0 +1,759 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>Real-Time Direct Memory Access (RTDMA) &#8212; C29x Academy</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=796348d33e8b1d947c94" rel="stylesheet">
+<link href="../../_static/styles/bootstrap.css?digest=796348d33e8b1d947c94" rel="stylesheet">
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=796348d33e8b1d947c94" rel="stylesheet">
+
+  
+  <link href="../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=796348d33e8b1d947c94" rel="stylesheet">
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/local/font.css" />
+    <link rel="stylesheet" type="text/css" href="https://www.ti.com/assets/fonts/font.css" />
+    <link rel="stylesheet" type="text/css" href="https://www.ti.com/assets/style/resource-explorer.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=796348d33e8b1d947c94">
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=796348d33e8b1d947c94">
+
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/sphinx_highlight.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script src="../../_static/design-tabs.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'source/advanced/c29x_rtdma';</script>
+    <script src="../../_static/quizdown.js"></script>
+    <script src="../../_static/external-links.js"></script>
+    <link rel="canonical" href="http://127.0.0.1:8000/source/advanced/c29x_rtdma.html" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Configurable Logic Block (CLB)" href="c28x_c29x_clb.html" />
+    <link rel="prev" title="Debug Tips &amp; Tricks" href="../debug/c29x_debug_tips.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="docsearch:language" content="en">
+  </head>
+  
+  
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="180" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search C29x Academy" aria-label="Search C29x Academy" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar"><div class="bd-header__inner bd-page-width">
+  <label class="sidebar-toggle primary-toggle" for="__primary">
+      <span class="fa-solid fa-bars"></span>
+  </label>
+  <div id="navbar-start">
+    
+  </div>
+
+  
+  <div class="col-lg-9 navbar-header-items">
+    <div id="navbar-center" class="mr-auto">
+      
+    </div>
+
+    <div id="navbar-end">
+      
+        <div class="navbar-end-item navbar-persistent--container">
+          
+<button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-toggle="tooltip">
+  <i class="fa-solid fa-magnifying-glass"></i>
+</button>
+        </div>
+      
+      
+    </div>
+  </div>
+
+
+  
+  
+    <div class="navbar-persistent--mobile">
+<button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-toggle="tooltip">
+  <i class="fa-solid fa-magnifying-glass"></i>
+</button>
+    </div>
+  
+
+  
+  <label class="sidebar-toggle secondary-toggle" for="__secondary">
+      <span class="fa-solid fa-outdent"></span>
+  </label>
+  
+
+</div>
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar hide-on-wide">
+        
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+
+    
+    
+  </div>
+
+  
+
+  
+  <div class="sidebar-end-items sidebar-primary__section">
+    <div class="sidebar-end-items__item">
+    </div>
+  </div>
+
+  
+  <div id="rtd-footer-container"></div>
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article"></div>
+              
+              
+                <article class="bd-article" role="main">
+                  
+                  
+<div id="searchbox"></div>
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="real-time-direct-memory-access-rtdma">
+<h1>Real-Time Direct Memory Access (RTDMA)<a class="headerlink" href="#real-time-direct-memory-access-rtdma" title="Permalink to this heading">#</a></h1>
+<p><a class="reference external" href="https://dev.ti.com/tirex/local?id=source_advanced_c29x_rtdma&amp;packageId=C29X-ACADEMY">Link to share</a></p>
+<section id="overview">
+<h2>Overview<a class="headerlink" href="#overview" title="Permalink to this heading">#</a></h2>
+<p>In this learning module, you will:</p>
+<ul class="simple">
+<li><p>Gain a general understanding of what RTDMA is.</p></li>
+<li><p>Understand common examples of where RTDMA is typically used.</p></li>
+<li><p>Follow the flow of data through the RTDMA module.</p></li>
+<li><p>Learn about memory protection within the RTDMA module.</p></li>
+</ul>
+</section>
+<section id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this heading">#</a></h2>
+<p>The RTDMA provides a hardware method of transferring data between peripherals and/or memory without intervention from the CPU. It has the ability to free up CPU bandwidth and rearrange the data into a pattern for more streamlined processing in real time. The RTDMA requires a peripheral or software trigger to start a data transfer through independent channels that can be configured separately. Each channel contains its own independent Interrupt Controller interrupt to let the CPU know the progression of a RTDMA transfer. For multi core devices, each CPU has access to all RTDMA instances. Similar to the C28x Direct Memory Access module, this peripheral operates with extended capabilities.</p>
+</section>
+<section id="application-of-rtdma">
+<h2>Application of RTDMA<a class="headerlink" href="#application-of-rtdma" title="Permalink to this heading">#</a></h2>
+<p>Using the RTDMA is ideal when an application requires moving large amounts of data from an off-chip peripheral to on-chip memory. Specifically, the RTDMA can read data from the ADC result registers, transfer to or from memory blocks, and transfer to or from the various peripherals. It is capable of rearranging the data for optimal CPU processing such as binning and “ping-pong” buffering. Two RTDMA instances can operate in lock-step mode to not only ensure modular redundancy but also detect faults in the module required for security requirements.</p>
+</section>
+<section id="why-use-rtdma">
+<h2>Why use RTDMA?<a class="headerlink" href="#why-use-rtdma" title="Permalink to this heading">#</a></h2>
+<p>RTDMA is often selected because of its ease and ability to efficiently transfer large packets of data. Some other advantages are:</p>
+<ul class="simple">
+<li><p>The system processor can focus on other operations while the RTDMA handles transfers.</p></li>
+<li><p>In the case of multiple processes, the RTDMA is faster than the CPU because it does not require CPU participation for every byte transferred and interrupt handling, which can cause delay.</p></li>
+<li><p>Multiple RTDMA channels work in parallel to improve system throughput.</p></li>
+</ul>
+<p>With a general overview of RTDMA use established, we can get into what RTDMA is and how it works.</p>
+</section>
+<section id="what-is-the-rtdma">
+<h2>What is the RTDMA?<a class="headerlink" href="#what-is-the-rtdma" title="Permalink to this heading">#</a></h2>
+<section id="how-does-the-rtdma-work">
+<h3>How does the RTDMA work?<a class="headerlink" href="#how-does-the-rtdma-work" title="Permalink to this heading">#</a></h3>
+<p>A DMA transfer is started by a peripheral or software trigger. There are several independent DMA channels, where each channel can be configured individually and each DMA channel has its own unique Interrupt Controller interrupt for CPU servicing. All DMA channels operate the same way, except when a channel is configured at a higher priority than the other channels. At its most basic level the DMA is a state machine consisting of two nested loops and tightly coupled address control logic which gives the DMA the capability to rearrange the blocks of data during the transfer for post processing. When a DMA transfers is completed, the DMA can generate an interrupt.</p>
+<div class="admonition-note admonition">
+<p class="admonition-title">Note</p>
+<p>For a complete list of peripherals and their access types connected to the DMA bus refer to your device’s datasheet.</p>
+</div>
+<p><strong>DMA Memory Blocks</strong>: To view the amount of global shared RAM the DMA has access to please refer to the functional block diagram of your device’s datasheet.</p>
+</section>
+<section id="basic-operation">
+<h3>Basic Operation<a class="headerlink" href="#basic-operation" title="Permalink to this heading">#</a></h3>
+<table class="table table-center" id="id1">
+<caption><span class="caption-text">DMA Definitions</span><a class="headerlink" href="#id1" title="Permalink to this table">#</a></caption>
+<thead>
+<tr class="row-odd"><th class="head"><p>Type</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Word</p></td>
+<td><p>8, 16, 32, or 64-bit (configurable per DMA channel)</p></td>
+</tr>
+<tr class="row-odd"><td><p>Burst</p></td>
+<td><p>Consists of multiple bytes, smallest amount of data transferred at one time</p></td>
+</tr>
+<tr class="row-even"><td><p>Burst Size</p></td>
+<td><p>Number of bytes per burst, specified by BURST_SIZE register, 8-bit value equal to burst size - 1, (maximum of 64 bytes/burst)</p></td>
+</tr>
+<tr class="row-odd"><td><p>Transfer</p></td>
+<td><p>Consists of multiple bursts</p></td>
+</tr>
+<tr class="row-even"><td><p>Transfer Size</p></td>
+<td><p>Number of burst per transfer, specified by TRANSFER_SIZE register, 8-bit value equal to transfer size - 1, (value exceeds any practical requirements)</p></td>
+</tr>
+</tbody>
+</table>
+<section id="simplified-state-machine-operation">
+<h4>Simplified State Machine Operation<a class="headerlink" href="#simplified-state-machine-operation" title="Permalink to this heading">#</a></h4>
+<p>The DMA state machine at its most basic level is two nested loops. The most inner loop moves bytes based on the number of bursts programmed. Afterwards, the process is repeated again for the number of transfers performed.</p>
+<figure class="align-center" id="id2">
+<a class="reference internal image-reference" href="../../_images/simplified_state_machine.png"><img alt="../../_images/simplified_state_machine.png" src="../../_images/simplified_state_machine.png" style="width: 434.4px; height: 324.59999999999997px;" /></a>
+<figcaption>
+<p><span class="caption-text">Figure 1</span><a class="headerlink" href="#id2" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+</section>
+<section id="basic-address-control-registers">
+<h4>Basic Address Control Registers<a class="headerlink" href="#basic-address-control-registers" title="Permalink to this heading">#</a></h4>
+<figure class="align-center" id="id3">
+<a class="reference internal image-reference" href="../../_images/address_control_registers.png"><img alt="../../_images/address_control_registers.png" src="../../_images/address_control_registers.png" style="width: 463.0px; height: 388.0px;" /></a>
+<figcaption>
+<p><span class="caption-text">Figure 2</span><a class="headerlink" href="#id3" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+</section>
+<section id="simplified-state-machine">
+<h4>Simplified State Machine<a class="headerlink" href="#simplified-state-machine" title="Permalink to this heading">#</a></h4>
+<p>The figure below illustrates the steps the DMA performs. Again, showing the two loops that occur, one to reach the number of bursts and another to reach the number of transfers.</p>
+<figure class="align-center" id="id4">
+<a class="reference internal image-reference" href="../../_images/state_machine.png"><img alt="../../_images/state_machine.png" src="../../_images/state_machine.png" style="width: 407.4px; height: 445.8px;" /></a>
+<figcaption>
+<p><span class="caption-text">Figure 3</span><a class="headerlink" href="#id4" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+</section>
+<section id="rtdma-interrupts">
+<h4>RTDMA Interrupts<a class="headerlink" href="#rtdma-interrupts" title="Permalink to this heading">#</a></h4>
+<figure class="align-center" id="id5">
+<a class="reference internal image-reference" href="../../_images/rtdma_interrupts.png"><img alt="../../_images/rtdma_interrupts.png" src="../../_images/rtdma_interrupts.png" style="width: 721.8px; height: 443.4px;" /></a>
+<figcaption>
+<p><span class="caption-text">Figure 4</span><a class="headerlink" href="#id5" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+</section>
+</section>
+<section id="dma-examples">
+<h3>DMA Examples<a class="headerlink" href="#dma-examples" title="Permalink to this heading">#</a></h3>
+<section id="example-1-simple-example">
+<h4>Example 1: Simple Example<a class="headerlink" href="#example-1-simple-example" title="Permalink to this heading">#</a></h4>
+<p>Objective: Move 4 words from memory location 0xF000 to memory location 0x4000 and interrupt CPU at end of transfer.</p>
+<figure class="align-center" id="id6">
+<a class="reference internal image-reference" href="../../_images/rtdma_example_1.png"><img alt="../../_images/rtdma_example_1.png" src="../../_images/rtdma_example_1.png" style="width: 854.75px; height: 469.95px;" /></a>
+<figcaption>
+<p><span class="caption-text">Figure 5</span><a class="headerlink" href="#id6" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<p>This example could also have been done using 1 word/burst and 4 bursts/transfer, or 4 words/burst and 1 burst/transfer. This would affect Round-Robin progression, but not interrupts.</p>
+</section>
+<section id="example-2-data-binning">
+<h4>Example 2: Data Binning<a class="headerlink" href="#example-2-data-binning" title="Permalink to this heading">#</a></h4>
+<p>Objective: Bin 3 samples of 5 ADC channels, then interrupt the CPU.</p>
+<figure class="align-center" id="id7">
+<a class="reference internal image-reference" href="../../_images/rtdma_example_2.png"><img alt="../../_images/rtdma_example_2.png" src="../../_images/rtdma_example_2.png" style="width: 461.0px; height: 368.0px;" /></a>
+<figcaption>
+<p><span class="caption-text">Figure 6</span><a class="headerlink" href="#id7" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<figure class="align-center" id="id8">
+<a class="reference internal image-reference" href="../../_images/rtdma_example_2_registers.png"><img alt="../../_images/rtdma_example_2_registers.png" src="../../_images/rtdma_example_2_registers.png" style="width: 712.1999999999999px; height: 426.59999999999997px;" /></a>
+<figcaption>
+<p><span class="caption-text">Figure 7</span><a class="headerlink" href="#id8" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+</section>
+<section id="example-3-ping-pong-buffer">
+<h4>Example 3: Ping-Pong Buffer<a class="headerlink" href="#example-3-ping-pong-buffer" title="Permalink to this heading">#</a></h4>
+<p>Objective: Buffer ADC channel 0 ping-pong style, 50 samples per buffer.</p>
+<figure class="align-center" id="id9">
+<a class="reference internal image-reference" href="../../_images/rtdma_example_3.png"><img alt="../../_images/rtdma_example_3.png" src="../../_images/rtdma_example_3.png" style="width: 630.85px; height: 364.1px;" /></a>
+<figcaption>
+<p><span class="caption-text">Figure 8</span><a class="headerlink" href="#id9" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<figure class="align-center" id="id10">
+<a class="reference internal image-reference" href="../../_images/rtdma_example_3_registers.png"><img alt="../../_images/rtdma_example_3_registers.png" src="../../_images/rtdma_example_3_registers.png" style="width: 801.75px; height: 420.0px;" /></a>
+<figcaption>
+<p><span class="caption-text">Figure 9</span><a class="headerlink" href="#id10" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+</section>
+</section>
+<section id="channel-priority-modes">
+<h3>Channel Priority Modes<a class="headerlink" href="#channel-priority-modes" title="Permalink to this heading">#</a></h3>
+<section id="round-robin-mode">
+<h4>Round Robin Mode<a class="headerlink" href="#round-robin-mode" title="Permalink to this heading">#</a></h4>
+<ul class="simple">
+<li><p>All channels have equal priority</p></li>
+<li><p>After each enabled channel has transferred a burst of bytes, the next enabled channel is serviced in a round robin fashion</p></li>
+</ul>
+<figure class="align-center" id="id11">
+<a class="reference internal image-reference" href="../../_images/round_robin_mode.png"><img alt="../../_images/round_robin_mode.png" src="../../_images/round_robin_mode.png" style="width: 378.5px; height: 358.5px;" /></a>
+<figcaption>
+<p><span class="caption-text">Figure 10</span><a class="headerlink" href="#id11" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+</section>
+<section id="software-configurable-priority-of-the-channels">
+<h4>Software-Configurable Priority of the Channels<a class="headerlink" href="#software-configurable-priority-of-the-channels" title="Permalink to this heading">#</a></h4>
+<ul class="simple">
+<li><p>Same as Round Robin except any channel can be set a software configurable priority of 0 to 3.</p></li>
+<li><p>All the channels are set to a default priority of 1.</p></li>
+<li><p>Lowest priority number implies highest priority during arbitration. When the same priority number is assigned to multiple channels, the channel with lowest channel number assigned will win the arbitration.</p></li>
+</ul>
+</section>
+<section id="channel-in-high-priority-mode">
+<h4>Channel in High Priority Mode<a class="headerlink" href="#channel-in-high-priority-mode" title="Permalink to this heading">#</a></h4>
+<ul class="simple">
+<li><p>A channel configured with a priority of 0 can interrupt the RTDMA state machine.</p></li>
+<li><p>If the channel trigger occurs, the current byte (not the complete burst) on any other channel is completed and execution is halted. This channel is serviced for a complete burst. When completed, execution returns to previous active channel.</p></li>
+<li><p>This priority is intended primarily for the ADC, but can be used by any RTDMA event configured to trigger a channel with a priority of 0.</p></li>
+</ul>
+</section>
+<section id="priority-modes-and-the-state-machine">
+<h4>Priority Modes and the State Machine<a class="headerlink" href="#priority-modes-and-the-state-machine" title="Permalink to this heading">#</a></h4>
+<figure class="align-center" id="id12">
+<a class="reference internal image-reference" href="../../_images/priority_modes_and_state_machine.png"><img alt="../../_images/priority_modes_and_state_machine.png" src="../../_images/priority_modes_and_state_machine.png" style="width: 696.75px; height: 555.75px;" /></a>
+<figcaption>
+<p><span class="caption-text">Figure 11</span><a class="headerlink" href="#id12" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+</section>
+</section>
+</section>
+<section id="rtdma-throughput">
+<h2>RTDMA Throughput<a class="headerlink" href="#rtdma-throughput" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p>With no Read or Write Stall, it takes 4 cycles/word to complete the first read-write access and 1 cycle/word afterwards.</p></li>
+<li><p>1 cycle delay to start each burst</p></li>
+<li><p>1 cycle delay returning from channel high priority interrupt and in between burst of different channels</p></li>
+<li><p>For example, a 32-bit transfer doubles throughput compared to 16-bit transfer</p></li>
+</ul>
+<section id="example-1">
+<h3>Example 1<a class="headerlink" href="#example-1" title="Permalink to this heading">#</a></h3>
+<p>128 16-bit words from ADC to RAM (1 burst * (4 cycles/word * 1 words/burst)) + (7 bursts * (1 cycles/word + 16 words/burst)) + 16 = 139 cycles</p>
+</section>
+<section id="example-2">
+<h3>Example 2<a class="headerlink" href="#example-2" title="Permalink to this heading">#</a></h3>
+<p>64 32-bit words from ADC to RAM (1 burst * (4 cycles/word * 1 words/burst)) + (7 bursts * (1 cycles/word + 8 words/burst)) + 8 = 75 cycles</p>
+</section>
+</section>
+<section id="rtdma-mpu">
+<h2>RTDMA MPU<a class="headerlink" href="#rtdma-mpu" title="Permalink to this heading">#</a></h2>
+<p>The RTDMA Memory Protection Unit (MPU) monitors the DMA read/write interface buses continuously and block access violations and trigger an interrupt, in case of violations.</p>
+<p>When the MPU is enabled, any faults in the interface are communicated to the Error Signaling Module (ESM) where the errors are latched and RTDMA access is blocked:</p>
+<ul class="simple">
+<li><p>MPU checks if an access to range defined by the MPU region does have necessary access permissions.</p></li>
+<li><p>MPU checks if an address belongs to any region.</p></li>
+</ul>
+<p>This system comprises of 16 regions, each containing registers for user-configurable attributes like start and end addresses for read/write accesses. Channel-to-MPU mapping is orthogonal, allowing each channel to be enabled in multiple MPU regions and vice versa.</p>
+<p>In a secure system, MPU permissions are dictated by the Safety and Security Unit (SSU). Each channel can be associated with a specific AP region and hence can be configured by the corresponding SSU settings.</p>
+<div class="admonition-note admonition">
+<p class="admonition-title">Note</p>
+<p>Refer to the Error Signaling Module (ESM) and other Safety and Security modules for further information on configuration and usage.</p>
+</div>
+</section>
+<section id="test-your-knowledge">
+<h2>Test Your Knowledge!<a class="headerlink" href="#test-your-knowledge" title="Permalink to this heading">#</a></h2>
+<p><strong>Question 1</strong></p>
+<p>List the RTDMA interface ports.</p>
+<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+Answer<div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
+<p class="sd-card-text">64-bit Data Read (DR) and Data Write (DW) busses</p>
+</div>
+</details><p><strong>Question 2</strong></p>
+<p>What are the channel trigger sources?</p>
+<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+Answer<div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
+<p class="sd-card-text">Internal channel to channel linking and external peripheral events</p>
+</div>
+</details><p><strong>Question 3</strong></p>
+<p>Describe the errors generated by the RTDMA when the MPU is enabled.</p>
+<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+Answer<div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
+<p class="sd-card-text">Access is blocked and a fault is generated and triggered to the ESM when (1) an address does not belong to any region and (2) an access to a range defined by MPU region does not have necessary access permissions.</p>
+</div>
+</details></section>
+<section id="summary">
+<h2>Summary<a class="headerlink" href="#summary" title="Permalink to this heading">#</a></h2>
+<p>The key takeaways from this learning module are:</p>
+<ul class="simple">
+<li><p>RTDMA provides a hardware method of transferring data between peripherals and/or memory without CPU intervention.</p></li>
+<li><p>RTDMA supports software configurable priority levels for each channel, including PRI=0, the highest priority.</p></li>
+<li><p>RTDMA accesses are controlled by RTDMA-MPU regions that provide memory protection support and illegal accesses prevention.</p></li>
+</ul>
+</section>
+</section>
+
+
+                </article>
+              
+              
+              <footer class="bd-footer-article">
+                    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+  <a class='left-prev' id="prev-link" href="../debug/c29x_debug_tips.html" title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+          <p class="prev-next-subtitle">previous</p>
+          <p class="prev-next-title">Debug Tips &amp; Tricks</p>
+      </div>
+  </a>
+  <a class='right-next' id="next-link" href="c28x_c29x_clb.html" title="next page">
+  <div class="prev-next-info">
+      <p class="prev-next-subtitle">next</p>
+      <p class="prev-next-title">Configurable Logic Block (CLB)</p>
+  </div>
+  <i class="fa-solid fa-angle-right"></i>
+  </a>
+</div>
+                  </footer>
+                
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc">
+<div class="toc-item">
+  
+<div class="tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+</div>
+<nav id="bd-toc-nav" class="page-toc">
+    <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#overview">
+   Overview
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#introduction">
+   Introduction
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#application-of-rtdma">
+   Application of RTDMA
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#why-use-rtdma">
+   Why use RTDMA?
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#what-is-the-rtdma">
+   What is the RTDMA?
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#how-does-the-rtdma-work">
+     How does the RTDMA work?
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#basic-operation">
+     Basic Operation
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#simplified-state-machine-operation">
+       Simplified State Machine Operation
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#basic-address-control-registers">
+       Basic Address Control Registers
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#simplified-state-machine">
+       Simplified State Machine
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#rtdma-interrupts">
+       RTDMA Interrupts
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#dma-examples">
+     DMA Examples
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#example-1-simple-example">
+       Example 1: Simple Example
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#example-2-data-binning">
+       Example 2: Data Binning
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#example-3-ping-pong-buffer">
+       Example 3: Ping-Pong Buffer
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#channel-priority-modes">
+     Channel Priority Modes
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#round-robin-mode">
+       Round Robin Mode
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#software-configurable-priority-of-the-channels">
+       Software-Configurable Priority of the Channels
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#channel-in-high-priority-mode">
+       Channel in High Priority Mode
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#priority-modes-and-the-state-machine">
+       Priority Modes and the State Machine
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#rtdma-throughput">
+   RTDMA Throughput
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#example-1">
+     Example 1
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#example-2">
+     Example 2
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#rtdma-mpu">
+   RTDMA MPU
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#test-your-knowledge">
+   Test Your Knowledge!
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#summary">
+   Summary
+  </a>
+ </li>
+</ul>
+
+</nav>
+</div>
+
+<div class="toc-item">
+  
+<button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-toggle="tooltip">
+  <i class="fa-solid fa-magnifying-glass"></i>
+</button>
+</div>
+</div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+<script async>
+  async function setTheme() {
+    try {
+      var colorScheme = await window.parent.getTirexTheme();
+      var mode = colorScheme === 'dark' ? 'dark' : 'light';
+      localStorage.setItem('mode', mode);
+      document.documentElement.dataset.mode = mode;
+      document.documentElement.dataset.theme = colorScheme;
+    } catch (error) {
+      console.error('Failed to set the theme:', error);
+    }
+  }
+
+  setTheme();
+</script>
+
+
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=796348d33e8b1d947c94"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=796348d33e8b1d947c94"></script>
+
+
+
+
+<script type="text/javascript">
+  function extractNodeValue(url) {
+    try {
+      const parsedUrl = new URL(url);
+      if (parsedUrl.pathname === '/tirex/explore/node') {
+        const searchParams = new URLSearchParams(parsedUrl.search);
+        return searchParams.get('node');
+      } else {
+        return null;
+      }
+    } catch (error) {
+      console.error("Invalid URL:", error);
+      return null;
+    }
+  }
+
+  // Get all links on the page
+  const links = document.querySelectorAll('a');
+
+  // Get the project name and replace spaces with underscores
+  var projName = "C29x Academy";
+
+  // Attach a click event listener to each link
+  links.forEach((link) => {
+    link.addEventListener('click', (event) => {
+      // Prevent the default link behavior
+      event.preventDefault();
+
+      const url = link.href;
+      console.log(url)
+      const match = url.match(/source\/.+$/);
+      const localId = match ? match[0].replace(/\.html$/, '').replace(/[\/\\\.]/g, '_').toLowerCase() : null;
+      console.log(localId)
+      const extractedNode = extractNodeValue(url);
+
+      console.log(extractedNode)
+      if (typeof window.parent.jumpToTirexNodeOnLocal === 'function') {
+        window.parent.jumpToTirexNodeOnLocal(localId, null, null, {
+            throwError: true
+          })
+          .catch((e) => {
+            if (extractedNode !== null) {
+              window.parent.jumpToTirexNode(extractedNode, {
+                  throwError: true
+                })
+                .catch((e) => {
+                  window.location.href = link.href;
+                })
+            }
+            else {
+              if (url.includes("e2e.ti.com") || url.includes("dev.ti.com/gallery/view")) {
+              window.open(url, "_blank")
+              } else {
+              window.location.href = link.href;
+            }}
+          })
+      } else {
+        window.location.href = link.href;
+      }
+    });
+  });
+</script>
+  <footer class="bd-footer"><div class="bd-footer__inner container">
+  
+  <div class="footer-item">
+    
+<p class="copyright">
+
+    &copy; Copyright 2025, Texas Instruments.<br>
+
+</p>
+
+  </div>
+  
+</div>
+  </footer>
+  </body>
+</html>

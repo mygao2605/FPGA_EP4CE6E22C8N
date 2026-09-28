@@ -1,0 +1,992 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>Universal Asynchronous Receiver/Transmitter (UART) Lab &#8212; C29x Academy</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../_static/styles/theme.css?digest=796348d33e8b1d947c94" rel="stylesheet">
+<link href="../../../_static/styles/bootstrap.css?digest=796348d33e8b1d947c94" rel="stylesheet">
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=796348d33e8b1d947c94" rel="stylesheet">
+
+  
+  <link href="../../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=796348d33e8b1d947c94" rel="stylesheet">
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/local/font.css" />
+    <link rel="stylesheet" type="text/css" href="https://www.ti.com/assets/fonts/font.css" />
+    <link rel="stylesheet" type="text/css" href="https://www.ti.com/assets/style/resource-explorer.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=796348d33e8b1d947c94">
+<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=796348d33e8b1d947c94">
+
+    <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+    <script src="../../../_static/jquery.js"></script>
+    <script src="../../../_static/underscore.js"></script>
+    <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../../../_static/doctools.js"></script>
+    <script src="../../../_static/sphinx_highlight.js"></script>
+    <script src="../../../_static/clipboard.min.js"></script>
+    <script src="../../../_static/copybutton.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../../_static/togglebutton.js"></script>
+    <script src="../../../_static/design-tabs.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'source/lab_exercises/c29x_labs/c29x_uart_lab';</script>
+    <script src="../../../_static/quizdown.js"></script>
+    <script src="../../../_static/external-links.js"></script>
+    <link rel="canonical" href="http://127.0.0.1:8000/source/lab_exercises/c29x_labs/c29x_uart_lab.html" />
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="Fast Serial Interface (FSI) Lab" href="c29x_fsi_lab.html" />
+    <link rel="prev" title="Enhanced Quadrature Encoder Pulse (eQEP) Lab" href="c29x_eqep_lab.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="docsearch:language" content="en">
+  </head>
+  
+  
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="180" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center" action="../../../search.html" method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search C29x Academy" aria-label="Search C29x Academy" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar"><div class="bd-header__inner bd-page-width">
+  <label class="sidebar-toggle primary-toggle" for="__primary">
+      <span class="fa-solid fa-bars"></span>
+  </label>
+  <div id="navbar-start">
+    
+  </div>
+
+  
+  <div class="col-lg-9 navbar-header-items">
+    <div id="navbar-center" class="mr-auto">
+      
+    </div>
+
+    <div id="navbar-end">
+      
+        <div class="navbar-end-item navbar-persistent--container">
+          
+<button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-toggle="tooltip">
+  <i class="fa-solid fa-magnifying-glass"></i>
+</button>
+        </div>
+      
+      
+    </div>
+  </div>
+
+
+  
+  
+    <div class="navbar-persistent--mobile">
+<button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-toggle="tooltip">
+  <i class="fa-solid fa-magnifying-glass"></i>
+</button>
+    </div>
+  
+
+  
+  <label class="sidebar-toggle secondary-toggle" for="__secondary">
+      <span class="fa-solid fa-outdent"></span>
+  </label>
+  
+
+</div>
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar hide-on-wide">
+        
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+
+    
+    
+  </div>
+
+  
+
+  
+  <div class="sidebar-end-items sidebar-primary__section">
+    <div class="sidebar-end-items__item">
+    </div>
+  </div>
+
+  
+  <div id="rtd-footer-container"></div>
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article"></div>
+              
+              
+                <article class="bd-article" role="main">
+                  
+                  
+<div id="searchbox"></div>
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="universal-asynchronous-receiver-transmitter-uart-lab">
+<h1>Universal Asynchronous Receiver/Transmitter (UART) Lab<a class="headerlink" href="#universal-asynchronous-receiver-transmitter-uart-lab" title="Permalink to this heading">#</a></h1>
+<p><a class="reference external" href="https://dev.ti.com/tirex/local?id=source_lab_exercises_c29x_labs_c29x_uart_lab&amp;packageId=C29X-ACADEMY">Link to share</a></p>
+<p>The objective of this lab is to become familiar with the on-board UART
+(Universal Asychronous Receiver Transmitter) by sending and receiving data
+between a C29 device and a computer. We will use the computer to change
+the frequency of the blinking LED and then the board will echo this value
+back to the computer. This will allow us to demonstrate both directions of
+communication. Additionally, Code Composer Studio’s terminal feature will
+be explored and used to interact with the device.
+The LED will blink at a rate of scaleFactor[Hz], with the scaleFactor being
+the integer 1-9 input into the UART terminal. This means the LED can blink
+at a frequency of 1Hz (default) - 9Hz in this example. As you increase the
+frequency, you should see the LED blink rate increase.</p>
+<section id="solution">
+<h2>Solution<a class="headerlink" href="#solution" title="Permalink to this heading">#</a></h2>
+<p>The Academy lab modules provide step-by-step instructions for users to follow along and carry out; however, the completed software solutions are also available in the device’s SDK.</p>
+<ul class="simple">
+<li><p>See your device’s specific SDK to obtain this lab’s software solution.</p></li>
+<li><p>You can download your device’s SDK by going to the device’s product page on TI’s website and navigating to the ‘Design &amp; Development’ and ‘Software Development’ tabs.</p></li>
+</ul>
+<p>This specific lab’s solution can be found in: <code class="docutils literal notranslate"><span class="pre">[Device_SDK_Install_Path]/examples/driverlib/single_core/uart</span></code>.</p>
+</section>
+<section id="overview">
+<h2>Overview<a class="headerlink" href="#overview" title="Permalink to this heading">#</a></h2>
+<p>In this lab, we will learn to use the UART module of C2000 real-time
+Microcontrollers by using a TI controlSOM. This module will help
+you understand how C29x devices communicate with external devices or with each
+other over UART based serial communication. We will use the SysConfig GUI to
+configure the UART module for port configuration (baud-rate, word length,
+parity). It will also configure the CPU timer to control the rate of LED
+blinking.</p>
+</section>
+<section id="lab-setup">
+<h2>Lab Setup<a class="headerlink" href="#lab-setup" title="Permalink to this heading">#</a></h2>
+<section id="hardware-setup">
+<h3>Hardware Setup<a class="headerlink" href="#hardware-setup" title="Permalink to this heading">#</a></h3>
+<p>Required hardware for this lab:</p>
+<ul class="simple">
+<li><p>ControlSOM with the supplied USB cable.</p></li>
+<li><p>Oscilloscope (optional).</p></li>
+</ul>
+<p>This lab exercise is intended for the F29H85x ControlSOM. Before continuing this lab, please be sure to reference the <a class="reference internal" href="../../intro/c29x_literature.html"><span class="doc std std-doc">ControlSOM User Guide</span></a> for hardware setup details.</p>
+<ul class="simple">
+<li><p>Using the supplied USB cable, connect the USB Type-C connector into your C2000 board
+and the USB Standard Type-A connector into your computer’s USB port.</p></li>
+<li><p>Please note that a docking station is recommended to successfully run this lab. If you are using the controlSOM docking station, an additional power supply is needed for the docking station. See the <a class="reference internal" href="../../intro/c29x_literature.html"><span class="doc std std-doc">ControlSOM User Guide</span></a> for more details.</p></li>
+<li><p>Check the power status LEDs (LED1 and LED2) to confirm that the board is powered and provides a JTAG communication link between the device and CCS.</p></li>
+<li><p>Set XDS110ISO-EVM Switch 2 to Position ON in order to route the UART signals to the UART-to-USB bridge and onto the COM port of your computer. Without this step, communication with the COM port will not be possible.</p></li>
+</ul>
+</section>
+<section id="software-setup">
+<h3>Software Setup<a class="headerlink" href="#software-setup" title="Permalink to this heading">#</a></h3>
+<p>Required software for this lab:</p>
+<ul class="simple">
+<li><p>The device’s SDK</p>
+<ul>
+<li><p>Your device’s software development kit (SDK) download can be found on the “Software Development” section of your device’s product page on TI’s website.</p></li>
+</ul>
+</li>
+<li><p>The <a class="reference external" href="https://www.ti.com/tool/CCSTUDIO">Code Composer Studio (CCS)</a> platform.</p>
+<ul>
+<li><p>See the <a class="reference internal" href="../../intro/c29x_literature.html"><span class="doc std std-doc">CCS User’s Guide</span></a> for more information about this IDE.</p></li>
+</ul>
+</li>
+</ul>
+</section>
+</section>
+<section id="start-a-ccs-project">
+<h2>Start a CCS Project<a class="headerlink" href="#start-a-ccs-project" title="Permalink to this heading">#</a></h2>
+<p>Our first task is to import an empty project to our CCS workspace.</p>
+<ol class="arabic simple">
+<li><p>Open CCS and go to <strong>File → Import Project(s)</strong>. A new window should appear.</p></li>
+<li><p>Click the <strong>Browse</strong> button and select the <code class="docutils literal notranslate"><span class="pre">[MCU_SDK_[DEVICE]_Install_Path]/examples/driverlib/single_core/empty_projects</span></code> and click “Select Folder”.</p>
+<ul class="simple">
+<li><p>Note that the default Windows installation directory <code class="docutils literal notranslate"><span class="pre">[MCU_SDK_[DEVICE]_Install_Dir]</span></code> is <code class="docutils literal notranslate"><span class="pre">C:/ti/c2000/MCU_SDK_[DEVICE]_X_XX_XX_XX_XX</span></code>.</p></li>
+</ul>
+</li>
+<li><p>Under <strong>Discovered Projects</strong>, you should now see the <code class="docutils literal notranslate"><span class="pre">empty_driverlib_project</span></code>.</p></li>
+</ol>
+<a class="reference internal image-reference" href="../../../_images/empty_project.png"><img alt="../../../_images/empty_project.png" class="align-center" src="../../../_images/empty_project.png" style="width: 540.9px; height: 468.90000000000003px;" /></a>
+<br>
+<ol class="arabic simple" start="4">
+<li><p>Click <strong>Finish</strong> to import and copy the <code class="docutils literal notranslate"><span class="pre">empty_driverlib_project</span></code> into your CCS workspace.</p></li>
+<li><p>After the project has been imported, the project explorer window should
+look like below:</p></li>
+</ol>
+<a class="reference internal image-reference" href="../../../_images/project_view.png"><img alt="../../../_images/project_view.png" class="align-center" src="../../../_images/project_view.png" style="width: 266.95px; height: 170.04999999999998px;" /></a>
+<ol class="arabic simple" start="6">
+<li><p>Rename the project:</p>
+<ul class="simple">
+<li><p>Right-click on the project in the “Project Explorer” panel. Select <strong>Rename</strong> from
+the drop-down menu and rename the project to ‘uart_academy_lab’ or a name of
+your choosing.</p></li>
+<li><p>Now click the <strong>Down Arrow</strong> located to the left of the imported project to
+expand it and select <code class="docutils literal notranslate"><span class="pre">empty_driverlib_project.c</span></code>. Right-click on the file, and
+select <strong>Rename</strong> to rename the file to ‘uart_academy_lab.c’ or a name of
+your choosing.</p></li>
+</ul>
+</li>
+</ol>
+</section>
+<section id="configure-the-uart">
+<h2>Configure the UART<a class="headerlink" href="#configure-the-uart" title="Permalink to this heading">#</a></h2>
+<p>The first task is to set up the UART peripheral with the following specifications:</p>
+<ul class="simple">
+<li><p>Word Length of 8 bits</p></li>
+<li><p>Stop Mode of 1</p></li>
+<li><p>No Parity</p></li>
+<li><p>FIFO enabled</p></li>
+<li><p>Baud Rate of 9600 bps</p></li>
+</ul>
+<p>In order to do this, open the file with the “.syscfg” extension within the project by double clicking it.
+You’ll see the SysConfig tool open within CCS. Add a UART module by clicking on the (+) sign next to it.
+Now, we can configure the settings to look like the below based on our configuration specifications.
+Configure the settings as described below (note that some configurations can be left as the default)</p>
+<ul class="simple">
+<li><p>Under the <strong>Peripheral Configuration</strong> dropdown:</p>
+<ul>
+<li><p>Enter 9600 into “Baud Rate Select” (default) to configure a baud rate of 9600 bits/second.
+Based on the SYSCLK and baud rate configured, the “Actual Baud Rate Value” and “Baud Rate Error Percent” are calculated by Sysconfig.
+If changing the baud rate or SYSCLK frequency, minimize this error percent value to avoid communication errors with the UART module.</p></li>
+<li><p>Under the <strong>Word Settings</strong> dropdown:</p>
+<ul>
+<li><p>Select “8 bit data” to transmit/receive 8 data bits in each UART frame (default)</p></li>
+<li><p>Select “1 stop bit” to transmit/receive 1 stop bit in each UART frame (default)</p></li>
+<li><p>Keep “Parity Enable” unchecked to send each data frame without a parity bit (default)</p></li>
+</ul>
+</li>
+<li><p>Keep the “Enable FIFO” box unchecked (default) since we will not need the FIFO for this example</p></li>
+<li><p>Keep the “Enable Loopback Mode” box unchecked (default) since this example will be doing an echoback operation (C2000 UART RX -&gt; C2000 UART TX) rather than a loopback operation (C2000 UART RX -&gt; C2000 UART TX).</p></li>
+</ul>
+</li>
+<li><p>Under the <strong>PinMux</strong> dropdown:</p>
+<ul>
+<li><p>Select UARTA for the “UART Peripheral” input</p></li>
+<li><p>Select GPIO42/C16 for the UART_TX input</p></li>
+<li><p>Select GPIO43/C15 for the UART_RX input</p></li>
+</ul>
+</li>
+</ul>
+<div class="admonition-note admonition">
+<p class="admonition-title">Note:</p>
+<ul class="simple">
+<li><p>The UART instance and GPIOs may vary depending on the device or device family.</p></li>
+<li><p>The device will be communicating with the computer via the bridge connection in the XDS110ISO-EVM board, so the UART pins don’t need to be wired by hand.</p></li>
+<li><p>If using the F29H85x ControlSOM, then the correct GPIOs are
+‘GPIO43’ (UARTA RX) and ‘GPIO42’ (UARTA TX). Note that these are the only UART GPIOs connected to the bridge on the XDS110ISO-EVM board, so they are the only GPIOs that can be configured to communicate with the COM port on your computer.</p></li>
+</ul>
+<p>However, other UART GPIOs/instances can be configured for device-to-device UART communication.</p>
+</div>
+<p>Leave all other settings as the default selections.</p>
+<a class="reference internal image-reference" href="../../../_images/Uart_Setup.png"><img alt="../../../_images/Uart_Setup.png" class="align-center" src="../../../_images/Uart_Setup.png" style="width: 617.5px; height: 1168.5px;" /></a>
+<p>You have now configured the UART module for this lab.</p>
+</section>
+<section id="configure-the-cputimer">
+<h2>Configure the CPUTIMER<a class="headerlink" href="#configure-the-cputimer" title="Permalink to this heading">#</a></h2>
+<p>The next part is setting up a CPUTIMER so that we can toggle an LED at a rate that we can change.
+Key configurations for the CPUTIMER include:</p>
+<ul class="simple">
+<li><p>Use CPU Timer 0</p></li>
+<li><p>Maximum period of 20000000</p></li>
+<li><p>Prescaler of 1 (SYSCLK)</p></li>
+<li><p>Period of 1 second</p></li>
+<li><p>Enable/generate interrupt when the timer has stopped counting</p></li>
+</ul>
+<p>Add an instance of “CPUTIMER” found under the “System” category for SysConfig. After clicking the ‘Add’ button within SysConfig,
+you’ll notice that the options are able to be edited.</p>
+<p>To set up the correct timer period we can use the following below. In the equation, ‘freq’ is the device frequency in Hz, and ‘period’ is the period value you desire in microseconds</p>
+<p><span class="math notranslate nohighlight">\(\text{timer period}=(\text{uint32_t})*((\frac{\text{freq}}{1000000})*\text{period})\)</span></p>
+<p>For example, if the device frequency is 200MHz and desired period is to interrupt every 0.1 seconds:</p>
+<p><span class="math notranslate nohighlight">\(\text{period}=(\text{uint32_t})*((\frac{200E6}{1000000})*100000)=200000000\)</span></p>
+<p>Configure the settings as described below (note that some configurations can be left as the default)</p>
+<ul class="simple">
+<li><p>Under the <strong>Peripheral Configuration</strong> dropdown:</p>
+<ul>
+<li><p>Select “CPUTIMER0” to use the CPU Timer 0 instance (default)</p></li>
+<li><p>Select Timer Stop after the next decrement for “Emulation Mode” (default) so that when the CPU is paused at software a breakpoint, the timer will also pause after the next decrement of the TIMH:TIM register field.
+This will allow us to debug by placing breakpoints in the application code without altering the functionality of the lab.</p></li>
+<li><p>Enter 1 for the “Timer Prescaler” value since we don’t need to divide down the SYSCLK frequency for the CPU timer frequency we are configuring.</p></li>
+<li><p>Enter 20,000,000 for the “Timer Period” since this is the period value we previously calculated that can be used for a CPU timer frequency of 10 Hz (every 0.1 seconds).</p></li>
+<li><p>Keep the “Start Timer” option unchecked (default) since we will do this in the main code after all configurations are complete.</p></li>
+</ul>
+</li>
+<li><p>Under the <strong>Interrupt Configuration</strong> dropdown:</p>
+<ul>
+<li><p>Check “Enable Interrupt” so that the CPU timer 0 interrupt is enabled at the peripheral level</p></li>
+<li><p>Check the “Register Interrupt in PIPE” checkbox so that we can setup a interrupt service routine (ISR) handler inside the main application code to execute every 0.1 seconds.</p>
+<ul>
+<li><p>Under the <strong>Timer Interrupt</strong> dropdown:</p>
+<ul>
+<li><p>(Optionally) edit the “Name” field to change the PIPE interrupt name. We use myCPUTIMER0 (default). This will be defined in the Sysconfig generated board.h file and correlates to the CPU Timer 0 interrupt in the PIPE module.</p></li>
+<li><p>(Optionally) edit the “Interrupt Handler” field to change the name of the ISR handler. We use INT_myCPUTIMER0_ISR. This will need to match the name used to define the ISR in the application code in later steps.</p></li>
+<li><p>Keep “Enable Interrupt in PIPE” checked (default) to enable the CPU timer 0 interrupt at the PIPE level</p></li>
+<li><p>Enter 255 for “Interrupt Priority” (default) to configure the CPU timer 0 interrupt as low priority. In this lab there are no other interrupts used, so this value doesn’t have any effect.</p></li>
+<li><p>Select “Context-ID 0” for “Interrupt Context ID” (default)</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>Leave all other settings as the default selections.
+The configuration for Timer 0 should look like the below image.</p>
+<a class="reference internal image-reference" href="../../../_images/CPUTimer_Setup.png"><img alt="../../../_images/CPUTimer_Setup.png" class="align-center" src="../../../_images/CPUTimer_Setup.png" style="width: 641.25px; height: 618.4499999999999px;" /></a>
+<p>You have now configured the timer for this lab.</p>
+</section>
+<section id="configure-the-gpio">
+<h2>Configure the GPIO<a class="headerlink" href="#configure-the-gpio" title="Permalink to this heading">#</a></h2>
+<p>We need to setup a GPIO as an LED whose blink rate will change depending on a value
+typed by the user.
+Add an instance of “GPIO” found under the “System” category for SysConfig. After clicking the ‘Add’ button within SysConfig,
+you’ll notice that the options are able to be edited.</p>
+<p>Configure the settings as described below (note that some configurations can be left as the default)</p>
+<ul class="simple">
+<li><p>(Optionally) edit the name of the Sysconfig GPIO instance. We use myBoardLED0_GPIO. This will need to match the name of the define used to toggle the LED inside the CPU timer interrupt ISR in later steps.</p></li>
+<li><p>Select “Pin is a GPIO output” from the “GPIO Direction” options to configure the GPIO routed to the on board LED as an output.</p></li>
+<li><p>Select “Push-pull output/floating input” from the “Pin Type” options (default).</p></li>
+<li><p>Select “Sychronization to SYSCLK” from the “Qualification Mode” options (default).</p></li>
+<li><p>Under the <strong>PinMux</strong> dropdown:</p>
+<ul>
+<li><p>Select GPIO9/A5 for the GPIO used</p></li>
+</ul>
+</li>
+</ul>
+<div class="admonition-note admonition">
+<p class="admonition-title">Note:</p>
+<ul class="simple">
+<li><p>The GPIO used for the controlSOM LEDs may vary depending on the device or device family.</p></li>
+<li><p>If using the F29H85x ControlSOM, then the GPIOs connected to user LEDs - LED3 and LED4 on the controlSOM are GPIO23 and GPIO9 respectively.
+For this example, we configure GPIO9 in order to use LED4.</p></li>
+</ul>
+</div>
+<a class="reference internal image-reference" href="../../../_images/Led_Setup.png"><img alt="../../../_images/Led_Setup.png" class="align-center" src="../../../_images/Led_Setup.png" style="width: 400.0px; height: 331.0px;" /></a>
+</section>
+<section id="program-setup">
+<h2>Program Setup<a class="headerlink" href="#program-setup" title="Permalink to this heading">#</a></h2>
+<p>Now that we have set up the UART, CPU Timer, and GPIO modules within SysConfig, we can move on to actually writing the
+application code for the intent of this lab.</p>
+<section id="define-global-macros-and-variables">
+<h3>Define Global Macros and Variables<a class="headerlink" href="#define-global-macros-and-variables" title="Permalink to this heading">#</a></h3>
+<p>In our main (.c) file you’ll notice that <code class="docutils literal notranslate"><span class="pre">board.h</span></code> is called. This is the header
+file that is being generated by SysConfig. The driverlib.h and device.h header
+files are included inside the board.h file by default, since these define the board specific
+functions and IPs.</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>//
+// Included Files
+#include &quot;board.h&quot;
+</pre></div>
+</div>
+<p>We need to define three global variables, <code class="docutils literal notranslate"><span class="pre">cpuTimer0IntCount</span></code> <code class="docutils literal notranslate"><span class="pre">scaleFactor</span></code> and <code class="docutils literal notranslate"><span class="pre">delayCount</span></code>. These
+three variables will allow us to change the LED blink rate and control
+when the LED is toggled. Insert the following code after the <code class="docutils literal notranslate"><span class="pre">board.h</span></code> include.</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="c1">//</span>
+<span class="c1">// Globals</span>
+<span class="c1">//</span>
+
+<span class="c1">//</span>
+<span class="c1">// Number of times the TIMER 0 ISR is triggered.</span>
+<span class="c1">//</span>
+<span class="kt">uint16_t</span><span class="w"> </span><span class="n">cpuTimer0IntCount</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+
+<span class="c1">//</span>
+<span class="c1">// Number (1-9) to scale the LED frequency.</span>
+<span class="c1">//</span>
+<span class="kt">uint8_t</span><span class="w"> </span><span class="n">scaleFactor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+
+<span class="c1">//</span>
+<span class="c1">// Number of CPU timer interrupts to delay toggling.</span>
+<span class="c1">// For example: 5Hz toggling - toggles every 0.2 seconds - toggle every 2 ISRs.</span>
+<span class="c1">//</span>
+<span class="kt">uint16_t</span><span class="w"> </span><span class="n">delayCount</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">9</span><span class="p">;</span><span class="w">    </span>
+</pre></div>
+</div>
+</section>
+<section id="define-main">
+<h3>Define main()<a class="headerlink" href="#define-main" title="Permalink to this heading">#</a></h3>
+<p>Next, we will populate <code class="docutils literal notranslate"><span class="pre">main()</span></code> as shown below.
+Copy the below code into your <code class="docutils literal notranslate"><span class="pre">.c</span></code> after your “Globals” section.</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">Device_init()</span></code> must be called to initialize the platform.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Board_init()</span></code> must be called to apply SysConfig-generated settings and code.</p></li>
+<li><p>Since interrupts are used in this example, we must enable interrupts on a global level.</p></li>
+<li><p>We need to start the CPU timer 0 counting after all code to initialize the UART, CPU timer, and LED has been executed.</p></li>
+</ul>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="c1">//</span>
+<span class="c1">// Main</span>
+<span class="c1">//</span>
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">){</span>
+
+<span class="w">    </span><span class="c1">//</span>
+<span class="w">    </span><span class="c1">// Initialize device clock, peripheral clocks and interrupts</span>
+<span class="w">    </span><span class="c1">//</span>
+<span class="w">    </span><span class="n">Device_init</span><span class="p">();</span>
+
+<span class="w">    </span><span class="c1">//</span>
+<span class="w">    </span><span class="c1">// Board initialization</span>
+<span class="w">    </span><span class="c1">//</span>
+<span class="w">    </span><span class="n">Board_init</span><span class="p">();</span>
+
+<span class="w">    </span><span class="c1">//</span>
+<span class="w">    </span><span class="c1">// Enable PIPE Global Interrupt (for INTs and RTINTs) and INT enable in CPU.</span>
+<span class="w">    </span><span class="c1">//</span>
+<span class="w">    </span><span class="n">ENINT</span><span class="p">;</span>
+<span class="w">    </span><span class="n">Interrupt_enableGlobal</span><span class="p">();</span>
+
+<span class="w">    </span><span class="c1">//</span>
+<span class="w">    </span><span class="c1">// Start CPU Timer 0.</span>
+<span class="w">    </span><span class="c1">//</span>
+<span class="w">    </span><span class="n">CPUTimer_startTimer</span><span class="p">(</span><span class="n">myCPUTIMER0_BASE</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Now we will declare three variables within our main() function:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">msg</span></code> - used to store message before transmitting it to the terminal</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">receivedChar</span></code> - used to store a character read in from the terminal</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">rxStatus</span></code> - used to store the status of the UART receive status register</p></li>
+</ul>
+<p>Finally, we send our starting message to the COM port of the connected
+computer. Note that we use the <code class="docutils literal notranslate"><span class="pre">myUART0_BASE</span></code> define from the board.h file that Sysconfig generated, which correlates to UARTA’s base address.</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="w">    </span><span class="c1">//    </span>
+<span class="w">    </span><span class="c1">// Define local variables.</span>
+<span class="w">    </span><span class="c1">//</span>
+
+<span class="w">    </span><span class="c1">//</span>
+<span class="w">    </span><span class="c1">// Message sent through terminal window.</span>
+<span class="w">    </span><span class="c1">//</span>
+<span class="w">    </span><span class="kt">char</span><span class="o">*</span><span class="w"> </span><span class="n">msg</span><span class="p">;</span><span class="w">          </span>
+
+<span class="w">    </span><span class="c1">//</span>
+<span class="w">    </span><span class="c1">// Variable used to track input from the terminal window.</span>
+<span class="w">    </span><span class="c1">//      </span>
+<span class="w">    </span><span class="kt">char</span><span class="w"> </span><span class="n">receivedChar</span><span class="p">;</span><span class="w">     </span>
+
+<span class="w">    </span><span class="c1">//</span>
+<span class="w">    </span><span class="c1">// Variable used to store the status of the UART RX status register.</span>
+<span class="w">    </span><span class="c1">//   </span>
+<span class="w">    </span><span class="kt">uint16_t</span><span class="w"> </span><span class="n">rxStatus</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0U</span><span class="p">;</span><span class="w">   </span>
+
+<span class="w">    </span><span class="c1">//</span>
+<span class="w">    </span><span class="c1">// Send starting message.</span>
+<span class="w">    </span><span class="c1">//</span>
+<span class="w">    </span><span class="n">msg</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;</span><span class="se">\r\n\n\n</span><span class="s">Hello World! Enter a number 1-9 to change the LED blink rate.</span><span class="se">\0</span><span class="s">&quot;</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="p">;</span>
+<span class="w">    </span><span class="k">for</span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">66</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">){</span>
+<span class="w">        </span><span class="n">UART_writeChar</span><span class="p">(</span><span class="n">myUART0_BASE</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="kt">uint8_t</span><span class="p">)</span><span class="n">msg</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span>
+<span class="w">    </span><span class="p">}</span>
+</pre></div>
+</div>
+<p>The last part of our main function is a loop where we prompt the user
+to enter a number 0-9, read in the number, calculate the delayCount
+value based on the number, and then echo the number back to
+the user. We use the blocking function <code class="docutils literal notranslate"><span class="pre">UART_readChar()</span></code> to
+pause the code from continuing until a number is inputted. Notice how
+our global variables <code class="docutils literal notranslate"><span class="pre">scaleFactor</span></code> and <code class="docutils literal notranslate"><span class="pre">delayCount</span></code> are set every time we read in a character.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">delayCount</span></code> variable is used in our <code class="docutils literal notranslate"><span class="pre">INT_myCPUTIMER0_ISR</span></code> ISR and allows us to change the
+frequency of the LED - <code class="docutils literal notranslate"><span class="pre">myBoardLED0_GPIO</span></code>.</p>
+<p>In the event of a receive error on the UART RX line, we will stop the code execution to avoid unexpected behavior.</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="w">    </span><span class="c1">//</span>
+<span class="w">    </span><span class="c1">// Loop forever echoing data through the UART.</span>
+<span class="w">    </span><span class="c1">//</span>
+<span class="w">    </span><span class="k">while</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="n">msg</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;</span><span class="se">\r\n</span><span class="s">Enter a number 1-9: </span><span class="se">\0</span><span class="s">&quot;</span><span class="p">;</span>
+<span class="w">        </span><span class="k">for</span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">23</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">){</span>
+<span class="w">            </span><span class="n">UART_writeChar</span><span class="p">(</span><span class="n">myUART0_BASE</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="kt">uint8_t</span><span class="p">)</span><span class="n">msg</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span>
+<span class="w">        </span><span class="p">}</span>
+
+<span class="w">        </span><span class="c1">//</span>
+<span class="w">        </span><span class="c1">// Read a character from the FIFO.</span>
+<span class="w">        </span><span class="c1">//</span>
+<span class="w">        </span><span class="n">receivedChar</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">UART_readChar</span><span class="p">(</span><span class="n">myUART0_BASE</span><span class="p">);</span>
+
+<span class="w">        </span><span class="c1">//</span>
+<span class="w">        </span><span class="c1">// Convert the received character into an integer.</span>
+<span class="w">        </span><span class="c1">//</span>
+<span class="w">        </span><span class="n">scaleFactor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">receivedChar</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="sc">&#39;0&#39;</span><span class="p">;</span>
+
+<span class="w">        </span><span class="c1">//</span>
+<span class="w">        </span><span class="c1">// Amount of timer 0 ISR&#39;s to skip before toggling the LED.</span>
+<span class="w">        </span><span class="c1">//</span>
+<span class="w">        </span><span class="n">delayCount</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="mf">1.0</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="p">(</span><span class="kt">float</span><span class="p">)</span><span class="n">scaleFactor</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mf">0.1</span><span class="p">;</span>
+
+<span class="w">        </span><span class="n">rxStatus</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">UART_getRxError</span><span class="p">(</span><span class="n">myUART0_BASE</span><span class="p">);</span>
+<span class="w">        </span><span class="k">if</span><span class="p">((</span><span class="n">rxStatus</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">UART_RSR_ALL_M</span><span class="p">)</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span>
+<span class="w">        </span><span class="p">{</span>
+<span class="w">            </span><span class="c1">//</span>
+<span class="w">            </span><span class="c1">// If Execution stops here there an error.</span>
+<span class="w">            </span><span class="c1">// Analyze the rxStatus value.</span>
+<span class="w">            </span><span class="c1">//</span>
+<span class="w">            </span><span class="n">ESTOP0</span><span class="p">;</span>
+<span class="w">        </span><span class="p">}</span>
+
+<span class="w">        </span><span class="c1">//</span>
+<span class="w">        </span><span class="c1">// Echo back the received character.</span>
+<span class="w">        </span><span class="c1">//</span>
+<span class="w">        </span><span class="n">msg</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;</span><span class="se">\r\n</span><span class="s">LED set to blink rate </span><span class="se">\0</span><span class="s">&quot;</span><span class="p">;</span>
+<span class="w">        </span><span class="k">for</span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">25</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">){</span>
+<span class="w">            </span><span class="n">UART_writeChar</span><span class="p">(</span><span class="n">myUART0_BASE</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="kt">uint8_t</span><span class="p">)</span><span class="n">msg</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span><span class="n">UART_writeChar</span><span class="p">(</span><span class="n">myUART0_BASE</span><span class="p">,</span><span class="w"> </span><span class="n">receivedChar</span><span class="p">);</span>
+<span class="w">        </span><span class="n">msg</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot; Hz&quot;</span><span class="p">;</span>
+<span class="w">        </span><span class="k">for</span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">3</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">){</span>
+<span class="w">            </span><span class="n">UART_writeChar</span><span class="p">(</span><span class="n">myUART0_BASE</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="kt">uint8_t</span><span class="p">)</span><span class="n">msg</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span><span class="w"> </span>
+
+<span class="c1">//</span>
+<span class="c1">//end of main</span>
+<span class="c1">//</span>
+</pre></div>
+</div>
+</section>
+<section id="set-up-the-cputimer-isr">
+<h3>Set Up the CPUTIMER ISR<a class="headerlink" href="#set-up-the-cputimer-isr" title="Permalink to this heading">#</a></h3>
+<p>For the CPU Timer interrupt service routine (ISR) we want to define when to change the LED to achieve different blink rates based on the <code class="docutils literal notranslate"><span class="pre">delayCount</span></code> variable. We will pass in the scaleFactor through the terminal (which correlates to the LED blink rate in Hz)
+and update <code class="docutils literal notranslate"><span class="pre">delayCount</span></code> to the necessary value to correctly change the rate at which the LED blinks.</p>
+<p>For example, if the character ‘2’ is entered into the serial terminal, the application will update the LED to toggle at a frequency of 2 Hz (every 0.5 seconds).
+To do this, we will set the <code class="docutils literal notranslate"><span class="pre">delayCount</span></code> to 5 so that the toggle will happen every 5 CPU timer ISRs.</p>
+<p>The ISR below is entered every time the timer decrements to zero (after a full period). In this
+case we setup the timer to interrupt every 0.1 seconds. The code below is adding one to <code class="docutils literal notranslate"><span class="pre">cpuTimer0IntCount</span></code>
+every time the ISR is entered. Once this value is greater than or equal to <code class="docutils literal notranslate"><span class="pre">delayCount</span></code> the LED will toggle
+its output state. Thus,</p>
+<p><span class="math notranslate nohighlight">\(\text{delayCount}=(\frac{\text{1.0}}{\text{(float)scaleFactor}}) / \text{timer period})\)</span></p>
+<p>Copy the following code into your source .c file:</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="c1">//</span>
+<span class="c1">// ISR for CPUTIMER0 to blink the LED based on delayCount.</span>
+<span class="c1">// Interrupts every 0.1 seconds.</span>
+<span class="c1">//</span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">INT_myCPUTIMER0_ISR</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="n">cpuTimer0IntCount</span><span class="o">++</span><span class="p">;</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">cpuTimer0IntCount</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="n">delayCount</span><span class="p">){</span>
+<span class="w">        </span><span class="n">cpuTimer0IntCount</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="w">        </span><span class="n">GPIO_togglePin</span><span class="p">(</span><span class="n">myBoardLED0_GPIO</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>This concludes the coding portion of this lab.</p>
+</section>
+</section>
+<section id="build-the-project">
+<h2>Build the Project<a class="headerlink" href="#build-the-project" title="Permalink to this heading">#</a></h2>
+<p>With the configurations and code complete, we can ‘Build’ the project to check for any errors.
+Once the project builds without errors, we will connect to the device, load the program to the device, and run it within a debug session.</p>
+<ol class="arabic simple">
+<li><p>Right-click on your project and hover over the <strong>Build Configurations</strong> button until another panel pops up. Select the <strong>CPU1_RAM</strong> build configuration.</p>
+<ul class="simple">
+<li><p>With the RAM configuration selected, the project will be loaded to the RAM memory of the device.</p></li>
+</ul>
+</li>
+<li><p>Right-click on your project again and select <strong>Build Project(s)</strong> to build your program. Fix any compilation errors.</p></li>
+</ol>
+</section>
+<section id="run-the-project">
+<h2>Run the Project<a class="headerlink" href="#run-the-project" title="Permalink to this heading">#</a></h2>
+<p>Now we will start a debug session.</p>
+<ol class="arabic simple">
+<li><p>Ensure that the USB cable from your board is connected to your computer.</p></li>
+<li><p>Right-click on your project and select <strong>Debug Project</strong>.</p>
+<ul class="simple">
+<li><p>If prompted, check that only CPU1 is selected to load the program to.</p></li>
+<li><p>This action should re-build your project, connect to the debugger, and load the program to the device.</p></li>
+<li><p>The <strong>DEBUG</strong> window should populate and the debugger should have paused at the beginning of your <code class="docutils literal notranslate"><span class="pre">main()</span></code>.</p></li>
+</ul>
+</li>
+</ol>
+<a class="reference internal image-reference" href="../../../_images/UART_Lab_Setup.png"><img alt="../../../_images/UART_Lab_Setup.png" class="align-center" src="../../../_images/UART_Lab_Setup.png" style="width: 1112.45px; height: 977.55px;" /></a>
+<ol class="arabic simple" start="3">
+<li><p>Double check your board’s documentation (information guides and schematics) to be sure the switches are set to allow UART communication with your computer.</p></li>
+<li><p>Open a terminal in CCS by clicking <code class="docutils literal notranslate"><span class="pre">View</span></code> then <code class="docutils literal notranslate"><span class="pre">Console</span></code> then <code class="docutils literal notranslate"><span class="pre">Serial</span> <span class="pre">Console</span></code>. A terminal window should pop open.</p>
+<ul class="simple">
+<li><p>If you do not know what COM Serial Port the device is connected to you will need to determine this. On
+Windows 10, this can most easily be done by searching for <strong>Device Manager</strong> in your Windows search
+bar and then scrolling down to <strong>Ports</strong>. Look for “User UART (COMX)” or “USB Serial Port (COMX)”
+where X represents a number. This is the COM number you will use in CCS. For example in the below image,
+the identified port would be COM Serial Port 34. Remember your COM Serial Port for the next step.</p></li>
+</ul>
+</li>
+</ol>
+<a class="reference internal image-reference" href="../../../_images/Device_Manager.png"><img alt="../../../_images/Device_Manager.png" class="align-center" src="../../../_images/Device_Manager.png" style="width: 341.05px; height: 69.35px;" /></a>
+<ol class="arabic simple" start="5">
+<li><p>Create a new terminal by clicking <strong>Connect/Disconnect COM Port</strong> in the top right corner of the Terminal
+Window, and set the terminal to the following settings. Additionally, input the COM Serial Port
+associated with the device.</p></li>
+</ol>
+<a class="reference internal image-reference" href="../../../_images/COM_Settings.png"><img alt="../../../_images/COM_Settings.png" class="align-center" src="../../../_images/COM_Settings.png" style="width: 379.04999999999995px; height: 350.55px;" /></a>
+<ol class="arabic simple" start="6">
+<li><p>Scroll to the global variable <code class="docutils literal notranslate"><span class="pre">scaleFactor</span></code> and highlight it. Then right-click and
+select <strong>Add Watch Expression…</strong> Repeat this step for the global variables <code class="docutils literal notranslate"><span class="pre">delayCount</span></code> and <code class="docutils literal notranslate"><span class="pre">cpuTimer0IntCount</span></code>.</p></li>
+<li><p>In the Watch Expression Window, click on the <code class="docutils literal notranslate"><span class="pre">Continuous</span> <span class="pre">Refresh</span></code> button so that the visual
+is updated as the code is running.</p></li>
+</ol>
+<a class="reference internal image-reference" href="../../../_images/Continuous_Refresh.png"><img alt="../../../_images/Continuous_Refresh.png" class="align-center" src="../../../_images/Continuous_Refresh.png" style="width: 404.7px; height: 156.75px;" /></a>
+<ol class="arabic simple" start="8">
+<li><p>Now we will continue the debug session and the <code class="docutils literal notranslate"><span class="pre">main()</span></code> by clicking the blue <strong>Continue</strong> button in the upper left corner.</p>
+<ul class="simple">
+<li><p>Note that there are several other buttons that can be used to help debug your project by stepping through your program line by line. Feel free to explore them here,
+or see the <a class="reference internal" href="../../intro/c29x_literature.html"><span class="doc std std-doc">CCS User’s Guide</span></a> for more details on CCS 20 capabilities.</p></li>
+</ul>
+</li>
+</ol>
+</section>
+<section id="validate-the-project">
+<h2>Validate the Project<a class="headerlink" href="#validate-the-project" title="Permalink to this heading">#</a></h2>
+<p>Now that we have begun a debug session, we can take steps to verify the project is functioning as expected.</p>
+<ol class="arabic simple" start="9">
+<li><p>A message should appear in the terminal and the user LED on your board should be blinking at
+approximately 1 Hz.</p></li>
+</ol>
+<a class="reference internal image-reference" href="../../../_images/Initial_Message.png"><img alt="../../../_images/Initial_Message.png" class="align-center" src="../../../_images/Initial_Message.png" style="width: 753.3499999999999px; height: 152.0px;" /></a>
+<ol class="arabic simple" start="10">
+<li><p>Enter a number from 0 to 9 and watch as the values for <code class="docutils literal notranslate"><span class="pre">scaleFactor</span></code> and <code class="docutils literal notranslate"><span class="pre">delayCount</span></code> change in the Expressions
+Window. Also watch as the frequency of the LED on the device changes with the delayCount. Try this
+again with a different number. The higher the number 0-9 inputed into the Console, the faster the LED will blink.</p></li>
+</ol>
+<a class="reference internal image-reference" href="../../../_images/Validation.png"><img alt="../../../_images/Validation.png" class="align-center" src="../../../_images/Validation.png" style="width: 933.8499999999999px; height: 304.0px;" /></a>
+<section id="terminate-the-debug-session-and-close-the-project">
+<h3>Terminate the Debug Session and Close the Project<a class="headerlink" href="#terminate-the-debug-session-and-close-the-project" title="Permalink to this heading">#</a></h3>
+<p>With the project developed and validated, we can close this debug session.</p>
+<ul class="simple">
+<li><p>Click the red <strong>Stop</strong> button at the top of your <code class="docutils literal notranslate"><span class="pre">DEBUG</span></code> window to terminate the active debug session and disconnect the debugger</p></li>
+<li><p>You can return to the <code class="docutils literal notranslate"><span class="pre">Project</span> <span class="pre">Explorer</span></code> window by clicking on the corresponding button at the top of the panel on the left.</p></li>
+</ul>
+<p>This concludes the lab exercise.</p>
+</section>
+</section>
+<section id="lab-summary">
+<h2>Lab Summary<a class="headerlink" href="#lab-summary" title="Permalink to this heading">#</a></h2>
+<p>In accomplishing this lab, you should have:</p>
+<ul class="simple">
+<li><p>Learned how and why the UART can be used to communicate with the COM port on your computer.</p></li>
+<li><p>Utilized the CCS environvment and the SysConfig GUI to configure the UART peripheral.</p></li>
+<li><p>Gained familiarity with the basic functions of the CPU Timer module and how they can interact within a system.</p></li>
+</ul>
+</section>
+<section id="full-solution">
+<h2>Full Solution<a class="headerlink" href="#full-solution" title="Permalink to this heading">#</a></h2>
+<p>Recall that the completed software solution is available as well. Please refer to the top of this page to review the location of this lab’s software solution.</p>
+</section>
+</section>
+
+
+                </article>
+              
+              
+              <footer class="bd-footer-article">
+                    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+  <a class='left-prev' id="prev-link" href="c29x_eqep_lab.html" title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+          <p class="prev-next-subtitle">previous</p>
+          <p class="prev-next-title">Enhanced Quadrature Encoder Pulse (eQEP) Lab</p>
+      </div>
+  </a>
+  <a class='right-next' id="next-link" href="c29x_fsi_lab.html" title="next page">
+  <div class="prev-next-info">
+      <p class="prev-next-subtitle">next</p>
+      <p class="prev-next-title">Fast Serial Interface (FSI) Lab</p>
+  </div>
+  <i class="fa-solid fa-angle-right"></i>
+  </a>
+</div>
+                  </footer>
+                
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc">
+<div class="toc-item">
+  
+<div class="tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+</div>
+<nav id="bd-toc-nav" class="page-toc">
+    <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#solution">
+   Solution
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#overview">
+   Overview
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#lab-setup">
+   Lab Setup
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#hardware-setup">
+     Hardware Setup
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#software-setup">
+     Software Setup
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#start-a-ccs-project">
+   Start a CCS Project
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#configure-the-uart">
+   Configure the UART
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#configure-the-cputimer">
+   Configure the CPUTIMER
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#configure-the-gpio">
+   Configure the GPIO
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#program-setup">
+   Program Setup
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#define-global-macros-and-variables">
+     Define Global Macros and Variables
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#define-main">
+     Define main()
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#set-up-the-cputimer-isr">
+     Set Up the CPUTIMER ISR
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#build-the-project">
+   Build the Project
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#run-the-project">
+   Run the Project
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#validate-the-project">
+   Validate the Project
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#terminate-the-debug-session-and-close-the-project">
+     Terminate the Debug Session and Close the Project
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#lab-summary">
+   Lab Summary
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#full-solution">
+   Full Solution
+  </a>
+ </li>
+</ul>
+
+</nav>
+</div>
+
+<div class="toc-item">
+  
+<button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-toggle="tooltip">
+  <i class="fa-solid fa-magnifying-glass"></i>
+</button>
+</div>
+</div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+<script async>
+  async function setTheme() {
+    try {
+      var colorScheme = await window.parent.getTirexTheme();
+      var mode = colorScheme === 'dark' ? 'dark' : 'light';
+      localStorage.setItem('mode', mode);
+      document.documentElement.dataset.mode = mode;
+      document.documentElement.dataset.theme = colorScheme;
+    } catch (error) {
+      console.error('Failed to set the theme:', error);
+    }
+  }
+
+  setTheme();
+</script>
+
+
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../../_static/scripts/bootstrap.js?digest=796348d33e8b1d947c94"></script>
+<script src="../../../_static/scripts/pydata-sphinx-theme.js?digest=796348d33e8b1d947c94"></script>
+
+
+
+
+<script type="text/javascript">
+  function extractNodeValue(url) {
+    try {
+      const parsedUrl = new URL(url);
+      if (parsedUrl.pathname === '/tirex/explore/node') {
+        const searchParams = new URLSearchParams(parsedUrl.search);
+        return searchParams.get('node');
+      } else {
+        return null;
+      }
+    } catch (error) {
+      console.error("Invalid URL:", error);
+      return null;
+    }
+  }
+
+  // Get all links on the page
+  const links = document.querySelectorAll('a');
+
+  // Get the project name and replace spaces with underscores
+  var projName = "C29x Academy";
+
+  // Attach a click event listener to each link
+  links.forEach((link) => {
+    link.addEventListener('click', (event) => {
+      // Prevent the default link behavior
+      event.preventDefault();
+
+      const url = link.href;
+      console.log(url)
+      const match = url.match(/source\/.+$/);
+      const localId = match ? match[0].replace(/\.html$/, '').replace(/[\/\\\.]/g, '_').toLowerCase() : null;
+      console.log(localId)
+      const extractedNode = extractNodeValue(url);
+
+      console.log(extractedNode)
+      if (typeof window.parent.jumpToTirexNodeOnLocal === 'function') {
+        window.parent.jumpToTirexNodeOnLocal(localId, null, null, {
+            throwError: true
+          })
+          .catch((e) => {
+            if (extractedNode !== null) {
+              window.parent.jumpToTirexNode(extractedNode, {
+                  throwError: true
+                })
+                .catch((e) => {
+                  window.location.href = link.href;
+                })
+            }
+            else {
+              if (url.includes("e2e.ti.com") || url.includes("dev.ti.com/gallery/view")) {
+              window.open(url, "_blank")
+              } else {
+              window.location.href = link.href;
+            }}
+          })
+      } else {
+        window.location.href = link.href;
+      }
+    });
+  });
+</script>
+  <footer class="bd-footer"><div class="bd-footer__inner container">
+  
+  <div class="footer-item">
+    
+<p class="copyright">
+
+    &copy; Copyright 2025, Texas Instruments.<br>
+
+</p>
+
+  </div>
+  
+</div>
+  </footer>
+  </body>
+</html>

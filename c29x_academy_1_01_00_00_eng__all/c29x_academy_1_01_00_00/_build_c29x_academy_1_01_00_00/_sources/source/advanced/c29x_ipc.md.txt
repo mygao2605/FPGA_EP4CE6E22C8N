@@ -1,0 +1,97 @@
+---
+applies_to: ['c29x']
+---
+
+# Interprocessor Communications (IPC)
+
+```{friendly-url}
+```
+
+## Introduction 
+The Inter-Processor Communications (IPC) module allows communication between two
+CPU subsystems. In a dual-core device, for example, the IPC module allows communication between CPU1 and CPU2.
+
+```{admonition} Note: 
+This module is only applicable to multi-core C2000
+devices. Please see your device documentation to determine if this moduel applies to your device.
+```
+
+<!-- NEED TO CHECK THE BELOW FEATURES -->
+## Features of IPC 
+Allows communications between the two CPU subsystems:
+ * IPC flags and interrupts
+ * IPC command registers
+ * Flash pump semaphore
+ * Clock configuration semaphore
+ * Free-running counter
+
+All IPC features are independent of each other
+
+<!-- REGISTERS STILL EXIST BUT NEED TO ADD MORE -->
+## IPC Message Registers
+* Provides very simple and flexible messaging
+* Dedicated registers mapped to both CPU’s
+* Below are examples from C28x devices
+
+![IPC Message Registers](c29x_ipc_images/IPC_message_registers.png)
+
+
+* The definition (what the register content means) is up to the application
+  software
+* TI’s IPC-Lite drivers use the IPC message registers
+
+<!-- BELOW IS SIMILAR BUT THERE ARE MORE... -->
+## Interrupts and Flags
+### IPC Flags and Interrupts
+* CPU to CPU: 128 flags with 4 interrupts with different IPC0 flags
+
+![IPC Flags and Interrupts](c29x_ipc_images/requesting_receiving_cpu.png)
+
+When the sending CPU wants to inform the receiver that a message is ready, it
+can make use of an interrupt or flag. There are identical IPC interrupt and
+flag resources on all cores.
+
+4 Interrupts: There are 4 interrupts that CPU1 can send to CPU2 (and vice-versa)
+through the interrupt controller module. Each of the interrupts
+has a dedicated vector within the interrupt controller.
+
+<!-- BELOW COMMENTED PARAGRAPH NEEDS TO BE UPDATED-->
+<!-- 28 Flags: In addition, there are 28 flags available for CPU1 and CPU2. These
+flags can be used for messages that are not time critical or they can be used
+to send status back to originating processor. The flags and interrupts can be
+used however the application sees fit and are not tied to a particular operation
+in hardware. --> 
+
+### Messaging with IPC Flags and Interrupts: CPU-to-CPU
+
+![IPC Flags](c29x_ipc_images/IPC_flags.png)
+
+## IPC Data Transfer
+Basic option - no software drivers needed and easy to use!
+* Use RAMs to transfer data between processors at a known address 
+* Use the IPC flag registers to tell the other processor that the data is ready
+
+At the most basic level, the application does not need any separate software
+drivers to communicate between processors. It can utilize the RAM blocks to pass data between processors at a fixed address known to
+both processors. Then the sending processor can use the IPC flag registers
+merely to flag to the receiving processor that the data is ready. Once the
+receiving processor has grabbed the data, it will then acknowledge the
+corresponding IPC flag to indicate that it is ready for more messages.
+
+## IPC Software Solutions
+There are several options to use the IPC on the device.
+
+### Basic option:
+A very simple option that does not require any drivers. This option only
+requires IPC registers to implement very simple flagging of messages passed
+between processors.
+
+### Driver options:
+If the application code needs a set of basic IPC driver functions for reading or
+writing data, setting/clearing bits, and function calls, then there are 2 IPC
+software driver solutions provided by TI.
+
+## IPC Software Solutions Summary
+   * No software drivers needed
+   * Uses IPC registers only (simple message passing)
+   * Easy-to-use DriverLib functions and software examples

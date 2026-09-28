@@ -1,0 +1,1123 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>System Integration Lab &#8212; C29x Academy</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../_static/styles/theme.css?digest=796348d33e8b1d947c94" rel="stylesheet">
+<link href="../../../_static/styles/bootstrap.css?digest=796348d33e8b1d947c94" rel="stylesheet">
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=796348d33e8b1d947c94" rel="stylesheet">
+
+  
+  <link href="../../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=796348d33e8b1d947c94" rel="stylesheet">
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/local/font.css" />
+    <link rel="stylesheet" type="text/css" href="https://www.ti.com/assets/fonts/font.css" />
+    <link rel="stylesheet" type="text/css" href="https://www.ti.com/assets/style/resource-explorer.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=796348d33e8b1d947c94">
+<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=796348d33e8b1d947c94">
+
+    <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+    <script src="../../../_static/jquery.js"></script>
+    <script src="../../../_static/underscore.js"></script>
+    <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../../../_static/doctools.js"></script>
+    <script src="../../../_static/sphinx_highlight.js"></script>
+    <script src="../../../_static/clipboard.min.js"></script>
+    <script src="../../../_static/copybutton.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../../_static/togglebutton.js"></script>
+    <script src="../../../_static/design-tabs.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'source/lab_exercises/c29x_labs/c29x_system_integration_lab';</script>
+    <script src="../../../_static/quizdown.js"></script>
+    <script src="../../../_static/external-links.js"></script>
+    <link rel="canonical" href="http://127.0.0.1:8000/source/lab_exercises/c29x_labs/c29x_system_integration_lab.html" />
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="MCAL EPWM Phase Shift and Interrupts Demo" href="c29x_mcal_epwm_phase_shift_lab.html" />
+    <link rel="prev" title="CLB and ECAP Lab" href="c29x_clb_ecap_lab.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="docsearch:language" content="en">
+  </head>
+  
+  
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="180" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center" action="../../../search.html" method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search C29x Academy" aria-label="Search C29x Academy" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar"><div class="bd-header__inner bd-page-width">
+  <label class="sidebar-toggle primary-toggle" for="__primary">
+      <span class="fa-solid fa-bars"></span>
+  </label>
+  <div id="navbar-start">
+    
+  </div>
+
+  
+  <div class="col-lg-9 navbar-header-items">
+    <div id="navbar-center" class="mr-auto">
+      
+    </div>
+
+    <div id="navbar-end">
+      
+        <div class="navbar-end-item navbar-persistent--container">
+          
+<button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-toggle="tooltip">
+  <i class="fa-solid fa-magnifying-glass"></i>
+</button>
+        </div>
+      
+      
+    </div>
+  </div>
+
+
+  
+  
+    <div class="navbar-persistent--mobile">
+<button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-toggle="tooltip">
+  <i class="fa-solid fa-magnifying-glass"></i>
+</button>
+    </div>
+  
+
+  
+  <label class="sidebar-toggle secondary-toggle" for="__secondary">
+      <span class="fa-solid fa-outdent"></span>
+  </label>
+  
+
+</div>
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar hide-on-wide">
+        
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+
+    
+    
+  </div>
+
+  
+
+  
+  <div class="sidebar-end-items sidebar-primary__section">
+    <div class="sidebar-end-items__item">
+    </div>
+  </div>
+
+  
+  <div id="rtd-footer-container"></div>
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article"></div>
+              
+              
+                <article class="bd-article" role="main">
+                  
+                  
+<div id="searchbox"></div>
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="system-integration-lab">
+<h1>System Integration Lab<a class="headerlink" href="#system-integration-lab" title="Permalink to this heading">#</a></h1>
+<p><a class="reference external" href="https://dev.ti.com/tirex/local?id=source_lab_exercises_c29x_labs_c29x_system_integration_lab&amp;packageId=C29X-ACADEMY">Link to share</a></p>
+<p>The objective of this lab is to use a combination of modules covered in previous labs.
+This lab will thus use the GPIO, EPWM, ADC, CMPSS, and (optionally) the DAC modules.
+In doing so, this lab showcases how the peripherals handle most of the functionality in C2000 devices, reducing the
+load on the CPU. The reader should leave this lab exercise with a better understanding
+of how to interface a variety of peripherals in order to perform a certain task</p>
+<section id="solution">
+<h2>Solution<a class="headerlink" href="#solution" title="Permalink to this heading">#</a></h2>
+<p>The Academy lab modules provide step-by-step instructions for users to follow along and carry out; however, the completed software solutions are also available in the device’s SDK.</p>
+<ul class="simple">
+<li><p>See your device’s specific SDK to obtain this lab’s software solution.</p></li>
+<li><p>You can download your device’s SDK by going to the device’s product page on TI’s website and navigating to the ‘Design &amp; Development’ and ‘Software Development’ tabs.</p></li>
+</ul>
+<p>This specific lab’s solution can be found in: <code class="docutils literal notranslate"><span class="pre">[Device_SDK_Install_Path]/examples/driverlib/single_core/system_integration</span></code>.</p>
+</section>
+<section id="overview">
+<h2>Overview<a class="headerlink" href="#overview" title="Permalink to this heading">#</a></h2>
+<p>In this lab exercise, the EPWM module is configured to output a signal with a
+duty cycle that will vary based on an ADC conversion result. We can then used an external voltage source or (optionally) the DAC to simulate an external signal that the MCU will monitor. The ADC will then sample this signal to capture its value. Using that ADC
+sample value, we can then modify our EPWM in response by calculating a new duty cycle for the EPWM signal after each ADC conversion. At the same time, a comparator (CMPSS) will be used to monitor the external/DAC output. If the external/DAC signal is above a certain threshold value (simulating some system error or dangerous event), the comparator will react. This event can be used to trigger a one-shot trip to drive the EPWM output to a known safe state (in this case, a low state).</p>
+<p>Please note that if you choose not to use the DAC to generate a signal, you will need to alternatively provide an external voltage source as the input to your ADC.</p>
+<a class="reference internal image-reference" href="../../../_images/overview.png"><img alt="../../../_images/overview.png" class="align-center" src="../../../_images/overview.png" style="width: 1046.25px; height: 526.5px;" /></a>
+</section>
+<section id="lab-setup">
+<h2>Lab Setup<a class="headerlink" href="#lab-setup" title="Permalink to this heading">#</a></h2>
+<section id="hardware-setup">
+<h3>Hardware Setup<a class="headerlink" href="#hardware-setup" title="Permalink to this heading">#</a></h3>
+<p>Required hardware for this lab:</p>
+<ul class="simple">
+<li><p>ControlSOM with the supplied USB cable.</p></li>
+<li><p>External voltage supply (only needed if not using the DAC)</p></li>
+<li><p>Oscilloscope (optional).</p></li>
+</ul>
+<p>This lab exercise is intended for the F29H85x ControlSOM. Before continuing this lab, please be sure to reference the <a class="reference internal" href="../../intro/c29x_literature.html"><span class="doc std std-doc">ControlSOM User Guide</span></a> for hardware setup details.</p>
+<ul class="simple">
+<li><p>Using the supplied USB cable, connect the USB Type-C connector into your C2000 board
+and the USB Standard Type-A connector into your computer’s USB port.</p></li>
+<li><p>Please note that a docking station is recommended to successfully run this lab. If you are using the controlSOM docking station, an additional power supply is needed for the docking station. See the <a class="reference internal" href="../../intro/c29x_literature.html"><span class="doc std std-doc">ControlSOM User Guide</span></a> for more details.</p></li>
+<li><p>Check the power status LEDs (LED1 and LED2) to confirm that the board is powered and provides a JTAG communication link between the device and CCS.</p></li>
+</ul>
+</section>
+<section id="software-setup">
+<h3>Software Setup<a class="headerlink" href="#software-setup" title="Permalink to this heading">#</a></h3>
+<p>Required software for this lab:</p>
+<ul class="simple">
+<li><p>The device’s SDK</p>
+<ul>
+<li><p>Your device’s software development kit (SDK) download can be found on the “Software Development” section of your device’s product page on TI’s website.</p></li>
+</ul>
+</li>
+<li><p>The <a class="reference external" href="https://www.ti.com/tool/CCSTUDIO">Code Composer Studio (CCS)</a> platform.</p>
+<ul>
+<li><p>See the <a class="reference internal" href="../../intro/c29x_literature.html"><span class="doc std std-doc">CCS User’s Guide</span></a> for more information about this IDE.s</p></li>
+</ul>
+</li>
+</ul>
+</section>
+</section>
+<section id="start-a-ccs-project">
+<h2>Start a CCS Project<a class="headerlink" href="#start-a-ccs-project" title="Permalink to this heading">#</a></h2>
+<p>Our first task is to import an empty project to our CCS workspace.</p>
+<ol class="arabic simple">
+<li><p>Open CCS and go to <strong>File → Import Project(s)</strong>. A new window should appear.</p></li>
+<li><p>Click the <strong>Browse</strong> button and select the <code class="docutils literal notranslate"><span class="pre">[MCU_SDK_[DEVICE]_Install_Path]/examples/driverlib/single_core/empty_projects</span></code> and click “Select Folder”.</p>
+<ul class="simple">
+<li><p>Note that the default Windows installation directory <code class="docutils literal notranslate"><span class="pre">[MCU_SDK_[DEVICE]_Install_Dir]</span></code> is <code class="docutils literal notranslate"><span class="pre">C:/ti/c2000/MCU_SDK_[DEVICE]_X_XX_XX_XX_XX</span></code>.</p></li>
+</ul>
+</li>
+<li><p>Under <strong>Discovered Projects</strong>, you should now see the <code class="docutils literal notranslate"><span class="pre">empty_driverlib_project</span></code>.</p></li>
+</ol>
+<a class="reference internal image-reference" href="../../../_images/empty_project.png"><img alt="../../../_images/empty_project.png" class="align-center" src="../../../_images/empty_project.png" style="width: 540.9px; height: 468.90000000000003px;" /></a>
+<br>
+<ol class="arabic simple" start="4">
+<li><p>Click <strong>Finish</strong> to import and copy the <code class="docutils literal notranslate"><span class="pre">empty_driverlib_project</span></code> into your CCS workspace.</p></li>
+<li><p>After the project has been imported, the project explorer window should
+look like below:</p></li>
+</ol>
+<a class="reference internal image-reference" href="../../../_images/project_view.png"><img alt="../../../_images/project_view.png" class="align-center" src="../../../_images/project_view.png" style="width: 266.95px; height: 170.04999999999998px;" /></a>
+<ol class="arabic simple" start="6">
+<li><p>Rename the project:</p>
+<ul class="simple">
+<li><p>Right-click on the project in the “Project Explorer” panel. Select <strong>Rename</strong> from
+the drop-down menu and rename the project to ‘system_integration_lab’ or a name of
+your choosing.</p></li>
+<li><p>Now click the <strong>Down Arrow</strong> located to the left of the imported project to
+expand it and select <code class="docutils literal notranslate"><span class="pre">empty_driverlib_project.c</span></code>. Right-click on the file, and
+select <strong>Rename</strong> to rename the file to ‘system_integration_lab.c’ or a name of
+your choosing.</p></li>
+</ul>
+</li>
+</ol>
+</section>
+<section id="configure-the-gpio">
+<h2>Configure the GPIO<a class="headerlink" href="#configure-the-gpio" title="Permalink to this heading">#</a></h2>
+<p>We will now use SysConfig to set up any necessary GPIO signals. For this lab, we will configure one GPIO connected to one of the board LEDs so that we can use this as a visual indicator. The LED will be used to observe the EPWM duty cycle change.</p>
+<ul class="simple">
+<li><p>In the project directory, open the <code class="docutils literal notranslate"><span class="pre">.syscfg</span></code> file by double-clicking on it.</p></li>
+<li><p>Navigate to the <code class="docutils literal notranslate"><span class="pre">Software</span></code> tab in this SysConfig (it should open by default).</p></li>
+<li><p>In the ‘SYSTEM’ group, click <strong>+</strong> next to ‘GPIO’ to add a GPIO instance.</p></li>
+<li><p>Change the GPIO settings as shown and described below.</p>
+<ol class="arabic simple">
+<li><p>Rename the GPIO to “myBoardLED0_GPIO”.</p></li>
+<li><p>Change the ‘GPIO Direction’ to an “output”.</p></li>
+<li><p>Click on the ‘Pinmux’ drop-down to expand it, and select the board’s LED GPIO (in this case, GPIO23).</p>
+<ul>
+<li><p>To check or confirm which GPIO is connected to your board’s LED, reference your board’s schematics.</p></li>
+</ul>
+</li>
+</ol>
+</li>
+</ul>
+<a class="reference internal image-reference" href="../../../_images/gpio_led23.png"><img alt="../../../_images/gpio_led23.png" class="align-center" src="../../../_images/gpio_led23.png" style="width: 696.0px; height: 401.0px;" /></a>
+</section>
+<section id="configure-the-adc">
+<h2>Configure the ADC<a class="headerlink" href="#configure-the-adc" title="Permalink to this heading">#</a></h2>
+<p>Next, we will configure our ADC module. The ADC will be used to (1) sample a waveform and (2) trigger an interrupt that will carry out calculations to be able to modify our EPWM waveform in response to the sample values.</p>
+<ol class="arabic simple">
+<li><p>In your SysConfig file, click <strong>+</strong> next to ‘ADC’ to add an ADC instance.</p></li>
+<li><p>Rename the ADC to “myADCA”.</p></li>
+<li><p>Change the ‘Clock Prescaler’ to be “4.0” (when implemented, this results in clock/4).</p></li>
+</ol>
+<p>After expanding the view for the ‘SOC Configurations’ (SOC being “Start Of Conversion”). We will now configure the settings to control the start of our ADC sampling conversions.</p>
+<ol class="arabic simple">
+<li><p>Enable “SOC/EOC number 0” and expand the ‘SOC0’ drop-down that appears.</p></li>
+<li><p>Change ‘SOC0 Channel’ to “single-ended, ADCIN4” since we will be using ADC input 4 as our ADC input channel and SOC0 as the start of
+conversion.</p></li>
+<li><p>Under “SOC Triggers”, change the ‘SOC0 Trigger’ to be “EPWM1, ADCSOCA”. In this way, the ADC will look to EPWM1 as the trigger for its SOC. When we configure EPWM1 settings later, we will complete the ADCSOC setup from the EPWM1 perspective.</p></li>
+<li><p>A sample window of 15 clock counts will be used for this example.</p></li>
+</ol>
+<a class="reference internal image-reference" href="../../../_images/adc_setup1.png"><img alt="../../../_images/adc_setup1.png" class="align-center" src="../../../_images/adc_setup1.png" style="width: 888.0px; height: 846.0px;" /></a>
+<p>The subsequent step for the ADC is setting up interrupt configuration. We want to trigger an interrupt at the end of each conversion so that we can update EPWM parameters within the interrupt service routine (ISR).</p>
+<ol class="arabic simple">
+<li><p>Expand the “ADC INT Configurations” drop-down and set the ‘ADC Interrupt Pulse Mode’ so that the interrupt will occur at the end of the conversion.</p></li>
+<li><p>Enable the ‘ADCINT1 Interrupt’ and expand the “INT1” drop-down that appears.</p></li>
+<li><p>Check the box to enable ADC Interrupt 1 and check that the SOC source is SOC/EOC0.</p></li>
+</ol>
+<p>Since we are enabling an interrupt, we need to register the interrupt with the peripheral interrupt and priority expansion block (PIPE).</p>
+<ol class="arabic simple">
+<li><p>Expand the “Register PIPE Interrupt Handlers” drop-down.</p></li>
+<li><p>For ‘Register Interrupts’, select “Interrupt 1” and then expand the “ADCA Interrupt 1” drop-down that appears.</p></li>
+<li><p>We can use the default names that appear here for ADCA. Note the name of the interrupt handler as this will be used later in our C code.</p></li>
+</ol>
+<a class="reference internal image-reference" href="../../../_images/adc_setup2.png"><img alt="../../../_images/adc_setup2.png" class="align-center" src="../../../_images/adc_setup2.png" style="width: 886.0px; height: 701.0px;" /></a>
+<p>The final step is to set up the selected pins for our ADC.</p>
+<ol class="arabic simple">
+<li><p>Expand the “Analog PinMux” drop-down and change the ‘Use-Case’ to be “CUSTOM” so that we can manually select which analog pins we are using.</p></li>
+<li><p>For ‘Pins Used’, add your ADC input channel. Since we are using ADC input channel 4, you should select the option with ‘A4’.</p></li>
+<li><p>While we have the Analog PinMux open, you can also go ahead and add the pin we will use for our DAC in the next steps. To do so, add ‘DACA_OUT’ to the ‘Pins Used’ since we will be using DACA to output our signal.</p></li>
+</ol>
+<a class="reference internal image-reference" href="../../../_images/adc_setup3.png"><img alt="../../../_images/adc_setup3.png" class="align-center" src="../../../_images/adc_setup3.png" style="width: 880.0px; height: 194.0px;" /></a>
+</section>
+<section id="configure-the-dac">
+<h2>Configure the DAC<a class="headerlink" href="#configure-the-dac" title="Permalink to this heading">#</a></h2>
+<p><em>If you are using an external voltage source rather than the DAC, skip this section.</em></p>
+<p>The next module we need to set up is the DAC module. For this example, we will set up the <code class="docutils literal notranslate"><span class="pre">DACA</span></code> module to generate our output to be routed to the ADC for sampling. To generate a meaningful DAC waveform, we need to select a voltage for the DAC to use as a reference. This example will use the ADC VREFHI as the reference voltage.</p>
+<ol class="arabic simple">
+<li><p>In your SysConfig file, click <strong>+</strong> next to ‘DAC’ to add a DAC instance.</p></li>
+<li><p>Rename the DAC to “myDACA”.</p></li>
+<li><p>Select the ‘Reference Voltage’ to be <code class="docutils literal notranslate"><span class="pre">ADC</span> <span class="pre">VREFHI</span> <span class="pre">reference</span> <span class="pre">voltage</span></code> and adjust the ‘Gain Mode’ so it is “Gain set to 2”. Recall that gain is the ratio of output to input, so we are adjusting the final voltage output of the DAC.</p></li>
+<li><p>Finally, check the box to enable the output and confirm that the ‘DACA_OUT’ signal is selected in the “Analog PinMux”.</p></li>
+</ol>
+<a class="reference internal image-reference" href="../../../_images/dac_setup1.png"><img alt="../../../_images/dac_setup1.png" class="align-center" src="../../../_images/dac_setup1.png" style="width: 903.0px; height: 576.0px;" /></a>
+</section>
+<section id="configure-the-cmpss">
+<h2>Configure the CMPSS<a class="headerlink" href="#configure-the-cmpss" title="Permalink to this heading">#</a></h2>
+<p>The comparator generates a high digital output when the voltage on the positive input is greater than the voltage
+on the negative input, and a low digital output when the voltage on the positive input is less than the voltage on
+the negative input.</p>
+<p>In this example, the Comparator Subsystem (CMPSS) can be used to send a trip signal to the EPWM module based on its monitor the values acquired by the ADC sampling. When the ADC conversion value is above a
+specific threshold value, we can configure the CMPSS to react by changing its output. This output will be used in the next section to affect the EPWM module’s behavior.</p>
+<ol class="arabic simple">
+<li><p>In your SysConfig file, click <strong>+</strong> next to ‘CMPSS’ to add a CMPSS instance.</p></li>
+<li><p>Rename the CMPSS to “myCMPSS” and check the box to enable the module.</p></li>
+<li><p>With the CMPSS module enabled, all that’s left is to define the threshold value that the comparator will use to compare. Under “DAC Configurations”, expand the ‘High Dac Configuration’ drop-down. Set the high comparator DAC value to be <code class="docutils literal notranslate"><span class="pre">2500</span></code>. When the comparator detects a value beyond this, it will change its output in response.</p></li>
+</ol>
+<a class="reference internal image-reference" href="../../../_images/cmpss_setup1.png"><img alt="../../../_images/cmpss_setup1.png" class="align-center" src="../../../_images/cmpss_setup1.png" style="width: 897.0px; height: 621.0px;" /></a>
+</section>
+<section id="configure-the-epwm">
+<h2>Configure the EPWM<a class="headerlink" href="#configure-the-epwm" title="Permalink to this heading">#</a></h2>
+<section id="epwm-x-bar-configuration">
+<h3>EPWM X-BAR Configuration<a class="headerlink" href="#epwm-x-bar-configuration" title="Permalink to this heading">#</a></h3>
+<p>With the CMPSS set up, we now need to connect its output signal from the CMPSS module to the EPWM module. The EPWM X-BAR module provides a way for peripheral signals to interface with the EPWM. In this way, we can use the EPWM X-BAR to connect the CMPSS to the EPWM (CMPSS will be the EPWM X-BAR input, and the output will be directed to the EPWM module.)</p>
+<ol class="arabic simple">
+<li><p>In your SysConfig file, click <strong>+</strong> next to ‘EPWM XBAR’ to add an EPWM X-BAR instance.</p></li>
+<li><p>Rename the EPWM XBAR to “myEPWMXBAR4” and select the ‘Trip Input’ to be ‘TRIP4 of the EPWM X-BAR’. TRIP4 is one of several generic “TRIP” signals that can be used within the EPWM module. With these settings, we are assigning this EPWM X-BAR’s output signal to be known as “TRIP4” to our EPWM module.</p></li>
+<li><p>For the ‘Input Source Signals’, select “CMPSS1 CTRIPH”. This means that (1) the input to the EPWM X-BAR will be from the selected CMPSS module and (2) the specific behavior (“H” for “high”) that produces a trip event. In other words, when the comparator output goes high, an EPWM trip can be produced.</p></li>
+</ol>
+<a class="reference internal image-reference" href="../../../_images/epwmxbar_setup1.png"><img alt="../../../_images/epwmxbar_setup1.png" class="align-center" src="../../../_images/epwmxbar_setup1.png" style="width: 901.0px; height: 290.0px;" /></a>
+</section>
+<section id="esm-configuration">
+<h3>ESM Configuration<a class="headerlink" href="#esm-configuration" title="Permalink to this heading">#</a></h3>
+<p>The CMPSS is often set up with these configurations and interfaces in order to detect when a fault occurs (for example, a short circuit). In real applications, developers may want their system to have a specific pre-programmed response to the fault occurrence (beyond tripping the EPWM in hardware).</p>
+<p>The Error Signaling Module (ESM) is a subsystem built to handle responses to error events that occur throughout the device. Specifically, the ESM can trigger interrupts and manipulate values of error pins in order to help execute a response or signal to an external device that an error has occurred.</p>
+<ol class="arabic simple">
+<li><p>Within the EPWM XBAR module in SysConfig, expand the “Error Signaling Configuration” drop-down and check the box to “Configure Error Signaling”.</p></li>
+<li><p>Expand the “Error Signaling” drop-down and check the box to “Configure event in the system ESM”.</p></li>
+<li><p>Expand the next “System ESM” drop-down and check the box to “Enable Influence on Error pin”. This will allow the ESM to manipulate the error status pin in response to the comparator output.</p></li>
+</ol>
+<a class="reference internal image-reference" href="../../../_images/esm_setup1.png"><img alt="../../../_images/esm_setup1.png" class="align-center" src="../../../_images/esm_setup1.png" style="width: 898.0px; height: 458.0px;" /></a>
+</section>
+<section id="epwm-configuration">
+<h3>EPWM Configuration<a class="headerlink" href="#epwm-configuration" title="Permalink to this heading">#</a></h3>
+<p>Once the EPWM X-BAR is setup, we can configure the EPWM module. In this lab, recall that our EPWM module plays more than one role:</p>
+<ul class="simple">
+<li><p>Triggers ADC SOCs</p></li>
+<li><p>Generates PWM waveform where:</p>
+<ul>
+<li><p>The duty cycle changes in response to ADC conversion results.</p></li>
+<li><p>The active EPWM channel output gets tripped to a low state in response to the comparator detecting values higher than the set threshold.</p></li>
+</ul>
+</li>
+</ul>
+<ol class="arabic simple">
+<li><p>In your SysConfig file, click <strong>+</strong> next to ‘EPWM’ to add an EPWM instance.</p></li>
+<li><p>Rename your EPWM to “myEPWM1” since we will be using the EPWM1 module. Note that while there are two outputs per EPWM module (channel A and channel B), for this lab, we only need to generate a signal output on the EPWM1<strong>A</strong> channel. EPWM1<strong>B</strong> is not needed for the lab and will not be configured.</p></li>
+</ol>
+<section id="epwm-parameters">
+<h4>EPWM Parameters<a class="headerlink" href="#epwm-parameters" title="Permalink to this heading">#</a></h4>
+<p>For this lab, we will initalize the EPWM module so that it produces a 50kHz EPWM with a 50% duty cycle. We will choose up-down-count mode in order to produce a symmetric waveform, meaning the relevant equation is:</p>
+<p><span class="math notranslate nohighlight">\(\text{Time Base Period}=\frac{EPWM Clock}{2*PWM Frequency}=\frac{100* 10^6}{2* 50000}=1000.\)</span></p>
+<p>Note that for just up-count mode or down-count mode, the calculation would be:</p>
+<p><span class="math notranslate nohighlight">\(\text{Time Base Period}=\frac{EPWM Clock}{PWM Frequency}-1.\)</span></p>
+<p>To implement this, start with the EPWM time-base submodule:</p>
+<ol class="arabic simple">
+<li><p>Expand the “EPWM Time-Base” drop-down.</p></li>
+<li><p>Change the ‘High Speed Clock Divider’ to “Divide clock by 1” and set the EPWM ‘Time Base Period’ to “1000”.</p></li>
+<li><p>Set the ‘Counter Mode’ to “Up-Down-Count Mode”.</p></li>
+<li><p>Expand the “EPWM Counter Compare” drop-down as well as the “CMPA” drop-down.</p></li>
+<li><p>Set the CMPA value to be “500”. For a 50% duty cycle, we need to place the EPWM edge at half the value of the EPWM time base period. We can set up a counter-match event (counter = CMPA) to perform actions on the PWM output (rising or falling edge).</p></li>
+</ol>
+<a class="reference internal image-reference" href="../../../_images/epwm_setup1.png"><img alt="../../../_images/epwm_setup1.png" class="align-center" src="../../../_images/epwm_setup1.png" style="width: 889.0px; height: 860.0px;" /></a>
+<p>Next, we will use the EPWM action qualifier submodule to define what happens on a counter-match event. In this lab, we will change the output of the EPWM to go high upon a CMPA-up-count match and low for a CMPA-down-count match.</p>
+<p>Note that with these actions, if CMPA increases, duty cycle (or “ON” time) will descrease.</p>
+<ul class="simple">
+<li><p><strong>duty cycle percentage</strong> = (“ON” time) / (total time)</p></li>
+</ul>
+<a class="reference internal image-reference" href="../../../_images/epwm_duty.png"><img alt="../../../_images/epwm_duty.png" class="align-center" src="../../../_images/epwm_duty.png" style="width: 542.0px; height: 358.0px;" /></a>
+<ol class="arabic simple">
+<li><p>Expand the “EPWM Action Qualifier”, “EPWMxA Output Configuration”, and “EPWMxA Event Output Configuration” drop-downs.</p></li>
+<li><p>For “EPWMxA Time base counter up equals COMPA”, select “Set output pins to high”.</p></li>
+<li><p>For “EPWMxA Time base counter down equals COMPA”, select “Set output pins to low”.</p></li>
+</ol>
+<a class="reference internal image-reference" href="../../../_images/epwm_setup2.png"><img alt="../../../_images/epwm_setup2.png" class="align-center" src="../../../_images/epwm_setup2.png" style="width: 854.0px; height: 254.0px;" /></a>
+</section>
+<section id="epwm-trip">
+<h4>EPWM Trip<a class="headerlink" href="#epwm-trip" title="Permalink to this heading">#</a></h4>
+<p>Now that we have established the foundation of our EPWM module, we can integrate the settings that allow for the EPWM to be tripped as well as to generate the ADC SOC.</p>
+<p>The EPWM trip zone submodule will be utilized to set up the trip. We want our output to go low whenever the trip signal occurs.</p>
+<ol class="arabic simple">
+<li><p>Expand the “EPWM Trip Zone” drop-down.</p></li>
+<li><p>Note that whenever a trip is detected (from any trip source), the actions configured as the “TZA Event” and “TZB Event” will be carried out on EPWMxA and EPWMxB respectively.</p></li>
+<li><p>Since we are only using EPWM1<strong>A</strong>, we can set “TZA Event” to a ‘Low voltage state’.</p></li>
+<li><p>For “One-Shot Source” add “One-Shot DCAEVT1”.</p></li>
+</ol>
+<a class="reference internal image-reference" href="../../../_images/epwm_setup3.png"><img alt="../../../_images/epwm_setup3.png" class="align-center" src="../../../_images/epwm_setup3.png" style="width: 943.0px; height: 577.0px;" /></a>
+<p>On the EPWM side, we will leverage the EPWM digital compare submodule to use activity on the TRIP4 signal (the CMPSS output) as a one-shot trip source. The TRIP4 event will be mapped in to the EPWM “digital compare A event 1” (or “DCAEVT1”). We can then select what type of activity on the DCAEVT1 signal triggers a trip (trip when DCAEVT1 goes high or trip when DCAEVT1 goes low).</p>
+<ol class="arabic simple">
+<li><p>Expand the “EPWM Digital Compare” and “DCAEVT1 and DCAEVT2” drop-downs.</p></li>
+<li><p>Select “Trip 4” (TRIP4) as the signal for ‘Digital Compare A High’ (DCAxH).</p></li>
+<li><p>Set the “Condition for Digital Compare output 1A” to produce an “Event when DCxH is high”.</p></li>
+</ol>
+<a class="reference internal image-reference" href="../../../_images/epwm_setup4.png"><img alt="../../../_images/epwm_setup4.png" class="align-center" src="../../../_images/epwm_setup4.png" style="width: 937.0px; height: 590.0px;" /></a>
+</section>
+<section id="epwm-adc-soc">
+<h4>EPWM ADC SOC<a class="headerlink" href="#epwm-adc-soc" title="Permalink to this heading">#</a></h4>
+<p>The final step is to configure the EPWM to trigger ACD start of conversions (SOC). This is accomplished in the EPWM event trigger submodule.</p>
+<ol class="arabic simple">
+<li><p>Expand the “EPWM Event Trigger” and “ADC SOC Trigger” drop-downs.</p></li>
+<li><p>Check the box to enable the ADC SOC A trigger.</p></li>
+<li><p>Set ‘SOCA Trigger Source’ to be “Time-base counter equal to CMPA when timer is incrementing”. Every occurrence of this counter match event will trigger an ADCSOCA.</p></li>
+</ol>
+<a class="reference internal image-reference" href="../../../_images/epwm_setup5.png"><img alt="../../../_images/epwm_setup5.png" class="align-center" src="../../../_images/epwm_setup5.png" style="width: 1059.0px; height: 292.0px;" /></a>
+<p>This concludes the SysConfig portion of the lab.</p>
+</section>
+</section>
+</section>
+<section id="program-setup">
+<h2>Program Setup<a class="headerlink" href="#program-setup" title="Permalink to this heading">#</a></h2>
+<p>In your project, double-click on the <code class="docutils literal notranslate"><span class="pre">.c</span></code> file to open it. Follow the below instructions to develop your program.</p>
+<section id="define-global-macros-and-variables">
+<h3>Define Global Macros and Variables<a class="headerlink" href="#define-global-macros-and-variables" title="Permalink to this heading">#</a></h3>
+<p>The first part of this lab’s program setup consists of defining all of the functions and variables to be used throughout the program. There are four main things that need to be initialized/declared:</p>
+<ol class="arabic simple">
+<li><p><strong>Included header files</strong> - files that are referenced in the program and contain functions declarations that can be used.</p></li>
+<li><p><strong>Defines</strong> - values that will not be changing throughout the program (such as the EPWM period).</p></li>
+<li><p><strong>Global variables</strong> - variables that will be utilized throughout the program (such as the ADC result or CMPA value).</p></li>
+<li><p><strong>Function prototypes</strong> - declarations of each function used/created (such as the module initialization functions as well as the ADC ISR function).</p></li>
+</ol>
+<p>Copy the below code into your .c file above the default <em>main()</em>.</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="c1">//</span>
+<span class="c1">// Included Files</span>
+<span class="c1">//</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;board.h&quot;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;esm.h&quot;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;inc/hw_memmap.h&quot;</span>
+
+<span class="c1">//</span>
+<span class="c1">// Defines</span>
+<span class="c1">//</span>
+<span class="cp">#define EPWM_PERIOD             1000</span>
+<span class="cp">#define ADC_SCALE               1/4096.0</span>
+<span class="cp">#define comp_threshold          2500</span>
+<span class="cp">#define pinCfg                  GPIO_79_ERRORSTS</span>
+
+<span class="cp">#ifdef DACA_BASE</span>
+<span class="w">    </span><span class="cp">#define USE_DAC                 </span><span class="c1">//Comment line if not using DAC</span>
+<span class="cp">#endif</span>
+
+<span class="c1">//</span>
+<span class="c1">// Globals</span>
+<span class="c1">//</span>
+<span class="kt">uint16_t</span><span class="w"> </span><span class="n">adcAResult</span><span class="p">;</span><span class="w">          </span><span class="c1">/// value used to store ADC conversion</span>
+<span class="kt">uint16_t</span><span class="w"> </span><span class="n">CMPA_result</span><span class="p">;</span><span class="w">         </span><span class="c1">/// value used to calculate CMPA for new duty cycle value</span>
+<span class="kt">uint16_t</span><span class="w"> </span><span class="n">dacVal</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1000</span><span class="p">;</span><span class="w">       </span><span class="c1">/// value used to set the DAC output</span>
+<span class="kt">uint16_t</span><span class="w"> </span><span class="n">ledBlinkRate</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">50</span><span class="p">;</span><span class="w">   </span><span class="c1">/// initialized value for LED blink rate</span>
+<span class="kt">uint16_t</span><span class="w"> </span><span class="n">LED_count</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w">       </span><span class="c1">/// LED counter</span>
+<span class="kt">uint16_t</span><span class="w"> </span><span class="n">interruptCount</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+<span class="kt">float</span><span class="w"> </span><span class="n">duty</span><span class="p">;</span><span class="w">                   </span><span class="c1">/// value that holds part of the calculation for CMPA</span>
+<span class="kt">uint16_t</span><span class="w"> </span><span class="n">errorStsPin</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">79</span><span class="p">;</span><span class="w">    </span><span class="c1">/// using gpio79 for ERRORSTS pin functionality</span>
+
+
+<span class="c1">//</span>
+<span class="c1">// Function Prototypes</span>
+<span class="c1">//</span>
+<span class="n">__attribute__</span><span class="p">((</span><span class="n">interrupt</span><span class="p">(</span><span class="s">&quot;INT&quot;</span><span class="p">)))</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">INT_myADCA_1_ISR</span><span class="p">(</span><span class="kt">void</span><span class="p">);</span>
+
+</pre></div>
+</div>
+</section>
+<section id="define-main">
+<h3>Define main()<a class="headerlink" href="#define-main" title="Permalink to this heading">#</a></h3>
+<p>We will now move on to setting up our <code class="docutils literal notranslate"><span class="pre">main()</span></code> function. To begin, we must set up the device. Use the following code to initialize the
+clocks, peripherals, and PIE vectors. Within <code class="docutils literal notranslate"><span class="pre">main()</span></code> add the following lines of code:</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="w">    </span><span class="c1">//</span>
+<span class="w">    </span><span class="c1">// Initialize device clock, peripheral clocks and interrupts</span>
+<span class="w">    </span><span class="c1">//</span>
+<span class="w">    </span><span class="n">Device_init</span><span class="p">();</span>
+
+<span class="w">    </span><span class="n">SysCtl_disablePeripheral</span><span class="p">(</span><span class="n">SYSCTL_PERIPH_CLK_TBCLKSYNC</span><span class="p">);</span>
+
+<span class="w">    </span><span class="c1">//</span>
+<span class="w">    </span><span class="c1">// Board Initialization</span>
+<span class="w">    </span><span class="c1">//</span>
+<span class="w">    </span><span class="n">Board_init</span><span class="p">();</span>
+
+<span class="w">    </span><span class="c1">//</span>
+<span class="w">    </span><span class="c1">//  GPIO qualification - ASYNC</span>
+<span class="w">    </span><span class="c1">//</span>
+<span class="w">    </span><span class="n">GPIO_setQualificationMode</span><span class="p">(</span><span class="n">errorStsPin</span><span class="p">,</span><span class="w"> </span><span class="n">GPIO_QUAL_ASYNC</span><span class="p">);</span>
+
+<span class="w">    </span><span class="c1">//</span>
+<span class="w">    </span><span class="c1">//  GPIO pad configuration - STD</span>
+<span class="w">    </span><span class="c1">//</span>
+<span class="w">    </span><span class="n">GPIO_setPadConfig</span><span class="p">(</span><span class="n">errorStsPin</span><span class="p">,</span><span class="w"> </span><span class="n">GPIO_PIN_TYPE_STD</span><span class="p">);</span>
+
+<span class="w">    </span><span class="c1">//</span>
+<span class="w">    </span><span class="c1">//  Pin configuration</span>
+<span class="w">    </span><span class="c1">//</span>
+<span class="w">    </span><span class="n">GPIO_setPinConfig</span><span class="p">(</span><span class="n">pinCfg</span><span class="p">);</span>
+
+<span class="w">    </span><span class="c1">//</span>
+<span class="w">    </span><span class="c1">// Enable PIPE Global Interrupt (for INTs and RTINTs) and INT enable in CPU.</span>
+<span class="w">    </span><span class="c1">//</span>
+<span class="w">    </span><span class="n">ENINT</span><span class="p">;</span>
+<span class="w">    </span><span class="n">Interrupt_enableGlobal</span><span class="p">();</span>
+
+<span class="w">    </span><span class="c1">//</span>
+<span class="w">    </span><span class="c1">// Start ePWM1, enabling SOCA</span>
+<span class="w">    </span><span class="c1">//</span>
+<span class="w">    </span><span class="n">EPWM_enableADCTrigger</span><span class="p">(</span><span class="n">myEPWM1_BASE</span><span class="p">,</span><span class="w"> </span><span class="n">EPWM_SOC_A</span><span class="p">);</span>
+
+<span class="w">    </span><span class="c1">//</span>
+<span class="w">    </span><span class="c1">// Enable sync and clock to PWM after PWM initialization is complete</span>
+<span class="w">    </span><span class="c1">//</span>
+<span class="w">    </span><span class="n">SysCtl_enablePeripheral</span><span class="p">(</span><span class="n">SYSCTL_PERIPH_CLK_TBCLKSYNC</span><span class="p">);</span>
+
+</pre></div>
+</div>
+<p>Following the general device and peripheral setup from above, we need to write the functional portion of the <code class="docutils literal notranslate"><span class="pre">main()</span></code>. This includes writing a value to the buffered DAC as well as
+monitoring the one-shot trip flag. The flag and ESM error are cleared whenever the trip
+condition is no longer present. Copy the below code into your <code class="docutils literal notranslate"><span class="pre">main()</span></code> following the device setup from above.</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="w">    </span><span class="c1">//</span>
+<span class="w">    </span><span class="c1">// Loop indefinitely</span>
+<span class="w">    </span><span class="c1">//</span>
+<span class="w">    </span><span class="k">while</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="w">    </span><span class="p">{</span>
+
+<span class="w">       </span><span class="cp">#ifdef USE_DAC</span>
+<span class="w">       </span><span class="c1">//</span>
+<span class="w">       </span><span class="c1">// Set the value for the DAC</span>
+<span class="w">       </span><span class="c1">//</span>
+<span class="w">       </span><span class="n">DAC_setShadowValue</span><span class="p">(</span><span class="n">myDACA_BASE</span><span class="p">,</span><span class="w"> </span><span class="n">dacVal</span><span class="p">);</span>
+<span class="w">       </span><span class="cp">#endif</span>
+
+<span class="w">       </span><span class="c1">//</span>
+<span class="w">       </span><span class="c1">// Trip flag is set when CTRIP signal is asserted</span>
+<span class="w">       </span><span class="c1">//</span>
+<span class="w">       </span><span class="k">if</span><span class="p">((</span><span class="n">EPWM_getTripZoneFlagStatus</span><span class="p">(</span><span class="n">myEPWM1_BASE</span><span class="p">)</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">EPWM_TZ_FLAG_OST</span><span class="p">)</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="mi">0U</span><span class="p">)</span>
+<span class="w">        </span><span class="p">{</span>
+<span class="w">            </span><span class="c1">//</span>
+<span class="w">            </span><span class="c1">// Wait for comparator CTRIP to de-assert</span>
+<span class="w">            </span><span class="c1">//</span>
+<span class="w">            </span><span class="k">while</span><span class="p">((</span><span class="n">CMPSS_getStatus</span><span class="p">(</span><span class="n">myCMPSS_BASE</span><span class="p">)</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">CMPSS_STS_HI_FILTOUT</span><span class="p">)</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="mi">0U</span><span class="p">)</span>
+<span class="w">            </span><span class="p">{</span>
+
+<span class="w">               </span><span class="cp">#ifdef USE_DAC</span>
+<span class="w">               </span><span class="c1">//Update DAC value in case updated during this time</span>
+<span class="w">               </span><span class="n">DAC_setShadowValue</span><span class="p">(</span><span class="n">myDACA_BASE</span><span class="p">,</span><span class="w"> </span><span class="n">dacVal</span><span class="p">);</span>
+<span class="w">               </span><span class="cp">#endif</span>
+<span class="w">            </span><span class="p">}</span>
+
+<span class="w">            </span><span class="c1">//</span>
+<span class="w">            </span><span class="c1">// Clear trip flags</span>
+<span class="w">            </span><span class="c1">//</span>
+<span class="w">            </span><span class="n">EPWM_clearTripZoneFlag</span><span class="p">(</span><span class="n">myEPWM1_BASE</span><span class="p">,</span><span class="w"> </span><span class="n">EPWM_TZ_INTERRUPT</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">EPWM_TZ_FLAG_OST</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">EPWM_TZ_FLAG_DCAEVT1</span><span class="p">);</span>
+
+<span class="w">            </span><span class="c1">//</span>
+<span class="w">            </span><span class="c1">// ESM clear raw status for SYSTEM ESM base and clear ERROR pin</span>
+<span class="w">            </span><span class="c1">//</span>
+<span class="w">            </span><span class="n">ESM_clearRawInterruptStatus</span><span class="p">(</span><span class="n">ESMSYSTEM_BASE</span><span class="p">,</span><span class="n">ESM_EVENT_EPWMXBAR4</span><span class="p">);</span>
+<span class="w">            </span><span class="n">ESM_clearErrorPin</span><span class="p">();</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="set-up-the-adc-isr">
+<h3>Set Up the ADC ISR<a class="headerlink" href="#set-up-the-adc-isr" title="Permalink to this heading">#</a></h3>
+<p>The final step is to define the contents of the ADC ISR. This is where all of the calculations will be made for the control loop.</p>
+<p>The first step is to read the conversion results of the ADC. Add the following code to your .c file below your <code class="docutils literal notranslate"><span class="pre">main()</span></code>.</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="c1">//</span>
+<span class="c1">// ADC ISR</span>
+<span class="c1">//</span>
+<span class="n">__attribute__</span><span class="p">((</span><span class="n">interrupt</span><span class="p">(</span><span class="s">&quot;INT&quot;</span><span class="p">)))</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">INT_myADCA_1_ISR</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="n">interruptCount</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">interruptCount</span><span class="o">+</span><span class="mi">1</span><span class="p">;</span>
+<span class="w">    </span><span class="c1">//</span>
+<span class="w">    </span><span class="c1">// Get the latest ADC conversion result</span>
+<span class="w">    </span><span class="c1">//</span>
+<span class="w">    </span><span class="n">adcAResult</span><span class="o">=</span><span class="w"> </span><span class="n">ADC_readResult</span><span class="p">(</span><span class="n">myADCA_RESULT_BASE</span><span class="p">,</span><span class="w"> </span><span class="n">myADCA_SOC0</span><span class="p">);</span>
+
+</pre></div>
+</div>
+<p>Next, in the ADC ISR we need to utilize the ADC result to calculate the new value for the counter compare value (CMPA) and implement it to change the EPWM duty cycle. The formula that will be used is,
+CMPA = (Time base period) * (1 - (ADC Conversion Result/4095)). Add the code below to your ADC ISR to implement this.</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="w">    </span><span class="c1">//</span>
+<span class="w">    </span><span class="c1">// Update the CMPA value according to the ADC result</span>
+<span class="w">    </span><span class="c1">//</span>
+<span class="w">    </span><span class="n">duty</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">adcAResult</span><span class="o">*</span><span class="n">ADC_SCALE</span><span class="p">;</span>
+<span class="w">    </span><span class="n">CMPA_result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">EPWM_PERIOD</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">duty</span><span class="p">);</span>
+
+<span class="w">    </span><span class="c1">//</span>
+<span class="w">    </span><span class="c1">// Update the CMPA value with the new calculated value</span>
+<span class="w">    </span><span class="c1">//</span>
+<span class="w">    </span><span class="n">EPWM_setCounterCompareValue</span><span class="p">(</span><span class="n">myEPWM1_BASE</span><span class="p">,</span><span class="w"> </span><span class="n">EPWM_COUNTER_COMPARE_A</span><span class="p">,</span><span class="w"> </span><span class="n">CMPA_result</span><span class="p">);</span>
+
+</pre></div>
+</div>
+<p>The next portion of the ADC ISR uses our LED GPIO. Here, the LED is set up to blink at a specific rate based on the calculated duty cycle. The formula for ‘ledBlinkRate’ is (100-(duty)(100))100.</p>
+<p>Note that ‘ledBlinkRate’ is actually a counter of how many interrupts are needed before the LED GPIO is toggled. The duty cycle is then calculated and multiplied by 100 to adjust the numbers and make sure we can see the LED blink. As the duty cycle increases, the rate of the LED GPIO increases. Add the code below to your ADC ISR.</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="w">    </span><span class="c1">//</span>
+<span class="w">    </span><span class="c1">// Calculate the LED blink rate</span>
+<span class="w">    </span><span class="c1">//</span>
+<span class="w">    </span><span class="n">ledBlinkRate</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="mi">100</span><span class="o">-</span><span class="p">(</span><span class="n">duty</span><span class="o">*</span><span class="mi">100</span><span class="p">))</span><span class="o">*</span><span class="mi">100</span><span class="p">;</span>
+
+<span class="w">    </span><span class="c1">//</span>
+<span class="w">    </span><span class="c1">// Toggle the LED based upon the duty cycle chosen</span>
+<span class="w">    </span><span class="c1">//</span>
+<span class="w">    </span><span class="k">if</span><span class="p">(</span><span class="n">LED_count</span><span class="o">++</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">ledBlinkRate</span><span class="p">)</span><span class="w">               </span><span class="c1">// Toggle LED to change state</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="n">GPIO_togglePin</span><span class="p">(</span><span class="n">myBoardLED0_GPIO</span><span class="p">);</span><span class="w">    </span><span class="c1">// Toggle the pin</span>
+<span class="w">        </span><span class="n">LED_count</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w">                           </span><span class="c1">// Reset the counter</span>
+<span class="w">    </span><span class="p">}</span>
+</pre></div>
+</div>
+<p>Lastly, in the ADC ISR we need to clear the interrupt flags so that we can allow for future interrupts and check for an ADC overflow condition. Add the code below to complete your ADC ISR.</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="w">    </span><span class="c1">// Clear the interrupt flag</span>
+<span class="w">    </span><span class="c1">//</span>
+<span class="w">    </span><span class="n">ADC_clearInterruptStatus</span><span class="p">(</span><span class="n">myADCA_BASE</span><span class="p">,</span><span class="w"> </span><span class="n">ADC_INT_NUMBER1</span><span class="p">);</span>
+
+<span class="w">    </span><span class="c1">//</span>
+<span class="w">    </span><span class="c1">// Check if overflow has occurred</span>
+<span class="w">    </span><span class="c1">//</span>
+<span class="w">    </span><span class="k">if</span><span class="p">(</span><span class="nb">true</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">ADC_getInterruptOverflowStatus</span><span class="p">(</span><span class="n">myADCA_BASE</span><span class="p">,</span><span class="w"> </span><span class="n">ADC_INT_NUMBER1</span><span class="p">))</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="n">ADC_clearInterruptOverflowStatus</span><span class="p">(</span><span class="n">myADCA_BASE</span><span class="p">,</span><span class="w"> </span><span class="n">ADC_INT_NUMBER1</span><span class="p">);</span>
+<span class="w">        </span><span class="n">ADC_clearInterruptStatus</span><span class="p">(</span><span class="n">myADCA_BASE</span><span class="p">,</span><span class="w"> </span><span class="n">ADC_INT_NUMBER1</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="build-the-project">
+<h2>Build the Project<a class="headerlink" href="#build-the-project" title="Permalink to this heading">#</a></h2>
+<p>With the configurations and code complete, we can ‘Build’ the project to check for any errors.
+Once the project builds without errors, we will connect to the device, load the program to the device, and run it within a debug session.</p>
+<ol class="arabic simple">
+<li><p>Right-click on your project and hover over the <strong>Build Configurations</strong> button until another panel pops up. Select the <strong>CPU1_RAM</strong> build configuration.</p>
+<ul class="simple">
+<li><p>With the RAM configuration selected, the project will be loaded to the RAM memory of the device.</p></li>
+</ul>
+</li>
+<li><p>Right-click on your project again and select <strong>Build Project(s)</strong> to build your program. Fix any compilation errors.</p></li>
+<li><p>Implement any necessary hardware connections if using an external voltage source. If the DAC is being implemented, it will supply the DAC output waveform to the ADC as a signal input. If you have an oscilloscope, you can also connect a probe to your EPWM1A pin to view the waveform on the scope.</p></li>
+</ol>
+<p>See your board’s schematics to verify signal pin locations.</p>
+<center>
+<table class="table" id="id1" style="width: 50%">
+<caption><span class="caption-text"><em><strong>ControlSOM Hardware Connections</strong></em></span><a class="headerlink" href="#id1" title="Permalink to this table">#</a></caption>
+<thead>
+<tr class="row-odd"><th class="head text-center"><p>Device</p></th>
+<th class="head text-center"><p>ADCINA4 Pin</p></th>
+<th class="head text-center"><p>EPWM1A Pin</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-center"><p>F29H85x</p></td>
+<td class="text-center"><p>119</p></td>
+<td class="text-center"><p>15</p></td>
+</tr>
+</tbody>
+</table>
+</center>
+</section>
+<section id="run-the-project">
+<h2>Run the Project<a class="headerlink" href="#run-the-project" title="Permalink to this heading">#</a></h2>
+<p>Now we will start a debug session.</p>
+<ol class="arabic simple" start="4">
+<li><p>Ensure that the USB cable from your board is connected to your computer.</p></li>
+<li><p>Right-click on your project and select <strong>Debug Project</strong>.</p>
+<ul class="simple">
+<li><p>If prompted, check that only CPU1 is selected to load the program to.</p></li>
+<li><p>This action should re-build your project, connect to the debugger, and load the program to the device.</p></li>
+<li><p>The <strong>DEBUG</strong> window should populate and the debugger should have paused at the beginning of your <code class="docutils literal notranslate"><span class="pre">main()</span></code>.</p></li>
+</ul>
+</li>
+<li><p>Now we will continue the debug session and the <code class="docutils literal notranslate"><span class="pre">main()</span></code> by clicking the blue <strong>Continue</strong> button in the upper left corner.</p>
+<ul class="simple">
+<li><p>Note that there are several other buttons that can be used to help debug your project by stepping through your program line by line. Feel free to explore them here,
+or see the <a class="reference internal" href="../../intro/c29x_literature.html"><span class="doc std std-doc">CCS User’s Guide</span></a> for more details on its capabilities.</p></li>
+</ul>
+</li>
+<li><p>When you open the debug perspective, also add <code class="docutils literal notranslate"><span class="pre">adcAResult</span></code>, <code class="docutils literal notranslate"><span class="pre">CMPA_result</span></code>,<code class="docutils literal notranslate"><span class="pre">EPwm1Regs.TZFLG.OST</span></code>, <code class="docutils literal notranslate"><span class="pre">duty</span></code>, and <code class="docutils literal notranslate"><span class="pre">dacVal</span></code> to the expression window.</p></li>
+</ol>
+<a class="reference internal image-reference" href="../../../_images/expression_window.png"><img alt="../../../_images/expression_window.png" class="align-center" src="../../../_images/expression_window.png" style="width: 217.60000000000002px; height: 126.4px;" /></a>
+</section>
+<section id="validate-the-project">
+<h2>Validate the Project<a class="headerlink" href="#validate-the-project" title="Permalink to this heading">#</a></h2>
+<p>With the project now running freely, we can now check to see if the project is running as expected. To check this example, we have two ways to alter the ADC input value:</p>
+<ol class="arabic simple">
+<li><p>Use the DAC and change the DAC output to see the system response.</p></li>
+<li><p>(Alternatively) Use an external voltage source supplied to the ADC input channel see the system response.</p></li>
+</ol>
+<p>In either case, we can vary the ADC input voltage and then verify the example is running properly by doing the following:</p>
+<ol class="arabic simple">
+<li><p>Observing the LED blinking according to the EPWM duty cycle.</p></li>
+<li><p>Using an oscilloscope to view the EPWM waveform and see it alter accordingly.</p></li>
+</ol>
+<section id="using-external-voltage">
+<h3>Using External Voltage<a class="headerlink" href="#using-external-voltage" title="Permalink to this heading">#</a></h3>
+<p>As an example, we can first use an external voltage source as the ADC channel input. When 1.5V is applied to the ADC pin, the expression window should look like the below:</p>
+<p><img alt="Expressions Half Voltage" src="../../../_images/RAM_1_5V.png" /></p>
+<p>In this example the adcAResult is 2060, which corresponds to a voltage reading of ~1.5V</p>
+<ul class="simple">
+<li><p>ADC input voltage = (ADC reading/4096)VREFHI</p></li>
+<li><p>ADC input voltage = (2060/4096)3V = 1.508 V</p></li>
+</ul>
+<p>If using an oscilloscope to view the EPWM output, you’ll notice the output is a 50kHz output (if EPWM clock is 100MHz) with a ~50% duty cycle (voltage range 0-3.3V in the figure below)</p>
+<p><img alt="Oscilloscope Half Voltage" src="../../../_images/OSS_RAM_1_5_V.png" /></p>
+<p>The new CMPA value is based on the following formula:</p>
+<ul class="simple">
+<li><p>CMPA = TBPRD(1-Conversion/4096)</p></li>
+<li><p>CMPA_result = 1000(1-(2060/4096))= 497</p></li>
+</ul>
+<p>There will be slight fluctuations in these readings as the ADC is sampling and re-calculating the CMPA result.</p>
+</section>
+<section id="using-the-dac">
+<h3>Using the DAC<a class="headerlink" href="#using-the-dac" title="Permalink to this heading">#</a></h3>
+<p>Rather than use an external voltage source, we can simply use the DAC module to provide a signal. You’ll notice the current value we set in the DAC module is 1000, so the ADC should be reading close to this value when the jumper is connected between the DAC output pin and the ADC input pin.</p>
+<a class="reference internal image-reference" href="../../../_images/DAC_below_threshold.png"><img alt="../../../_images/DAC_below_threshold.png" class="align-center" src="../../../_images/DAC_below_threshold.png" style="width: 607.0px; height: 117.0px;" /></a>
+<p>We can change this value in the “Expressions Window” by clicking on it and changing the value. If we set it to something above the <code class="docutils literal notranslate"><span class="pre">comp_threshold</span></code> value then the ePWM outputs will trip low and the one-shot trip flag will be set to 1.</p>
+<a class="reference internal image-reference" href="../../../_images/DAC_above_threshold.png"><img alt="../../../_images/DAC_above_threshold.png" class="align-center" src="../../../_images/DAC_above_threshold.png" style="width: 609.0px; height: 115.0px;" /></a>
+<p>Having verified, we can terminate the active debug session using the <strong>Terminate</strong> button to close the debugger. This concludes the entirety of this lab as executed in the RAM of the device. We can alternatively load the program to FLASH memory to remain on the device.</p>
+</section>
+<section id="build-and-run-in-flash">
+<h3>Build and Run in FLASH<a class="headerlink" href="#build-and-run-in-flash" title="Permalink to this heading">#</a></h3>
+<p>Hence, the final step for this lab is to practice executing the program in Flash. To do this we will utilize the <code class="docutils literal notranslate"><span class="pre">FLASH</span></code> build configuration that is built into the project.</p>
+<ol class="arabic simple">
+<li><p>Right click on the project -&gt; Select “Build Configurations” -&gt; “Set
+Active” -&gt; select the FLASH configuration file. Detailed information for what this configuration is
+changing is outlined in the following <a class="reference external" href="https://e2e.ti.com/support/microcontrollers/c2000-microcontrollers-group/c2000/f/c2000-microcontrollers-forum/878674/faq-flash---how-to-modify-an-application-from-ram-configuration-to-flash-configuration">FLASH FAQ</a></p></li>
+<li><p>Click the “Debug” icon. The FLASH will automatically be erased
+and reprogrammed with the project’s content.</p></li>
+</ol>
+<p>When programming the FLASH, if the DAC is being used as the source for the ADC then you will
+not be able to change the value of ‘dacVal’. If you are supplying an external
+voltage to the ADC input pin, then you should still see the change in EPWM duty and LED blink rate as the input voltage is changed.</p>
+<p>Example of the DAC version while running the program from Flash (0-3.3V range):</p>
+<p><img alt="DAC FLASH" src="../../../_images/DAC_OSS.png" /></p>
+<p>If you disconnect your device from the power source and reconnect you should see
+the program still executing since the program is located in FLASH.</p>
+</section>
+<section id="terminate-the-debug-session-and-close-the-project">
+<h3>Terminate the Debug Session and Close the Project<a class="headerlink" href="#terminate-the-debug-session-and-close-the-project" title="Permalink to this heading">#</a></h3>
+<p>With the project developed and validated, we can close this debug session.</p>
+<ul class="simple">
+<li><p>Click the red <strong>Stop</strong> button at the top of your <code class="docutils literal notranslate"><span class="pre">DEBUG</span></code> window to terminate the active debug session and disconnect the debugger</p></li>
+<li><p>You can return to the <code class="docutils literal notranslate"><span class="pre">Project</span> <span class="pre">Explorer</span></code> window by clicking on the corresponding button at the top of the panel on the left.</p></li>
+</ul>
+<p>This concludes the lab exercise.</p>
+</section>
+</section>
+<section id="full-solution">
+<h2>Full Solution<a class="headerlink" href="#full-solution" title="Permalink to this heading">#</a></h2>
+<p>Recall that the completed software solution is available as well. Please refer to the top of this page to review the location of this lab’s software solution.</p>
+</section>
+</section>
+
+
+                </article>
+              
+              
+              <footer class="bd-footer-article">
+                    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+  <a class='left-prev' id="prev-link" href="c29x_clb_ecap_lab.html" title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+          <p class="prev-next-subtitle">previous</p>
+          <p class="prev-next-title">CLB and ECAP Lab</p>
+      </div>
+  </a>
+  <a class='right-next' id="next-link" href="c29x_mcal_epwm_phase_shift_lab.html" title="next page">
+  <div class="prev-next-info">
+      <p class="prev-next-subtitle">next</p>
+      <p class="prev-next-title">MCAL EPWM Phase Shift and Interrupts Demo</p>
+  </div>
+  <i class="fa-solid fa-angle-right"></i>
+  </a>
+</div>
+                  </footer>
+                
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc">
+<div class="toc-item">
+  
+<div class="tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+</div>
+<nav id="bd-toc-nav" class="page-toc">
+    <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#solution">
+   Solution
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#overview">
+   Overview
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#lab-setup">
+   Lab Setup
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#hardware-setup">
+     Hardware Setup
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#software-setup">
+     Software Setup
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#start-a-ccs-project">
+   Start a CCS Project
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#configure-the-gpio">
+   Configure the GPIO
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#configure-the-adc">
+   Configure the ADC
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#configure-the-dac">
+   Configure the DAC
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#configure-the-cmpss">
+   Configure the CMPSS
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#configure-the-epwm">
+   Configure the EPWM
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#epwm-x-bar-configuration">
+     EPWM X-BAR Configuration
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#esm-configuration">
+     ESM Configuration
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#epwm-configuration">
+     EPWM Configuration
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#epwm-parameters">
+       EPWM Parameters
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#epwm-trip">
+       EPWM Trip
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#epwm-adc-soc">
+       EPWM ADC SOC
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#program-setup">
+   Program Setup
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#define-global-macros-and-variables">
+     Define Global Macros and Variables
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#define-main">
+     Define main()
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#set-up-the-adc-isr">
+     Set Up the ADC ISR
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#build-the-project">
+   Build the Project
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#run-the-project">
+   Run the Project
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#validate-the-project">
+   Validate the Project
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#using-external-voltage">
+     Using External Voltage
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#using-the-dac">
+     Using the DAC
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#build-and-run-in-flash">
+     Build and Run in FLASH
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#terminate-the-debug-session-and-close-the-project">
+     Terminate the Debug Session and Close the Project
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#full-solution">
+   Full Solution
+  </a>
+ </li>
+</ul>
+
+</nav>
+</div>
+
+<div class="toc-item">
+  
+<button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-toggle="tooltip">
+  <i class="fa-solid fa-magnifying-glass"></i>
+</button>
+</div>
+</div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+<script async>
+  async function setTheme() {
+    try {
+      var colorScheme = await window.parent.getTirexTheme();
+      var mode = colorScheme === 'dark' ? 'dark' : 'light';
+      localStorage.setItem('mode', mode);
+      document.documentElement.dataset.mode = mode;
+      document.documentElement.dataset.theme = colorScheme;
+    } catch (error) {
+      console.error('Failed to set the theme:', error);
+    }
+  }
+
+  setTheme();
+</script>
+
+
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../../_static/scripts/bootstrap.js?digest=796348d33e8b1d947c94"></script>
+<script src="../../../_static/scripts/pydata-sphinx-theme.js?digest=796348d33e8b1d947c94"></script>
+
+
+
+
+<script type="text/javascript">
+  function extractNodeValue(url) {
+    try {
+      const parsedUrl = new URL(url);
+      if (parsedUrl.pathname === '/tirex/explore/node') {
+        const searchParams = new URLSearchParams(parsedUrl.search);
+        return searchParams.get('node');
+      } else {
+        return null;
+      }
+    } catch (error) {
+      console.error("Invalid URL:", error);
+      return null;
+    }
+  }
+
+  // Get all links on the page
+  const links = document.querySelectorAll('a');
+
+  // Get the project name and replace spaces with underscores
+  var projName = "C29x Academy";
+
+  // Attach a click event listener to each link
+  links.forEach((link) => {
+    link.addEventListener('click', (event) => {
+      // Prevent the default link behavior
+      event.preventDefault();
+
+      const url = link.href;
+      console.log(url)
+      const match = url.match(/source\/.+$/);
+      const localId = match ? match[0].replace(/\.html$/, '').replace(/[\/\\\.]/g, '_').toLowerCase() : null;
+      console.log(localId)
+      const extractedNode = extractNodeValue(url);
+
+      console.log(extractedNode)
+      if (typeof window.parent.jumpToTirexNodeOnLocal === 'function') {
+        window.parent.jumpToTirexNodeOnLocal(localId, null, null, {
+            throwError: true
+          })
+          .catch((e) => {
+            if (extractedNode !== null) {
+              window.parent.jumpToTirexNode(extractedNode, {
+                  throwError: true
+                })
+                .catch((e) => {
+                  window.location.href = link.href;
+                })
+            }
+            else {
+              if (url.includes("e2e.ti.com") || url.includes("dev.ti.com/gallery/view")) {
+              window.open(url, "_blank")
+              } else {
+              window.location.href = link.href;
+            }}
+          })
+      } else {
+        window.location.href = link.href;
+      }
+    });
+  });
+</script>
+  <footer class="bd-footer"><div class="bd-footer__inner container">
+  
+  <div class="footer-item">
+    
+<p class="copyright">
+
+    &copy; Copyright 2025, Texas Instruments.<br>
+
+</p>
+
+  </div>
+  
+</div>
+  </footer>
+  </body>
+</html>

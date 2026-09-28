@@ -1,0 +1,1125 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>CLB and ECAP Lab &#8212; C29x Academy</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../_static/styles/theme.css?digest=796348d33e8b1d947c94" rel="stylesheet">
+<link href="../../../_static/styles/bootstrap.css?digest=796348d33e8b1d947c94" rel="stylesheet">
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=796348d33e8b1d947c94" rel="stylesheet">
+
+  
+  <link href="../../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=796348d33e8b1d947c94" rel="stylesheet">
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/local/font.css" />
+    <link rel="stylesheet" type="text/css" href="https://www.ti.com/assets/fonts/font.css" />
+    <link rel="stylesheet" type="text/css" href="https://www.ti.com/assets/style/resource-explorer.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=796348d33e8b1d947c94">
+<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=796348d33e8b1d947c94">
+
+    <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+    <script src="../../../_static/jquery.js"></script>
+    <script src="../../../_static/underscore.js"></script>
+    <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../../../_static/doctools.js"></script>
+    <script src="../../../_static/sphinx_highlight.js"></script>
+    <script src="../../../_static/clipboard.min.js"></script>
+    <script src="../../../_static/copybutton.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../../_static/togglebutton.js"></script>
+    <script src="../../../_static/design-tabs.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'source/lab_exercises/c29x_labs/c29x_clb_ecap_lab';</script>
+    <script src="../../../_static/quizdown.js"></script>
+    <script src="../../../_static/external-links.js"></script>
+    <link rel="canonical" href="http://127.0.0.1:8000/source/lab_exercises/c29x_labs/c29x_clb_ecap_lab.html" />
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="System Integration Lab" href="c29x_system_integration_lab.html" />
+    <link rel="prev" title="Configurable Logic Block (CLB) Lab" href="c29x_clb_lab.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="docsearch:language" content="en">
+  </head>
+  
+  
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="180" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center" action="../../../search.html" method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search C29x Academy" aria-label="Search C29x Academy" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar"><div class="bd-header__inner bd-page-width">
+  <label class="sidebar-toggle primary-toggle" for="__primary">
+      <span class="fa-solid fa-bars"></span>
+  </label>
+  <div id="navbar-start">
+    
+  </div>
+
+  
+  <div class="col-lg-9 navbar-header-items">
+    <div id="navbar-center" class="mr-auto">
+      
+    </div>
+
+    <div id="navbar-end">
+      
+        <div class="navbar-end-item navbar-persistent--container">
+          
+<button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-toggle="tooltip">
+  <i class="fa-solid fa-magnifying-glass"></i>
+</button>
+        </div>
+      
+      
+    </div>
+  </div>
+
+
+  
+  
+    <div class="navbar-persistent--mobile">
+<button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-toggle="tooltip">
+  <i class="fa-solid fa-magnifying-glass"></i>
+</button>
+    </div>
+  
+
+  
+  <label class="sidebar-toggle secondary-toggle" for="__secondary">
+      <span class="fa-solid fa-outdent"></span>
+  </label>
+  
+
+</div>
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar hide-on-wide">
+        
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+
+    
+    
+  </div>
+
+  
+
+  
+  <div class="sidebar-end-items sidebar-primary__section">
+    <div class="sidebar-end-items__item">
+    </div>
+  </div>
+
+  
+  <div id="rtd-footer-container"></div>
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article"></div>
+              
+              
+                <article class="bd-article" role="main">
+                  
+                  
+<div id="searchbox"></div>
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="clb-and-ecap-lab">
+<h1>CLB and ECAP Lab<a class="headerlink" href="#clb-and-ecap-lab" title="Permalink to this heading">#</a></h1>
+<p><a class="reference external" href="https://dev.ti.com/tirex/local?id=source_lab_exercises_c29x_labs_c29x_clb_ecap_lab&amp;packageId=C29X-ACADEMY">Link to share</a></p>
+<p>The objective of this lab is to gain more advanced skill with the Configurable
+Logic Block (CLB) peripheral and its submodules. The
+scenario in this lab consists of implementing an enhanced capture (eCAP) module using parts of the CLB. This demonstration showcases the CLB’s ability
+to connect to a signal, accurately time events, and send data to the CPU. The
+CLB will measure a high signal, a low signal, and another high signal before
+sending the data to the CPU. An external wave generator or the ePWM module can
+be set up to supply a signal, if a wave generator is not available.</p>
+<section id="solution">
+<h2>Solution<a class="headerlink" href="#solution" title="Permalink to this heading">#</a></h2>
+<p>The Academy lab modules provide step-by-step instructions for users to follow along and carry out; however, the completed software solutions are also available in the device’s SDK.</p>
+<ul class="simple">
+<li><p>See your device’s specific SDK to obtain this lab’s software solution.</p></li>
+<li><p>You can download your device’s SDK by going to the device’s product page on TI’s website and navigating to the ‘Design &amp; Development’ and ‘Software Development’ tabs.</p></li>
+</ul>
+<p>This specific lab’s solution can be found in: <code class="docutils literal notranslate"><span class="pre">[Device_SDK_Install_Path]/examples/driverlib/single_core/clb</span></code>.</p>
+</section>
+<section id="overview">
+<h2>Overview<a class="headerlink" href="#overview" title="Permalink to this heading">#</a></h2>
+<p>In this lab, a CLB tile will be used to implement the same basic
+functionality as an eCAP peripheral. The CLB will use edge filtering to create
+events where counters can start and stop, and data can be pushed to the CPU. The
+purpose of this is to simulate an eCAP with its basic features.</p>
+<p>An eCAP operates by measuring the time between two signal transitions using a
+counter. This peripheral can measure the time between two high pulses, two low
+pulses, a low and a high pulse, and a high and a low pulse. The CLB, because it
+has a counter and methods of triggering events, can therefore be used in much
+the same way.</p>
+<p><img alt="Lab Block Diagram" src="../../../_images/lab_block_diagram.png" /></p>
+</section>
+<section id="lab-setup">
+<h2>Lab Setup<a class="headerlink" href="#lab-setup" title="Permalink to this heading">#</a></h2>
+<section id="hardware-setup">
+<h3>Hardware Setup<a class="headerlink" href="#hardware-setup" title="Permalink to this heading">#</a></h3>
+<p>Required hardware for this lab:</p>
+<ul class="simple">
+<li><p>ControlSOM with the supplied USB cable.</p></li>
+<li><p>Jumper cables (1).</p></li>
+<li><p>Waveform generator. (optionally available to use ePWM instead of waveform generator)</p></li>
+</ul>
+<p>This lab exercise is intended for the F29H85x ControlSOM. Before continuing this lab, please be sure to reference the <a class="reference internal" href="../../intro/c29x_literature.html"><span class="doc std std-doc">ControlSOM User Guide</span></a> for hardware setup details.</p>
+<ul class="simple">
+<li><p>Using the supplied USB cable, connect the USB Type-C connector into your C2000 board
+and the USB Standard Type-A connector into your computer’s USB port.</p></li>
+<li><p>Please note that the <strong>docking station</strong> is not necessary for this lab but may be required to successfully run other Academy labs.</p>
+<ul>
+<li><p>If you are using the ControlSOM docking station, an additional power supply is needed for the docking station. See the <a class="reference internal" href="../../intro/c29x_literature.html"><span class="doc std std-doc">ControlSOM User Guide</span></a> for more details.</p></li>
+</ul>
+</li>
+<li><p>Check the power status LEDs (LED0 and LED1) to confirm that the board is powered and provides a JTAG communication link between the device and CCS.</p></li>
+</ul>
+<p>Later in the lab, the sensor GPIO pin will
+be routed to either GND or 3.3V, so ensure you have a jumper cable. An
+oscilloscope is optional, but will allow the EPWM output to be viewed through
+GPIO0.</p>
+</section>
+<section id="software-setup">
+<h3>Software Setup<a class="headerlink" href="#software-setup" title="Permalink to this heading">#</a></h3>
+<p>Required software for this lab:</p>
+<ul class="simple">
+<li><p>The device’s SDK</p>
+<ul>
+<li><p>Your device’s software development kit (SDK) download can be found on the “Software Development” section of your device’s product page on TI’s website.</p></li>
+</ul>
+</li>
+<li><p>The <a class="reference external" href="https://www.ti.com/tool/CCSTUDIO">Code Composer Studio (CCS)</a> platform.</p>
+<ul>
+<li><p>See the <a class="reference internal" href="../../intro/c29x_literature.html"><span class="doc std std-doc">CCS User’s Guide</span></a> for more information about this IDE.</p></li>
+</ul>
+</li>
+</ul>
+</section>
+</section>
+<section id="start-a-ccs-project">
+<h2>Start a CCS Project<a class="headerlink" href="#start-a-ccs-project" title="Permalink to this heading">#</a></h2>
+<p>Our first task is to import an empty project to our CCS workspace.</p>
+<ol class="arabic simple">
+<li><p>Open CCS and go to <strong>File → Import Project(s)</strong>. A new window should appear.</p></li>
+<li><p>Click the <strong>Browse</strong> button and select the <code class="docutils literal notranslate"><span class="pre">[MCU_SDK_[DEVICE]_Install_Path]/examples/driverlib/single_core/empty_projects</span></code> and click “Select Folder”.</p>
+<ul class="simple">
+<li><p>Note that the default Windows installation directory <code class="docutils literal notranslate"><span class="pre">[MCU_SDK_[DEVICE]_Install_Dir]</span></code> is <code class="docutils literal notranslate"><span class="pre">C:/ti/c2000/MCU_SDK_[DEVICE]_X_XX_XX_XX_XX</span></code>.</p></li>
+</ul>
+</li>
+<li><p>Under <strong>Discovered Projects</strong>, you should now see the <code class="docutils literal notranslate"><span class="pre">empty_driverlib_project</span></code>.</p></li>
+</ol>
+<a class="reference internal image-reference" href="../../../_images/empty_project.png"><img alt="../../../_images/empty_project.png" class="align-center" src="../../../_images/empty_project.png" style="width: 540.9px; height: 468.90000000000003px;" /></a>
+<br>
+<ol class="arabic simple" start="4">
+<li><p>Click <strong>Finish</strong> to import and copy the <code class="docutils literal notranslate"><span class="pre">empty_driverlib_project</span></code> into your CCS workspace.</p></li>
+<li><p>After the project has been imported, the project explorer window should
+look like below:</p></li>
+</ol>
+<a class="reference internal image-reference" href="../../../_images/project_view.png"><img alt="../../../_images/project_view.png" class="align-center" src="../../../_images/project_view.png" style="width: 266.95px; height: 170.04999999999998px;" /></a>
+<ol class="arabic simple" start="6">
+<li><p>Rename the project:</p>
+<ul class="simple">
+<li><p>Right-click on the project in the “Project Explorer” panel. Select <strong>Rename</strong> from
+the drop-down menu and rename the project to ‘clb_ecap_academy_lab’ or a name of
+your choosing.</p></li>
+<li><p>Now click the <strong>Down Arrow</strong> located to the left of the imported project to
+expand it and select <code class="docutils literal notranslate"><span class="pre">empty_driverlib_project.c</span></code>. Right-click on the file, and
+select <strong>Rename</strong> to rename the file to ‘clb_ecap_academy_lab.c’ or a name of
+your choosing.</p></li>
+</ul>
+</li>
+</ol>
+</section>
+<section id="configure-the-gpios">
+<h2>Configure the GPIOs<a class="headerlink" href="#configure-the-gpios" title="Permalink to this heading">#</a></h2>
+<p>We will now use SysConfig to set up the a GPIO signal that will be used as the LED. For example, for F29H85x controlSOM, there are two LED GPIOs available:</p>
+<ul class="simple">
+<li><p>LED0 = GPIO9</p></li>
+<li><p>LED1 = GPIO23</p></li>
+</ul>
+<section id="led-gpio">
+<h3>LED GPIO<a class="headerlink" href="#led-gpio" title="Permalink to this heading">#</a></h3>
+</section>
+<section id="led-0">
+<h3>LED 0<a class="headerlink" href="#led-0" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p>In the project directory, open the <code class="docutils literal notranslate"><span class="pre">.syscfg</span></code> file by double-clicking on it.</p></li>
+<li><p>Navigate to the <code class="docutils literal notranslate"><span class="pre">Software</span></code> tab in this SysConfig (it should open by default).</p></li>
+<li><p>In the ‘SYSTEM’ group, click <strong>+</strong> next to ‘GPIO’ to add a GPIO instance.</p></li>
+<li><p>Change the GPIO settings as shown and described below.</p>
+<ol class="arabic simple">
+<li><p>Rename the GPIO to “myBoardLED0_GPIO”.</p></li>
+<li><p>Change the ‘GPIO Direction’ to an “output”.</p></li>
+<li><p>Click the box to enable ‘Write Initial Value’ and select “0” as the ‘Initial Value’.</p></li>
+<li><p>Click on the ‘Pinmix’ drop-down to expand it, and select the board’s LED GPIO (in this case, GPIO9).</p>
+<ul>
+<li><p>To check or confirm which GPIO is connected to your board’s LED, reference your board’s schematics.</p></li>
+</ul>
+</li>
+</ol>
+</li>
+</ul>
+<a class="reference internal image-reference" href="../../../_images/sysconfig_board_led.png"><img alt="../../../_images/sysconfig_board_led.png" class="align-center" src="../../../_images/sysconfig_board_led.png" style="width: 946.0px; height: 422.0px;" /></a>
+</section>
+<section id="optional-gpio">
+<h3>Optional GPIO<a class="headerlink" href="#optional-gpio" title="Permalink to this heading">#</a></h3>
+<p>We can configure another GPIO to serve as the external signal source:</p>
+<ul class="simple">
+<li><p>Select the “Software” tab on the left panel of SysConfig</p></li>
+<li><p>Add a GPIO by clicking the (+) icon next to ‘GPIO’ on the left pane</p></li>
+<li><p>Set the GPIO as an input</p></li>
+<li><p>Set the Pin Type as “Push-pull output/floating input”</p></li>
+</ul>
+<p>Now, we have to specify which GPIO we are configuring. Upon
+expanding the “PinMux” view we can choose the desired GPIO. Follow the steps
+below:</p>
+<ul class="simple">
+<li><p>Click on the three dot icon at the top right of the SysConfig window</p></li>
+<li><p>Select “Preferences &amp; Actions”</p></li>
+<li><p>Under preferences, click on the ‘Device Pin Label’ drop down arrow
+and enable “Device pin name”. This is not part of the default
+SysConfig settings, but it allows us to see the pin name along with the
+pin number</p></li>
+<li><p>Within the GPIO PinMux, select the desired GPIO. Refer to the table below:</p></li>
+</ul>
+<p><img alt="SysConfig External GPIO" src="../../../_images/syscfg_clb_ecap_gpio.png" /></p>
+<section id="input-x-bar">
+<h4>INPUT X-BAR<a class="headerlink" href="#input-x-bar" title="Permalink to this heading">#</a></h4>
+<p>To be able to use the GPIO as a CLB input, we need to route the GPIO as an
+auxiliary signal (AUXSIG) through the global input bus. This requires using the
+input crossbar (INPUT X-BAR) and CLB crossbar (CLB X-BAR). First, configure the
+INPUT X-BAR to connect the GPIO you selected to <code class="docutils literal notranslate"><span class="pre">INPUTXBAR1</span></code> using the steps below:</p>
+<ul class="simple">
+<li><p>Add INPUT X-BAR by clicking the (+) icon next to ‘INPUTXBAR’ on the left pane</p></li>
+<li><p>Select INPUTXBAR1 as the INPUT X-BAR instance to be used</p></li>
+<li><p>Configure INPUTXBAR1 to use the selected GPIO</p></li>
+<li><p>If desired, check the box to lock INPUTXBAR1</p></li>
+</ul>
+<a class="reference internal image-reference" href="../../../_images/syscfg_clb_ecap_inputxbar.png"><img alt="../../../_images/syscfg_clb_ecap_inputxbar.png" class="align-center" src="../../../_images/syscfg_clb_ecap_inputxbar.png" style="width: 544.0px; height: 143.65px;" /></a>
+</section>
+<section id="clb-xbar">
+<h4>CLB XBAR<a class="headerlink" href="#clb-xbar" title="Permalink to this heading">#</a></h4>
+<p>Next, the CLB X-BAR needs to be configured to route INPUTXBAR1 as an auxiliary
+signal into the CLB. Configure the CLB X-BAR to route <code class="docutils literal notranslate"><span class="pre">INPUTXBAR1</span></code> to <code class="docutils literal notranslate"><span class="pre">AUXSIG0</span></code>
+using the steps below:</p>
+<ul class="simple">
+<li><p>Add a CLB X-BAR instance by clicking the (+) icon next to ‘CLBXBAR’ on the
+left pane</p></li>
+<li><p>Select AUXSIG0 as the Aux Signal Input</p></li>
+<li><p>Select INPUTXBAR1 signal as the input source</p></li>
+</ul>
+<p><img alt="SysConfig CLB X-BAR" src="../../../_images/syscfg_clb_ecap_clbxbar.png" /></p>
+<p>Now, the additional GPIO has been successfully configured as AUXSIG0 on the
+global input bus and can be used as an input into the CLB.</p>
+</section>
+</section>
+</section>
+<section id="configure-the-epwm">
+<h2>Configure the EPWM<a class="headerlink" href="#configure-the-epwm" title="Permalink to this heading">#</a></h2>
+<p>The EPWM module will be used to represent an external signal, and is configured to be a
+2kHz PWM waveform with a 50% duty cycle on ePWM1A (NOTE: here the system clock is
+set to 100 MHz, see ePWM section for calculating frequency from time base period).
+For more information on the PWM, please review the Control Peripherals module.</p>
+<p>We will start by adding a PWM instance within Sysconfig by clicking on the (+)
+sign next to ‘EPWM’ within the left pane of Sysconfig. Name this EPWM instance
+‘myEPWM1’. Now that we have added an EPWM instance, we will configure the EPWM1
+‘Timebase’ submodule as follows:</p>
+<ul class="simple">
+<li><p>Set <strong>High Speed Clock Divider</strong> to ‘Divide clock by 1’</p></li>
+<li><p>Set <strong>Time Base Period</strong> to ‘25000’</p></li>
+<li><p>Set <strong>Counter Mode</strong> to ‘Up - down - count mode’</p></li>
+</ul>
+<p><img alt="SysConfig EPWM Part 1" src="../../../_images/syscfg_epwm_pt1.png" /></p>
+<p>The ‘Counter Compare’ submodule for EPWM1A will be as follows:</p>
+<ul class="simple">
+<li><p>Set <strong>Counter Compare A (CMPA)</strong> to ‘12500’</p></li>
+</ul>
+<p><img alt="SysConfig EPWM Part 2" src="../../../_images/syscfg_epwm_pt2.png" /></p>
+<p>Now, configure the ‘Action Qualifier’ submodule for EPWM1A as follows:</p>
+<ul class="simple">
+<li><p>Enable Shadow Mode</p></li>
+<li><p>Set <strong>Shadow Load Event</strong> to ‘Load when counter equals zero’</p></li>
+<li><p>In <strong>Events to Configure for ePWMxA output</strong>, select ‘Time base counter up
+equals COMPA’ and ‘Time base counter down equals COMPA’</p></li>
+<li><p>Set <strong>Time base counter up equals COMPA</strong> to ‘Set output pins to High’</p></li>
+<li><p>Set <strong>Time base counter down equals COMPA</strong> to ‘Set output pins to Low’</p></li>
+</ul>
+<p><img alt="SysConfig EPWM Part 3" src="../../../_images/syscfg_epwm_pt3.png" /></p>
+<p>Lastly, we need to configure the PinMux for EPWM1A. Even though the output of
+ePWM1A will be overridden by the output of the CLB, configuring the output GPIO
+is good practice as it allows us to view the pure ePWM1A pulse for debugging
+purposes. Follow the steps below:</p>
+<ul class="simple">
+<li><p>Select ‘CUSTOM’ on the EPWM1 PinMux. This allows us to select only EPWM_A as
+an output</p></li>
+<li><p>Configure the Pin as ‘EPWM_A’</p></li>
+<li><p>Set the EPWM Peripheral to be used as ‘EPWM1’</p></li>
+<li><p>Configure the ‘EPWM_A’ pin to be ‘GPIO0’</p></li>
+</ul>
+<p><img alt="SysConfig EPWM Part 4" src="../../../_images/syscfg_epwm_pt4.png" /></p>
+</section>
+<section id="configure-the-clb">
+<h2>Configure the CLB<a class="headerlink" href="#configure-the-clb" title="Permalink to this heading">#</a></h2>
+<p>To setup the CLB peripheral, we need to add a CLB instance within SysConfig. We
+will need to setup this CLB instance to use the external signal as an input.
+We must also attach an interrupt handler to this CLB instance so that the HLC
+can issue interrupts to the CPU to send data. Setup CLB1 by following the steps below:</p>
+<ul class="simple">
+<li><p>Add a CLB by clicking the (+) icon next to ‘CLB’ on the left pane</p></li>
+<li><p>Set the CLB Instance to be ‘CLB1’</p></li>
+<li><p>Select ‘Input 0’, ‘Input 1’, and ‘Input 2’ as Inputs Used for CLB1</p></li>
+</ul>
+<p><img alt="SysConfig CLB Peripheral" src="../../../_images/syscfg_clb_ecap_clb_header.png" /></p>
+<p>Now we will route the GPIO input into Input 0 of CLB1. Doing this allows us
+to select AUXSIG0 as an input into CLB1. Configure Input 0 as follows:</p>
+<ul class="simple">
+<li><p>Set the Input type as ‘Use Global Mux’</p></li>
+<li><p>Under the dropdown for Global Mux Input, select ‘CLB X-BAR AUXSIG0’ if you are using an external signal for the input. Otherwise, select ‘EPWM1A’ for an internal square wave</p></li>
+<li><p>You can enable input syncing, but not necessary</p></li>
+<li><p>No syncing or initial GPREG writes are necessary</p></li>
+</ul>
+<p><img alt="SysConfig CLB Input 0" src="../../../_images/syscfg_clb_ecap_input0.png" /></p>
+<p>Next, we will route the GPIO input into Input 1 of CLB1. Configure
+Input 1 as follows:</p>
+<ul class="simple">
+<li><p>Set the Input type as ‘Use Global Mux’</p></li>
+<li><p>Use the same dropdown option as Input 0</p></li>
+<li><p>Set the Input Filter to be Rising edge detect and enable synchronization</p></li>
+</ul>
+<p><img alt="SysConfig CLB Input 1" src="../../../_images/syscfg_clb_ecap_input1.png" /></p>
+<p>Finally, we will route the GPIO input into Input 2 of CLB1. Configure
+Input 2 as follows:</p>
+<ul class="simple">
+<li><p>Set the Input type as ‘Use Global Mux’</p></li>
+<li><p>Use the same dropdown option as Input 0</p></li>
+<li><p>Set the Input Filter to be Falling edge detect and enable synchronization</p></li>
+</ul>
+<p><img alt="SysConfig CLB Input 1" src="../../../_images/syscfg_clb_ecap_input2.png" /></p>
+<p>Because the HLC submodule within CLB1 will be issuing interrupts to the CPU
+when a fault is detected, an Interrupt Handler must be configured. Follow the
+steps below to do this:</p>
+<ul class="simple">
+<li><p>Check the box next to ‘Attach a TILE Config to this CLB’</p></li>
+<li><p>Check the box next to ‘Initialize TILE’</p></li>
+</ul>
+</section>
+<section id="configure-the-clb-tile">
+<h2>Configure the CLB Tile<a class="headerlink" href="#configure-the-clb-tile" title="Permalink to this heading">#</a></h2>
+<p>Now it is time to configure the CLB1 tile to perform the logic necessary to
+implement an eCAP and send data to the CPU. This requires configuring
+submodules within the CLB: LUT (Look-Up Table), FSM (Finite State Machine), Counter, and the HLC (High Level Controller).</p>
+<p>If you didn’t add a tile by selecting the “Attach a TILE
+Config to this CLB” checkbox, navigate to the ‘Tile Design’ peripheral within the SysConfig GUI and add a single
+‘Tile Design’ instance. Begin the CLB tile configuration by editing LUT0.</p>
+<section id="look-up-table-0">
+<h3>Look-Up Table 0<a class="headerlink" href="#look-up-table-0" title="Permalink to this heading">#</a></h3>
+<p>LUT0 will be responsible for creating an enable for the counter when the signal is
+low. Configure LUT0 as follows:</p>
+<ul class="simple">
+<li><p>Select ‘Boundary input 0’ as the input for ‘Input 0’. This corresponds to the external signal</p></li>
+<li><p>In the ‘Logic Equation’ field, enter the following logical expression: <code class="docutils literal notranslate"><span class="pre">!i0</span></code></p>
+<ul>
+<li><p>With this logic, the output of LUT0 will be the inverse of the external signal.</p></li>
+</ul>
+</li>
+</ul>
+<p><img alt="SysConfig LUT0" src="../../../_images/syscfg_clb_ecap_lut0.png" /></p>
+</section>
+<section id="look-up-table-1">
+<h3>Look-Up Table 1<a class="headerlink" href="#look-up-table-1" title="Permalink to this heading">#</a></h3>
+<p>LUT1 will be responsible for detecting the first high signal of a square wave.
+The output of this LUT will be used as an event trigger by the HLC so that the counter
+can store the time of the first high pulse. Configure LUT1 as follows:</p>
+<ul class="simple">
+<li><p>Select ‘FSM 0 State 0 Value’ as the input for ‘Input 0’. This corresponds to the state where the first
+high pulse occurs in the square wave.</p></li>
+<li><p>Select ‘Boundary input 2’ as the input for ‘Input 1’. This corresponds to the event where a falling
+edge occurs, or in other words the end of the high pulse.</p></li>
+<li><p>In the ‘Logic Equation’ field, enter the following logical expression: <code class="docutils literal notranslate"><span class="pre">i0&amp;i1</span></code></p>
+<ul>
+<li><p>The result of this logic is that an event will be triggered in the HLC when the FSM
+detects the ‘first’ high pulse of a wave and the pulse has just fallen low.</p></li>
+</ul>
+</li>
+</ul>
+<p><img alt="SysConfig LUT1" src="../../../_images/syscfg_clb_ecap_lut1.png" /></p>
+</section>
+<section id="look-up-table-2">
+<h3>Look-Up Table 2<a class="headerlink" href="#look-up-table-2" title="Permalink to this heading">#</a></h3>
+<p>LUT2 will be responsible for detecting the second high signal of a square wave.
+The output of this LUT will be used as an event trigger by the HLC so that the counter
+can store the time of the first high pulse. Configure LUT_2 as follows:</p>
+<ul class="simple">
+<li><p>Select ‘FSM 0 State 1 Value’ as the input for ‘Input 0’. This corresponds to the state where the second
+high pulse occurs in the square wave.</p></li>
+<li><p>Select ‘Boundary input 2’ as the input for ‘Input 1’. This corresponds to the event where a falling
+edge occurs, or in other words the end of the high pulse.</p></li>
+<li><p>In the ‘Logic Equation’ field, enter the following logical expression: <code class="docutils literal notranslate"><span class="pre">i0&amp;i1</span></code></p></li>
+<li><p>The result of this logic is that an event will be triggered in the HLC when the FSM
+detects the ‘second’ high pulse of a wave and the pulse has just fallen low</p></li>
+</ul>
+<p><img alt="SysConfig LUT2" src="../../../_images/syscfg_clb_ecap_lut2.png" /></p>
+</section>
+<section id="finite-state-machine-0">
+<h3>Finite State Machine 0<a class="headerlink" href="#finite-state-machine-0" title="Permalink to this heading">#</a></h3>
+<p>Now we must configure FSM0 to transition between states that divide a signal so
+that there is a first and second high signal that can be distinguished:</p>
+<ul class="simple">
+<li><p>Set ‘Boundary input 1’ as the input for ‘External Input 0’, which is the rising edge detect input.</p></li>
+<li><p>Set the ‘State 0 Output Equation (S0)’ as <code class="docutils literal notranslate"><span class="pre">s0^e0</span></code>. This logic dictates that S0 will be true
+when the first high pulse is occurring (S0 indicates the first high pulse), the
+rising edge has occurred, but not both/neither.</p></li>
+<li><p>Set the ‘State 1 Output Equation (S1)’ as <code class="docutils literal notranslate"><span class="pre">!(s0^e0)</span></code>. This logic states that S1 will be true
+when either a rising edge and the first high pulse is occurring simultaneously, or
+neither are occurring. S1 indicates the second high pulse.</p></li>
+<li><p>In the ‘LUT Output Equation’ field, enter the following logical expression: <code class="docutils literal notranslate"><span class="pre">s0</span></code></p></li>
+</ul>
+<p><img alt="SysConfig FSM 0" src="../../../_images/syscfg_clb_ecap_fsm.png" /></p>
+</section>
+<section id="counter-0">
+<h3>Counter 0<a class="headerlink" href="#counter-0" title="Permalink to this heading">#</a></h3>
+<p>Next are the counters. Two counters will be used for this lab, one to count the
+length of time the signal is high, the other to count when it is low. COUNTER0 will
+count up when the signal is high, and reset when a rising edge occurs. Because
+it is measuring between rising edges and only counting when the signal is high,
+it will only measure the length of the high pulse. Counter0 should be set as follows:</p>
+<p><img alt="SysConfig Counter 0" src="../../../_images/syscfg_clb_ecap_counter0.png" /></p>
+</section>
+<section id="counter-1">
+<h3>Counter 1<a class="headerlink" href="#counter-1" title="Permalink to this heading">#</a></h3>
+<p>COUNTER1 will measure the length of time the signal is low. This counter counts
+when the inverse of the signal (from LUT0) is high and resets on a falling edge.
+This measures between falling edges and only counts the time when the inverse of
+the signal is high, thereby only measuring the times the actual signal is low. Counter1 should be set as follows:</p>
+<p><img alt="SysConfig Counter 1" src="../../../_images/syscfg_clb_ecap_counter1.png" /></p>
+</section>
+<section id="high-level-controller">
+<h3>High Level Controller<a class="headerlink" href="#high-level-controller" title="Permalink to this heading">#</a></h3>
+<p>Finally, the High-Level Controller is configured with three events.</p>
+<ul class="simple">
+<li><p>Event 0 is triggered by the <strong>first high pulse</strong> of the sensor input and will
+load the value from COUNTER0 into the R0 register.</p></li>
+<li><p>Event 1 is triggered by the <strong>low pulse</strong> of the sensor input and will
+load the value from COUNTER1 into the R1 register.</p></li>
+<li><p>Event 2 is triggered by the <strong>second high pulse</strong> of the sensor input and will
+load the value from COUNTER0 into the R2 register. Then the registers are pushed
+and an interrupt is triggered so the CPU may read the data. The interrupt is triggered
+here so that the first high pulse, low pulse, and second high pulse are sent to the
+CPU without missing or overwriting data.</p></li>
+</ul>
+<p>Configure the HLC as follows:</p>
+<ul>
+<li><p>Select ‘LUT 1 Output’ as the trigger condition for ‘Event 0’</p></li>
+<li><p>Select ‘Boundary input 1’ as the trigger condition for ‘Event 1’</p></li>
+<li><p>Select ‘LUT 2 Output’ as the trigger condition for ‘Event 2’</p>
+ <!-- - Alternatively, on devices with CLB Type 2 or later, select 'BOUNDARY.in1_INVERTED' -->
+</li>
+<li><p>Extend the “Other Dependencies” tab</p></li>
+<li><p>Open ‘HLC Program 0’, ‘HLC Program 1’, and ‘HLC Program 2’ drop-downs</p></li>
+<li><p>For ‘Program 0’, set the ‘Instruction 0’ field to the following operation: <code class="docutils literal notranslate"><span class="pre">MOV</span> <span class="pre">C0,</span> <span class="pre">R0</span></code></p></li>
+<li><p>For ‘Program 1’, set the ‘Instruction 0’ field to the following operation: <code class="docutils literal notranslate"><span class="pre">MOV</span> <span class="pre">C1,</span> <span class="pre">R1</span></code></p></li>
+<li><p>For ‘Program 2’, set the the instructions:</p>
+<ul class="simple">
+<li><p>‘Instruction 0’ operation: <code class="docutils literal notranslate"><span class="pre">MOV</span> <span class="pre">C0,</span> <span class="pre">R2</span></code></p></li>
+<li><p>‘Instruction 1’ operation: <code class="docutils literal notranslate"><span class="pre">PUSH</span> <span class="pre">R0</span></code></p></li>
+<li><p>‘Instruction 2’ operation: <code class="docutils literal notranslate"><span class="pre">PUSH</span> <span class="pre">R1</span></code></p></li>
+<li><p>‘Instruction 3’ operation: <code class="docutils literal notranslate"><span class="pre">PUSH</span> <span class="pre">R2</span></code></p></li>
+<li><p>‘Instruction 4’ operation: <code class="docutils literal notranslate"><span class="pre">PUSH</span> <span class="pre">R3</span></code></p></li>
+<li><p>‘Instruction 5’ operation: <code class="docutils literal notranslate"><span class="pre">INTR</span> <span class="pre">1</span></code></p></li>
+</ul>
+</li>
+<li><p>Settings should be as shown below:</p></li>
+</ul>
+<p><img alt="SysConfig HLC" src="../../../_images/syscfg_clb_ecap_hlc.png" /></p>
+</section>
+</section>
+<section id="program-setup">
+<h2>Program Setup<a class="headerlink" href="#program-setup" title="Permalink to this heading">#</a></h2>
+<p>Now that we have configured the CLB module within SysConfig, we can
+switch to the application code portion of this lab. Within the project click on
+the .c file under the name you chose.</p>
+<section id="define-global-macros-and-variable">
+<h3>Define Global Macros and Variable<a class="headerlink" href="#define-global-macros-and-variable" title="Permalink to this heading">#</a></h3>
+<p>The first thing we will do is define any variables we are using throughout
+the project and set up the content within the main() function, which includes
+device initialization.</p>
+<p>We begin by including the basic necessary libraries <code class="docutils literal notranslate"><span class="pre">driverlib.h</span></code> and <code class="docutils literal notranslate"><span class="pre">device.</span> <span class="pre">h</span></code>. Next, include the SysConfig-generated header file <code class="docutils literal notranslate"><span class="pre">board.h</span></code>. This should
+already be included by default. Lastly, include the <code class="docutils literal notranslate"><span class="pre">clb_config.h</span></code> and <code class="docutils literal notranslate"><span class="pre">clb.h</span></code>
+libraries, which are required for proper CLB function. These two CLB libraries
+are included by default if the <code class="docutils literal notranslate"><span class="pre">clb_empty</span></code> project was imported.</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="c1">//</span>
+<span class="c1">// Included Files</span>
+<span class="c1">//</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;driverlib.h&quot;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;device.h&quot;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;board.h&quot;</span>
+</pre></div>
+</div>
+<p>Then we define the global variables that will be used.</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="c1">//</span>
+<span class="c1">// Macros and Global Variables</span>
+<span class="c1">//</span>
+<span class="k">volatile</span><span class="w"> </span><span class="n">float32_t</span><span class="w"> </span><span class="n">frequency</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.0</span><span class="p">;</span>
+<span class="k">volatile</span><span class="w"> </span><span class="n">float32_t</span><span class="w"> </span><span class="n">period</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.0</span><span class="p">;</span>
+<span class="k">volatile</span><span class="w"> </span><span class="n">float32_t</span><span class="w"> </span><span class="n">duty</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.0</span><span class="p">;</span>
+<span class="k">volatile</span><span class="w"> </span><span class="n">float32_t</span><span class="w"> </span><span class="n">timesHLH</span><span class="p">[</span><span class="mi">3</span><span class="p">];</span>
+<span class="k">volatile</span><span class="w"> </span><span class="kt">uint32_t</span><span class="w"> </span><span class="n">regPush</span><span class="p">[</span><span class="mi">4</span><span class="p">];</span>
+<span class="k">volatile</span><span class="w"> </span><span class="kt">uint32_t</span><span class="w"> </span><span class="n">firstHigh</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="k">volatile</span><span class="w"> </span><span class="kt">uint32_t</span><span class="w"> </span><span class="n">firstLow</span><span class="w">   </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="k">volatile</span><span class="w"> </span><span class="kt">uint32_t</span><span class="w"> </span><span class="n">secondHigh</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="k">volatile</span><span class="w"> </span><span class="kt">uint16_t</span><span class="w"> </span><span class="n">ledCount</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="k">volatile</span><span class="w"> </span><span class="kt">uint16_t</span><span class="w">  </span><span class="n">gpioStatus</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>Next we declare the interrupt functions used.</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="c1">//</span>
+<span class="c1">// Functions</span>
+<span class="c1">//</span>
+<span class="n">__attribute__</span><span class="p">((</span><span class="n">interrupt</span><span class="p">(</span><span class="s">&quot;INT&quot;</span><span class="p">)))</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">INT_myCLB0_ISR</span><span class="p">(</span><span class="kt">void</span><span class="p">);</span>
+</pre></div>
+</div>
+</section>
+<section id="define-main">
+<h3>Define main()<a class="headerlink" href="#define-main" title="Permalink to this heading">#</a></h3>
+<p>Next, we define the contents within main() which includes device
+initialization and peripheral setup:</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="c1">//</span>
+<span class="c1">// Main</span>
+<span class="c1">//</span>
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">	</span><span class="c1">//</span>
+<span class="w">   </span><span class="c1">// CPU Initialization</span>
+<span class="w">   </span><span class="c1">//</span>
+<span class="w">   </span><span class="n">Device_init</span><span class="p">();</span>
+<span class="w">   </span><span class="n">Device_initGPIO</span><span class="p">();</span>
+<span class="w">   </span><span class="n">Interrupt_initModule</span><span class="p">();</span>
+<span class="w">   </span><span class="n">Interrupt_initVectorTable</span><span class="p">();</span>
+<span class="w">   </span><span class="n">Board_init</span><span class="p">();</span>
+
+<span class="w">   </span><span class="n">Interrupt_enable</span><span class="p">(</span><span class="n">INT_CLB1</span><span class="p">);</span>
+<span class="w">   </span><span class="n">Interrupt_register</span><span class="p">(</span><span class="n">INT_CLB1</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">INT_myCLB0_ISR</span><span class="p">);</span>
+<span class="w">   </span><span class="c1">//</span>
+<span class="w">   </span><span class="c1">// Enable PIPE Global Interrupt (for INTs and RTINTs) and INT enablein CPU.</span>
+<span class="w">   </span><span class="c1">//</span>
+<span class="w">   </span><span class="n">ENINT</span><span class="p">;</span>
+<span class="w">   </span><span class="n">Interrupt_enableGlobal</span><span class="p">();</span>
+
+<span class="w">   </span><span class="c1">//</span>
+<span class="w">   </span><span class="c1">// Local variables</span>
+<span class="w">   </span><span class="c1">//</span>
+<span class="w">   </span><span class="kt">uint32_t</span><span class="w"> </span><span class="n">clockFreq</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">DEVICE_SYSCLK_FREQ</span><span class="p">;</span>
+<span class="w">   </span><span class="kt">uint32_t</span><span class="w"> </span><span class="n">firstHighCLB</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="w">   </span><span class="kt">uint32_t</span><span class="w"> </span><span class="n">firstLowCLB</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="w">   </span><span class="kt">uint32_t</span><span class="w"> </span><span class="n">secondHighCLB</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+
+<span class="w">	</span><span class="k">while</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="w">	</span><span class="p">{</span>
+<span class="w">	   </span><span class="c1">//</span>
+<span class="w">	   </span><span class="c1">// Frequency, period, duty, and other timing calculations</span>
+<span class="w">	   </span><span class="c1">// NOTE: 1 is added to each count because of zero-indexing counter</span>
+<span class="w">	   </span><span class="c1">//</span>
+<span class="w">	   </span><span class="n">firstHighCLB</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">regPush</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+<span class="w">      </span><span class="n">firstLowCLB</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">regPush</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+<span class="w">      </span><span class="n">secondHighCLB</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">regPush</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+<span class="w">	   </span><span class="n">frequency</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">float32_t</span><span class="p">)(</span><span class="n">clockFreq</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="p">((</span><span class="n">float32_t</span><span class="p">)(</span><span class="n">firstHighCLB</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">firstLowCLB</span><span class="p">));</span>
+<span class="w">	   </span><span class="n">period</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">frequency</span><span class="p">;</span>
+<span class="w">      </span><span class="n">timesHLH</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">float32_t</span><span class="p">)(</span><span class="n">firstHighCLB</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="p">(</span><span class="n">float32_t</span><span class="p">)(</span><span class="n">clockFreq</span><span class="p">);</span>
+<span class="w">      </span><span class="n">timesHLH</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">float32_t</span><span class="p">)(</span><span class="n">firstLowCLB</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="p">(</span><span class="n">float32_t</span><span class="p">)(</span><span class="n">clockFreq</span><span class="p">);</span>
+<span class="w">      </span><span class="n">timesHLH</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">float32_t</span><span class="p">)(</span><span class="n">secondHighCLB</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="p">(</span><span class="n">float32_t</span><span class="p">)(</span><span class="n">clockFreq</span><span class="p">);</span>
+<span class="w">      </span><span class="n">duty</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">timesHLH</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">frequency</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">100</span><span class="p">;</span>
+<span class="w">	</span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="set-up-the-clb-isr">
+<h3>Set Up the CLB ISR<a class="headerlink" href="#set-up-the-clb-isr" title="Permalink to this heading">#</a></h3>
+<p>Finally, within the .c file, we need to write the ISR (interrupt service routine).</p>
+<p>The first thing that will be done in the interrupt is reading the pushed registers
+via the read FIFO function.</p>
+<p>Note: The name of the ISR function is what we defined earlier within the
+SysConfig configuration for the CLB.</p>
+<p>Add this code below your main() to begin your ISR.</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="n">__attribute__</span><span class="p">((</span><span class="n">interrupt</span><span class="p">(</span><span class="s">&quot;INT&quot;</span><span class="p">)))</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">INT_myCLB0_ISR</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">   </span><span class="n">CLB_readFIFOs</span><span class="p">(</span><span class="n">myCLB0_BASE</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="kt">uint32_t</span><span class="w"> </span><span class="o">*</span><span class="p">)</span><span class="n">regPush</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>A GPIO pin will be toggled upon reaching a certain counter value of a global
+variable. This is to show that the ISR is triggering properly. Lastly, we
+must acknowledge the PIE group as well as clear the interrupt status
+flag so that we can continue to service interrupts in the future. Add the below to complete your ISR</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="w">   </span><span class="c1">//</span>
+<span class="w">   </span><span class="c1">// Toggle the GPIO pins; increase from 1000 to slow down the toggle</span>
+<span class="w">   </span><span class="c1">//</span>
+<span class="w">   </span><span class="n">ledCount</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">ledCount</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="p">(</span><span class="mi">1000</span><span class="p">);</span>
+
+<span class="w">   </span><span class="k">if</span><span class="p">(</span><span class="n">ledCount</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span>
+<span class="w">   </span><span class="p">{</span>
+<span class="w">      </span><span class="k">if</span><span class="p">(</span><span class="n">gpioStatus</span><span class="p">)</span>
+<span class="w">      </span><span class="p">{</span>
+<span class="w">         </span><span class="n">gpioStatus</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">      </span><span class="k">else</span>
+<span class="w">      </span><span class="p">{</span>
+<span class="w">         </span><span class="n">gpioStatus</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">      </span><span class="n">GPIO_writePin</span><span class="p">(</span><span class="n">myBoardLED1_GPIO</span><span class="p">,</span><span class="w"> </span><span class="n">gpioStatus</span><span class="p">);</span>
+<span class="w">   </span><span class="p">}</span>
+
+<span class="w">   </span><span class="n">CLB_clearInterruptTag</span><span class="p">(</span><span class="n">myCLB0_BASE</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>This concludes the coding portion of this lab.</p>
+</section>
+</section>
+<section id="build-the-project">
+<h2>Build the Project<a class="headerlink" href="#build-the-project" title="Permalink to this heading">#</a></h2>
+<p>With the configurations and code complete, we can ‘Build’ the project to check for any errors.
+Once the project builds without errors, we will connect to the device, load the program to the device, and run it within a debug session.</p>
+<ol class="arabic simple">
+<li><p>Right-click on your project and hover over the <strong>Build Configurations</strong> button until another panel pops up. Select the <strong>CPU1_RAM</strong> build configuration.</p>
+<ul class="simple">
+<li><p>With the RAM configuration selected, the project will be loaded to the RAM memory of the device.</p></li>
+</ul>
+</li>
+<li><p>Right-click on your project again and select <strong>Build Project(s)</strong> to build your program. Fix any compilation errors.</p></li>
+</ol>
+</section>
+<section id="run-the-project">
+<h2>Run the Project<a class="headerlink" href="#run-the-project" title="Permalink to this heading">#</a></h2>
+<p>Now we will start a debug session.</p>
+<ol class="arabic simple" start="3">
+<li><p>Prior to running the lab, ensure that a jumper cable is connected between the GPIO pin and the EPWM input (or optionally the waveform generator). View your board’s schematics for exact siganl pin locations.</p></li>
+<li><p>Ensure that the USB cable from your board is connected to your computer.</p></li>
+<li><p>Right-click on your project and select <strong>Debug Project</strong>.</p>
+<ul class="simple">
+<li><p>If prompted, check that only CPU1 is selected to load the program to.</p></li>
+<li><p>This action should re-build your project, connect to the debugger, and load the program to the device.</p></li>
+<li><p>The <strong>DEBUG</strong> window should populate and the debugger should have paused at the beginning of your <code class="docutils literal notranslate"><span class="pre">main()</span></code>.</p></li>
+</ul>
+</li>
+<li><p>Now we will continue the debug session and the <code class="docutils literal notranslate"><span class="pre">main()</span></code> by clicking the blue <strong>Continue</strong> button in the upper left corner.</p>
+<ul class="simple">
+<li><p>Note that there are several other buttons that can be used to help debug your project by stepping through your program line by line. Feel free to explore them here,
+or see the <a class="reference internal" href="../../intro/c29x_literature.html"><span class="doc std std-doc">CCS User’s Guide</span></a> for more details on its capabilities.</p></li>
+</ul>
+</li>
+</ol>
+</section>
+<section id="validate-the-project">
+<h2>Validate the Project<a class="headerlink" href="#validate-the-project" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p>For this lab, you can monitor the global variables such as frequency, period,
+or duty to verify the signal you are inputing is being read correctly by the
+CLB eCAP.</p></li>
+<li><p>Try to enter in different values to experiment with the range of frequencies that can
+be used and detected by the system. Low frequencies are limited only by the size of the
+counter, whereas high frequencies are limited by the system’s speed.</p></li>
+</ul>
+<section id="terminate-the-debug-session-and-close-the-project">
+<h3>Terminate the Debug Session and Close the Project<a class="headerlink" href="#terminate-the-debug-session-and-close-the-project" title="Permalink to this heading">#</a></h3>
+<p>With the project developed and validated, we can close this debug session.</p>
+<ul class="simple">
+<li><p>Click the red <strong>Stop</strong> button at the top of your <code class="docutils literal notranslate"><span class="pre">DEBUG</span></code> window to terminate the active debug session and disconnect the debugger</p></li>
+<li><p>You can return to the <code class="docutils literal notranslate"><span class="pre">Project</span> <span class="pre">Explorer</span></code> window by clicking on the corresponding button at the top of the panel on the left.</p></li>
+</ul>
+<p>This concludes the lab exercise.</p>
+</section>
+</section>
+<section id="full-solution">
+<h2>Full Solution<a class="headerlink" href="#full-solution" title="Permalink to this heading">#</a></h2>
+<p>Recall that the completed software solution is available as well. Please refer to the top of this page to review the location of this lab’s software solution.</p>
+</section>
+</section>
+
+
+                </article>
+              
+              
+              <footer class="bd-footer-article">
+                    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+  <a class='left-prev' id="prev-link" href="c29x_clb_lab.html" title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+          <p class="prev-next-subtitle">previous</p>
+          <p class="prev-next-title">Configurable Logic Block (CLB) Lab</p>
+      </div>
+  </a>
+  <a class='right-next' id="next-link" href="c29x_system_integration_lab.html" title="next page">
+  <div class="prev-next-info">
+      <p class="prev-next-subtitle">next</p>
+      <p class="prev-next-title">System Integration Lab</p>
+  </div>
+  <i class="fa-solid fa-angle-right"></i>
+  </a>
+</div>
+                  </footer>
+                
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc">
+<div class="toc-item">
+  
+<div class="tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+</div>
+<nav id="bd-toc-nav" class="page-toc">
+    <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#solution">
+   Solution
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#overview">
+   Overview
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#lab-setup">
+   Lab Setup
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#hardware-setup">
+     Hardware Setup
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#software-setup">
+     Software Setup
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#start-a-ccs-project">
+   Start a CCS Project
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#configure-the-gpios">
+   Configure the GPIOs
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#led-gpio">
+     LED GPIO
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#led-0">
+     LED 0
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#optional-gpio">
+     Optional GPIO
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#input-x-bar">
+       INPUT X-BAR
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#clb-xbar">
+       CLB XBAR
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#configure-the-epwm">
+   Configure the EPWM
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#configure-the-clb">
+   Configure the CLB
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#configure-the-clb-tile">
+   Configure the CLB Tile
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#look-up-table-0">
+     Look-Up Table 0
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#look-up-table-1">
+     Look-Up Table 1
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#look-up-table-2">
+     Look-Up Table 2
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#finite-state-machine-0">
+     Finite State Machine 0
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#counter-0">
+     Counter 0
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#counter-1">
+     Counter 1
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#high-level-controller">
+     High Level Controller
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#program-setup">
+   Program Setup
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#define-global-macros-and-variable">
+     Define Global Macros and Variable
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#define-main">
+     Define main()
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#set-up-the-clb-isr">
+     Set Up the CLB ISR
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#build-the-project">
+   Build the Project
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#run-the-project">
+   Run the Project
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#validate-the-project">
+   Validate the Project
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#terminate-the-debug-session-and-close-the-project">
+     Terminate the Debug Session and Close the Project
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#full-solution">
+   Full Solution
+  </a>
+ </li>
+</ul>
+
+</nav>
+</div>
+
+<div class="toc-item">
+  
+<button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-toggle="tooltip">
+  <i class="fa-solid fa-magnifying-glass"></i>
+</button>
+</div>
+</div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+<script async>
+  async function setTheme() {
+    try {
+      var colorScheme = await window.parent.getTirexTheme();
+      var mode = colorScheme === 'dark' ? 'dark' : 'light';
+      localStorage.setItem('mode', mode);
+      document.documentElement.dataset.mode = mode;
+      document.documentElement.dataset.theme = colorScheme;
+    } catch (error) {
+      console.error('Failed to set the theme:', error);
+    }
+  }
+
+  setTheme();
+</script>
+
+
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../../_static/scripts/bootstrap.js?digest=796348d33e8b1d947c94"></script>
+<script src="../../../_static/scripts/pydata-sphinx-theme.js?digest=796348d33e8b1d947c94"></script>
+
+
+
+
+<script type="text/javascript">
+  function extractNodeValue(url) {
+    try {
+      const parsedUrl = new URL(url);
+      if (parsedUrl.pathname === '/tirex/explore/node') {
+        const searchParams = new URLSearchParams(parsedUrl.search);
+        return searchParams.get('node');
+      } else {
+        return null;
+      }
+    } catch (error) {
+      console.error("Invalid URL:", error);
+      return null;
+    }
+  }
+
+  // Get all links on the page
+  const links = document.querySelectorAll('a');
+
+  // Get the project name and replace spaces with underscores
+  var projName = "C29x Academy";
+
+  // Attach a click event listener to each link
+  links.forEach((link) => {
+    link.addEventListener('click', (event) => {
+      // Prevent the default link behavior
+      event.preventDefault();
+
+      const url = link.href;
+      console.log(url)
+      const match = url.match(/source\/.+$/);
+      const localId = match ? match[0].replace(/\.html$/, '').replace(/[\/\\\.]/g, '_').toLowerCase() : null;
+      console.log(localId)
+      const extractedNode = extractNodeValue(url);
+
+      console.log(extractedNode)
+      if (typeof window.parent.jumpToTirexNodeOnLocal === 'function') {
+        window.parent.jumpToTirexNodeOnLocal(localId, null, null, {
+            throwError: true
+          })
+          .catch((e) => {
+            if (extractedNode !== null) {
+              window.parent.jumpToTirexNode(extractedNode, {
+                  throwError: true
+                })
+                .catch((e) => {
+                  window.location.href = link.href;
+                })
+            }
+            else {
+              if (url.includes("e2e.ti.com") || url.includes("dev.ti.com/gallery/view")) {
+              window.open(url, "_blank")
+              } else {
+              window.location.href = link.href;
+            }}
+          })
+      } else {
+        window.location.href = link.href;
+      }
+    });
+  });
+</script>
+  <footer class="bd-footer"><div class="bd-footer__inner container">
+  
+  <div class="footer-item">
+    
+<p class="copyright">
+
+    &copy; Copyright 2025, Texas Instruments.<br>
+
+</p>
+
+  </div>
+  
+</div>
+  </footer>
+  </body>
+</html>
