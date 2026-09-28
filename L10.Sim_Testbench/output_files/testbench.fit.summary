@@ -1,0 +1,16 @@
+Fitter Status : Successful - Mon Sep 28 10:15:58 2026
+Quartus Prime Version : 25.1std.0 Build 1129 10/21/2025 SC Lite Edition
+Revision Name : testbench
+Top-level Entity Name : multiplier_8bit
+Family : Cyclone IV E
+Device : EP4CE6E22C8
+Timing Models : Final
+Total logic elements : 8 / 6,272 ( < 1 % )
+    Total combinational functions : 0 / 6,272 ( 0 % )
+    Dedicated logic registers : 8 / 6,272 ( < 1 % )
+Total registers : 8
+Total pins : 20 / 92 ( 22 % )
+Total virtual pins : 0
+Total memory bits : 0 / 276,480 ( 0 % )
+Embedded Multiplier 9-bit elements : 0 / 30 ( 0 % )
+Total PLLs : 0 / 2 ( 0 % )

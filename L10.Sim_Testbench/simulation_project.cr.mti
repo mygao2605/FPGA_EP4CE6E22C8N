@@ -1,0 +1,15 @@
+C:/Users/TuNa38/Desktop/FPGA_ALTERA/FPGA_EP4CE6E22C8N/L10.Sim_Testbench/multiplier_8bit.v {1 {vlog -work work -stats=none C:/Users/TuNa38/Desktop/FPGA_ALTERA/FPGA_EP4CE6E22C8N/L10.Sim_Testbench/multiplier_8bit.v
+Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+-- Compiling module multiplier_8bit
+
+Top level modules:
+	multiplier_8bit
+
+} {} {}} C:/Users/TuNa38/Desktop/FPGA_ALTERA/FPGA_EP4CE6E22C8N/L10.Sim_Testbench/tb_multiplier_8bit.v {1 {vlog -work work -stats=none C:/Users/TuNa38/Desktop/FPGA_ALTERA/FPGA_EP4CE6E22C8N/L10.Sim_Testbench/tb_multiplier_8bit.v
+Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+-- Compiling module tb_multiplier_8bit
+
+Top level modules:
+	tb_multiplier_8bit
+
+} {} {}}

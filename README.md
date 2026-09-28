@@ -129,7 +129,7 @@ end
 ```
 
 Công thức tính nhanh số clock N = fclock . t
-Muốn 1 s vs fclk =50Mhz -> N = 50000000.1 = 50000000 
+Muốn 1 s vs fclk =50Mhz -> N = 50000000.1 = 50 000 000 
 
 ---
 
