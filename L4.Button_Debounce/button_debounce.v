@@ -2,7 +2,7 @@ module button_debounce(
     input  wire clk,
     input  wire key,
     output reg  led
-);
+);//
 
     // 50 MHz × 20 ms = 1,000,000 clock
     localparam integer DEBOUNCE_COUNT = 1_000_000;
